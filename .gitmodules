@@ -1,0 +1,4 @@
+[submodule "fasmg"]
+	path = fasmg
+	url = git@github.com:tgrysztar/fasmg.git
+	branch = master
