@@ -21,7 +21,10 @@ const examples: Record<OperandType, string[]> = {
     "@(pc)",
     "@-2(pc)",
   ],
-  "d(pc,ix)": ["@(pc,d5.w)"],
+  "d(pc,ix)": [
+    "@(pc,d5.w)",
+    "@-2(pc,d5.w)",
+  ],
   // TODO: Rename to imm32?
   "imm": ["#0", "#4", "#$FF", "#$7FFF", "#$FFFF", "#$FFFFFFFF", '#"WXYZ"', "#1+1", '#(3+4)'],
   "imm3": ["#1", "#7"],
