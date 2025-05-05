@@ -9,10 +9,10 @@ const instructionsData = data;
 // Example values for each addressing mode
 const examples: Record<OperandType, string[]> = {
   "dn": ["d2", "d5"],
-  "an": ["a2", "a5", "a7"],
+  "an": ["a2", "a5", "a7", "sp"],
   "(an)": ["(a2)", "(a5)"],
   "(an)+": ["(a1)+", "(a2)+", "(a5)+"],
-  "-(an)": ["-(a2)", "-(a5)"],
+  "-(an)": ["-(a2)", "-(a5)", "-(sp)"],
   "d(an)": ["$7FFF(a2)", "$7FFF(a5)"],
   "d(an,ix)": ["$7F(a2,d5.w)", "$7F(a5,d2.w)"],
   "abs.w": ["($FFFFFFFF).w"],
