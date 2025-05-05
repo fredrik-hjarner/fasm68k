@@ -22,7 +22,10 @@ const examples: Record<OperandType, string[]> = {
     // "($1+1)(a5,d2.l)", TODO: This causes errors.
   ],
   "abs.w": ["($FFFFFFFF).w"],
-  "abs.l": ["($FFFFFFFF).l"],
+  "abs.l": [
+    "($FFFFFFFF).l",
+    'label_start.l'
+  ],
   "d(pc)": [
     "@(pc)",
     "@-2(pc)",
@@ -36,6 +39,7 @@ const examples: Record<OperandType, string[]> = {
   "imm": [
     "#equ_1",
     '#equ_equ_1',
+    '#equ_1_plus_equ_1',
     "#0",
     "#4",
     "#$FF",
@@ -91,6 +95,10 @@ equ_1 equ 1
 ; equ_imm_0 equ #0 ; You're not allowed to do this in vasm and clownassembler.
 ; equ_imm_1 equ #1 ; You're not allowed to do this in vasm and clownassembler.
 equ_equ_1 equ equ_1
+equ_1_plus_equ_1 equ equ_1+equ_1
+; equ_a1 equ a1 ; You're not allowed to do this in vasm and clownassembler.
+
+label_start:
 
 `;
   let previousInstrName = ""; // Track the previous instruction name
