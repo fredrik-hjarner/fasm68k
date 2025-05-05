@@ -33,7 +33,19 @@ const examples: Record<OperandType, string[]> = {
     "@-2(pc,d1.l)",
   ],
   // TODO: Rename to imm32?
-  "imm": ["#0", "#4", "#$FF", "#$7FFF", "#$FFFF", "#$FFFFFFFF", '#"WXYZ"', "#1+1", '#(3+4)'],
+  "imm": [
+    "#equ_1",
+    '#equ_equ_1',
+    "#0",
+    "#4",
+    "#$FF",
+    "#$7FFF",
+    "#$FFFF",
+    "#$FFFFFFFF",
+    '#"WXYZ"',
+    "#1+1",
+    '#(3+4)',
+  ],
   "imm3": ["#1", "#7"],
   "imm4": ["#2"],
   "imm8": ["#0", "#$FF", '#"X"'],
@@ -73,7 +85,14 @@ function getExampleValues(operandType, instr: string, size: OperandSize) {
 
 // Generate valid test cases
 function generateValidTests() {
-  let output = "";
+  let output = `
+equ_0 equ 0
+equ_1 equ 1
+; equ_imm_0 equ #0 ; You're not allowed to do this in vasm and clownassembler.
+; equ_imm_1 equ #1 ; You're not allowed to do this in vasm and clownassembler.
+equ_equ_1 equ equ_1
+
+`;
   let previousInstrName = ""; // Track the previous instruction name
   
   // Process each group in the data

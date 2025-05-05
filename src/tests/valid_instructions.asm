@@ -1,3 +1,10 @@
+
+equ_0 equ 0
+equ_1 equ 1
+; equ_imm_0 equ #0 ; You're not allowed to do this in vasm and clownassembler.
+; equ_imm_1 equ #1 ; You're not allowed to do this in vasm and clownassembler.
+equ_equ_1 equ equ_1
+
 	dc.b	0, 5
 	dc.b	$0A, $FF
 	dc.b	'string'
@@ -209,6 +216,10 @@
 	ori.w	#$7FFF,d5
 	ori.w	#$FFFF,d2
 	ori.w	#$FFFF,d5
+	ori.l	#equ_1,(a2)
+	ori.l	#equ_1,(a5)
+	ori.l	#equ_equ_1,(a2)
+	ori.l	#equ_equ_1,(a5)
 	ori.l	#0,(a2)
 	ori.l	#0,(a5)
 	ori.l	#4,(a2)
@@ -227,6 +238,12 @@
 	ori.l	#1+1,(a5)
 	ori.l	#(3+4),(a2)
 	ori.l	#(3+4),(a5)
+	ori.l	#equ_1,(a1)+
+	ori.l	#equ_1,(a2)+
+	ori.l	#equ_1,(a5)+
+	ori.l	#equ_equ_1,(a1)+
+	ori.l	#equ_equ_1,(a2)+
+	ori.l	#equ_equ_1,(a5)+
 	ori.l	#0,(a1)+
 	ori.l	#0,(a2)+
 	ori.l	#0,(a5)+
@@ -254,6 +271,12 @@
 	ori.l	#(3+4),(a1)+
 	ori.l	#(3+4),(a2)+
 	ori.l	#(3+4),(a5)+
+	ori.l	#equ_1,-(a2)
+	ori.l	#equ_1,-(a5)
+	ori.l	#equ_1,-(sp)
+	ori.l	#equ_equ_1,-(a2)
+	ori.l	#equ_equ_1,-(a5)
+	ori.l	#equ_equ_1,-(sp)
 	ori.l	#0,-(a2)
 	ori.l	#0,-(a5)
 	ori.l	#0,-(sp)
@@ -281,6 +304,8 @@
 	ori.l	#(3+4),-(a2)
 	ori.l	#(3+4),-(a5)
 	ori.l	#(3+4),-(sp)
+	ori.l	#equ_1,($FFFFFFFF).l
+	ori.l	#equ_equ_1,($FFFFFFFF).l
 	ori.l	#0,($FFFFFFFF).l
 	ori.l	#4,($FFFFFFFF).l
 	ori.l	#$FF,($FFFFFFFF).l
@@ -290,6 +315,8 @@
 	ori.l	#"WXYZ",($FFFFFFFF).l
 	ori.l	#1+1,($FFFFFFFF).l
 	ori.l	#(3+4),($FFFFFFFF).l
+	ori.l	#equ_1,($FFFFFFFF).w
+	ori.l	#equ_equ_1,($FFFFFFFF).w
 	ori.l	#0,($FFFFFFFF).w
 	ori.l	#4,($FFFFFFFF).w
 	ori.l	#$FF,($FFFFFFFF).w
@@ -299,6 +326,10 @@
 	ori.l	#"WXYZ",($FFFFFFFF).w
 	ori.l	#1+1,($FFFFFFFF).w
 	ori.l	#(3+4),($FFFFFFFF).w
+	ori.l	#equ_1,$7FFF(a2)
+	ori.l	#equ_1,$7FFF(a5)
+	ori.l	#equ_equ_1,$7FFF(a2)
+	ori.l	#equ_equ_1,$7FFF(a5)
 	ori.l	#0,$7FFF(a2)
 	ori.l	#0,$7FFF(a5)
 	ori.l	#4,$7FFF(a2)
@@ -317,6 +348,14 @@
 	ori.l	#1+1,$7FFF(a5)
 	ori.l	#(3+4),$7FFF(a2)
 	ori.l	#(3+4),$7FFF(a5)
+	ori.l	#equ_1,$7F(a2,d5.w)
+	ori.l	#equ_1,$7F(a5,d2.w)
+	ori.l	#equ_1,$0F(a5,d2.l)
+	ori.l	#equ_1,$1+1(a5,d2.l)
+	ori.l	#equ_equ_1,$7F(a2,d5.w)
+	ori.l	#equ_equ_1,$7F(a5,d2.w)
+	ori.l	#equ_equ_1,$0F(a5,d2.l)
+	ori.l	#equ_equ_1,$1+1(a5,d2.l)
 	ori.l	#0,$7F(a2,d5.w)
 	ori.l	#0,$7F(a5,d2.w)
 	ori.l	#0,$0F(a5,d2.l)
@@ -353,6 +392,10 @@
 	ori.l	#(3+4),$7F(a5,d2.w)
 	ori.l	#(3+4),$0F(a5,d2.l)
 	ori.l	#(3+4),$1+1(a5,d2.l)
+	ori.l	#equ_1,d2
+	ori.l	#equ_1,d5
+	ori.l	#equ_equ_1,d2
+	ori.l	#equ_equ_1,d5
 	ori.l	#0,d2
 	ori.l	#0,d5
 	ori.l	#4,d2
@@ -572,6 +615,10 @@
 	andi.w	#$7FFF,d5
 	andi.w	#$FFFF,d2
 	andi.w	#$FFFF,d5
+	andi.l	#equ_1,(a2)
+	andi.l	#equ_1,(a5)
+	andi.l	#equ_equ_1,(a2)
+	andi.l	#equ_equ_1,(a5)
 	andi.l	#0,(a2)
 	andi.l	#0,(a5)
 	andi.l	#4,(a2)
@@ -590,6 +637,12 @@
 	andi.l	#1+1,(a5)
 	andi.l	#(3+4),(a2)
 	andi.l	#(3+4),(a5)
+	andi.l	#equ_1,(a1)+
+	andi.l	#equ_1,(a2)+
+	andi.l	#equ_1,(a5)+
+	andi.l	#equ_equ_1,(a1)+
+	andi.l	#equ_equ_1,(a2)+
+	andi.l	#equ_equ_1,(a5)+
 	andi.l	#0,(a1)+
 	andi.l	#0,(a2)+
 	andi.l	#0,(a5)+
@@ -617,6 +670,12 @@
 	andi.l	#(3+4),(a1)+
 	andi.l	#(3+4),(a2)+
 	andi.l	#(3+4),(a5)+
+	andi.l	#equ_1,-(a2)
+	andi.l	#equ_1,-(a5)
+	andi.l	#equ_1,-(sp)
+	andi.l	#equ_equ_1,-(a2)
+	andi.l	#equ_equ_1,-(a5)
+	andi.l	#equ_equ_1,-(sp)
 	andi.l	#0,-(a2)
 	andi.l	#0,-(a5)
 	andi.l	#0,-(sp)
@@ -644,6 +703,8 @@
 	andi.l	#(3+4),-(a2)
 	andi.l	#(3+4),-(a5)
 	andi.l	#(3+4),-(sp)
+	andi.l	#equ_1,($FFFFFFFF).l
+	andi.l	#equ_equ_1,($FFFFFFFF).l
 	andi.l	#0,($FFFFFFFF).l
 	andi.l	#4,($FFFFFFFF).l
 	andi.l	#$FF,($FFFFFFFF).l
@@ -653,6 +714,8 @@
 	andi.l	#"WXYZ",($FFFFFFFF).l
 	andi.l	#1+1,($FFFFFFFF).l
 	andi.l	#(3+4),($FFFFFFFF).l
+	andi.l	#equ_1,($FFFFFFFF).w
+	andi.l	#equ_equ_1,($FFFFFFFF).w
 	andi.l	#0,($FFFFFFFF).w
 	andi.l	#4,($FFFFFFFF).w
 	andi.l	#$FF,($FFFFFFFF).w
@@ -662,6 +725,10 @@
 	andi.l	#"WXYZ",($FFFFFFFF).w
 	andi.l	#1+1,($FFFFFFFF).w
 	andi.l	#(3+4),($FFFFFFFF).w
+	andi.l	#equ_1,$7FFF(a2)
+	andi.l	#equ_1,$7FFF(a5)
+	andi.l	#equ_equ_1,$7FFF(a2)
+	andi.l	#equ_equ_1,$7FFF(a5)
 	andi.l	#0,$7FFF(a2)
 	andi.l	#0,$7FFF(a5)
 	andi.l	#4,$7FFF(a2)
@@ -680,6 +747,14 @@
 	andi.l	#1+1,$7FFF(a5)
 	andi.l	#(3+4),$7FFF(a2)
 	andi.l	#(3+4),$7FFF(a5)
+	andi.l	#equ_1,$7F(a2,d5.w)
+	andi.l	#equ_1,$7F(a5,d2.w)
+	andi.l	#equ_1,$0F(a5,d2.l)
+	andi.l	#equ_1,$1+1(a5,d2.l)
+	andi.l	#equ_equ_1,$7F(a2,d5.w)
+	andi.l	#equ_equ_1,$7F(a5,d2.w)
+	andi.l	#equ_equ_1,$0F(a5,d2.l)
+	andi.l	#equ_equ_1,$1+1(a5,d2.l)
 	andi.l	#0,$7F(a2,d5.w)
 	andi.l	#0,$7F(a5,d2.w)
 	andi.l	#0,$0F(a5,d2.l)
@@ -716,6 +791,10 @@
 	andi.l	#(3+4),$7F(a5,d2.w)
 	andi.l	#(3+4),$0F(a5,d2.l)
 	andi.l	#(3+4),$1+1(a5,d2.l)
+	andi.l	#equ_1,d2
+	andi.l	#equ_1,d5
+	andi.l	#equ_equ_1,d2
+	andi.l	#equ_equ_1,d5
 	andi.l	#0,d2
 	andi.l	#0,d5
 	andi.l	#4,d2
@@ -935,6 +1014,10 @@
 	eori.w	#$7FFF,d5
 	eori.w	#$FFFF,d2
 	eori.w	#$FFFF,d5
+	eori.l	#equ_1,(a2)
+	eori.l	#equ_1,(a5)
+	eori.l	#equ_equ_1,(a2)
+	eori.l	#equ_equ_1,(a5)
 	eori.l	#0,(a2)
 	eori.l	#0,(a5)
 	eori.l	#4,(a2)
@@ -953,6 +1036,12 @@
 	eori.l	#1+1,(a5)
 	eori.l	#(3+4),(a2)
 	eori.l	#(3+4),(a5)
+	eori.l	#equ_1,(a1)+
+	eori.l	#equ_1,(a2)+
+	eori.l	#equ_1,(a5)+
+	eori.l	#equ_equ_1,(a1)+
+	eori.l	#equ_equ_1,(a2)+
+	eori.l	#equ_equ_1,(a5)+
 	eori.l	#0,(a1)+
 	eori.l	#0,(a2)+
 	eori.l	#0,(a5)+
@@ -980,6 +1069,12 @@
 	eori.l	#(3+4),(a1)+
 	eori.l	#(3+4),(a2)+
 	eori.l	#(3+4),(a5)+
+	eori.l	#equ_1,-(a2)
+	eori.l	#equ_1,-(a5)
+	eori.l	#equ_1,-(sp)
+	eori.l	#equ_equ_1,-(a2)
+	eori.l	#equ_equ_1,-(a5)
+	eori.l	#equ_equ_1,-(sp)
 	eori.l	#0,-(a2)
 	eori.l	#0,-(a5)
 	eori.l	#0,-(sp)
@@ -1007,6 +1102,8 @@
 	eori.l	#(3+4),-(a2)
 	eori.l	#(3+4),-(a5)
 	eori.l	#(3+4),-(sp)
+	eori.l	#equ_1,($FFFFFFFF).l
+	eori.l	#equ_equ_1,($FFFFFFFF).l
 	eori.l	#0,($FFFFFFFF).l
 	eori.l	#4,($FFFFFFFF).l
 	eori.l	#$FF,($FFFFFFFF).l
@@ -1016,6 +1113,8 @@
 	eori.l	#"WXYZ",($FFFFFFFF).l
 	eori.l	#1+1,($FFFFFFFF).l
 	eori.l	#(3+4),($FFFFFFFF).l
+	eori.l	#equ_1,($FFFFFFFF).w
+	eori.l	#equ_equ_1,($FFFFFFFF).w
 	eori.l	#0,($FFFFFFFF).w
 	eori.l	#4,($FFFFFFFF).w
 	eori.l	#$FF,($FFFFFFFF).w
@@ -1025,6 +1124,10 @@
 	eori.l	#"WXYZ",($FFFFFFFF).w
 	eori.l	#1+1,($FFFFFFFF).w
 	eori.l	#(3+4),($FFFFFFFF).w
+	eori.l	#equ_1,$7FFF(a2)
+	eori.l	#equ_1,$7FFF(a5)
+	eori.l	#equ_equ_1,$7FFF(a2)
+	eori.l	#equ_equ_1,$7FFF(a5)
 	eori.l	#0,$7FFF(a2)
 	eori.l	#0,$7FFF(a5)
 	eori.l	#4,$7FFF(a2)
@@ -1043,6 +1146,14 @@
 	eori.l	#1+1,$7FFF(a5)
 	eori.l	#(3+4),$7FFF(a2)
 	eori.l	#(3+4),$7FFF(a5)
+	eori.l	#equ_1,$7F(a2,d5.w)
+	eori.l	#equ_1,$7F(a5,d2.w)
+	eori.l	#equ_1,$0F(a5,d2.l)
+	eori.l	#equ_1,$1+1(a5,d2.l)
+	eori.l	#equ_equ_1,$7F(a2,d5.w)
+	eori.l	#equ_equ_1,$7F(a5,d2.w)
+	eori.l	#equ_equ_1,$0F(a5,d2.l)
+	eori.l	#equ_equ_1,$1+1(a5,d2.l)
 	eori.l	#0,$7F(a2,d5.w)
 	eori.l	#0,$7F(a5,d2.w)
 	eori.l	#0,$0F(a5,d2.l)
@@ -1079,6 +1190,10 @@
 	eori.l	#(3+4),$7F(a5,d2.w)
 	eori.l	#(3+4),$0F(a5,d2.l)
 	eori.l	#(3+4),$1+1(a5,d2.l)
+	eori.l	#equ_1,d2
+	eori.l	#equ_1,d5
+	eori.l	#equ_equ_1,d2
+	eori.l	#equ_equ_1,d5
 	eori.l	#0,d2
 	eori.l	#0,d5
 	eori.l	#4,d2
@@ -1278,6 +1393,10 @@
 	subi.w	#$7FFF,d5
 	subi.w	#$FFFF,d2
 	subi.w	#$FFFF,d5
+	subi.l	#equ_1,(a2)
+	subi.l	#equ_1,(a5)
+	subi.l	#equ_equ_1,(a2)
+	subi.l	#equ_equ_1,(a5)
 	subi.l	#0,(a2)
 	subi.l	#0,(a5)
 	subi.l	#4,(a2)
@@ -1296,6 +1415,12 @@
 	subi.l	#1+1,(a5)
 	subi.l	#(3+4),(a2)
 	subi.l	#(3+4),(a5)
+	subi.l	#equ_1,(a1)+
+	subi.l	#equ_1,(a2)+
+	subi.l	#equ_1,(a5)+
+	subi.l	#equ_equ_1,(a1)+
+	subi.l	#equ_equ_1,(a2)+
+	subi.l	#equ_equ_1,(a5)+
 	subi.l	#0,(a1)+
 	subi.l	#0,(a2)+
 	subi.l	#0,(a5)+
@@ -1323,6 +1448,12 @@
 	subi.l	#(3+4),(a1)+
 	subi.l	#(3+4),(a2)+
 	subi.l	#(3+4),(a5)+
+	subi.l	#equ_1,-(a2)
+	subi.l	#equ_1,-(a5)
+	subi.l	#equ_1,-(sp)
+	subi.l	#equ_equ_1,-(a2)
+	subi.l	#equ_equ_1,-(a5)
+	subi.l	#equ_equ_1,-(sp)
 	subi.l	#0,-(a2)
 	subi.l	#0,-(a5)
 	subi.l	#0,-(sp)
@@ -1350,6 +1481,8 @@
 	subi.l	#(3+4),-(a2)
 	subi.l	#(3+4),-(a5)
 	subi.l	#(3+4),-(sp)
+	subi.l	#equ_1,($FFFFFFFF).l
+	subi.l	#equ_equ_1,($FFFFFFFF).l
 	subi.l	#0,($FFFFFFFF).l
 	subi.l	#4,($FFFFFFFF).l
 	subi.l	#$FF,($FFFFFFFF).l
@@ -1359,6 +1492,8 @@
 	subi.l	#"WXYZ",($FFFFFFFF).l
 	subi.l	#1+1,($FFFFFFFF).l
 	subi.l	#(3+4),($FFFFFFFF).l
+	subi.l	#equ_1,($FFFFFFFF).w
+	subi.l	#equ_equ_1,($FFFFFFFF).w
 	subi.l	#0,($FFFFFFFF).w
 	subi.l	#4,($FFFFFFFF).w
 	subi.l	#$FF,($FFFFFFFF).w
@@ -1368,6 +1503,10 @@
 	subi.l	#"WXYZ",($FFFFFFFF).w
 	subi.l	#1+1,($FFFFFFFF).w
 	subi.l	#(3+4),($FFFFFFFF).w
+	subi.l	#equ_1,$7FFF(a2)
+	subi.l	#equ_1,$7FFF(a5)
+	subi.l	#equ_equ_1,$7FFF(a2)
+	subi.l	#equ_equ_1,$7FFF(a5)
 	subi.l	#0,$7FFF(a2)
 	subi.l	#0,$7FFF(a5)
 	subi.l	#4,$7FFF(a2)
@@ -1386,6 +1525,14 @@
 	subi.l	#1+1,$7FFF(a5)
 	subi.l	#(3+4),$7FFF(a2)
 	subi.l	#(3+4),$7FFF(a5)
+	subi.l	#equ_1,$7F(a2,d5.w)
+	subi.l	#equ_1,$7F(a5,d2.w)
+	subi.l	#equ_1,$0F(a5,d2.l)
+	subi.l	#equ_1,$1+1(a5,d2.l)
+	subi.l	#equ_equ_1,$7F(a2,d5.w)
+	subi.l	#equ_equ_1,$7F(a5,d2.w)
+	subi.l	#equ_equ_1,$0F(a5,d2.l)
+	subi.l	#equ_equ_1,$1+1(a5,d2.l)
 	subi.l	#0,$7F(a2,d5.w)
 	subi.l	#0,$7F(a5,d2.w)
 	subi.l	#0,$0F(a5,d2.l)
@@ -1422,6 +1569,10 @@
 	subi.l	#(3+4),$7F(a5,d2.w)
 	subi.l	#(3+4),$0F(a5,d2.l)
 	subi.l	#(3+4),$1+1(a5,d2.l)
+	subi.l	#equ_1,d2
+	subi.l	#equ_1,d5
+	subi.l	#equ_equ_1,d2
+	subi.l	#equ_equ_1,d5
 	subi.l	#0,d2
 	subi.l	#0,d5
 	subi.l	#4,d2
@@ -1621,6 +1772,10 @@
 	addi.w	#$7FFF,d5
 	addi.w	#$FFFF,d2
 	addi.w	#$FFFF,d5
+	addi.l	#equ_1,(a2)
+	addi.l	#equ_1,(a5)
+	addi.l	#equ_equ_1,(a2)
+	addi.l	#equ_equ_1,(a5)
 	addi.l	#0,(a2)
 	addi.l	#0,(a5)
 	addi.l	#4,(a2)
@@ -1639,6 +1794,12 @@
 	addi.l	#1+1,(a5)
 	addi.l	#(3+4),(a2)
 	addi.l	#(3+4),(a5)
+	addi.l	#equ_1,(a1)+
+	addi.l	#equ_1,(a2)+
+	addi.l	#equ_1,(a5)+
+	addi.l	#equ_equ_1,(a1)+
+	addi.l	#equ_equ_1,(a2)+
+	addi.l	#equ_equ_1,(a5)+
 	addi.l	#0,(a1)+
 	addi.l	#0,(a2)+
 	addi.l	#0,(a5)+
@@ -1666,6 +1827,12 @@
 	addi.l	#(3+4),(a1)+
 	addi.l	#(3+4),(a2)+
 	addi.l	#(3+4),(a5)+
+	addi.l	#equ_1,-(a2)
+	addi.l	#equ_1,-(a5)
+	addi.l	#equ_1,-(sp)
+	addi.l	#equ_equ_1,-(a2)
+	addi.l	#equ_equ_1,-(a5)
+	addi.l	#equ_equ_1,-(sp)
 	addi.l	#0,-(a2)
 	addi.l	#0,-(a5)
 	addi.l	#0,-(sp)
@@ -1693,6 +1860,8 @@
 	addi.l	#(3+4),-(a2)
 	addi.l	#(3+4),-(a5)
 	addi.l	#(3+4),-(sp)
+	addi.l	#equ_1,($FFFFFFFF).l
+	addi.l	#equ_equ_1,($FFFFFFFF).l
 	addi.l	#0,($FFFFFFFF).l
 	addi.l	#4,($FFFFFFFF).l
 	addi.l	#$FF,($FFFFFFFF).l
@@ -1702,6 +1871,8 @@
 	addi.l	#"WXYZ",($FFFFFFFF).l
 	addi.l	#1+1,($FFFFFFFF).l
 	addi.l	#(3+4),($FFFFFFFF).l
+	addi.l	#equ_1,($FFFFFFFF).w
+	addi.l	#equ_equ_1,($FFFFFFFF).w
 	addi.l	#0,($FFFFFFFF).w
 	addi.l	#4,($FFFFFFFF).w
 	addi.l	#$FF,($FFFFFFFF).w
@@ -1711,6 +1882,10 @@
 	addi.l	#"WXYZ",($FFFFFFFF).w
 	addi.l	#1+1,($FFFFFFFF).w
 	addi.l	#(3+4),($FFFFFFFF).w
+	addi.l	#equ_1,$7FFF(a2)
+	addi.l	#equ_1,$7FFF(a5)
+	addi.l	#equ_equ_1,$7FFF(a2)
+	addi.l	#equ_equ_1,$7FFF(a5)
 	addi.l	#0,$7FFF(a2)
 	addi.l	#0,$7FFF(a5)
 	addi.l	#4,$7FFF(a2)
@@ -1729,6 +1904,14 @@
 	addi.l	#1+1,$7FFF(a5)
 	addi.l	#(3+4),$7FFF(a2)
 	addi.l	#(3+4),$7FFF(a5)
+	addi.l	#equ_1,$7F(a2,d5.w)
+	addi.l	#equ_1,$7F(a5,d2.w)
+	addi.l	#equ_1,$0F(a5,d2.l)
+	addi.l	#equ_1,$1+1(a5,d2.l)
+	addi.l	#equ_equ_1,$7F(a2,d5.w)
+	addi.l	#equ_equ_1,$7F(a5,d2.w)
+	addi.l	#equ_equ_1,$0F(a5,d2.l)
+	addi.l	#equ_equ_1,$1+1(a5,d2.l)
 	addi.l	#0,$7F(a2,d5.w)
 	addi.l	#0,$7F(a5,d2.w)
 	addi.l	#0,$0F(a5,d2.l)
@@ -1765,6 +1948,10 @@
 	addi.l	#(3+4),$7F(a5,d2.w)
 	addi.l	#(3+4),$0F(a5,d2.l)
 	addi.l	#(3+4),$1+1(a5,d2.l)
+	addi.l	#equ_1,d2
+	addi.l	#equ_1,d5
+	addi.l	#equ_equ_1,d2
+	addi.l	#equ_equ_1,d5
 	addi.l	#0,d2
 	addi.l	#0,d5
 	addi.l	#4,d2
@@ -1964,6 +2151,10 @@
 	cmpi.w	#$7FFF,d5
 	cmpi.w	#$FFFF,d2
 	cmpi.w	#$FFFF,d5
+	cmpi.l	#equ_1,(a2)
+	cmpi.l	#equ_1,(a5)
+	cmpi.l	#equ_equ_1,(a2)
+	cmpi.l	#equ_equ_1,(a5)
 	cmpi.l	#0,(a2)
 	cmpi.l	#0,(a5)
 	cmpi.l	#4,(a2)
@@ -1982,6 +2173,12 @@
 	cmpi.l	#1+1,(a5)
 	cmpi.l	#(3+4),(a2)
 	cmpi.l	#(3+4),(a5)
+	cmpi.l	#equ_1,(a1)+
+	cmpi.l	#equ_1,(a2)+
+	cmpi.l	#equ_1,(a5)+
+	cmpi.l	#equ_equ_1,(a1)+
+	cmpi.l	#equ_equ_1,(a2)+
+	cmpi.l	#equ_equ_1,(a5)+
 	cmpi.l	#0,(a1)+
 	cmpi.l	#0,(a2)+
 	cmpi.l	#0,(a5)+
@@ -2009,6 +2206,12 @@
 	cmpi.l	#(3+4),(a1)+
 	cmpi.l	#(3+4),(a2)+
 	cmpi.l	#(3+4),(a5)+
+	cmpi.l	#equ_1,-(a2)
+	cmpi.l	#equ_1,-(a5)
+	cmpi.l	#equ_1,-(sp)
+	cmpi.l	#equ_equ_1,-(a2)
+	cmpi.l	#equ_equ_1,-(a5)
+	cmpi.l	#equ_equ_1,-(sp)
 	cmpi.l	#0,-(a2)
 	cmpi.l	#0,-(a5)
 	cmpi.l	#0,-(sp)
@@ -2036,6 +2239,8 @@
 	cmpi.l	#(3+4),-(a2)
 	cmpi.l	#(3+4),-(a5)
 	cmpi.l	#(3+4),-(sp)
+	cmpi.l	#equ_1,($FFFFFFFF).l
+	cmpi.l	#equ_equ_1,($FFFFFFFF).l
 	cmpi.l	#0,($FFFFFFFF).l
 	cmpi.l	#4,($FFFFFFFF).l
 	cmpi.l	#$FF,($FFFFFFFF).l
@@ -2045,6 +2250,8 @@
 	cmpi.l	#"WXYZ",($FFFFFFFF).l
 	cmpi.l	#1+1,($FFFFFFFF).l
 	cmpi.l	#(3+4),($FFFFFFFF).l
+	cmpi.l	#equ_1,($FFFFFFFF).w
+	cmpi.l	#equ_equ_1,($FFFFFFFF).w
 	cmpi.l	#0,($FFFFFFFF).w
 	cmpi.l	#4,($FFFFFFFF).w
 	cmpi.l	#$FF,($FFFFFFFF).w
@@ -2054,6 +2261,10 @@
 	cmpi.l	#"WXYZ",($FFFFFFFF).w
 	cmpi.l	#1+1,($FFFFFFFF).w
 	cmpi.l	#(3+4),($FFFFFFFF).w
+	cmpi.l	#equ_1,$7FFF(a2)
+	cmpi.l	#equ_1,$7FFF(a5)
+	cmpi.l	#equ_equ_1,$7FFF(a2)
+	cmpi.l	#equ_equ_1,$7FFF(a5)
 	cmpi.l	#0,$7FFF(a2)
 	cmpi.l	#0,$7FFF(a5)
 	cmpi.l	#4,$7FFF(a2)
@@ -2072,6 +2283,14 @@
 	cmpi.l	#1+1,$7FFF(a5)
 	cmpi.l	#(3+4),$7FFF(a2)
 	cmpi.l	#(3+4),$7FFF(a5)
+	cmpi.l	#equ_1,$7F(a2,d5.w)
+	cmpi.l	#equ_1,$7F(a5,d2.w)
+	cmpi.l	#equ_1,$0F(a5,d2.l)
+	cmpi.l	#equ_1,$1+1(a5,d2.l)
+	cmpi.l	#equ_equ_1,$7F(a2,d5.w)
+	cmpi.l	#equ_equ_1,$7F(a5,d2.w)
+	cmpi.l	#equ_equ_1,$0F(a5,d2.l)
+	cmpi.l	#equ_equ_1,$1+1(a5,d2.l)
 	cmpi.l	#0,$7F(a2,d5.w)
 	cmpi.l	#0,$7F(a5,d2.w)
 	cmpi.l	#0,$0F(a5,d2.l)
@@ -2108,6 +2327,10 @@
 	cmpi.l	#(3+4),$7F(a5,d2.w)
 	cmpi.l	#(3+4),$0F(a5,d2.l)
 	cmpi.l	#(3+4),$1+1(a5,d2.l)
+	cmpi.l	#equ_1,d2
+	cmpi.l	#equ_1,d5
+	cmpi.l	#equ_equ_1,d2
+	cmpi.l	#equ_equ_1,d5
 	cmpi.l	#0,d2
 	cmpi.l	#0,d5
 	cmpi.l	#4,d2
@@ -4116,6 +4339,14 @@
 	movea.l	d5,a5
 	movea.l	d5,a7
 	movea.l	d5,sp
+	movea.l	#equ_1,a2
+	movea.l	#equ_1,a5
+	movea.l	#equ_1,a7
+	movea.l	#equ_1,sp
+	movea.l	#equ_equ_1,a2
+	movea.l	#equ_equ_1,a5
+	movea.l	#equ_equ_1,a7
+	movea.l	#equ_equ_1,sp
 	movea.l	#0,a2
 	movea.l	#0,a5
 	movea.l	#0,a7
@@ -5575,6 +5806,10 @@
 	move.l	d2,d5
 	move.l	d5,d2
 	move.l	d5,d5
+	move.l	#equ_1,(a2)
+	move.l	#equ_1,(a5)
+	move.l	#equ_equ_1,(a2)
+	move.l	#equ_equ_1,(a5)
 	move.l	#0,(a2)
 	move.l	#0,(a5)
 	move.l	#4,(a2)
@@ -5593,6 +5828,12 @@
 	move.l	#1+1,(a5)
 	move.l	#(3+4),(a2)
 	move.l	#(3+4),(a5)
+	move.l	#equ_1,(a1)+
+	move.l	#equ_1,(a2)+
+	move.l	#equ_1,(a5)+
+	move.l	#equ_equ_1,(a1)+
+	move.l	#equ_equ_1,(a2)+
+	move.l	#equ_equ_1,(a5)+
 	move.l	#0,(a1)+
 	move.l	#0,(a2)+
 	move.l	#0,(a5)+
@@ -5620,6 +5861,12 @@
 	move.l	#(3+4),(a1)+
 	move.l	#(3+4),(a2)+
 	move.l	#(3+4),(a5)+
+	move.l	#equ_1,-(a2)
+	move.l	#equ_1,-(a5)
+	move.l	#equ_1,-(sp)
+	move.l	#equ_equ_1,-(a2)
+	move.l	#equ_equ_1,-(a5)
+	move.l	#equ_equ_1,-(sp)
 	move.l	#0,-(a2)
 	move.l	#0,-(a5)
 	move.l	#0,-(sp)
@@ -5647,6 +5894,8 @@
 	move.l	#(3+4),-(a2)
 	move.l	#(3+4),-(a5)
 	move.l	#(3+4),-(sp)
+	move.l	#equ_1,($FFFFFFFF).l
+	move.l	#equ_equ_1,($FFFFFFFF).l
 	move.l	#0,($FFFFFFFF).l
 	move.l	#4,($FFFFFFFF).l
 	move.l	#$FF,($FFFFFFFF).l
@@ -5656,6 +5905,8 @@
 	move.l	#"WXYZ",($FFFFFFFF).l
 	move.l	#1+1,($FFFFFFFF).l
 	move.l	#(3+4),($FFFFFFFF).l
+	move.l	#equ_1,($FFFFFFFF).w
+	move.l	#equ_equ_1,($FFFFFFFF).w
 	move.l	#0,($FFFFFFFF).w
 	move.l	#4,($FFFFFFFF).w
 	move.l	#$FF,($FFFFFFFF).w
@@ -5665,6 +5916,10 @@
 	move.l	#"WXYZ",($FFFFFFFF).w
 	move.l	#1+1,($FFFFFFFF).w
 	move.l	#(3+4),($FFFFFFFF).w
+	move.l	#equ_1,$7FFF(a2)
+	move.l	#equ_1,$7FFF(a5)
+	move.l	#equ_equ_1,$7FFF(a2)
+	move.l	#equ_equ_1,$7FFF(a5)
 	move.l	#0,$7FFF(a2)
 	move.l	#0,$7FFF(a5)
 	move.l	#4,$7FFF(a2)
@@ -5683,6 +5938,14 @@
 	move.l	#1+1,$7FFF(a5)
 	move.l	#(3+4),$7FFF(a2)
 	move.l	#(3+4),$7FFF(a5)
+	move.l	#equ_1,$7F(a2,d5.w)
+	move.l	#equ_1,$7F(a5,d2.w)
+	move.l	#equ_1,$0F(a5,d2.l)
+	move.l	#equ_1,$1+1(a5,d2.l)
+	move.l	#equ_equ_1,$7F(a2,d5.w)
+	move.l	#equ_equ_1,$7F(a5,d2.w)
+	move.l	#equ_equ_1,$0F(a5,d2.l)
+	move.l	#equ_equ_1,$1+1(a5,d2.l)
 	move.l	#0,$7F(a2,d5.w)
 	move.l	#0,$7F(a5,d2.w)
 	move.l	#0,$0F(a5,d2.l)
@@ -5719,6 +5982,10 @@
 	move.l	#(3+4),$7F(a5,d2.w)
 	move.l	#(3+4),$0F(a5,d2.l)
 	move.l	#(3+4),$1+1(a5,d2.l)
+	move.l	#equ_1,d2
+	move.l	#equ_1,d5
+	move.l	#equ_equ_1,d2
+	move.l	#equ_equ_1,d5
 	move.l	#0,d2
 	move.l	#0,d5
 	move.l	#4,d2
@@ -8880,6 +9147,14 @@
 	suba.l	d5,a5
 	suba.l	d5,a7
 	suba.l	d5,sp
+	suba.l	#equ_1,a2
+	suba.l	#equ_1,a5
+	suba.l	#equ_1,a7
+	suba.l	#equ_1,sp
+	suba.l	#equ_equ_1,a2
+	suba.l	#equ_equ_1,a5
+	suba.l	#equ_equ_1,a7
+	suba.l	#equ_equ_1,sp
 	suba.l	#0,a2
 	suba.l	#0,a5
 	suba.l	#0,a7
@@ -9453,6 +9728,14 @@
 	cmpa.l	d5,a5
 	cmpa.l	d5,a7
 	cmpa.l	d5,sp
+	cmpa.l	#equ_1,a2
+	cmpa.l	#equ_1,a5
+	cmpa.l	#equ_1,a7
+	cmpa.l	#equ_1,sp
+	cmpa.l	#equ_equ_1,a2
+	cmpa.l	#equ_equ_1,a5
+	cmpa.l	#equ_equ_1,a7
+	cmpa.l	#equ_equ_1,sp
 	cmpa.l	#0,a2
 	cmpa.l	#0,a5
 	cmpa.l	#0,a7
@@ -10049,6 +10332,14 @@
 	adda.l	d5,a5
 	adda.l	d5,a7
 	adda.l	d5,sp
+	adda.l	#equ_1,a2
+	adda.l	#equ_1,a5
+	adda.l	#equ_1,a7
+	adda.l	#equ_1,sp
+	adda.l	#equ_equ_1,a2
+	adda.l	#equ_equ_1,a5
+	adda.l	#equ_equ_1,a7
+	adda.l	#equ_equ_1,sp
 	adda.l	#0,a2
 	adda.l	#0,a5
 	adda.l	#0,a7

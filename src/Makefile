@@ -16,7 +16,9 @@ gen_tests:
 # "middle-ground" since it is almost the same as * in clownassembler and I can
 # easily have `@ equ $` in fasmg.
 clownassembler:
-	clownassembler -c -o tests/test.bin -i tests/valid_instructions.asm
+#	clownassembler -c -o tests/test.bin -i tests/valid_instructions.asm
+# -w silences warnings.
+	clownassembler -c -w -o tests/test.bin -i tests/valid_instructions.asm
 
 # vasm does not support @ but only * it seems?
 build_vasm:
