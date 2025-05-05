@@ -20,7 +20,7 @@ const examples: Record<OperandType, string[]> = {
   "d(pc)": ["@(pc)"],
   "d(pc,ix)": ["@(pc,d5.w)"],
   // TODO: Rename to imm32?
-  "imm": ["#0", "#4", "#$FF", "#$7FFF", "#$FFFF", "#$FFFFFFFF", '#"WXYZ"'],
+  "imm": ["#0", "#4", "#$FF", "#$7FFF", "#$FFFF", "#$FFFFFFFF", '#"WXYZ"', "#1+1", '#(3+4)'],
   "imm3": ["#1", "#7"],
   "imm4": ["#2"],
   "imm8": ["#0", "#$FF", '#"X"'],

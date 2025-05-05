@@ -193,6 +193,10 @@
 	ori.l	#$FFFFFFFF,(a5)
 	ori.l	#"WXYZ",(a2)
 	ori.l	#"WXYZ",(a5)
+	ori.l	#1+1,(a2)
+	ori.l	#1+1,(a5)
+	ori.l	#(3+4),(a2)
+	ori.l	#(3+4),(a5)
 	ori.l	#0,(a1)+
 	ori.l	#0,(a2)+
 	ori.l	#0,(a5)+
@@ -214,6 +218,12 @@
 	ori.l	#"WXYZ",(a1)+
 	ori.l	#"WXYZ",(a2)+
 	ori.l	#"WXYZ",(a5)+
+	ori.l	#1+1,(a1)+
+	ori.l	#1+1,(a2)+
+	ori.l	#1+1,(a5)+
+	ori.l	#(3+4),(a1)+
+	ori.l	#(3+4),(a2)+
+	ori.l	#(3+4),(a5)+
 	ori.l	#0,-(a2)
 	ori.l	#0,-(a5)
 	ori.l	#4,-(a2)
@@ -228,6 +238,10 @@
 	ori.l	#$FFFFFFFF,-(a5)
 	ori.l	#"WXYZ",-(a2)
 	ori.l	#"WXYZ",-(a5)
+	ori.l	#1+1,-(a2)
+	ori.l	#1+1,-(a5)
+	ori.l	#(3+4),-(a2)
+	ori.l	#(3+4),-(a5)
 	ori.l	#0,($FFFFFFFF).l
 	ori.l	#4,($FFFFFFFF).l
 	ori.l	#$FF,($FFFFFFFF).l
@@ -235,6 +249,8 @@
 	ori.l	#$FFFF,($FFFFFFFF).l
 	ori.l	#$FFFFFFFF,($FFFFFFFF).l
 	ori.l	#"WXYZ",($FFFFFFFF).l
+	ori.l	#1+1,($FFFFFFFF).l
+	ori.l	#(3+4),($FFFFFFFF).l
 	ori.l	#0,($FFFFFFFF).w
 	ori.l	#4,($FFFFFFFF).w
 	ori.l	#$FF,($FFFFFFFF).w
@@ -242,6 +258,8 @@
 	ori.l	#$FFFF,($FFFFFFFF).w
 	ori.l	#$FFFFFFFF,($FFFFFFFF).w
 	ori.l	#"WXYZ",($FFFFFFFF).w
+	ori.l	#1+1,($FFFFFFFF).w
+	ori.l	#(3+4),($FFFFFFFF).w
 	ori.l	#0,$7FFF(a2)
 	ori.l	#0,$7FFF(a5)
 	ori.l	#4,$7FFF(a2)
@@ -256,6 +274,10 @@
 	ori.l	#$FFFFFFFF,$7FFF(a5)
 	ori.l	#"WXYZ",$7FFF(a2)
 	ori.l	#"WXYZ",$7FFF(a5)
+	ori.l	#1+1,$7FFF(a2)
+	ori.l	#1+1,$7FFF(a5)
+	ori.l	#(3+4),$7FFF(a2)
+	ori.l	#(3+4),$7FFF(a5)
 	ori.l	#0,$7F(a2,d5.w)
 	ori.l	#0,$7F(a5,d2.w)
 	ori.l	#4,$7F(a2,d5.w)
@@ -270,6 +292,10 @@
 	ori.l	#$FFFFFFFF,$7F(a5,d2.w)
 	ori.l	#"WXYZ",$7F(a2,d5.w)
 	ori.l	#"WXYZ",$7F(a5,d2.w)
+	ori.l	#1+1,$7F(a2,d5.w)
+	ori.l	#1+1,$7F(a5,d2.w)
+	ori.l	#(3+4),$7F(a2,d5.w)
+	ori.l	#(3+4),$7F(a5,d2.w)
 	ori.l	#0,d2
 	ori.l	#0,d5
 	ori.l	#4,d2
@@ -284,6 +310,10 @@
 	ori.l	#$FFFFFFFF,d5
 	ori.l	#"WXYZ",d2
 	ori.l	#"WXYZ",d5
+	ori.l	#1+1,d2
+	ori.l	#1+1,d5
+	ori.l	#(3+4),d2
+	ori.l	#(3+4),d5
 
 	andi.b	#0,ccr
 	andi.b	#$FF,ccr
@@ -469,6 +499,10 @@
 	andi.l	#$FFFFFFFF,(a5)
 	andi.l	#"WXYZ",(a2)
 	andi.l	#"WXYZ",(a5)
+	andi.l	#1+1,(a2)
+	andi.l	#1+1,(a5)
+	andi.l	#(3+4),(a2)
+	andi.l	#(3+4),(a5)
 	andi.l	#0,(a1)+
 	andi.l	#0,(a2)+
 	andi.l	#0,(a5)+
@@ -490,6 +524,12 @@
 	andi.l	#"WXYZ",(a1)+
 	andi.l	#"WXYZ",(a2)+
 	andi.l	#"WXYZ",(a5)+
+	andi.l	#1+1,(a1)+
+	andi.l	#1+1,(a2)+
+	andi.l	#1+1,(a5)+
+	andi.l	#(3+4),(a1)+
+	andi.l	#(3+4),(a2)+
+	andi.l	#(3+4),(a5)+
 	andi.l	#0,-(a2)
 	andi.l	#0,-(a5)
 	andi.l	#4,-(a2)
@@ -504,6 +544,10 @@
 	andi.l	#$FFFFFFFF,-(a5)
 	andi.l	#"WXYZ",-(a2)
 	andi.l	#"WXYZ",-(a5)
+	andi.l	#1+1,-(a2)
+	andi.l	#1+1,-(a5)
+	andi.l	#(3+4),-(a2)
+	andi.l	#(3+4),-(a5)
 	andi.l	#0,($FFFFFFFF).l
 	andi.l	#4,($FFFFFFFF).l
 	andi.l	#$FF,($FFFFFFFF).l
@@ -511,6 +555,8 @@
 	andi.l	#$FFFF,($FFFFFFFF).l
 	andi.l	#$FFFFFFFF,($FFFFFFFF).l
 	andi.l	#"WXYZ",($FFFFFFFF).l
+	andi.l	#1+1,($FFFFFFFF).l
+	andi.l	#(3+4),($FFFFFFFF).l
 	andi.l	#0,($FFFFFFFF).w
 	andi.l	#4,($FFFFFFFF).w
 	andi.l	#$FF,($FFFFFFFF).w
@@ -518,6 +564,8 @@
 	andi.l	#$FFFF,($FFFFFFFF).w
 	andi.l	#$FFFFFFFF,($FFFFFFFF).w
 	andi.l	#"WXYZ",($FFFFFFFF).w
+	andi.l	#1+1,($FFFFFFFF).w
+	andi.l	#(3+4),($FFFFFFFF).w
 	andi.l	#0,$7FFF(a2)
 	andi.l	#0,$7FFF(a5)
 	andi.l	#4,$7FFF(a2)
@@ -532,6 +580,10 @@
 	andi.l	#$FFFFFFFF,$7FFF(a5)
 	andi.l	#"WXYZ",$7FFF(a2)
 	andi.l	#"WXYZ",$7FFF(a5)
+	andi.l	#1+1,$7FFF(a2)
+	andi.l	#1+1,$7FFF(a5)
+	andi.l	#(3+4),$7FFF(a2)
+	andi.l	#(3+4),$7FFF(a5)
 	andi.l	#0,$7F(a2,d5.w)
 	andi.l	#0,$7F(a5,d2.w)
 	andi.l	#4,$7F(a2,d5.w)
@@ -546,6 +598,10 @@
 	andi.l	#$FFFFFFFF,$7F(a5,d2.w)
 	andi.l	#"WXYZ",$7F(a2,d5.w)
 	andi.l	#"WXYZ",$7F(a5,d2.w)
+	andi.l	#1+1,$7F(a2,d5.w)
+	andi.l	#1+1,$7F(a5,d2.w)
+	andi.l	#(3+4),$7F(a2,d5.w)
+	andi.l	#(3+4),$7F(a5,d2.w)
 	andi.l	#0,d2
 	andi.l	#0,d5
 	andi.l	#4,d2
@@ -560,6 +616,10 @@
 	andi.l	#$FFFFFFFF,d5
 	andi.l	#"WXYZ",d2
 	andi.l	#"WXYZ",d5
+	andi.l	#1+1,d2
+	andi.l	#1+1,d5
+	andi.l	#(3+4),d2
+	andi.l	#(3+4),d5
 
 	eori.b	#0,ccr
 	eori.b	#$FF,ccr
@@ -745,6 +805,10 @@
 	eori.l	#$FFFFFFFF,(a5)
 	eori.l	#"WXYZ",(a2)
 	eori.l	#"WXYZ",(a5)
+	eori.l	#1+1,(a2)
+	eori.l	#1+1,(a5)
+	eori.l	#(3+4),(a2)
+	eori.l	#(3+4),(a5)
 	eori.l	#0,(a1)+
 	eori.l	#0,(a2)+
 	eori.l	#0,(a5)+
@@ -766,6 +830,12 @@
 	eori.l	#"WXYZ",(a1)+
 	eori.l	#"WXYZ",(a2)+
 	eori.l	#"WXYZ",(a5)+
+	eori.l	#1+1,(a1)+
+	eori.l	#1+1,(a2)+
+	eori.l	#1+1,(a5)+
+	eori.l	#(3+4),(a1)+
+	eori.l	#(3+4),(a2)+
+	eori.l	#(3+4),(a5)+
 	eori.l	#0,-(a2)
 	eori.l	#0,-(a5)
 	eori.l	#4,-(a2)
@@ -780,6 +850,10 @@
 	eori.l	#$FFFFFFFF,-(a5)
 	eori.l	#"WXYZ",-(a2)
 	eori.l	#"WXYZ",-(a5)
+	eori.l	#1+1,-(a2)
+	eori.l	#1+1,-(a5)
+	eori.l	#(3+4),-(a2)
+	eori.l	#(3+4),-(a5)
 	eori.l	#0,($FFFFFFFF).l
 	eori.l	#4,($FFFFFFFF).l
 	eori.l	#$FF,($FFFFFFFF).l
@@ -787,6 +861,8 @@
 	eori.l	#$FFFF,($FFFFFFFF).l
 	eori.l	#$FFFFFFFF,($FFFFFFFF).l
 	eori.l	#"WXYZ",($FFFFFFFF).l
+	eori.l	#1+1,($FFFFFFFF).l
+	eori.l	#(3+4),($FFFFFFFF).l
 	eori.l	#0,($FFFFFFFF).w
 	eori.l	#4,($FFFFFFFF).w
 	eori.l	#$FF,($FFFFFFFF).w
@@ -794,6 +870,8 @@
 	eori.l	#$FFFF,($FFFFFFFF).w
 	eori.l	#$FFFFFFFF,($FFFFFFFF).w
 	eori.l	#"WXYZ",($FFFFFFFF).w
+	eori.l	#1+1,($FFFFFFFF).w
+	eori.l	#(3+4),($FFFFFFFF).w
 	eori.l	#0,$7FFF(a2)
 	eori.l	#0,$7FFF(a5)
 	eori.l	#4,$7FFF(a2)
@@ -808,6 +886,10 @@
 	eori.l	#$FFFFFFFF,$7FFF(a5)
 	eori.l	#"WXYZ",$7FFF(a2)
 	eori.l	#"WXYZ",$7FFF(a5)
+	eori.l	#1+1,$7FFF(a2)
+	eori.l	#1+1,$7FFF(a5)
+	eori.l	#(3+4),$7FFF(a2)
+	eori.l	#(3+4),$7FFF(a5)
 	eori.l	#0,$7F(a2,d5.w)
 	eori.l	#0,$7F(a5,d2.w)
 	eori.l	#4,$7F(a2,d5.w)
@@ -822,6 +904,10 @@
 	eori.l	#$FFFFFFFF,$7F(a5,d2.w)
 	eori.l	#"WXYZ",$7F(a2,d5.w)
 	eori.l	#"WXYZ",$7F(a5,d2.w)
+	eori.l	#1+1,$7F(a2,d5.w)
+	eori.l	#1+1,$7F(a5,d2.w)
+	eori.l	#(3+4),$7F(a2,d5.w)
+	eori.l	#(3+4),$7F(a5,d2.w)
 	eori.l	#0,d2
 	eori.l	#0,d5
 	eori.l	#4,d2
@@ -836,6 +922,10 @@
 	eori.l	#$FFFFFFFF,d5
 	eori.l	#"WXYZ",d2
 	eori.l	#"WXYZ",d5
+	eori.l	#1+1,d2
+	eori.l	#1+1,d5
+	eori.l	#(3+4),d2
+	eori.l	#(3+4),d5
 
 	subi.b	#0,(a2)
 	subi.b	#0,(a5)
@@ -1001,6 +1091,10 @@
 	subi.l	#$FFFFFFFF,(a5)
 	subi.l	#"WXYZ",(a2)
 	subi.l	#"WXYZ",(a5)
+	subi.l	#1+1,(a2)
+	subi.l	#1+1,(a5)
+	subi.l	#(3+4),(a2)
+	subi.l	#(3+4),(a5)
 	subi.l	#0,(a1)+
 	subi.l	#0,(a2)+
 	subi.l	#0,(a5)+
@@ -1022,6 +1116,12 @@
 	subi.l	#"WXYZ",(a1)+
 	subi.l	#"WXYZ",(a2)+
 	subi.l	#"WXYZ",(a5)+
+	subi.l	#1+1,(a1)+
+	subi.l	#1+1,(a2)+
+	subi.l	#1+1,(a5)+
+	subi.l	#(3+4),(a1)+
+	subi.l	#(3+4),(a2)+
+	subi.l	#(3+4),(a5)+
 	subi.l	#0,-(a2)
 	subi.l	#0,-(a5)
 	subi.l	#4,-(a2)
@@ -1036,6 +1136,10 @@
 	subi.l	#$FFFFFFFF,-(a5)
 	subi.l	#"WXYZ",-(a2)
 	subi.l	#"WXYZ",-(a5)
+	subi.l	#1+1,-(a2)
+	subi.l	#1+1,-(a5)
+	subi.l	#(3+4),-(a2)
+	subi.l	#(3+4),-(a5)
 	subi.l	#0,($FFFFFFFF).l
 	subi.l	#4,($FFFFFFFF).l
 	subi.l	#$FF,($FFFFFFFF).l
@@ -1043,6 +1147,8 @@
 	subi.l	#$FFFF,($FFFFFFFF).l
 	subi.l	#$FFFFFFFF,($FFFFFFFF).l
 	subi.l	#"WXYZ",($FFFFFFFF).l
+	subi.l	#1+1,($FFFFFFFF).l
+	subi.l	#(3+4),($FFFFFFFF).l
 	subi.l	#0,($FFFFFFFF).w
 	subi.l	#4,($FFFFFFFF).w
 	subi.l	#$FF,($FFFFFFFF).w
@@ -1050,6 +1156,8 @@
 	subi.l	#$FFFF,($FFFFFFFF).w
 	subi.l	#$FFFFFFFF,($FFFFFFFF).w
 	subi.l	#"WXYZ",($FFFFFFFF).w
+	subi.l	#1+1,($FFFFFFFF).w
+	subi.l	#(3+4),($FFFFFFFF).w
 	subi.l	#0,$7FFF(a2)
 	subi.l	#0,$7FFF(a5)
 	subi.l	#4,$7FFF(a2)
@@ -1064,6 +1172,10 @@
 	subi.l	#$FFFFFFFF,$7FFF(a5)
 	subi.l	#"WXYZ",$7FFF(a2)
 	subi.l	#"WXYZ",$7FFF(a5)
+	subi.l	#1+1,$7FFF(a2)
+	subi.l	#1+1,$7FFF(a5)
+	subi.l	#(3+4),$7FFF(a2)
+	subi.l	#(3+4),$7FFF(a5)
 	subi.l	#0,$7F(a2,d5.w)
 	subi.l	#0,$7F(a5,d2.w)
 	subi.l	#4,$7F(a2,d5.w)
@@ -1078,6 +1190,10 @@
 	subi.l	#$FFFFFFFF,$7F(a5,d2.w)
 	subi.l	#"WXYZ",$7F(a2,d5.w)
 	subi.l	#"WXYZ",$7F(a5,d2.w)
+	subi.l	#1+1,$7F(a2,d5.w)
+	subi.l	#1+1,$7F(a5,d2.w)
+	subi.l	#(3+4),$7F(a2,d5.w)
+	subi.l	#(3+4),$7F(a5,d2.w)
 	subi.l	#0,d2
 	subi.l	#0,d5
 	subi.l	#4,d2
@@ -1092,6 +1208,10 @@
 	subi.l	#$FFFFFFFF,d5
 	subi.l	#"WXYZ",d2
 	subi.l	#"WXYZ",d5
+	subi.l	#1+1,d2
+	subi.l	#1+1,d5
+	subi.l	#(3+4),d2
+	subi.l	#(3+4),d5
 
 	addi.b	#0,(a2)
 	addi.b	#0,(a5)
@@ -1257,6 +1377,10 @@
 	addi.l	#$FFFFFFFF,(a5)
 	addi.l	#"WXYZ",(a2)
 	addi.l	#"WXYZ",(a5)
+	addi.l	#1+1,(a2)
+	addi.l	#1+1,(a5)
+	addi.l	#(3+4),(a2)
+	addi.l	#(3+4),(a5)
 	addi.l	#0,(a1)+
 	addi.l	#0,(a2)+
 	addi.l	#0,(a5)+
@@ -1278,6 +1402,12 @@
 	addi.l	#"WXYZ",(a1)+
 	addi.l	#"WXYZ",(a2)+
 	addi.l	#"WXYZ",(a5)+
+	addi.l	#1+1,(a1)+
+	addi.l	#1+1,(a2)+
+	addi.l	#1+1,(a5)+
+	addi.l	#(3+4),(a1)+
+	addi.l	#(3+4),(a2)+
+	addi.l	#(3+4),(a5)+
 	addi.l	#0,-(a2)
 	addi.l	#0,-(a5)
 	addi.l	#4,-(a2)
@@ -1292,6 +1422,10 @@
 	addi.l	#$FFFFFFFF,-(a5)
 	addi.l	#"WXYZ",-(a2)
 	addi.l	#"WXYZ",-(a5)
+	addi.l	#1+1,-(a2)
+	addi.l	#1+1,-(a5)
+	addi.l	#(3+4),-(a2)
+	addi.l	#(3+4),-(a5)
 	addi.l	#0,($FFFFFFFF).l
 	addi.l	#4,($FFFFFFFF).l
 	addi.l	#$FF,($FFFFFFFF).l
@@ -1299,6 +1433,8 @@
 	addi.l	#$FFFF,($FFFFFFFF).l
 	addi.l	#$FFFFFFFF,($FFFFFFFF).l
 	addi.l	#"WXYZ",($FFFFFFFF).l
+	addi.l	#1+1,($FFFFFFFF).l
+	addi.l	#(3+4),($FFFFFFFF).l
 	addi.l	#0,($FFFFFFFF).w
 	addi.l	#4,($FFFFFFFF).w
 	addi.l	#$FF,($FFFFFFFF).w
@@ -1306,6 +1442,8 @@
 	addi.l	#$FFFF,($FFFFFFFF).w
 	addi.l	#$FFFFFFFF,($FFFFFFFF).w
 	addi.l	#"WXYZ",($FFFFFFFF).w
+	addi.l	#1+1,($FFFFFFFF).w
+	addi.l	#(3+4),($FFFFFFFF).w
 	addi.l	#0,$7FFF(a2)
 	addi.l	#0,$7FFF(a5)
 	addi.l	#4,$7FFF(a2)
@@ -1320,6 +1458,10 @@
 	addi.l	#$FFFFFFFF,$7FFF(a5)
 	addi.l	#"WXYZ",$7FFF(a2)
 	addi.l	#"WXYZ",$7FFF(a5)
+	addi.l	#1+1,$7FFF(a2)
+	addi.l	#1+1,$7FFF(a5)
+	addi.l	#(3+4),$7FFF(a2)
+	addi.l	#(3+4),$7FFF(a5)
 	addi.l	#0,$7F(a2,d5.w)
 	addi.l	#0,$7F(a5,d2.w)
 	addi.l	#4,$7F(a2,d5.w)
@@ -1334,6 +1476,10 @@
 	addi.l	#$FFFFFFFF,$7F(a5,d2.w)
 	addi.l	#"WXYZ",$7F(a2,d5.w)
 	addi.l	#"WXYZ",$7F(a5,d2.w)
+	addi.l	#1+1,$7F(a2,d5.w)
+	addi.l	#1+1,$7F(a5,d2.w)
+	addi.l	#(3+4),$7F(a2,d5.w)
+	addi.l	#(3+4),$7F(a5,d2.w)
 	addi.l	#0,d2
 	addi.l	#0,d5
 	addi.l	#4,d2
@@ -1348,6 +1494,10 @@
 	addi.l	#$FFFFFFFF,d5
 	addi.l	#"WXYZ",d2
 	addi.l	#"WXYZ",d5
+	addi.l	#1+1,d2
+	addi.l	#1+1,d5
+	addi.l	#(3+4),d2
+	addi.l	#(3+4),d5
 
 	cmpi.b	#0,(a2)
 	cmpi.b	#0,(a5)
@@ -1513,6 +1663,10 @@
 	cmpi.l	#$FFFFFFFF,(a5)
 	cmpi.l	#"WXYZ",(a2)
 	cmpi.l	#"WXYZ",(a5)
+	cmpi.l	#1+1,(a2)
+	cmpi.l	#1+1,(a5)
+	cmpi.l	#(3+4),(a2)
+	cmpi.l	#(3+4),(a5)
 	cmpi.l	#0,(a1)+
 	cmpi.l	#0,(a2)+
 	cmpi.l	#0,(a5)+
@@ -1534,6 +1688,12 @@
 	cmpi.l	#"WXYZ",(a1)+
 	cmpi.l	#"WXYZ",(a2)+
 	cmpi.l	#"WXYZ",(a5)+
+	cmpi.l	#1+1,(a1)+
+	cmpi.l	#1+1,(a2)+
+	cmpi.l	#1+1,(a5)+
+	cmpi.l	#(3+4),(a1)+
+	cmpi.l	#(3+4),(a2)+
+	cmpi.l	#(3+4),(a5)+
 	cmpi.l	#0,-(a2)
 	cmpi.l	#0,-(a5)
 	cmpi.l	#4,-(a2)
@@ -1548,6 +1708,10 @@
 	cmpi.l	#$FFFFFFFF,-(a5)
 	cmpi.l	#"WXYZ",-(a2)
 	cmpi.l	#"WXYZ",-(a5)
+	cmpi.l	#1+1,-(a2)
+	cmpi.l	#1+1,-(a5)
+	cmpi.l	#(3+4),-(a2)
+	cmpi.l	#(3+4),-(a5)
 	cmpi.l	#0,($FFFFFFFF).l
 	cmpi.l	#4,($FFFFFFFF).l
 	cmpi.l	#$FF,($FFFFFFFF).l
@@ -1555,6 +1719,8 @@
 	cmpi.l	#$FFFF,($FFFFFFFF).l
 	cmpi.l	#$FFFFFFFF,($FFFFFFFF).l
 	cmpi.l	#"WXYZ",($FFFFFFFF).l
+	cmpi.l	#1+1,($FFFFFFFF).l
+	cmpi.l	#(3+4),($FFFFFFFF).l
 	cmpi.l	#0,($FFFFFFFF).w
 	cmpi.l	#4,($FFFFFFFF).w
 	cmpi.l	#$FF,($FFFFFFFF).w
@@ -1562,6 +1728,8 @@
 	cmpi.l	#$FFFF,($FFFFFFFF).w
 	cmpi.l	#$FFFFFFFF,($FFFFFFFF).w
 	cmpi.l	#"WXYZ",($FFFFFFFF).w
+	cmpi.l	#1+1,($FFFFFFFF).w
+	cmpi.l	#(3+4),($FFFFFFFF).w
 	cmpi.l	#0,$7FFF(a2)
 	cmpi.l	#0,$7FFF(a5)
 	cmpi.l	#4,$7FFF(a2)
@@ -1576,6 +1744,10 @@
 	cmpi.l	#$FFFFFFFF,$7FFF(a5)
 	cmpi.l	#"WXYZ",$7FFF(a2)
 	cmpi.l	#"WXYZ",$7FFF(a5)
+	cmpi.l	#1+1,$7FFF(a2)
+	cmpi.l	#1+1,$7FFF(a5)
+	cmpi.l	#(3+4),$7FFF(a2)
+	cmpi.l	#(3+4),$7FFF(a5)
 	cmpi.l	#0,$7F(a2,d5.w)
 	cmpi.l	#0,$7F(a5,d2.w)
 	cmpi.l	#4,$7F(a2,d5.w)
@@ -1590,6 +1762,10 @@
 	cmpi.l	#$FFFFFFFF,$7F(a5,d2.w)
 	cmpi.l	#"WXYZ",$7F(a2,d5.w)
 	cmpi.l	#"WXYZ",$7F(a5,d2.w)
+	cmpi.l	#1+1,$7F(a2,d5.w)
+	cmpi.l	#1+1,$7F(a5,d2.w)
+	cmpi.l	#(3+4),$7F(a2,d5.w)
+	cmpi.l	#(3+4),$7F(a5,d2.w)
 	cmpi.l	#0,d2
 	cmpi.l	#0,d5
 	cmpi.l	#4,d2
@@ -1604,6 +1780,10 @@
 	cmpi.l	#$FFFFFFFF,d5
 	cmpi.l	#"WXYZ",d2
 	cmpi.l	#"WXYZ",d5
+	cmpi.l	#1+1,d2
+	cmpi.l	#1+1,d5
+	cmpi.l	#(3+4),d2
+	cmpi.l	#(3+4),d5
 
 	btst.l	d2,d2
 	btst.l	d2,d5
@@ -3128,6 +3308,12 @@
 	movea.l	#"WXYZ",a2
 	movea.l	#"WXYZ",a5
 	movea.l	#"WXYZ",a7
+	movea.l	#1+1,a2
+	movea.l	#1+1,a5
+	movea.l	#1+1,a7
+	movea.l	#(3+4),a2
+	movea.l	#(3+4),a5
+	movea.l	#(3+4),a7
 
 	move.b	(a2),(a2)
 	move.b	(a2),(a5)
@@ -4058,6 +4244,10 @@
 	move.l	#$FFFFFFFF,(a5)
 	move.l	#"WXYZ",(a2)
 	move.l	#"WXYZ",(a5)
+	move.l	#1+1,(a2)
+	move.l	#1+1,(a5)
+	move.l	#(3+4),(a2)
+	move.l	#(3+4),(a5)
 	move.l	#0,(a1)+
 	move.l	#0,(a2)+
 	move.l	#0,(a5)+
@@ -4079,6 +4269,12 @@
 	move.l	#"WXYZ",(a1)+
 	move.l	#"WXYZ",(a2)+
 	move.l	#"WXYZ",(a5)+
+	move.l	#1+1,(a1)+
+	move.l	#1+1,(a2)+
+	move.l	#1+1,(a5)+
+	move.l	#(3+4),(a1)+
+	move.l	#(3+4),(a2)+
+	move.l	#(3+4),(a5)+
 	move.l	#0,-(a2)
 	move.l	#0,-(a5)
 	move.l	#4,-(a2)
@@ -4093,6 +4289,10 @@
 	move.l	#$FFFFFFFF,-(a5)
 	move.l	#"WXYZ",-(a2)
 	move.l	#"WXYZ",-(a5)
+	move.l	#1+1,-(a2)
+	move.l	#1+1,-(a5)
+	move.l	#(3+4),-(a2)
+	move.l	#(3+4),-(a5)
 	move.l	#0,($FFFFFFFF).l
 	move.l	#4,($FFFFFFFF).l
 	move.l	#$FF,($FFFFFFFF).l
@@ -4100,6 +4300,8 @@
 	move.l	#$FFFF,($FFFFFFFF).l
 	move.l	#$FFFFFFFF,($FFFFFFFF).l
 	move.l	#"WXYZ",($FFFFFFFF).l
+	move.l	#1+1,($FFFFFFFF).l
+	move.l	#(3+4),($FFFFFFFF).l
 	move.l	#0,($FFFFFFFF).w
 	move.l	#4,($FFFFFFFF).w
 	move.l	#$FF,($FFFFFFFF).w
@@ -4107,6 +4309,8 @@
 	move.l	#$FFFF,($FFFFFFFF).w
 	move.l	#$FFFFFFFF,($FFFFFFFF).w
 	move.l	#"WXYZ",($FFFFFFFF).w
+	move.l	#1+1,($FFFFFFFF).w
+	move.l	#(3+4),($FFFFFFFF).w
 	move.l	#0,$7FFF(a2)
 	move.l	#0,$7FFF(a5)
 	move.l	#4,$7FFF(a2)
@@ -4121,6 +4325,10 @@
 	move.l	#$FFFFFFFF,$7FFF(a5)
 	move.l	#"WXYZ",$7FFF(a2)
 	move.l	#"WXYZ",$7FFF(a5)
+	move.l	#1+1,$7FFF(a2)
+	move.l	#1+1,$7FFF(a5)
+	move.l	#(3+4),$7FFF(a2)
+	move.l	#(3+4),$7FFF(a5)
 	move.l	#0,$7F(a2,d5.w)
 	move.l	#0,$7F(a5,d2.w)
 	move.l	#4,$7F(a2,d5.w)
@@ -4135,6 +4343,10 @@
 	move.l	#$FFFFFFFF,$7F(a5,d2.w)
 	move.l	#"WXYZ",$7F(a2,d5.w)
 	move.l	#"WXYZ",$7F(a5,d2.w)
+	move.l	#1+1,$7F(a2,d5.w)
+	move.l	#1+1,$7F(a5,d2.w)
+	move.l	#(3+4),$7F(a2,d5.w)
+	move.l	#(3+4),$7F(a5,d2.w)
 	move.l	#0,d2
 	move.l	#0,d5
 	move.l	#4,d2
@@ -4149,6 +4361,10 @@
 	move.l	#$FFFFFFFF,d5
 	move.l	#"WXYZ",d2
 	move.l	#"WXYZ",d5
+	move.l	#1+1,d2
+	move.l	#1+1,d5
+	move.l	#(3+4),d2
+	move.l	#(3+4),d5
 	move.w	a2,(a2)
 	move.w	a2,(a5)
 	move.w	a5,(a2)
@@ -6471,6 +6687,12 @@
 	suba.l	#"WXYZ",a2
 	suba.l	#"WXYZ",a5
 	suba.l	#"WXYZ",a7
+	suba.l	#1+1,a2
+	suba.l	#1+1,a5
+	suba.l	#1+1,a7
+	suba.l	#(3+4),a2
+	suba.l	#(3+4),a5
+	suba.l	#(3+4),a7
 
 	eor.b	d2,(a2)
 	eor.b	d2,(a5)
@@ -6868,6 +7090,12 @@
 	cmpa.l	#"WXYZ",a2
 	cmpa.l	#"WXYZ",a5
 	cmpa.l	#"WXYZ",a7
+	cmpa.l	#1+1,a2
+	cmpa.l	#1+1,a5
+	cmpa.l	#1+1,a7
+	cmpa.l	#(3+4),a2
+	cmpa.l	#(3+4),a5
+	cmpa.l	#(3+4),a7
 
 	mulu.w	(a2),d2
 	mulu.w	(a2),d5
@@ -7276,6 +7504,12 @@
 	adda.l	#"WXYZ",a2
 	adda.l	#"WXYZ",a5
 	adda.l	#"WXYZ",a7
+	adda.l	#1+1,a2
+	adda.l	#1+1,a5
+	adda.l	#1+1,a7
+	adda.l	#(3+4),a2
+	adda.l	#(3+4),a5
+	adda.l	#(3+4),a7
 
 	asl.b	d2,d2
 	asl.b	d2,d5
