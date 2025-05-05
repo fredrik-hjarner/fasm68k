@@ -19,7 +19,7 @@ const examples: Record<OperandType, string[]> = {
   "abs.l": ["($FFFFFFFF).l"],
   "d(pc)": [
     "@(pc)",
-    // "@-2(pc)", // TODO: This is not encoded correctly.
+    "@-2(pc)",
   ],
   "d(pc,ix)": ["@(pc,d5.w)"],
   // TODO: Rename to imm32?
