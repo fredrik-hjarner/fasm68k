@@ -53,63 +53,7 @@ include "parsing/utils.inc"
 include "parsing/parse_operand.inc"
 include "parsing/parse_reg_list.inc"
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Data declaration stuff                                                     ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-calminstruction dc.b? tail&
-        local head, tail, length, last_argument
-        compute last_argument, 0
-    next:
-        match head=,tail, tail
-        jyes at_least_two_arguments
-    ; last argument:
-        match head, tail
-        compute last_argument, 1
-    at_least_two_arguments:
-        check head eqtype ''
-        jyes string
-        emit 1, head
-        jump maybe_next
-    string:
-        compute length, lengthof head
-        emit length, head bswap length
-    maybe_next:
-        check last_argument = 0
-        jyes next
-end calminstruction
-
-calminstruction dc.w? tail&
-        local head, tail, last_argument
-        compute last_argument, 0
-    next:
-        match head=,tail, tail
-        jyes at_least_two_arguments
-    ; last argument:
-        match head, tail
-        compute last_argument, 1
-    at_least_two_arguments:
-        emit 2, head
-    maybe_next:
-        check last_argument = 0
-        jyes next
-end calminstruction
-
-calminstruction dc.l? tail&
-        local head, tail, last_argument
-        compute last_argument, 0
-    next:
-        match head=,tail, tail
-        jyes at_least_two_arguments
-    ; last argument:
-        match head, tail
-        compute last_argument, 1
-    at_least_two_arguments:
-        emit 4, head
-    maybe_next:
-        check last_argument = 0
-        jyes next
-end calminstruction
+include "directives.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Decorate or mark labels                                                    ;;
