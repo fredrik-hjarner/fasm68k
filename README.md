@@ -1,7 +1,7 @@
 # fasm68k - Motorola 68000 instruction set for fasmg (flat assembler g)
 
 **Note**: Consider this to be in alpha stage. Currently supports all 68k
-instructions that are validated with about [9000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
+instructions that are validated with about [10,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
 but the code might still
 contain bugs. If you find bugs then don't hesitate reporting them, since the
 hardest part is to find the bugs while it might be way easier to fix them.

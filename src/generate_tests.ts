@@ -18,6 +18,8 @@ const examples: Record<OperandType, string[]> = {
     "$7F(a2,d5.w)",
     "$7F(a5,d2.w)",
     "$0F(a5,d2.l)",
+    "$1+1(a5,d2.l)",
+    // "($1+1)(a5,d2.l)", TODO: This causes errors.
   ],
   "abs.w": ["($FFFFFFFF).w"],
   "abs.l": ["($FFFFFFFF).l"],
