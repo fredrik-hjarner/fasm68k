@@ -14,7 +14,11 @@ const examples: Record<OperandType, string[]> = {
   "(an)+": ["(a1)+", "(a2)+", "(a5)+"],
   "-(an)": ["-(a2)", "-(a5)", "-(sp)"],
   "d(an)": ["$7FFF(a2)", "$7FFF(a5)"],
-  "d(an,ix)": ["$7F(a2,d5.w)", "$7F(a5,d2.w)"],
+  "d(an,ix)": [
+    "$7F(a2,d5.w)",
+    "$7F(a5,d2.w)",
+    "$0F(a5,d2.l)",
+  ],
   "abs.w": ["($FFFFFFFF).w"],
   "abs.l": ["($FFFFFFFF).l"],
   "d(pc)": [
@@ -24,6 +28,7 @@ const examples: Record<OperandType, string[]> = {
   "d(pc,ix)": [
     "@(pc,d5.w)",
     "@-2(pc,d5.w)",
+    "@-2(pc,d1.l)",
   ],
   // TODO: Rename to imm32?
   "imm": ["#0", "#4", "#$FF", "#$7FFF", "#$FFFF", "#$FFFFFFFF", '#"WXYZ"', "#1+1", '#(3+4)'],
