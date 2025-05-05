@@ -89,7 +89,7 @@ function generateValidTests() {
           
           // Single operand instructions (dest only)
           if (variant.sourceOperands.length === 0 && variant.destOperands.length > 0) {
-            for (const destOp of variant.destOperands) {
+            for (const destOp of variant.destOperands.slice().sort()) {
               const destExamples = getExampleValues(destOp, instrName, size);
               
               for (const destExample of destExamples) {
@@ -99,7 +99,7 @@ function generateValidTests() {
           }
           // Source-only instructions (like branch)
           else if (variant.sourceOperands.length > 0 && variant.destOperands.length === 0) {
-            for (const srcOp of variant.sourceOperands) {
+            for (const srcOp of variant.sourceOperands.slice().sort()) {
               const srcExamples = getExampleValues(srcOp, instrName, size);
               
               for (const srcExample of srcExamples) {
@@ -110,10 +110,10 @@ function generateValidTests() {
           // Two-operand instructions - systematically generate all combinations
           else if (variant.sourceOperands.length > 0 && variant.destOperands.length > 0) {
             // Generate all combinations for all instructions
-            for (const srcOp of variant.sourceOperands) {
+            for (const srcOp of variant.sourceOperands.slice().sort()) {
               const srcExamples = getExampleValues(srcOp, instrName, size);
               
-              for (const destOp of variant.destOperands) {
+              for (const destOp of variant.destOperands.slice().sort()) {
                 const destExamples = getExampleValues(destOp, instrName, size);
                 
                 // Generate all combinations of source and dest examples

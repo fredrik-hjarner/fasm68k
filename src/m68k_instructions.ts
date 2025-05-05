@@ -21,6 +21,62 @@ export type Group = {
 
 export type InstructionSet = Group[];
 
+// All <ea> addressing modes 32-bits
+const all32 = [
+  "dn",       "abs.w",
+  "an",       "abs.l",
+  "(an)",     "imm",
+  "(an)+",
+  "-(an)",
+  "d(an)",    "d(pc)",
+  "d(an,ix)", "d(pc,ix)"
+] satisfies OperandType[];
+
+const dataAddressingModes16 = [
+  "dn",       "abs.w",
+  /*"an",*/   "abs.l",
+  "(an)",     "imm16",
+  "(an)+",
+  "-(an)",
+  "d(an)",    "d(pc)",
+  "d(an,ix)", "d(pc,ix)"
+] satisfies OperandType[];
+
+const alterableAddressingModes32 = [
+  "dn",       "abs.w",
+  "an",       "abs.l",
+  "(an)",     //"imm32",
+  "(an)+",
+  "-(an)",
+  "d(an)",    //"d(pc)",
+  "d(an,ix)", //"d(pc,ix)"
+] satisfies OperandType[];
+
+const dataAlterableAddressingModes32 = [
+  "dn",       "abs.w",
+  /*"an",*/   "abs.l",
+  "(an)",     //"imm32",
+  "(an)+",
+  "-(an)",
+  "d(an)",    //"d(pc)",
+  "d(an,ix)", //"d(pc,ix)"
+] satisfies OperandType[];
+
+const controlAddressingModes = [
+  /*"dn",*/   "abs.w",
+  /*"an",*/   "abs.l",
+  "(an)",     //"imm32",
+  //"(an)+",
+  //"-(an)",
+  "d(an)",    "d(pc)",
+  "d(an,ix)", "d(pc,ix)"
+] satisfies OperandType[];
+
+// Extention to allow to remove values from an array with shorter syntax.
+Array.prototype.except = function(value) {
+  return this.filter(item => item !== value);
+};
+
 export const data: InstructionSet = [
   // Data declaration instructions
   {
@@ -398,9 +454,9 @@ export const data: InstructionSet = [
     instructions: ["lea"],
     variants: [
       {
-        sizes: ["l", ""],
-        sourceOperands: ["(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
-        destOperands: ["an"]
+        sizes: ["l", ""], // verified
+        sourceOperands: controlAddressingModes, // verified
+        destOperands: ["an"] // verified
       }
     ]
   },
@@ -409,10 +465,9 @@ export const data: InstructionSet = [
     instructions: ["chk"],
     variants: [
       {
-        sizes: ["w", ""],
-        // TODO: Not sure what the max value on imm should be allowed to be here...
-        sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm16"],
-        destOperands: ["dn"]
+        sizes: ["w", ""], // verified
+        sourceOperands: dataAddressingModes16, // verified
+        destOperands: ["dn"] // verified
       }
     ]
   },
@@ -421,9 +476,17 @@ export const data: InstructionSet = [
     instructions: ["addq", "subq"],
     variants: [
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: ["imm3"],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: ["imm3"], // verified
+        destOperands: [ // verified
+          "dn",       "abs.w",
+          /*"an",*/   "abs.l",
+          "(an)",     //"imm",
+          "(an)+",
+          "-(an)",
+          "d(an)",    //"d(pc)",
+          "d(an,ix)", //"d(pc,ix)"
+        ]
       },
       {
         sizes: ["w", "l"],
@@ -437,9 +500,9 @@ export const data: InstructionSet = [
     instructions: ["moveq"],
     variants: [
       {
-        sizes: ["l", ""],
-        sourceOperands: ["imm8s"],
-        destOperands: ["dn"]
+        sizes: ["l", ""], // verified
+        sourceOperands: ["imm8s"], // verified
+        destOperands: ["dn"] // verified
       }
     ]
   },
@@ -448,9 +511,9 @@ export const data: InstructionSet = [
     instructions: ["divu", "divs"],
     variants: [
       {
-        sizes: ["w", ""],
-        sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm16"],
-        destOperands: ["dn"]
+        sizes: ["w", ""], // verified
+        sourceOperands: dataAddressingModes16, // verified
+        destOperands: ["dn"] // verified
       }
     ]
   },
@@ -459,54 +522,91 @@ export const data: InstructionSet = [
     instructions: ["sbcd", "abcd"],
     variants: [
       {
-        sizes: ["b", ""],
-        sourceOperands: ["dn"],
-        destOperands: ["dn"]
+        sizes: ["b", ""], // verified
+        sourceOperands: ["dn"], // verified
+        destOperands: ["dn"] // verified
       },
       {
-        sizes: ["b", ""],
-        sourceOperands: ["-(an)"],
-        destOperands: ["-(an)"]
+        sizes: ["b", ""], // verified
+        sourceOperands: ["-(an)"], // verified
+        destOperands: ["-(an)"] // verified
       },
     ]
   },
   // Logical operations
   {
+    /*
+      Quote from reference manual:
+        NOTE
+        If the destination is a data register, it must be specified using the
+        destination Dn mode, not the destination < ea > mode.
+        Most assemblers use ORI when the source is immediate data
+    */
     instructions: ["or", "and"],
     variants: [
       {
-        sizes: ["b", "w", "l"],
-        // TODO: This includes "imm"???
-        // https://github.com/prb28/m68k-instructions-documentation/blob/master/instructions/and.md
-        sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
-        destOperands: ["dn"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: dataAddressingModes16.except("imm16"), // verified
+        destOperands: ["dn"] // verified
       },
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: ["dn"],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: ["dn"], // verified
+        destOperands: [ // verified
+          /*"dn",*/   "abs.w",
+          /*"an",*/   "abs.l",
+          "(an)",     //"imm",
+          "(an)+",
+          "-(an)",
+          "d(an)",    //"d(pc)",
+          "d(an,ix)", //"d(pc,ix)"
+        ]
       },
     ]
   },
   {
     instructions: ["sub", "add"],
+    /*
+      Quote from reference manual:
+        NOTE
+        The Dn mode is used when the destination is a data register; the
+        destination < ea > mode is invalid for a data register.
+
+        ADDA is used when the destination is an address register. ADDI
+        and ADDQ are used when the source is immediate data. Most
+        assemblers automatically make this distinction.
+     */
     variants: [
       {
-        sizes: ["b", "w", "l"],
-        // TODO: This includes "imm"???
-        // https://github.com/prb28/m68k-instructions-documentation/blob/master/instructions/add.md
-        sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
-        destOperands: ["dn"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: [ // verified
+          "dn",       "abs.w",
+          /*"an",*/   "abs.l",
+          "(an)",     //"imm",
+          "(an)+",
+          "-(an)",
+          "d(an)",    "d(pc)",
+          "d(an,ix)", "d(pc,ix)"
+        ],
+        destOperands: ["dn"] // verified
       },
       {
-        sizes: ["w", "l"],
-        sourceOperands: ["an"],
-        destOperands: ["dn"]
+        sizes: ["w", "l"], // verified
+        sourceOperands: ["an"], // verified
+        destOperands: ["dn"] // verified
       },
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: ["dn"],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: ["dn"], // verified
+        destOperands: [ // verified
+          /*"dn",*/   "abs.w",
+          /*"an",*/   "abs.l",
+          "(an)",     //"imm",
+          "(an)+",
+          "-(an)",
+          "d(an)",    //"d(pc)",
+          "d(an,ix)", //"d(pc,ix)"
+        ]
       }
     ]
   },
@@ -514,14 +614,14 @@ export const data: InstructionSet = [
     instructions: ["subx", "addx"],
     variants: [
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: ["dn"],
-        destOperands: ["dn"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: ["dn"], // verified
+        destOperands: ["dn"] // verified
       },
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: ["-(an)"],
-        destOperands: ["-(an)"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: ["-(an)"], // verified
+        destOperands: ["-(an)"] // verified
       }
     ]
   },
@@ -530,9 +630,9 @@ export const data: InstructionSet = [
     instructions: ["suba"],
     variants: [
       {
-        sizes: ["w", "l"],
-        sourceOperands: ["dn", "an", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm"],
-        destOperands: ["an"]
+        sizes: ["w", "l"], // verified
+        sourceOperands: all32, // verified
+        destOperands: ["an"] // verified
       }
     ]
   },
@@ -541,9 +641,9 @@ export const data: InstructionSet = [
     instructions: ["eor"],
     variants: [
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: ["dn"],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: ["dn"], // verified
+        destOperands: dataAlterableAddressingModes32, // verified
       }
     ]
   },
@@ -552,9 +652,9 @@ export const data: InstructionSet = [
     instructions: ["cmpm"],
     variants: [
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: ["(an)+"],
-        destOperands: ["(an)+"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: ["(an)+"], // verified
+        destOperands: ["(an)+"] // verified
       }
     ]
   },
@@ -564,9 +664,25 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"],
-        // TODO: This includes "imm"???
-        // https://github.com/prb28/m68k-instructions-documentation/blob/master/instructions/cmp.md
-        sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
+        /*
+          Quote from reference manual:
+            NOTE
+            CMPA is used when the destination is an address register. CMPI
+            is used when the source is immediate data. CMPM is used for
+            memory-to-memory compares. Most assemblers automatically
+            make the distinction.
+        */
+        // Does that mean cmp does not support memory-to-memory compares
+        // or just that cmpm is more effecient for memory-to-memory compares?
+        sourceOperands: [ // TODO: Double-check this.
+          "dn",       "abs.w",
+          /*"an",*/   "abs.l",
+          "(an)",     //"imm",
+          "(an)+",
+          "-(an)",
+          "d(an)",    "d(pc)",
+          "d(an,ix)", "d(pc,ix)"
+        ],
         destOperands: ["dn"]
       },
       {
@@ -581,9 +697,9 @@ export const data: InstructionSet = [
     instructions: ["cmpa"],
     variants: [
       {
-        sizes: ["w", "l"],
-        sourceOperands: ["dn", "an", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm"],
-        destOperands: ["an"]
+        sizes: ["w", "l"], // verified
+        sourceOperands: all32, // verified
+        destOperands: ["an"] // verified
       }
     ]
   },
@@ -592,9 +708,9 @@ export const data: InstructionSet = [
     instructions: ["mulu", "muls"],
     variants: [
       {
-        sizes: ["w", ""],
-        sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm16"],
-        destOperands: ["dn"]
+        sizes: ["w", ""], // verified
+        sourceOperands: dataAddressingModes16, // verified,
+        destOperands: ["dn"] // verified
       }
     ]
   },
@@ -603,9 +719,9 @@ export const data: InstructionSet = [
     instructions: ["exg"],
     variants: [
       {
-        sizes: ["l", ""],
-        sourceOperands: ["dn", "an"],
-        destOperands: ["dn", "an"]
+        sizes: ["l", ""], // verified
+        sourceOperands: ["dn", "an"], // verified
+        destOperands: ["dn", "an"] // verified
       }
     ]
   },
@@ -614,9 +730,9 @@ export const data: InstructionSet = [
     instructions: ["adda"],
     variants: [
       {
-        sizes: ["w", "l"],
-        sourceOperands: ["dn", "an", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm"],
-        destOperands: ["an"]
+        sizes: ["w", "l"], // verified
+        sourceOperands: all32, // verified,
+        destOperands: ["an"] // verified
       }
     ]
   },
