@@ -2968,166 +2968,292 @@
 	slo	d5
 
 	bra.s	@
+	bra.s	@-2
 	bra.w	@
+	bra.w	@-2
 	bra	@
+	bra	@-2
 
 	bsr.s	@
+	bsr.s	@-2
 	bsr.w	@
+	bsr.w	@-2
 	bsr	@
+	bsr	@-2
 
 	bhi.s	@
+	bhi.s	@-2
 	bhi.w	@
+	bhi.w	@-2
 	bhi	@
+	bhi	@-2
 
 	bls.s	@
+	bls.s	@-2
 	bls.w	@
+	bls.w	@-2
 	bls	@
+	bls	@-2
 
 	bcc.s	@
+	bcc.s	@-2
 	bcc.w	@
+	bcc.w	@-2
 	bcc	@
+	bcc	@-2
 
 	bcs.s	@
+	bcs.s	@-2
 	bcs.w	@
+	bcs.w	@-2
 	bcs	@
+	bcs	@-2
 
 	bne.s	@
+	bne.s	@-2
 	bne.w	@
+	bne.w	@-2
 	bne	@
+	bne	@-2
 
 	beq.s	@
+	beq.s	@-2
 	beq.w	@
+	beq.w	@-2
 	beq	@
+	beq	@-2
 
 	bvc.s	@
+	bvc.s	@-2
 	bvc.w	@
+	bvc.w	@-2
 	bvc	@
+	bvc	@-2
 
 	bvs.s	@
+	bvs.s	@-2
 	bvs.w	@
+	bvs.w	@-2
 	bvs	@
+	bvs	@-2
 
 	bpl.s	@
+	bpl.s	@-2
 	bpl.w	@
+	bpl.w	@-2
 	bpl	@
+	bpl	@-2
 
 	bmi.s	@
+	bmi.s	@-2
 	bmi.w	@
+	bmi.w	@-2
 	bmi	@
+	bmi	@-2
 
 	bge.s	@
+	bge.s	@-2
 	bge.w	@
+	bge.w	@-2
 	bge	@
+	bge	@-2
 
 	blt.s	@
+	blt.s	@-2
 	blt.w	@
+	blt.w	@-2
 	blt	@
+	blt	@-2
 
 	bgt.s	@
+	bgt.s	@-2
 	bgt.w	@
+	bgt.w	@-2
 	bgt	@
+	bgt	@-2
 
 	ble.s	@
+	ble.s	@-2
 	ble.w	@
+	ble.w	@-2
 	ble	@
+	ble	@-2
 
 	bhs.s	@
+	bhs.s	@-2
 	bhs.w	@
+	bhs.w	@-2
 	bhs	@
+	bhs	@-2
 
 	blo.s	@
+	blo.s	@-2
 	blo.w	@
+	blo.w	@-2
 	blo	@
+	blo	@-2
 
 	dbt.w	d2,@
+	dbt.w	d2,@-2
 	dbt.w	d5,@
+	dbt.w	d5,@-2
 	dbt	d2,@
+	dbt	d2,@-2
 	dbt	d5,@
+	dbt	d5,@-2
 
 	dbf.w	d2,@
+	dbf.w	d2,@-2
 	dbf.w	d5,@
+	dbf.w	d5,@-2
 	dbf	d2,@
+	dbf	d2,@-2
 	dbf	d5,@
+	dbf	d5,@-2
 
 	dbhi.w	d2,@
+	dbhi.w	d2,@-2
 	dbhi.w	d5,@
+	dbhi.w	d5,@-2
 	dbhi	d2,@
+	dbhi	d2,@-2
 	dbhi	d5,@
+	dbhi	d5,@-2
 
 	dbls.w	d2,@
+	dbls.w	d2,@-2
 	dbls.w	d5,@
+	dbls.w	d5,@-2
 	dbls	d2,@
+	dbls	d2,@-2
 	dbls	d5,@
+	dbls	d5,@-2
 
 	dbcc.w	d2,@
+	dbcc.w	d2,@-2
 	dbcc.w	d5,@
+	dbcc.w	d5,@-2
 	dbcc	d2,@
+	dbcc	d2,@-2
 	dbcc	d5,@
+	dbcc	d5,@-2
 
 	dbcs.w	d2,@
+	dbcs.w	d2,@-2
 	dbcs.w	d5,@
+	dbcs.w	d5,@-2
 	dbcs	d2,@
+	dbcs	d2,@-2
 	dbcs	d5,@
+	dbcs	d5,@-2
 
 	dbne.w	d2,@
+	dbne.w	d2,@-2
 	dbne.w	d5,@
+	dbne.w	d5,@-2
 	dbne	d2,@
+	dbne	d2,@-2
 	dbne	d5,@
+	dbne	d5,@-2
 
 	dbeq.w	d2,@
+	dbeq.w	d2,@-2
 	dbeq.w	d5,@
+	dbeq.w	d5,@-2
 	dbeq	d2,@
+	dbeq	d2,@-2
 	dbeq	d5,@
+	dbeq	d5,@-2
 
 	dbvc.w	d2,@
+	dbvc.w	d2,@-2
 	dbvc.w	d5,@
+	dbvc.w	d5,@-2
 	dbvc	d2,@
+	dbvc	d2,@-2
 	dbvc	d5,@
+	dbvc	d5,@-2
 
 	dbvs.w	d2,@
+	dbvs.w	d2,@-2
 	dbvs.w	d5,@
+	dbvs.w	d5,@-2
 	dbvs	d2,@
+	dbvs	d2,@-2
 	dbvs	d5,@
+	dbvs	d5,@-2
 
 	dbpl.w	d2,@
+	dbpl.w	d2,@-2
 	dbpl.w	d5,@
+	dbpl.w	d5,@-2
 	dbpl	d2,@
+	dbpl	d2,@-2
 	dbpl	d5,@
+	dbpl	d5,@-2
 
 	dbmi.w	d2,@
+	dbmi.w	d2,@-2
 	dbmi.w	d5,@
+	dbmi.w	d5,@-2
 	dbmi	d2,@
+	dbmi	d2,@-2
 	dbmi	d5,@
+	dbmi	d5,@-2
 
 	dbge.w	d2,@
+	dbge.w	d2,@-2
 	dbge.w	d5,@
+	dbge.w	d5,@-2
 	dbge	d2,@
+	dbge	d2,@-2
 	dbge	d5,@
+	dbge	d5,@-2
 
 	dblt.w	d2,@
+	dblt.w	d2,@-2
 	dblt.w	d5,@
+	dblt.w	d5,@-2
 	dblt	d2,@
+	dblt	d2,@-2
 	dblt	d5,@
+	dblt	d5,@-2
 
 	dbgt.w	d2,@
+	dbgt.w	d2,@-2
 	dbgt.w	d5,@
+	dbgt.w	d5,@-2
 	dbgt	d2,@
+	dbgt	d2,@-2
 	dbgt	d5,@
+	dbgt	d5,@-2
 
 	dble.w	d2,@
+	dble.w	d2,@-2
 	dble.w	d5,@
+	dble.w	d5,@-2
 	dble	d2,@
+	dble	d2,@-2
 	dble	d5,@
+	dble	d5,@-2
 
 	dbhs.w	d2,@
+	dbhs.w	d2,@-2
 	dbhs.w	d5,@
+	dbhs.w	d5,@-2
 	dbhs	d2,@
+	dbhs	d2,@-2
 	dbhs	d5,@
+	dbhs	d5,@-2
 
 	dblo.w	d2,@
+	dblo.w	d2,@-2
 	dblo.w	d5,@
+	dblo.w	d5,@-2
 	dblo	d2,@
+	dblo	d2,@-2
 	dblo	d5,@
+	dblo	d5,@-2
 
 	movep.w	$7FFF(a2),d2
 	movep.w	$7FFF(a2),d5
