@@ -47,7 +47,9 @@ const examples: Record<OperandType, string[]> = {
     "@-2",
     // "label",
   ],
-  "register_list": ["d5-a7", "d0-d7/a0-a7", "d0-d1/a0-a1", "d0/d1/d2/d3-d4"],
+  "register_list": [
+    "d2", "d5-a7", "d0-d7/a0-a7", "d0-d1/a0-a1", "d0/d1/d2/d3-d4"
+  ],
   "ccr": ["ccr"],
   "sr": ["sr"],
   "usp": ["usp"],

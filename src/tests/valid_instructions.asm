@@ -6476,6 +6476,8 @@
 	jmp	@-2(pc,d5.w)
 	jmp	@-2(pc,d1.l)
 
+	movem.w	d2,(a2)
+	movem.w	d2,(a5)
 	movem.w	d5-a7,(a2)
 	movem.w	d5-a7,(a5)
 	movem.w	d0-d7/a0-a7,(a2)
@@ -6484,6 +6486,9 @@
 	movem.w	d0-d1/a0-a1,(a5)
 	movem.w	d0/d1/d2/d3-d4,(a2)
 	movem.w	d0/d1/d2/d3-d4,(a5)
+	movem.w	d2,-(a2)
+	movem.w	d2,-(a5)
+	movem.w	d2,-(sp)
 	movem.w	d5-a7,-(a2)
 	movem.w	d5-a7,-(a5)
 	movem.w	d5-a7,-(sp)
@@ -6496,14 +6501,18 @@
 	movem.w	d0/d1/d2/d3-d4,-(a2)
 	movem.w	d0/d1/d2/d3-d4,-(a5)
 	movem.w	d0/d1/d2/d3-d4,-(sp)
+	movem.w	d2,($FFFFFFFF).l
 	movem.w	d5-a7,($FFFFFFFF).l
 	movem.w	d0-d7/a0-a7,($FFFFFFFF).l
 	movem.w	d0-d1/a0-a1,($FFFFFFFF).l
 	movem.w	d0/d1/d2/d3-d4,($FFFFFFFF).l
+	movem.w	d2,($FFFFFFFF).w
 	movem.w	d5-a7,($FFFFFFFF).w
 	movem.w	d0-d7/a0-a7,($FFFFFFFF).w
 	movem.w	d0-d1/a0-a1,($FFFFFFFF).w
 	movem.w	d0/d1/d2/d3-d4,($FFFFFFFF).w
+	movem.w	d2,$7FFF(a2)
+	movem.w	d2,$7FFF(a5)
 	movem.w	d5-a7,$7FFF(a2)
 	movem.w	d5-a7,$7FFF(a5)
 	movem.w	d0-d7/a0-a7,$7FFF(a2)
@@ -6512,6 +6521,10 @@
 	movem.w	d0-d1/a0-a1,$7FFF(a5)
 	movem.w	d0/d1/d2/d3-d4,$7FFF(a2)
 	movem.w	d0/d1/d2/d3-d4,$7FFF(a5)
+	movem.w	d2,$7F(a2,d5.w)
+	movem.w	d2,$7F(a5,d2.w)
+	movem.w	d2,$0F(a5,d2.l)
+	movem.w	d2,$1+1(a5,d2.l)
 	movem.w	d5-a7,$7F(a2,d5.w)
 	movem.w	d5-a7,$7F(a5,d2.w)
 	movem.w	d5-a7,$0F(a5,d2.l)
@@ -6528,6 +6541,8 @@
 	movem.w	d0/d1/d2/d3-d4,$7F(a5,d2.w)
 	movem.w	d0/d1/d2/d3-d4,$0F(a5,d2.l)
 	movem.w	d0/d1/d2/d3-d4,$1+1(a5,d2.l)
+	movem.l	d2,(a2)
+	movem.l	d2,(a5)
 	movem.l	d5-a7,(a2)
 	movem.l	d5-a7,(a5)
 	movem.l	d0-d7/a0-a7,(a2)
@@ -6536,6 +6551,9 @@
 	movem.l	d0-d1/a0-a1,(a5)
 	movem.l	d0/d1/d2/d3-d4,(a2)
 	movem.l	d0/d1/d2/d3-d4,(a5)
+	movem.l	d2,-(a2)
+	movem.l	d2,-(a5)
+	movem.l	d2,-(sp)
 	movem.l	d5-a7,-(a2)
 	movem.l	d5-a7,-(a5)
 	movem.l	d5-a7,-(sp)
@@ -6548,14 +6566,18 @@
 	movem.l	d0/d1/d2/d3-d4,-(a2)
 	movem.l	d0/d1/d2/d3-d4,-(a5)
 	movem.l	d0/d1/d2/d3-d4,-(sp)
+	movem.l	d2,($FFFFFFFF).l
 	movem.l	d5-a7,($FFFFFFFF).l
 	movem.l	d0-d7/a0-a7,($FFFFFFFF).l
 	movem.l	d0-d1/a0-a1,($FFFFFFFF).l
 	movem.l	d0/d1/d2/d3-d4,($FFFFFFFF).l
+	movem.l	d2,($FFFFFFFF).w
 	movem.l	d5-a7,($FFFFFFFF).w
 	movem.l	d0-d7/a0-a7,($FFFFFFFF).w
 	movem.l	d0-d1/a0-a1,($FFFFFFFF).w
 	movem.l	d0/d1/d2/d3-d4,($FFFFFFFF).w
+	movem.l	d2,$7FFF(a2)
+	movem.l	d2,$7FFF(a5)
 	movem.l	d5-a7,$7FFF(a2)
 	movem.l	d5-a7,$7FFF(a5)
 	movem.l	d0-d7/a0-a7,$7FFF(a2)
@@ -6564,6 +6586,10 @@
 	movem.l	d0-d1/a0-a1,$7FFF(a5)
 	movem.l	d0/d1/d2/d3-d4,$7FFF(a2)
 	movem.l	d0/d1/d2/d3-d4,$7FFF(a5)
+	movem.l	d2,$7F(a2,d5.w)
+	movem.l	d2,$7F(a5,d2.w)
+	movem.l	d2,$0F(a5,d2.l)
+	movem.l	d2,$1+1(a5,d2.l)
 	movem.l	d5-a7,$7F(a2,d5.w)
 	movem.l	d5-a7,$7F(a5,d2.w)
 	movem.l	d5-a7,$0F(a5,d2.l)
@@ -6580,146 +6606,182 @@
 	movem.l	d0/d1/d2/d3-d4,$7F(a5,d2.w)
 	movem.l	d0/d1/d2/d3-d4,$0F(a5,d2.l)
 	movem.l	d0/d1/d2/d3-d4,$1+1(a5,d2.l)
+	movem.w	(a2),d2
 	movem.w	(a2),d5-a7
 	movem.w	(a2),d0-d7/a0-a7
 	movem.w	(a2),d0-d1/a0-a1
 	movem.w	(a2),d0/d1/d2/d3-d4
+	movem.w	(a5),d2
 	movem.w	(a5),d5-a7
 	movem.w	(a5),d0-d7/a0-a7
 	movem.w	(a5),d0-d1/a0-a1
 	movem.w	(a5),d0/d1/d2/d3-d4
+	movem.w	(a1)+,d2
 	movem.w	(a1)+,d5-a7
 	movem.w	(a1)+,d0-d7/a0-a7
 	movem.w	(a1)+,d0-d1/a0-a1
 	movem.w	(a1)+,d0/d1/d2/d3-d4
+	movem.w	(a2)+,d2
 	movem.w	(a2)+,d5-a7
 	movem.w	(a2)+,d0-d7/a0-a7
 	movem.w	(a2)+,d0-d1/a0-a1
 	movem.w	(a2)+,d0/d1/d2/d3-d4
+	movem.w	(a5)+,d2
 	movem.w	(a5)+,d5-a7
 	movem.w	(a5)+,d0-d7/a0-a7
 	movem.w	(a5)+,d0-d1/a0-a1
 	movem.w	(a5)+,d0/d1/d2/d3-d4
+	movem.w	($FFFFFFFF).l,d2
 	movem.w	($FFFFFFFF).l,d5-a7
 	movem.w	($FFFFFFFF).l,d0-d7/a0-a7
 	movem.w	($FFFFFFFF).l,d0-d1/a0-a1
 	movem.w	($FFFFFFFF).l,d0/d1/d2/d3-d4
+	movem.w	($FFFFFFFF).w,d2
 	movem.w	($FFFFFFFF).w,d5-a7
 	movem.w	($FFFFFFFF).w,d0-d7/a0-a7
 	movem.w	($FFFFFFFF).w,d0-d1/a0-a1
 	movem.w	($FFFFFFFF).w,d0/d1/d2/d3-d4
+	movem.w	$7FFF(a2),d2
 	movem.w	$7FFF(a2),d5-a7
 	movem.w	$7FFF(a2),d0-d7/a0-a7
 	movem.w	$7FFF(a2),d0-d1/a0-a1
 	movem.w	$7FFF(a2),d0/d1/d2/d3-d4
+	movem.w	$7FFF(a5),d2
 	movem.w	$7FFF(a5),d5-a7
 	movem.w	$7FFF(a5),d0-d7/a0-a7
 	movem.w	$7FFF(a5),d0-d1/a0-a1
 	movem.w	$7FFF(a5),d0/d1/d2/d3-d4
+	movem.w	$7F(a2,d5.w),d2
 	movem.w	$7F(a2,d5.w),d5-a7
 	movem.w	$7F(a2,d5.w),d0-d7/a0-a7
 	movem.w	$7F(a2,d5.w),d0-d1/a0-a1
 	movem.w	$7F(a2,d5.w),d0/d1/d2/d3-d4
+	movem.w	$7F(a5,d2.w),d2
 	movem.w	$7F(a5,d2.w),d5-a7
 	movem.w	$7F(a5,d2.w),d0-d7/a0-a7
 	movem.w	$7F(a5,d2.w),d0-d1/a0-a1
 	movem.w	$7F(a5,d2.w),d0/d1/d2/d3-d4
+	movem.w	$0F(a5,d2.l),d2
 	movem.w	$0F(a5,d2.l),d5-a7
 	movem.w	$0F(a5,d2.l),d0-d7/a0-a7
 	movem.w	$0F(a5,d2.l),d0-d1/a0-a1
 	movem.w	$0F(a5,d2.l),d0/d1/d2/d3-d4
+	movem.w	$1+1(a5,d2.l),d2
 	movem.w	$1+1(a5,d2.l),d5-a7
 	movem.w	$1+1(a5,d2.l),d0-d7/a0-a7
 	movem.w	$1+1(a5,d2.l),d0-d1/a0-a1
 	movem.w	$1+1(a5,d2.l),d0/d1/d2/d3-d4
+	movem.w	@(pc),d2
 	movem.w	@(pc),d5-a7
 	movem.w	@(pc),d0-d7/a0-a7
 	movem.w	@(pc),d0-d1/a0-a1
 	movem.w	@(pc),d0/d1/d2/d3-d4
+	movem.w	@-2(pc),d2
 	movem.w	@-2(pc),d5-a7
 	movem.w	@-2(pc),d0-d7/a0-a7
 	movem.w	@-2(pc),d0-d1/a0-a1
 	movem.w	@-2(pc),d0/d1/d2/d3-d4
+	movem.w	@(pc,d5.w),d2
 	movem.w	@(pc,d5.w),d5-a7
 	movem.w	@(pc,d5.w),d0-d7/a0-a7
 	movem.w	@(pc,d5.w),d0-d1/a0-a1
 	movem.w	@(pc,d5.w),d0/d1/d2/d3-d4
+	movem.w	@-2(pc,d5.w),d2
 	movem.w	@-2(pc,d5.w),d5-a7
 	movem.w	@-2(pc,d5.w),d0-d7/a0-a7
 	movem.w	@-2(pc,d5.w),d0-d1/a0-a1
 	movem.w	@-2(pc,d5.w),d0/d1/d2/d3-d4
+	movem.w	@-2(pc,d1.l),d2
 	movem.w	@-2(pc,d1.l),d5-a7
 	movem.w	@-2(pc,d1.l),d0-d7/a0-a7
 	movem.w	@-2(pc,d1.l),d0-d1/a0-a1
 	movem.w	@-2(pc,d1.l),d0/d1/d2/d3-d4
+	movem.l	(a2),d2
 	movem.l	(a2),d5-a7
 	movem.l	(a2),d0-d7/a0-a7
 	movem.l	(a2),d0-d1/a0-a1
 	movem.l	(a2),d0/d1/d2/d3-d4
+	movem.l	(a5),d2
 	movem.l	(a5),d5-a7
 	movem.l	(a5),d0-d7/a0-a7
 	movem.l	(a5),d0-d1/a0-a1
 	movem.l	(a5),d0/d1/d2/d3-d4
+	movem.l	(a1)+,d2
 	movem.l	(a1)+,d5-a7
 	movem.l	(a1)+,d0-d7/a0-a7
 	movem.l	(a1)+,d0-d1/a0-a1
 	movem.l	(a1)+,d0/d1/d2/d3-d4
+	movem.l	(a2)+,d2
 	movem.l	(a2)+,d5-a7
 	movem.l	(a2)+,d0-d7/a0-a7
 	movem.l	(a2)+,d0-d1/a0-a1
 	movem.l	(a2)+,d0/d1/d2/d3-d4
+	movem.l	(a5)+,d2
 	movem.l	(a5)+,d5-a7
 	movem.l	(a5)+,d0-d7/a0-a7
 	movem.l	(a5)+,d0-d1/a0-a1
 	movem.l	(a5)+,d0/d1/d2/d3-d4
+	movem.l	($FFFFFFFF).l,d2
 	movem.l	($FFFFFFFF).l,d5-a7
 	movem.l	($FFFFFFFF).l,d0-d7/a0-a7
 	movem.l	($FFFFFFFF).l,d0-d1/a0-a1
 	movem.l	($FFFFFFFF).l,d0/d1/d2/d3-d4
+	movem.l	($FFFFFFFF).w,d2
 	movem.l	($FFFFFFFF).w,d5-a7
 	movem.l	($FFFFFFFF).w,d0-d7/a0-a7
 	movem.l	($FFFFFFFF).w,d0-d1/a0-a1
 	movem.l	($FFFFFFFF).w,d0/d1/d2/d3-d4
+	movem.l	$7FFF(a2),d2
 	movem.l	$7FFF(a2),d5-a7
 	movem.l	$7FFF(a2),d0-d7/a0-a7
 	movem.l	$7FFF(a2),d0-d1/a0-a1
 	movem.l	$7FFF(a2),d0/d1/d2/d3-d4
+	movem.l	$7FFF(a5),d2
 	movem.l	$7FFF(a5),d5-a7
 	movem.l	$7FFF(a5),d0-d7/a0-a7
 	movem.l	$7FFF(a5),d0-d1/a0-a1
 	movem.l	$7FFF(a5),d0/d1/d2/d3-d4
+	movem.l	$7F(a2,d5.w),d2
 	movem.l	$7F(a2,d5.w),d5-a7
 	movem.l	$7F(a2,d5.w),d0-d7/a0-a7
 	movem.l	$7F(a2,d5.w),d0-d1/a0-a1
 	movem.l	$7F(a2,d5.w),d0/d1/d2/d3-d4
+	movem.l	$7F(a5,d2.w),d2
 	movem.l	$7F(a5,d2.w),d5-a7
 	movem.l	$7F(a5,d2.w),d0-d7/a0-a7
 	movem.l	$7F(a5,d2.w),d0-d1/a0-a1
 	movem.l	$7F(a5,d2.w),d0/d1/d2/d3-d4
+	movem.l	$0F(a5,d2.l),d2
 	movem.l	$0F(a5,d2.l),d5-a7
 	movem.l	$0F(a5,d2.l),d0-d7/a0-a7
 	movem.l	$0F(a5,d2.l),d0-d1/a0-a1
 	movem.l	$0F(a5,d2.l),d0/d1/d2/d3-d4
+	movem.l	$1+1(a5,d2.l),d2
 	movem.l	$1+1(a5,d2.l),d5-a7
 	movem.l	$1+1(a5,d2.l),d0-d7/a0-a7
 	movem.l	$1+1(a5,d2.l),d0-d1/a0-a1
 	movem.l	$1+1(a5,d2.l),d0/d1/d2/d3-d4
+	movem.l	@(pc),d2
 	movem.l	@(pc),d5-a7
 	movem.l	@(pc),d0-d7/a0-a7
 	movem.l	@(pc),d0-d1/a0-a1
 	movem.l	@(pc),d0/d1/d2/d3-d4
+	movem.l	@-2(pc),d2
 	movem.l	@-2(pc),d5-a7
 	movem.l	@-2(pc),d0-d7/a0-a7
 	movem.l	@-2(pc),d0-d1/a0-a1
 	movem.l	@-2(pc),d0/d1/d2/d3-d4
+	movem.l	@(pc,d5.w),d2
 	movem.l	@(pc,d5.w),d5-a7
 	movem.l	@(pc,d5.w),d0-d7/a0-a7
 	movem.l	@(pc,d5.w),d0-d1/a0-a1
 	movem.l	@(pc,d5.w),d0/d1/d2/d3-d4
+	movem.l	@-2(pc,d5.w),d2
 	movem.l	@-2(pc,d5.w),d5-a7
 	movem.l	@-2(pc,d5.w),d0-d7/a0-a7
 	movem.l	@-2(pc,d5.w),d0-d1/a0-a1
 	movem.l	@-2(pc,d5.w),d0/d1/d2/d3-d4
+	movem.l	@-2(pc,d1.l),d2
 	movem.l	@-2(pc,d1.l),d5-a7
 	movem.l	@-2(pc,d1.l),d0-d7/a0-a7
 	movem.l	@-2(pc,d1.l),d0-d1/a0-a1
