@@ -47,6 +47,12 @@ which you can run in a Mega Drive/Genesis emulator:
 
 `./fasm68k megadrive_samples_fasm68k/6_psg_tone/psg_tone.asm`
 
+Add a new line at the bottom of your .bashrc file adding the fasm68k directory
+to the PATH so you can run fasm68k from anywhere and not only from the specific
+folder you cloned it into:
+
+`export PATH=$HOME/code/fasm68k:$PATH`
+
 </blockquote></details>
 
 <details>
