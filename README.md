@@ -11,6 +11,10 @@ hardest part is to find the bugs while it might be way easier to fix them.
 The fasm68k instruction set adds support to assemble assembly code for the
 Motorola 68000 cpu with Tomasz Grysztar's fasmg.
 
+[Here](https://github.com/BigEvilCorporation/megadrive_samples/compare/master...fredrik-hjarner:megadrive_samples_fasm68k:master)
+you can see what was needed to adapt BigEvilCorporation's megadrive_samples for
+fasm68k.
+
 ## Usage
 
 <details>
