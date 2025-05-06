@@ -1,7 +1,7 @@
-; Need to include some files from fasmg first.
-include "../fasmg/packages/utility/align.inc"
-include "../fasmg/packages/utility/inline.inc"
-include "../fasmg/packages/utility/xcalm.inc"
+; Need to include some fasm files first.
+include "align.inc"
+include "macro/inline.inc"
+include "xcalm.inc"
 
 include "endianness.inc"
 include "xxcalm.inc"

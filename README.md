@@ -13,11 +13,27 @@ Motorola 68000 cpu with Tomasz Grysztar's fasmg.
 
 ## Usage
 
+### Linux
+
+Get fasm68k and it's dependences (i.e. fasmg and examples) by running:
+
 `git clone --recurse-submodules git@github.com:fredrik-hjarner/fasm68k.git`
 
-If you already have [fasmg](https://flatassembler.net/download.php) installed
-then just include `fasm68k.inc` to add support for m68k instructions and you are
-good to go.
+Step into the repository directory:
+
+`cd fasm68k`
+
+Script must be executable:
+
+`chmod +x fasm68k`
+
+To assemble an example now run this command and a binary should be created which you can run in a Mega Drive/Genesis emulator:
+
+`./fasm68k megadrive_samples_fasm68k/1_hello_world/hello.asm`
+
+### Windows
+
+TODO
 
 ## Differences from other m68k assemblers
 

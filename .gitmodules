@@ -1,8 +1,8 @@
-[submodule "fasmg"]
-	path = fasmg
-	url = git@github.com:tgrysztar/fasmg.git
-	branch = master
 [submodule "megadrive_samples_fasm68k"]
 	path = megadrive_samples_fasm68k
 	url = git@github.com:fredrik-hjarner/megadrive_samples_fasm68k.git
+	branch = master
+[submodule "fasm2"]
+	path = fasm2
+	url = git@github.com:tgrysztar/fasm2.git
 	branch = master
