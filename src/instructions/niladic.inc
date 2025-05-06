@@ -12,7 +12,7 @@ iterate <instr, instr_word>, \
     trapv,      0100_1110__0111_0110_b
 
     calminstruction instr?
-        emit 2, instr_word
+        emit_be 2, instr_word
     end calminstruction
 
 end iterate

@@ -48,10 +48,10 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                               (size_str = 'b' | size_str = '')
                         jno check_sr
                     ; ccr:
-                        emit 2, ccr_variant
+                        emit_be 2, ccr_variant
 
                         ; imm
-                        emit 2, @op1.imm
+                        emit_be 2, @op1.imm
                         exit
                 ;; CKECK SR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                 check_sr:
@@ -59,21 +59,21 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                               (size_str = 'w' | size_str = '')
                         jno normal_case
                     ; sr:
-                        emit 2, sr_variant
+                        emit_be 2, sr_variant
 
                         ; imm
-                        emit 2, @op1.imm
+                        emit_be 2, @op1.imm
                         exit
                 normal_case:
                         ; TODO: Assert that imm is within bounds.
                         ; assert_min imm, 1
                         ; assert_max imm, 8
 
-                        emit 2, instr_word + size_bits shl 6 + \
+                        emit_be 2, instr_word + size_bits shl 6 + \
                                 @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
                         
                         ; immediate bytes
-                        emit imm_bytes, @op1.imm
+                        emit_be imm_bytes, @op1.imm
 
                         ; extension words
                         call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits

@@ -22,28 +22,28 @@ calminstruction move_macro? op1*, op2*, size
         jump ea_to_ea
 
     sr_to_ea:
-        emit 1, 0100_0000_b
-        emit 1, 1100_0000_b + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits 
+        emit_be 1, 0100_0000_b
+        emit_be 1, 1100_0000_b + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits 
         ; op1 extension words
         call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
         jump done
     ea_to_ccr:
-        emit 1, 0100_0100_b
-        emit 1, 1100_0000_b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits 
+        emit_be 1, 0100_0100_b
+        emit_be 1, 1100_0000_b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits 
         ; op1 extension words
         call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
         jump done
     ea_to_sr:
-        emit 1, 01000110b
-        emit 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits 
+        emit_be 1, 01000110b
+        emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits 
         ; op1 extension words
         call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
         jump done
     usp_to_an:
-        emit 2, 0100_1110__0110_1000_b + @op2.ea_reg_bits
+        emit_be 2, 0100_1110__0110_1000_b + @op2.ea_reg_bits
         jump done
     an_to_usp:
-        emit 2, 0100_1110__0110_0000_b + @op1.ea_reg_bits
+        emit_be 2, 0100_1110__0110_0000_b + @op1.ea_reg_bits
         jump done
     ea_to_ea:
         call move_ea_to_ea, size
@@ -100,8 +100,8 @@ calminstruction move_ea_to_ea size:w
         jyes skip_size_error
         err "size error" ; TODO: Better error message
     skip_size_error:
-        ; emit 1st and 2nd byte in one go
-        emit 2, size_bits shl 12 + @op2.ea_reg_bits shl 9 + @op2.ea_mode_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+        ; emit_be 1st and 2nd byte in one go
+        emit_be 2, size_bits shl 12 + @op2.ea_reg_bits shl 9 + @op2.ea_mode_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
         ; op1 extension words
         call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits

@@ -3,6 +3,18 @@
 ;; TODO: Have these in alphabetical order.                                    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; rs address counter for "reserved" data.
+; TODO: The implementation of rs.[bwl] and rsset is too simplistic.
+;       Seems that `dcb` and `rs` are in separate address spaces
+;       where `org` sets the address for `dcb` and `rsset` sets the address for
+;       `rs`.
+define m68k.rs
+m68k.rs = 0
+; I use this to save the org address counter when switching between address
+; spaces.
+define m68k.old_org
+m68k.old_org = 0
+
 calminstruction dc.b? tail&
         local head, tail, length, last_argument
         compute last_argument, 0
@@ -15,11 +27,11 @@ calminstruction dc.b? tail&
     at_least_two_arguments:
         check head eqtype ''
         jyes string
-        emit 1, head
+        emit_be 1, head
         jump maybe_next
     string:
         compute length, lengthof head
-        emit length, head bswap length
+        emit_be length, head bswap length
     maybe_next:
         check last_argument = 0
         jyes next
@@ -41,7 +53,7 @@ calminstruction dc.w? tail&
         match head, tail
         compute last_argument, 1
     at_least_two_arguments:
-        emit 2, head
+        emit_be 2, head
     maybe_next:
         check last_argument = 0
         jyes next
@@ -63,7 +75,7 @@ calminstruction dc.l? tail&
         match head, tail
         compute last_argument, 1
     at_least_two_arguments:
-        emit 4, head
+        emit_be 4, head
     maybe_next:
         check last_argument = 0
         jyes next
@@ -86,7 +98,7 @@ calminstruction dc.q? tail&
         match head, tail
         compute last_argument, 1
     at_least_two_arguments:
-        emit 8, head
+        emit_be 8, head
     maybe_next:
         check last_argument = 0
         jyes next
@@ -101,22 +113,45 @@ iterate <size, bytes>, \
         ; dcb.b <exp>[,<fill>]
         ;     Insert <exp> zero or <fill> bytes into the current section.
         ; TODO: Test this.
-        calminstruction dcb.size? exp*, fill:1
+        calminstruction dcb.size? exp*, fill
             local i
             compute i, fill
             emit_next:
                 check i > 0
                 jno done
-                emit bytes, exp
+                emit_be bytes, exp
                 compute i, i - 1
                 jump emit_next
             done:
         end calminstruction
 
+        ; label rs.[bwlq] n
+        ;    Reserve n n times size bytes.
+        ;    The address of the reserved space
+        struc rs.size? n
+            ; Switch from `org` address space to `rs` address space
+            m68k.old_org = $
+            org m68k.rs
+            .:
+            ; Manually increment the `rs` counter
+            m68k.rs = m68k.rs + n * bytes
+            ; Switch back to `org address space`
+            org m68k.old_org
+        end struc
+
 end iterate ; <size_suffix, size>
+
 
 ; TODO: This alias is mentioned in the vasm manual.
 ;       Does it exist in other assemblers?
-macro fail line&
+macro fail? line&
     err line
 end macro
+
+; TODO: The implementation of rs.[bwl] might not be the best.
+;       Seems that `dcb` and `rs` are in separate address spaces
+;       where `org` sets the address for `dcb` and `rsset` sets the address for
+;       `rs`.
+calminstruction rsset? addr*
+    compute m68k.rs, addr
+end calminstruction

@@ -40,8 +40,8 @@ iterate <size,  size_bit>, \
             compute ext_bytes, @op1.ext_bytes
             compute ext_bytes_bits, @op1.ext_bytes_bits
         emit_bytes:
-            emit 1, 00000001b + reg_bits1 shl 1
-            emit 1, direction shl 7 + size_bit shl 6 + 001b shl 3 + reg_bits2
+            emit_be 1, 00000001b + reg_bits1 shl 1
+            emit_be 1, direction shl 7 + size_bit shl 6 + 001b shl 3 + reg_bits2
 
             ; extension words
             call emit_ext_words, ext_bytes, ext_bytes_bits
@@ -64,8 +64,8 @@ iterate <size,  size_bits>, \
         call m68k.parse_operand@op1, an1
         call m68k.parse_operand@op2, an2
 
-        emit 1, 10110001b + @op2.ea_reg_bits shl 1
-        emit 1, size_bits shl 6 + 001b shl 3 + @op1.ea_reg_bits
+        emit_be 1, 10110001b + @op2.ea_reg_bits shl 1
+        emit_be 1, size_bits shl 6 + 001b shl 3 + @op1.ea_reg_bits
     end calminstruction
 
 end iterate ; <size, size_bits>
@@ -117,8 +117,8 @@ calminstruction exg.l? reg1*, reg2*
             compute reg1_bits,  @op2.ea_reg_bits
             compute reg2_bits,  @op1.ea_reg_bits
     emit_bytes:
-            emit 1, 11000001b + reg1_bits shl 1
-            emit 1, type_bits1 shl 6 + type_bits2 shl 3 + reg2_bits
+            emit_be 1, 11000001b + reg1_bits shl 1
+            emit_be 1, type_bits1 shl 6 + type_bits2 shl 3 + reg2_bits
 end calminstruction
 
 ;; CHK ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -130,8 +130,8 @@ calminstruction chk.w? operands&
     call m68k.parse_operand@op1, m68k.split_operands_result.op1
     call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
-    emit 1, 01000001b + @op2.ea_reg_bits shl 1
-    emit 1, 10000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+    emit_be 1, 01000001b + @op2.ea_reg_bits shl 1
+    emit_be 1, 10000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
     ; <ea> extension words
     call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -147,7 +147,7 @@ calminstruction link.w? an*, imm*
     call m68k.parse_operand@op1, an
     call m68k.parse_operand@op2, imm
 
-    emit 2, 0100111001010000b + @op1.ea_reg_bits
+    emit_be 2, 0100111001010000b + @op1.ea_reg_bits
 
     ; extension words
     call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
@@ -184,8 +184,8 @@ iterate <instr,  first_byte>, \
         ; Is -(an) to -(an)
             compute m_bit, 1
         emit_bytes:
-            emit 1, first_byte + @op2.ea_reg_bits shl 1
-            emit 1, size_bits shl 6 + m_bit shl 3 + @op1.ea_reg_bits
+            emit_be 1, first_byte + @op2.ea_reg_bits shl 1
+            emit_be 1, size_bits shl 6 + m_bit shl 3 + @op1.ea_reg_bits
         end calminstruction
     end iterate ; <size, size_bits>
 
@@ -218,8 +218,8 @@ iterate <instr,  first_byte>, \
             ; Is -(an) to -(an)
                 compute m_bit, 1
             emit_bytes:
-                emit 1, first_byte + @op2.ea_reg_bits shl 1
-                emit 1, m_bit shl 3 + @op1.ea_reg_bits
+                emit_be 1, first_byte + @op2.ea_reg_bits shl 1
+                emit_be 1, m_bit shl 3 + @op1.ea_reg_bits
         end calminstruction
 
 end iterate ; <instr, first_byte>
@@ -246,8 +246,8 @@ iterate <instr,  first_byte>, \
                 call m68k.parse_operand@op1, m68k.split_operands_result.op1, _size
                 call m68k.parse_operand@op2, m68k.split_operands_result.op2, _size
 
-                emit 1, first_byte + @op2.ea_reg_bits shl 1 + size_bit
-                emit 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+                emit_be 1, first_byte + @op2.ea_reg_bits shl 1 + size_bit
+                emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
                 ; <ea> extension words
                 call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -270,8 +270,8 @@ iterate <size,  size_bits>, \
             call m68k.parse_operand@op1, m68k.split_operands_result.op1
             call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
-            emit 1, 10110001b + @op1.ea_reg_bits shl 1
-            emit 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
+            emit_be 1, 10110001b + @op1.ea_reg_bits shl 1
+            emit_be 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
 
             ; <ea> extension words
             call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
@@ -284,8 +284,8 @@ iterate <size,  size_bits>, \
             call m68k.parse_operand@op1, m68k.split_operands_result.op1
             call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
-            emit 1, 10110000b + @op2.ea_reg_bits shl 1
-            emit 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit_be 1, 10110000b + @op2.ea_reg_bits shl 1
+            emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
             ; <ea> extension words
             call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -311,8 +311,8 @@ iterate <instr,  first_byte>, \
             call m68k.parse_operand@op1, m68k.split_operands_result.op1
             call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
-            emit 1, first_byte + @op2.ea_reg_bits shl 1
-            emit 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit_be 1, first_byte + @op2.ea_reg_bits shl 1
+            emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
             ; <ea> extension words
             call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -381,11 +381,11 @@ iterate <instr,  instr_bits>, \
                 compute bit_index, @op1.imm
             emit_bytes:
 
-                emit 1, op1_bits + op1_type_bit
-                emit 1, instr_bits shl 6 + @op2.ea_mode_bits shl 3 +  @op2.ea_reg_bits
+                emit_be 1, op1_bits + op1_type_bit
+                emit_be 1, instr_bits shl 6 + @op2.ea_mode_bits shl 3 +  @op2.ea_reg_bits
 
                 ; bit index
-                emit bit_index_size, bit_index
+                emit_be bit_index_size, bit_index
 
                 ; <ea> extension words
                 call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
@@ -456,11 +456,11 @@ iterate <size,  size_bits>, \
                     compute bit_mask, @reg_list1.mask_word_reverse
                 skip_reverse2: ; TODO: just jump to emit_bytes instead?
             emit_bytes:
-                    emit 1, 01001000b + direction shl 2
-                    emit 1, 10000000b + size_bits shl 6 + ea_mode_bits shl 3 + ea_reg_bits
+                    emit_be 1, 01001000b + direction shl 2
+                    emit_be 1, 10000000b + size_bits shl 6 + ea_mode_bits shl 3 + ea_reg_bits
 
                     ; register list bit mask
-                    emit 2, bit_mask
+                    emit_be 2, bit_mask
 
                     ; <ea> extension words
                     call emit_ext_words, ext_bytes, ext_bytes_bits
@@ -506,8 +506,8 @@ iterate <instr,  first_byte>, \
                     check @op2.type = 'dn'
                     jno dn_to_ea
                 ; ea_to_dn:
-                    emit 1, first_byte + @op2.ea_reg_bits shl 1
-                    emit 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 +  @op1.ea_reg_bits
+                    emit_be 1, first_byte + @op2.ea_reg_bits shl 1
+                    emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 +  @op1.ea_reg_bits
 
                     ; extension words
                     call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -515,10 +515,10 @@ iterate <instr,  first_byte>, \
                     exit
                 dn_to_ea:
                     ; first byte                                  dir
-                    emit 1, first_byte + @op1.ea_reg_bits shl 1 + 1
+                    emit_be 1, first_byte + @op1.ea_reg_bits shl 1 + 1
 
                     ; second byte
-                    emit 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 +  @op2.ea_reg_bits
+                    emit_be 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 +  @op2.ea_reg_bits
 
                     ; extension words
                     call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
@@ -576,11 +576,11 @@ iterate <cc,  cc_bits>, \
             compute pc, $ + 2
             compute label_val, label
 
-            emit 1, 01010000b + cc_bits
-            emit 1, 11001000b + @op1.ea_reg_bits
+            emit_be 1, 01010000b + cc_bits
+            emit_be 1, 11001000b + @op1.ea_reg_bits
 
             ; immediate word
-            emit 2, label_val - pc
+            emit_be 2, label_val - pc
         end calminstruction
 
 end iterate ; <cc, cc_bits>
@@ -601,8 +601,8 @@ iterate <size,  size_bits>, \
             call m68k.parse_operand@op1, m68k.split_operands_result.op1, tmp
             call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
-            emit 1, size_bits shl 4 + @op2.ea_reg_bits shl 1
-            emit 1, 01000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit_be 1, size_bits shl 4 + @op2.ea_reg_bits shl 1
+            emit_be 1, 01000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
                         
             ; extension words
             ; TODO: So, seems the number of extension words depend upon .w,.l
@@ -619,8 +619,8 @@ calminstruction lea.l? operands&
     call m68k.parse_operand@op1, m68k.split_operands_result.op1
     call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
-    emit 1, 01000001b + @op2.ea_reg_bits shl 1
-    emit 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+    emit_be 1, 01000001b + @op2.ea_reg_bits shl 1
+    emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
                 
     ; extension words
     call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -658,8 +658,8 @@ iterate <instr,  first_byte>, \
 
                 ; 8 is encoded as 000b
                 compute tmp, @op1.imm mod 8
-                emit 1, first_byte + tmp shl 1
-                emit 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
+                emit_be 1, first_byte + tmp shl 1
+                emit_be 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
                 
                 ; extension words
                 call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
@@ -686,6 +686,6 @@ calminstruction moveq.l? data*, dn*
 
     assert_data_reg dn
 
-    emit 1, 01110000b + @op2.ea_reg_bits shl 1
-    emit 1, data
+    emit_be 1, 01110000b + @op2.ea_reg_bits shl 1
+    emit_be 1, data
 end calminstruction

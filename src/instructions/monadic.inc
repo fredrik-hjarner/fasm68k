@@ -10,7 +10,7 @@
 ;     Unsized
 calminstruction unlk? an*
     call m68k.parse_operand@op1, an
-    emit 2, 0100111001011000b + @op1.ea_reg_bits
+    emit_be 2, 0100111001011000b + @op1.ea_reg_bits
 end calminstruction
 
 ;; STOP ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -25,10 +25,10 @@ end calminstruction
 calminstruction stop? imm*
     call m68k.parse_operand@op1, imm
 
-    emit 2, 0100111001110010b
+    emit_be 2, 0100111001110010b
 
     ; imm
-    emit 2, @op1.imm
+    emit_be 2, @op1.imm
 end calminstruction
 
 ;; NCBD, PEA, TAS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -51,7 +51,7 @@ iterate <instr, instr_word>, \
             call m68k.split_operands, operands
             call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
-            emit 2, instr_word + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit_be 2, instr_word + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
             ; <ea> extension words
             call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -92,8 +92,8 @@ iterate <cc,  cc_bits>, \
                 call m68k.split_operands, operands
                 call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
-                emit 1, 01010000b + cc_bits
-                emit 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+                emit_be 1, 01010000b + cc_bits
+                emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
                 ; <ea> extension words
                 call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -132,8 +132,8 @@ iterate <instr,  first_byte>, \
                 call m68k.split_operands, operands
                 call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
-                emit 1, first_byte
-                emit 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+                emit_be 1, first_byte
+                emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
                 ; <ea> extension words
                 call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -183,11 +183,11 @@ iterate <cc,  cc_bits>, \
             compute pc, $ + 2
             compute label_val, label
 
-            emit 1, 01100000b + cc_bits
+            emit_be 1, 01100000b + cc_bits
 
             ; Assume label is $10 and address is $20
             ; $10 - $20 = $10
-            emit 1, label_val - pc
+            emit_be 1, label_val - pc
         end calminstruction
 
         ; TODO: Check if fits in a word. Maybe do that in parse_operand?
@@ -202,9 +202,9 @@ iterate <cc,  cc_bits>, \
             compute pc, $ + 2
             compute label_val, label
 
-            emit 1, 01100000b + cc_bits
-            emit 1, 0 ; second byte being zero
-            emit 2, label_val - pc
+            emit_be 1, 01100000b + cc_bits
+            emit_be 1, 0 ; second byte being zero
+            emit_be 2, label_val - pc
         end calminstruction
 
         ; alias for .b
@@ -244,11 +244,11 @@ iterate <instr,  first_byte>, \
                 compute pc, $ + 2
                 compute label_val, label
 
-                emit 1, first_byte
+                emit_be 1, first_byte
 
                 ; Assume label is $10 and address is $20
                 ; $10 - $20 = $10
-                emit 1, label_val - pc
+                emit_be 1, label_val - pc
         end calminstruction
 
         ; TODO: Check if fits in a word. Maybe do that in parse_operand?
@@ -263,9 +263,9 @@ iterate <instr,  first_byte>, \
             compute pc, $ + 2
             compute label_val, label
 
-            emit 1, first_byte
-            emit 1, 0 ; second byte being zero
-            emit 2, label_val - pc
+            emit_be 1, first_byte
+            emit_be 1, 0 ; second byte being zero
+            emit_be 2, label_val - pc
         end calminstruction
 
 end iterate ; <instr, first_byte>
@@ -281,7 +281,7 @@ iterate <size,  size_bit>, \
         calminstruction ext.size? dn*
             call m68k.parse_operand@op1, dn
             assert_data_reg dn
-            emit 2, 0100_1000___1000_0000_b + size_bit shl 6 + @op1.ea_reg_bits
+            emit_be 2, 0100_1000___1000_0000_b + size_bit shl 6 + @op1.ea_reg_bits
         end calminstruction
             
 end iterate ; <size, size_bit>
@@ -305,8 +305,8 @@ iterate <instr,  second_byte>, \
             call m68k.split_operands, operands
             call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
-            emit 1, 01001110b
-            emit 1, second_byte + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit_be 1, 01001110b
+            emit_be 1, second_byte + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
             
             ; <ea> extension words
             call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -324,7 +324,7 @@ calminstruction swap.w? dn*
 
     assert_data_reg dn
 
-    emit 2, 0100_1000__0100_0000b + @op1.ea_reg_bits
+    emit_be 2, 0100_1000__0100_0000b + @op1.ea_reg_bits
 end calminstruction
 
 ; Syntax: trap #<vector>
@@ -347,5 +347,5 @@ calminstruction trap? vector*
         assert_min vector, 0
         assert_max vector, 15
 
-        emit 2, 0100_1110__0100_0000b + vector
+        emit_be 2, 0100_1110__0100_0000b + vector
 end calminstruction

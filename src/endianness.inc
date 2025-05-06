@@ -4,6 +4,6 @@
 ;; to emit in big-endian which is what the Motorola 68000 uses.               ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-macro calminstruction?.emit? num_bytes*, value*
+macro calminstruction?.emit_be? num_bytes*, value*
     emit (num_bytes), (value) bswap (num_bytes)
 end macro

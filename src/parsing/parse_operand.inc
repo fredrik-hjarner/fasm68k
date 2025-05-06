@@ -178,7 +178,7 @@ iterate op, @op1,@op2
                     ; If instr_size is empty (optional argument) then ext_bytes
                     ; will have it's default value 0 (or 2 when imm), which is
                     ; think might be good. The way fasmg works is  that
-                    ; `emit 0, n` throws an error when n is not 0, so in order
+                    ; `emit_be 0, n` throws an error when n is not 0, so in order
                     ; words trying to output "immediate extension words" will
                     ; only succeed if instr_size is not empty, I think that will
                     ; work with how 68000 instructions tend to work...

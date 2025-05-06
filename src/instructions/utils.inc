@@ -47,12 +47,12 @@ calminstruction emit_ext_words? ext_bytes*, ext_bytes_bits*
         ; values are constrained within1 byte.
         store one_byte:0, 1, element_1_scale
         load element_1_scale, one_byte:0, 1
-        emit ext_bytes, (0 scaleof ext_bytes_bits) or element_1_scale
+        emit_be ext_bytes, (0 scaleof ext_bytes_bits) or element_1_scale
         jump done
     pc_displacement:
-        emit ext_bytes, element_1_scale - $
+        emit_be ext_bytes, element_1_scale - $
         jump done
     default_case:
-        emit ext_bytes, ext_bytes_bits
+        emit_be ext_bytes, ext_bytes_bits
     done:
 end calminstruction
