@@ -13,7 +13,10 @@ Motorola 68000 cpu with Tomasz Grysztar's fasmg.
 
 ## Usage
 
-### Linux
+<details>
+
+<summary>Linux</summary>
+<blockquote>
 
 Get fasm68k and it's dependences (i.e. fasmg and examples) by running:
 
@@ -31,9 +34,15 @@ To assemble an example now run this command and a binary should be created which
 
 `./fasm68k megadrive_samples_fasm68k/1_hello_world/hello.asm`
 
-### Windows
+</blockquote></details>
 
+<details>
+
+<summary>Windows</summary>
+<blockquote>
 TODO
+</blockquote>
+</details>
 
 ## Differences from other m68k assemblers
 
@@ -47,6 +56,3 @@ bit shifting, the preferred way is to use `shl` and `shr`. Likewise try to use
 `or` instead of `|` and `and` instead of `&`.
 - Currently no optimizations and might be missing some aliases for some
 instructions.
-
-
-
