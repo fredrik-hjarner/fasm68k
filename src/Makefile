@@ -26,11 +26,11 @@ build_vasm:
 #	vasm -Fbin -spaces -wfail -o tests/test.bin tests/valid_instructions.asm
 
 build:
-	fasmg tests/test_fasmg.asm tests/test.bin -e20
+	../fasm68k tests/valid_instructions.asm tests/test.bin -e20
 
 # build2 is just for me to have a separate test file to play around with.
 build2:
-	fasmg tests/test2.asm tests/test2.bin -e20
+	../fasm68k tests/test2.asm tests/test2.bin -e20
 
 hexdump:
 	xxd -b -c1 tests/test.bin | cut -d' ' -f2,4 > tests/test.hex

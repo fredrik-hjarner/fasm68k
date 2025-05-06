@@ -2,8 +2,6 @@
 ;; Just a file where I can test things out.                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-include "m68k.inc"
-
     ori.b	#$FF,$7F(a2,d5.w)
 
 
