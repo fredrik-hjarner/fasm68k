@@ -38,9 +38,13 @@ To assemble the examples run these commands and binary files should be created
 which you can run in a Mega Drive/Genesis emulator:
 
 `./fasm68k megadrive_samples_fasm68k/1_hello_world/hello.asm`
+
 `./fasm68k megadrive_samples_fasm68k/2_scroll_planes/scroll.asm`
+
 `./fasm68k megadrive_samples_fasm68k/3_sprites/sprites.asm`
+
 `./fasm68k megadrive_samples_fasm68k/4_gamepad/gamepad.asm`
+
 `./fasm68k megadrive_samples_fasm68k/6_psg_tone/psg_tone.asm`
 
 </blockquote></details>
