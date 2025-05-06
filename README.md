@@ -30,9 +30,14 @@ Script must be executable:
 
 `chmod +x fasm68k`
 
-To assemble an example now run this command and a binary should be created which you can run in a Mega Drive/Genesis emulator:
+To assemble the examples run these commands and binary files should be created
+which you can run in a Mega Drive/Genesis emulator:
 
 `./fasm68k megadrive_samples_fasm68k/1_hello_world/hello.asm`
+`./fasm68k megadrive_samples_fasm68k/2_scroll_planes/scroll.asm`
+`./fasm68k megadrive_samples_fasm68k/3_sprites/sprites.asm`
+`./fasm68k megadrive_samples_fasm68k/4_gamepad/gamepad.asm`
+`./fasm68k megadrive_samples_fasm68k/6_psg_tone/psg_tone.asm`
 
 </blockquote></details>
 
@@ -54,5 +59,8 @@ instead.
 - Some operators are different. While I have added support for `<<` and `>> `for
 bit shifting, the preferred way is to use `shl` and `shr`. Likewise try to use
 `or` instead of `|` and `and` instead of `&`.
+- Binary numbers are written as `01010101b` (instead of `%01010101`).
+- You prefix labels with dot `.label1` to make them local (instead of prefixing
+with @ `@label1`).
 - Currently no optimizations and might be missing some aliases for some
 instructions.
