@@ -21,10 +21,15 @@ const examples: Record<OperandType, string[]> = {
     "$1+1(a5,d2.l)",
     // "($1+1)(a5,d2.l)", TODO: This causes errors.
   ],
-  "abs.w": ["($FFFFFFFF).w"],
+  "abs.w": [
+    "($FFFFFFFF).w",
+    '$1',
+  ],
   "abs.l": [
     "($FFFFFFFF).l",
-    'label_start.l'
+    'label_start.l',
+    '$FFFFFFFF',
+    '$1',
   ],
   "d(pc)": [
     "@(pc)",

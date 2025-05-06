@@ -284,12 +284,12 @@ calminstruction m68k.parse_mem_index operand*
         local s
 
         ; Init default values
-        compute m68k.parse_mem_index_result.is_pc_index, 0
-        compute m68k.parse_mem_index_result.m,           0
-        compute m68k.parse_mem_index_result.an,          0
-        compute m68k.parse_mem_index_result.xn,          0
-        compute m68k.parse_mem_index_result.s,           0
-        compute m68k.parse_mem_index_result.d,           0
+        compute m68k.parse_mem_index_result.is_mem_index, 0
+        compute m68k.parse_mem_index_result.m,            0
+        compute m68k.parse_mem_index_result.an,           0
+        compute m68k.parse_mem_index_result.xn,           0
+        compute m68k.parse_mem_index_result.s,            0
+        compute m68k.parse_mem_index_result.d,            0
 
         match d(an=,xn.s), operand
         jno nope

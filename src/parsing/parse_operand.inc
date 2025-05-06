@@ -381,7 +381,7 @@ iterate op, @op1,@op2
             check_memory_index:
                     call m68k.parse_mem_index, operand
                     check m68k.parse_mem_index_result.is_mem_index = 1
-                    jno unknown
+                    jno check_abs_without_size_suffix
                     compute type, '(d,an,xn)'
                     compute ea_mode_bits, 110b
                     compute ea_reg_bits, m68k.parse_mem_index_result.an
@@ -394,9 +394,23 @@ iterate op, @op1,@op2
                         m68k.parse_mem_index_result.s shl 11 + \
                         m68k.parse_mem_index_result.d
                     jump done
+            ;; Check for "abs" again
+            check_abs_without_size_suffix:
+                    ; TODO: Possibly refactor this. Reason I check for absolute
+                    ;       addressing at two places is because the 1st place
+                    ;       checks for `($1).w `($1).l` while and here I check
+                    ;       for `$1`.
+                    check operand relativeto 0
+                    jno unknown
+                    compute type, 'abs.l'
+                    compute ea_mode_bits, 111b
+                    compute ea_reg_bits, 001b
+                    compute ext_bytes, 4
+                    compute ext_bytes_bits, operand
+                    jump done
             ;; Temporary stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             unknown:
-                    err 'Failed to parse operand'
+                    err 10 bappend 'Failed to parse operand' bappend 10
                     ; compute type, 'unknown'
                     ; display 'unknown' bappend 10
                     exit
