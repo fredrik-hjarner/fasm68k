@@ -266,29 +266,41 @@ iterate <size,  size_bits>, \
         ; Syntax:
         ;     EOR.[bwl] Dn,<ea>
         calminstruction eor.size? operands&
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
-            call m68k.parse_operand@op2, m68k.split_operands_result.op2
+                call m68k.split_operands, operands
+                call m68k.parse_operand@op1, m68k.split_operands_result.op1
+                call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
-            emit_be 1, 10110001b + @op1.ea_reg_bits shl 1
-            emit_be 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
+            ; Show error message if imm
+                check @op1.type = 'imm'
+                jno skip_error
+                err '`eor` does not allow the first operand to' \
+                    bappend ' be an immediate. Use `eori` instead'
+            skip_error:
+                emit_be 1, 10110001b + @op1.ea_reg_bits shl 1
+                emit_be 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
 
-            ; <ea> extension words
-            call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+                ; <ea> extension words
+                call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
         end calminstruction
 
         ; Syntax:
         ;     CMP.[bwl] <ea>,Dn
         calminstruction cmp.size? operands&
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
-            call m68k.parse_operand@op2, m68k.split_operands_result.op2
+                call m68k.split_operands, operands
+                call m68k.parse_operand@op1, m68k.split_operands_result.op1
+                call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
-            emit_be 1, 10110000b + @op2.ea_reg_bits shl 1
-            emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            ; Show error message if imm
+                check @op1.type = 'imm'
+                jno skip_error
+                err '`cmp` does not allow the first operand to' \
+                    bappend ' be an immediate. Use `cmpi` instead'
+            skip_error:
+                emit_be 1, 10110000b + @op2.ea_reg_bits shl 1
+                emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
-            ; <ea> extension words
-            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+                ; <ea> extension words
+                call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
         end calminstruction
 
 end iterate ; <size, size_bits>
@@ -498,6 +510,19 @@ iterate <instr,  first_byte>, \
                     call m68k.split_operands, operands
                     call m68k.parse_operand@op1, m68k.split_operands_result.op1, _size
                     call m68k.parse_operand@op2, m68k.split_operands_result.op2, _size
+
+                ; Show error message if imm
+                    check @op1.type = 'imm'
+                    jno skip_error
+                    local wrong, correct
+                    arr_str wrong, `=instr`
+                    arr_str correct, `=instr=i`
+                    err wrong \
+                        bappend ' does not allow the first operand to' \
+                        bappend ' be an immediate. Use ' \
+                        bappend correct \
+                        bappend ' instead'
+                skip_error:
 
                     ; TODO: This is a sloppy check, do a more complete check in the
                     ; future.
