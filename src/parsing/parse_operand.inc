@@ -214,7 +214,7 @@ iterate op, @op1,@op2
                     check maybe_abs > (1 shl 16 - 1)
                     jno skip_constrain_abs_w
                 ; too_large:
-                    display 'Warning: abs.w too large to fit in word.' bappend 10
+                    display 'Warning: abs.w too large to fit in word.', 10
                     compute maybe_abs, 1 shl 16 - 1
                 skip_constrain_abs_w:
                     compute ext_bytes_bits, maybe_abs
@@ -234,7 +234,7 @@ iterate op, @op1,@op2
                     check maybe_abs > (1 shl 32 - 1)
                     jno skip_constrain_abs_l
                 ; too_large:
-                    display 'Warning: abs.l too large to fit in longword.' bappend 10
+                    display 'Warning: abs.l too large to fit in longword.', 10
                     compute maybe_abs, 1 shl 32 - 1
                 skip_constrain_abs_l:
                     compute ext_bytes_bits, maybe_abs

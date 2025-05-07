@@ -62,6 +62,43 @@ calminstruction calminstruction?.@? statement&
         assemble statement
 end calminstruction
 
+; Allows calminstruction?.display? to have multiple
+; parameters just as normal display.
+; Examples:
+;   display "hello", 13, 10
+calminstruction calminstruction?.display? list&
+    local item
+    loop:
+        match item=,list, list
+        jno final
+        arrange item, =display item
+        assemble item
+        jump loop
+    final:
+        arrange item, =display list 
+        assemble item
+end calminstruction
+; macro calminstruction?.display? list&
+;     local head, tail
+;     new @loop
+;     new @final
+;     arrange tail, list
+;     @ @loop:
+;         match head=,tail, tail
+;         @ jno @final
+;         arrange head, =display head
+;         assemble head
+;         @ jump @loop
+;     @ @final:
+;         arrange head, =display tail 
+;         assemble head
+; end macro
+
+; ARRange, ASSemble
+macro calminstruction?.arr_ass? var*, val*
+    arrange var, val
+    assemble var
+end macro
 
 ; ARRange, STRingify
 macro calminstruction?.arr_str? var*, val*
