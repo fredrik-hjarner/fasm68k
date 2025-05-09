@@ -37,15 +37,17 @@ Script must be executable:
 To assemble the examples run these commands and binary files should be created
 which you can run in a Mega Drive/Genesis emulator:
 
-`./fasm68k megadrive_samples_fasm68k/1_hello_world/hello.asm`
+`./fasm68k examples/megadrive_simple_demo/main.asm`
 
-`./fasm68k megadrive_samples_fasm68k/2_scroll_planes/scroll.asm`
+`./fasm68k examples/megadrive_samples_fasm68k/1_hello_world/hello.asm`
 
-`./fasm68k megadrive_samples_fasm68k/3_sprites/sprites.asm`
+`./fasm68k examples/megadrive_samples_fasm68k/2_scroll_planes/scroll.asm`
 
-`./fasm68k megadrive_samples_fasm68k/4_gamepad/gamepad.asm`
+`./fasm68k examples/megadrive_samples_fasm68k/3_sprites/sprites.asm`
 
-`./fasm68k megadrive_samples_fasm68k/6_psg_tone/psg_tone.asm`
+`./fasm68k examples/megadrive_samples_fasm68k/4_gamepad/gamepad.asm`
+
+`./fasm68k examples/megadrive_samples_fasm68k/6_psg_tone/psg_tone.asm`
 
 Add a new line at the bottom of your .bashrc file adding the fasm68k directory
 to the PATH so you can run fasm68k from anywhere and not only from the specific
@@ -78,3 +80,9 @@ bit shifting, the preferred way is to use `shl` and `shr`. Likewise try to use
 with @ `@label1`).
 - Currently no optimizations and might be missing some aliases for some
 instructions.
+
+## Acknowledgments and attributions
+
+- [Tomasz Grysztar](https://github.com/tgrysztar) for fasmg.
+- [BigEvilCorporation](https://github.com/BigEvilCorporation) for the megadrive_samples which I simply adapted for fasm68k.
+- The [vasm](http://sun.hasenbraten.de/vasm/) and [clownassembler](https://github.com/Clownacy/clownassembler) assemblers were very helpful for determining correct behaviour of the encoding of the instructions.

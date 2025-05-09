@@ -1,5 +1,5 @@
 [submodule "megadrive_samples_fasm68k"]
-	path = megadrive_samples_fasm68k
+	path = examples/megadrive_samples_fasm68k
 	url = git@github.com:fredrik-hjarner/megadrive_samples_fasm68k.git
 	branch = master
 [submodule "fasm2"]

@@ -63,6 +63,7 @@
       and perhaps examine what happens when you put an imm into the cmp
       instruction if it is totally invalid or just sub-optimal because 
       the manual says "imm" is allowed actually!!!
+* Move fasm2 directory into a dependencies directory?
 * TODO: Check the real instruction reference instead since it is more reliable:
   https://www.nxp.com/docs/en/reference-manual/M68000PRM.pdf
   https://web.njit.edu/~rosensta/classes/architecture/252software/code.pdf
