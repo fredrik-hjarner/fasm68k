@@ -18,6 +18,7 @@ const examples: Record<OperandType, string[]> = {
     "$7FFF(a2)",
     "$7FFF(a5)",
     "-2(sp)",
+    // "(-2)(sp)", // TODO: This causes errors.
   ],
   "d(an,ix)": [
     "$7F(a2,d5.w)",
@@ -25,7 +26,7 @@ const examples: Record<OperandType, string[]> = {
     "$0F(a5,d2.l)",
     "$1+1(a5,d2.l)",
     "-2(a5,d2.l)",
-    // "($1+1)(a5,d2.l)", TODO: This causes errors.
+    // "($1+1)(a5,d2.l)", // TODO: This causes errors.
   ],
   "abs.w": [
     "($FFFFFFFF).w",
