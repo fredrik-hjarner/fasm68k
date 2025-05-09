@@ -392,7 +392,10 @@ iterate op, @op1,@op2
                         m68k.parse_mem_index_result.m shl 15 + \
                         m68k.parse_mem_index_result.xn shl 12 + \
                         m68k.parse_mem_index_result.s shl 11 + \
-                        m68k.parse_mem_index_result.d
+                        \ ; bswap 1 makes sure negative numbers are contrained
+                        \ ; to 1 byte. (-1 theoretically is has $FFFF...
+                        \ ; stretching to infinity)
+                        m68k.parse_mem_index_result.d bswap 1
                     jump done
             ;; Check for "abs" again
             check_abs_without_size_suffix:
