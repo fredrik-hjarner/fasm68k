@@ -5,6 +5,8 @@
 
 ; Supposed to be called.
 calminstruction move_macro? op1*, op2*, size
+        assert_word_aligned
+
         call m68k.parse_operand@op1, op1, size
         call m68k.parse_operand@op2, op2, size
 

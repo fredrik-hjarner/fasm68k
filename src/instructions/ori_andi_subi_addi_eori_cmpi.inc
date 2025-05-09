@@ -36,6 +36,8 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
             .l,      'l',      10b,        4
 
             calminstruction instr#size? operands&
+                        assert_word_aligned
+
                         local tmp
 
                         call m68k.split_operands, operands

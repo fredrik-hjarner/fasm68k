@@ -57,6 +57,8 @@ iterate <instr,  instr_bits>, \
             ;         - or an immediate value 000 - 111
             ;     dn: The data register that gets shifted: d0 - d7
             calminstruction instr#dir#.#size? operands&
+                        assert_word_aligned
+
                         local op1, op2
 
                         call m68k.split_operands, operands
