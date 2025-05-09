@@ -9,6 +9,7 @@
 ; Attributes:
 ;     Unsized
 calminstruction unlk? an*
+    assert_word_aligned
     call m68k.parse_operand@op1, an
     emit_be 2, 0100111001011000b + @op1.ea_reg_bits
 end calminstruction
@@ -23,6 +24,7 @@ end calminstruction
 ; Attributes:
 ;     Unsized
 calminstruction stop? imm*
+    assert_word_aligned
     call m68k.parse_operand@op1, imm
 
     emit_be 2, 0100111001110010b
@@ -48,6 +50,8 @@ iterate <instr, instr_word>, \
         tas.b,  0100101011000000b
 
         calminstruction instr? operands&
+            assert_word_aligned
+
             call m68k.split_operands, operands
             call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
@@ -89,6 +93,8 @@ iterate <cc,  cc_bits>, \
         le,     1111b
 
         calminstruction s#cc.b? operands&
+                assert_word_aligned
+
                 call m68k.split_operands, operands
                 call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
@@ -128,7 +134,9 @@ iterate <instr,  first_byte>, \
             w,      01b, \
             l,      10b
     
-            calminstruction instr.size? operands&
+        calminstruction instr.size? operands&
+                assert_word_aligned
+
                 call m68k.split_operands, operands
                 call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
@@ -175,6 +183,8 @@ iterate <cc,  cc_bits>, \
         ; 0 is not allowed for .b I think.
         ; TODO: How will this be able to work with both label and literals???
         calminstruction? b#cc.b? label*
+            assert_word_aligned
+
             local pc
             local label_val
 
@@ -194,6 +204,8 @@ iterate <cc,  cc_bits>, \
         ;' Warn if fits in a byte.
         ; TODO: How will this be able to work with both label and literals???
         calminstruction? b#cc.w? label*
+            assert_word_aligned
+
             local pc
             local label_val
 
@@ -236,6 +248,8 @@ iterate <instr,  first_byte>, \
         ; 0 is not allowed for .b I think.
         ; TODO: How will this be able to work with both label and literals???
         calminstruction? instr.b? label*
+                assert_word_aligned
+
                 local pc
                 local label_val
 
@@ -255,6 +269,8 @@ iterate <instr,  first_byte>, \
         ;' Warn if fits in a byte.
         ; TODO: How will this be able to work with both label and literals???
         calminstruction? instr.w? label*
+            assert_word_aligned
+
             local pc
             local label_val
 
@@ -279,6 +295,7 @@ iterate <size,  size_bit>, \
         l,      1
 
         calminstruction ext.size? dn*
+            assert_word_aligned
             call m68k.parse_operand@op1, dn
             assert_data_reg dn
             emit_be 2, 0100_1000___1000_0000_b + size_bit shl 6 + @op1.ea_reg_bits
@@ -302,6 +319,8 @@ iterate <instr,  second_byte>, \
         jsr,     10000000b
 
         calminstruction instr? operands&
+            assert_word_aligned
+
             call m68k.split_operands, operands
             call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
@@ -320,6 +339,8 @@ end iterate ; <instr, second_byte>
 ; arguments:
 ;     dn: data register (d0 - d7)
 calminstruction swap.w? dn*
+    assert_word_aligned
+
     call m68k.parse_operand@op1, dn
 
     assert_data_reg dn
@@ -333,6 +354,8 @@ end calminstruction
 ; arguments:
 ;     vector: 0000 - 1111
 calminstruction trap? vector*
+        assert_word_aligned
+
         call m68k.parse_operand@op1, vector
 
         check @op1.type eq 'imm'
