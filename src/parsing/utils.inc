@@ -39,14 +39,14 @@ calminstruction m68k.parse_indirect_displacement operand*
         local tmp2
 
         match tmp1(tmp2), operand
-        jyes next
+        jyes next2
         ; display 'matched tmp1(tmp2)' bappend 10
         jump nope
-    next:
-        call m68k.is_one_token, tmp1
-        jyup next2
-        ; display 'tmp1 is one token' bappend 10
-        jump nope
+    ; next:
+    ;     call m68k.is_one_token, tmp1
+    ;     jyup next2
+    ;     ; display 'tmp1 is one token' bappend 10
+    ;     jump nope
     next2:
         call m68k.is_one_token, tmp2
         jyup next3

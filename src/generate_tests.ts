@@ -13,13 +13,19 @@ const examples: Record<OperandType, string[]> = {
   "(an)": ["(a2)", "(a5)"],
   "(an)+": ["(a1)+", "(a2)+", "(a5)+"],
   "-(an)": ["-(a2)", "-(a5)", "-(sp)"],
-  "d(an)": ["$7FFF(a2)", "$7FFF(a5)"],
+  // indirect addressing with displacement
+  "d(an)": [
+    "$7FFF(a2)",
+    "$7FFF(a5)",
+    "-2(sp)",
+  ],
   "d(an,ix)": [
     "$7F(a2,d5.w)",
     "$7F(a5,d2.w)",
     "$0F(a5,d2.l)",
     "$1+1(a5,d2.l)",
     // "($1+1)(a5,d2.l)", TODO: This causes errors.
+    // "-2(a5,d2.l)", // TODO: Try this.
   ],
   "abs.w": [
     "($FFFFFFFF).w",
@@ -31,10 +37,12 @@ const examples: Record<OperandType, string[]> = {
     '$FFFFFFFF',
     '$1',
   ],
+  // pc displacment
   "d(pc)": [
     "@(pc)",
     "@-2(pc)",
   ],
+  // pc displacement with index
   "d(pc,ix)": [
     "@(pc,d5.w)",
     "@-2(pc,d5.w)",

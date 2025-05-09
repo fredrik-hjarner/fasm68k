@@ -4,10 +4,11 @@
 ; I need to convert positive and negative numbers to binary, to do that
 ; I use `store` and `load` since the store command does such a conversion.
 ; I am not sure if there is another easier way to make such a conversion.
-virtual at 0
-    one_byte::
-    rb 1
-end virtual
+; TODO: I ended up not using this virtual and one_byte so can maybe be removed?
+; virtual at 0
+;     one_byte::
+;     rb 1
+; end virtual
 
 ; TODO: Comment what this does and why it is needed.
 ; Supposed to be called
@@ -45,8 +46,10 @@ calminstruction emit_ext_words? ext_bytes*, ext_bytes_bits*
         compute element_1_scale, element_1_scale - $
         ; use `store` and `load` for data massaging. needed so that negative
         ; values are constrained within1 byte.
-        store one_byte:0, 1, element_1_scale
-        load element_1_scale, one_byte:0, 1
+        ; store one_byte:0, 1, element_1_scale
+        ; load element_1_scale, one_byte:0, 1
+        ; Actually using `bswap` for this is way shorter. Feels hacky but works.
+        compute element_1_scale, element_1_scale bswap 1
         emit_be ext_bytes, (0 scaleof ext_bytes_bits) or element_1_scale
         jump done
     pc_displacement:

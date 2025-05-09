@@ -84,10 +84,13 @@ label_start:
 	ori.b	#"X",$1
 	ori.b	#0,$7FFF(a2)
 	ori.b	#0,$7FFF(a5)
+	ori.b	#0,-2(sp)
 	ori.b	#$FF,$7FFF(a2)
 	ori.b	#$FF,$7FFF(a5)
+	ori.b	#$FF,-2(sp)
 	ori.b	#"X",$7FFF(a2)
 	ori.b	#"X",$7FFF(a5)
+	ori.b	#"X",-2(sp)
 	ori.b	#0,$7F(a2,d5.w)
 	ori.b	#0,$7F(a5,d2.w)
 	ori.b	#0,$0F(a5,d2.l)
@@ -206,18 +209,25 @@ label_start:
 	ori.w	#$FFFF,$1
 	ori.w	#0,$7FFF(a2)
 	ori.w	#0,$7FFF(a5)
+	ori.w	#0,-2(sp)
 	ori.w	#4,$7FFF(a2)
 	ori.w	#4,$7FFF(a5)
+	ori.w	#4,-2(sp)
 	ori.w	#$FF,$7FFF(a2)
 	ori.w	#$FF,$7FFF(a5)
+	ori.w	#$FF,-2(sp)
 	ori.w	#"XY",$7FFF(a2)
 	ori.w	#"XY",$7FFF(a5)
+	ori.w	#"XY",-2(sp)
 	ori.w	#$2700,$7FFF(a2)
 	ori.w	#$2700,$7FFF(a5)
+	ori.w	#$2700,-2(sp)
 	ori.w	#$7FFF,$7FFF(a2)
 	ori.w	#$7FFF,$7FFF(a5)
+	ori.w	#$7FFF,-2(sp)
 	ori.w	#$FFFF,$7FFF(a2)
 	ori.w	#$FFFF,$7FFF(a5)
+	ori.w	#$FFFF,-2(sp)
 	ori.w	#0,$7F(a2,d5.w)
 	ori.w	#0,$7F(a5,d2.w)
 	ori.w	#0,$0F(a5,d2.l)
@@ -430,28 +440,40 @@ label_start:
 	ori.l	#(3+4),$1
 	ori.l	#equ_1,$7FFF(a2)
 	ori.l	#equ_1,$7FFF(a5)
+	ori.l	#equ_1,-2(sp)
 	ori.l	#equ_equ_1,$7FFF(a2)
 	ori.l	#equ_equ_1,$7FFF(a5)
+	ori.l	#equ_equ_1,-2(sp)
 	ori.l	#equ_1_plus_equ_1,$7FFF(a2)
 	ori.l	#equ_1_plus_equ_1,$7FFF(a5)
+	ori.l	#equ_1_plus_equ_1,-2(sp)
 	ori.l	#0,$7FFF(a2)
 	ori.l	#0,$7FFF(a5)
+	ori.l	#0,-2(sp)
 	ori.l	#4,$7FFF(a2)
 	ori.l	#4,$7FFF(a5)
+	ori.l	#4,-2(sp)
 	ori.l	#$FF,$7FFF(a2)
 	ori.l	#$FF,$7FFF(a5)
+	ori.l	#$FF,-2(sp)
 	ori.l	#$7FFF,$7FFF(a2)
 	ori.l	#$7FFF,$7FFF(a5)
+	ori.l	#$7FFF,-2(sp)
 	ori.l	#$FFFF,$7FFF(a2)
 	ori.l	#$FFFF,$7FFF(a5)
+	ori.l	#$FFFF,-2(sp)
 	ori.l	#$FFFFFFFF,$7FFF(a2)
 	ori.l	#$FFFFFFFF,$7FFF(a5)
+	ori.l	#$FFFFFFFF,-2(sp)
 	ori.l	#"WXYZ",$7FFF(a2)
 	ori.l	#"WXYZ",$7FFF(a5)
+	ori.l	#"WXYZ",-2(sp)
 	ori.l	#1+1,$7FFF(a2)
 	ori.l	#1+1,$7FFF(a5)
+	ori.l	#1+1,-2(sp)
 	ori.l	#(3+4),$7FFF(a2)
 	ori.l	#(3+4),$7FFF(a5)
+	ori.l	#(3+4),-2(sp)
 	ori.l	#equ_1,$7F(a2,d5.w)
 	ori.l	#equ_1,$7F(a5,d2.w)
 	ori.l	#equ_1,$0F(a5,d2.l)
@@ -589,10 +611,13 @@ label_start:
 	andi.b	#"X",$1
 	andi.b	#0,$7FFF(a2)
 	andi.b	#0,$7FFF(a5)
+	andi.b	#0,-2(sp)
 	andi.b	#$FF,$7FFF(a2)
 	andi.b	#$FF,$7FFF(a5)
+	andi.b	#$FF,-2(sp)
 	andi.b	#"X",$7FFF(a2)
 	andi.b	#"X",$7FFF(a5)
+	andi.b	#"X",-2(sp)
 	andi.b	#0,$7F(a2,d5.w)
 	andi.b	#0,$7F(a5,d2.w)
 	andi.b	#0,$0F(a5,d2.l)
@@ -711,18 +736,25 @@ label_start:
 	andi.w	#$FFFF,$1
 	andi.w	#0,$7FFF(a2)
 	andi.w	#0,$7FFF(a5)
+	andi.w	#0,-2(sp)
 	andi.w	#4,$7FFF(a2)
 	andi.w	#4,$7FFF(a5)
+	andi.w	#4,-2(sp)
 	andi.w	#$FF,$7FFF(a2)
 	andi.w	#$FF,$7FFF(a5)
+	andi.w	#$FF,-2(sp)
 	andi.w	#"XY",$7FFF(a2)
 	andi.w	#"XY",$7FFF(a5)
+	andi.w	#"XY",-2(sp)
 	andi.w	#$2700,$7FFF(a2)
 	andi.w	#$2700,$7FFF(a5)
+	andi.w	#$2700,-2(sp)
 	andi.w	#$7FFF,$7FFF(a2)
 	andi.w	#$7FFF,$7FFF(a5)
+	andi.w	#$7FFF,-2(sp)
 	andi.w	#$FFFF,$7FFF(a2)
 	andi.w	#$FFFF,$7FFF(a5)
+	andi.w	#$FFFF,-2(sp)
 	andi.w	#0,$7F(a2,d5.w)
 	andi.w	#0,$7F(a5,d2.w)
 	andi.w	#0,$0F(a5,d2.l)
@@ -935,28 +967,40 @@ label_start:
 	andi.l	#(3+4),$1
 	andi.l	#equ_1,$7FFF(a2)
 	andi.l	#equ_1,$7FFF(a5)
+	andi.l	#equ_1,-2(sp)
 	andi.l	#equ_equ_1,$7FFF(a2)
 	andi.l	#equ_equ_1,$7FFF(a5)
+	andi.l	#equ_equ_1,-2(sp)
 	andi.l	#equ_1_plus_equ_1,$7FFF(a2)
 	andi.l	#equ_1_plus_equ_1,$7FFF(a5)
+	andi.l	#equ_1_plus_equ_1,-2(sp)
 	andi.l	#0,$7FFF(a2)
 	andi.l	#0,$7FFF(a5)
+	andi.l	#0,-2(sp)
 	andi.l	#4,$7FFF(a2)
 	andi.l	#4,$7FFF(a5)
+	andi.l	#4,-2(sp)
 	andi.l	#$FF,$7FFF(a2)
 	andi.l	#$FF,$7FFF(a5)
+	andi.l	#$FF,-2(sp)
 	andi.l	#$7FFF,$7FFF(a2)
 	andi.l	#$7FFF,$7FFF(a5)
+	andi.l	#$7FFF,-2(sp)
 	andi.l	#$FFFF,$7FFF(a2)
 	andi.l	#$FFFF,$7FFF(a5)
+	andi.l	#$FFFF,-2(sp)
 	andi.l	#$FFFFFFFF,$7FFF(a2)
 	andi.l	#$FFFFFFFF,$7FFF(a5)
+	andi.l	#$FFFFFFFF,-2(sp)
 	andi.l	#"WXYZ",$7FFF(a2)
 	andi.l	#"WXYZ",$7FFF(a5)
+	andi.l	#"WXYZ",-2(sp)
 	andi.l	#1+1,$7FFF(a2)
 	andi.l	#1+1,$7FFF(a5)
+	andi.l	#1+1,-2(sp)
 	andi.l	#(3+4),$7FFF(a2)
 	andi.l	#(3+4),$7FFF(a5)
+	andi.l	#(3+4),-2(sp)
 	andi.l	#equ_1,$7F(a2,d5.w)
 	andi.l	#equ_1,$7F(a5,d2.w)
 	andi.l	#equ_1,$0F(a5,d2.l)
@@ -1094,10 +1138,13 @@ label_start:
 	eori.b	#"X",$1
 	eori.b	#0,$7FFF(a2)
 	eori.b	#0,$7FFF(a5)
+	eori.b	#0,-2(sp)
 	eori.b	#$FF,$7FFF(a2)
 	eori.b	#$FF,$7FFF(a5)
+	eori.b	#$FF,-2(sp)
 	eori.b	#"X",$7FFF(a2)
 	eori.b	#"X",$7FFF(a5)
+	eori.b	#"X",-2(sp)
 	eori.b	#0,$7F(a2,d5.w)
 	eori.b	#0,$7F(a5,d2.w)
 	eori.b	#0,$0F(a5,d2.l)
@@ -1216,18 +1263,25 @@ label_start:
 	eori.w	#$FFFF,$1
 	eori.w	#0,$7FFF(a2)
 	eori.w	#0,$7FFF(a5)
+	eori.w	#0,-2(sp)
 	eori.w	#4,$7FFF(a2)
 	eori.w	#4,$7FFF(a5)
+	eori.w	#4,-2(sp)
 	eori.w	#$FF,$7FFF(a2)
 	eori.w	#$FF,$7FFF(a5)
+	eori.w	#$FF,-2(sp)
 	eori.w	#"XY",$7FFF(a2)
 	eori.w	#"XY",$7FFF(a5)
+	eori.w	#"XY",-2(sp)
 	eori.w	#$2700,$7FFF(a2)
 	eori.w	#$2700,$7FFF(a5)
+	eori.w	#$2700,-2(sp)
 	eori.w	#$7FFF,$7FFF(a2)
 	eori.w	#$7FFF,$7FFF(a5)
+	eori.w	#$7FFF,-2(sp)
 	eori.w	#$FFFF,$7FFF(a2)
 	eori.w	#$FFFF,$7FFF(a5)
+	eori.w	#$FFFF,-2(sp)
 	eori.w	#0,$7F(a2,d5.w)
 	eori.w	#0,$7F(a5,d2.w)
 	eori.w	#0,$0F(a5,d2.l)
@@ -1440,28 +1494,40 @@ label_start:
 	eori.l	#(3+4),$1
 	eori.l	#equ_1,$7FFF(a2)
 	eori.l	#equ_1,$7FFF(a5)
+	eori.l	#equ_1,-2(sp)
 	eori.l	#equ_equ_1,$7FFF(a2)
 	eori.l	#equ_equ_1,$7FFF(a5)
+	eori.l	#equ_equ_1,-2(sp)
 	eori.l	#equ_1_plus_equ_1,$7FFF(a2)
 	eori.l	#equ_1_plus_equ_1,$7FFF(a5)
+	eori.l	#equ_1_plus_equ_1,-2(sp)
 	eori.l	#0,$7FFF(a2)
 	eori.l	#0,$7FFF(a5)
+	eori.l	#0,-2(sp)
 	eori.l	#4,$7FFF(a2)
 	eori.l	#4,$7FFF(a5)
+	eori.l	#4,-2(sp)
 	eori.l	#$FF,$7FFF(a2)
 	eori.l	#$FF,$7FFF(a5)
+	eori.l	#$FF,-2(sp)
 	eori.l	#$7FFF,$7FFF(a2)
 	eori.l	#$7FFF,$7FFF(a5)
+	eori.l	#$7FFF,-2(sp)
 	eori.l	#$FFFF,$7FFF(a2)
 	eori.l	#$FFFF,$7FFF(a5)
+	eori.l	#$FFFF,-2(sp)
 	eori.l	#$FFFFFFFF,$7FFF(a2)
 	eori.l	#$FFFFFFFF,$7FFF(a5)
+	eori.l	#$FFFFFFFF,-2(sp)
 	eori.l	#"WXYZ",$7FFF(a2)
 	eori.l	#"WXYZ",$7FFF(a5)
+	eori.l	#"WXYZ",-2(sp)
 	eori.l	#1+1,$7FFF(a2)
 	eori.l	#1+1,$7FFF(a5)
+	eori.l	#1+1,-2(sp)
 	eori.l	#(3+4),$7FFF(a2)
 	eori.l	#(3+4),$7FFF(a5)
+	eori.l	#(3+4),-2(sp)
 	eori.l	#equ_1,$7F(a2,d5.w)
 	eori.l	#equ_1,$7F(a5,d2.w)
 	eori.l	#equ_1,$0F(a5,d2.l)
@@ -1579,10 +1645,13 @@ label_start:
 	subi.b	#"X",$1
 	subi.b	#0,$7FFF(a2)
 	subi.b	#0,$7FFF(a5)
+	subi.b	#0,-2(sp)
 	subi.b	#$FF,$7FFF(a2)
 	subi.b	#$FF,$7FFF(a5)
+	subi.b	#$FF,-2(sp)
 	subi.b	#"X",$7FFF(a2)
 	subi.b	#"X",$7FFF(a5)
+	subi.b	#"X",-2(sp)
 	subi.b	#0,$7F(a2,d5.w)
 	subi.b	#0,$7F(a5,d2.w)
 	subi.b	#0,$0F(a5,d2.l)
@@ -1701,18 +1770,25 @@ label_start:
 	subi.w	#$FFFF,$1
 	subi.w	#0,$7FFF(a2)
 	subi.w	#0,$7FFF(a5)
+	subi.w	#0,-2(sp)
 	subi.w	#4,$7FFF(a2)
 	subi.w	#4,$7FFF(a5)
+	subi.w	#4,-2(sp)
 	subi.w	#$FF,$7FFF(a2)
 	subi.w	#$FF,$7FFF(a5)
+	subi.w	#$FF,-2(sp)
 	subi.w	#"XY",$7FFF(a2)
 	subi.w	#"XY",$7FFF(a5)
+	subi.w	#"XY",-2(sp)
 	subi.w	#$2700,$7FFF(a2)
 	subi.w	#$2700,$7FFF(a5)
+	subi.w	#$2700,-2(sp)
 	subi.w	#$7FFF,$7FFF(a2)
 	subi.w	#$7FFF,$7FFF(a5)
+	subi.w	#$7FFF,-2(sp)
 	subi.w	#$FFFF,$7FFF(a2)
 	subi.w	#$FFFF,$7FFF(a5)
+	subi.w	#$FFFF,-2(sp)
 	subi.w	#0,$7F(a2,d5.w)
 	subi.w	#0,$7F(a5,d2.w)
 	subi.w	#0,$0F(a5,d2.l)
@@ -1925,28 +2001,40 @@ label_start:
 	subi.l	#(3+4),$1
 	subi.l	#equ_1,$7FFF(a2)
 	subi.l	#equ_1,$7FFF(a5)
+	subi.l	#equ_1,-2(sp)
 	subi.l	#equ_equ_1,$7FFF(a2)
 	subi.l	#equ_equ_1,$7FFF(a5)
+	subi.l	#equ_equ_1,-2(sp)
 	subi.l	#equ_1_plus_equ_1,$7FFF(a2)
 	subi.l	#equ_1_plus_equ_1,$7FFF(a5)
+	subi.l	#equ_1_plus_equ_1,-2(sp)
 	subi.l	#0,$7FFF(a2)
 	subi.l	#0,$7FFF(a5)
+	subi.l	#0,-2(sp)
 	subi.l	#4,$7FFF(a2)
 	subi.l	#4,$7FFF(a5)
+	subi.l	#4,-2(sp)
 	subi.l	#$FF,$7FFF(a2)
 	subi.l	#$FF,$7FFF(a5)
+	subi.l	#$FF,-2(sp)
 	subi.l	#$7FFF,$7FFF(a2)
 	subi.l	#$7FFF,$7FFF(a5)
+	subi.l	#$7FFF,-2(sp)
 	subi.l	#$FFFF,$7FFF(a2)
 	subi.l	#$FFFF,$7FFF(a5)
+	subi.l	#$FFFF,-2(sp)
 	subi.l	#$FFFFFFFF,$7FFF(a2)
 	subi.l	#$FFFFFFFF,$7FFF(a5)
+	subi.l	#$FFFFFFFF,-2(sp)
 	subi.l	#"WXYZ",$7FFF(a2)
 	subi.l	#"WXYZ",$7FFF(a5)
+	subi.l	#"WXYZ",-2(sp)
 	subi.l	#1+1,$7FFF(a2)
 	subi.l	#1+1,$7FFF(a5)
+	subi.l	#1+1,-2(sp)
 	subi.l	#(3+4),$7FFF(a2)
 	subi.l	#(3+4),$7FFF(a5)
+	subi.l	#(3+4),-2(sp)
 	subi.l	#equ_1,$7F(a2,d5.w)
 	subi.l	#equ_1,$7F(a5,d2.w)
 	subi.l	#equ_1,$0F(a5,d2.l)
@@ -2064,10 +2152,13 @@ label_start:
 	addi.b	#"X",$1
 	addi.b	#0,$7FFF(a2)
 	addi.b	#0,$7FFF(a5)
+	addi.b	#0,-2(sp)
 	addi.b	#$FF,$7FFF(a2)
 	addi.b	#$FF,$7FFF(a5)
+	addi.b	#$FF,-2(sp)
 	addi.b	#"X",$7FFF(a2)
 	addi.b	#"X",$7FFF(a5)
+	addi.b	#"X",-2(sp)
 	addi.b	#0,$7F(a2,d5.w)
 	addi.b	#0,$7F(a5,d2.w)
 	addi.b	#0,$0F(a5,d2.l)
@@ -2186,18 +2277,25 @@ label_start:
 	addi.w	#$FFFF,$1
 	addi.w	#0,$7FFF(a2)
 	addi.w	#0,$7FFF(a5)
+	addi.w	#0,-2(sp)
 	addi.w	#4,$7FFF(a2)
 	addi.w	#4,$7FFF(a5)
+	addi.w	#4,-2(sp)
 	addi.w	#$FF,$7FFF(a2)
 	addi.w	#$FF,$7FFF(a5)
+	addi.w	#$FF,-2(sp)
 	addi.w	#"XY",$7FFF(a2)
 	addi.w	#"XY",$7FFF(a5)
+	addi.w	#"XY",-2(sp)
 	addi.w	#$2700,$7FFF(a2)
 	addi.w	#$2700,$7FFF(a5)
+	addi.w	#$2700,-2(sp)
 	addi.w	#$7FFF,$7FFF(a2)
 	addi.w	#$7FFF,$7FFF(a5)
+	addi.w	#$7FFF,-2(sp)
 	addi.w	#$FFFF,$7FFF(a2)
 	addi.w	#$FFFF,$7FFF(a5)
+	addi.w	#$FFFF,-2(sp)
 	addi.w	#0,$7F(a2,d5.w)
 	addi.w	#0,$7F(a5,d2.w)
 	addi.w	#0,$0F(a5,d2.l)
@@ -2410,28 +2508,40 @@ label_start:
 	addi.l	#(3+4),$1
 	addi.l	#equ_1,$7FFF(a2)
 	addi.l	#equ_1,$7FFF(a5)
+	addi.l	#equ_1,-2(sp)
 	addi.l	#equ_equ_1,$7FFF(a2)
 	addi.l	#equ_equ_1,$7FFF(a5)
+	addi.l	#equ_equ_1,-2(sp)
 	addi.l	#equ_1_plus_equ_1,$7FFF(a2)
 	addi.l	#equ_1_plus_equ_1,$7FFF(a5)
+	addi.l	#equ_1_plus_equ_1,-2(sp)
 	addi.l	#0,$7FFF(a2)
 	addi.l	#0,$7FFF(a5)
+	addi.l	#0,-2(sp)
 	addi.l	#4,$7FFF(a2)
 	addi.l	#4,$7FFF(a5)
+	addi.l	#4,-2(sp)
 	addi.l	#$FF,$7FFF(a2)
 	addi.l	#$FF,$7FFF(a5)
+	addi.l	#$FF,-2(sp)
 	addi.l	#$7FFF,$7FFF(a2)
 	addi.l	#$7FFF,$7FFF(a5)
+	addi.l	#$7FFF,-2(sp)
 	addi.l	#$FFFF,$7FFF(a2)
 	addi.l	#$FFFF,$7FFF(a5)
+	addi.l	#$FFFF,-2(sp)
 	addi.l	#$FFFFFFFF,$7FFF(a2)
 	addi.l	#$FFFFFFFF,$7FFF(a5)
+	addi.l	#$FFFFFFFF,-2(sp)
 	addi.l	#"WXYZ",$7FFF(a2)
 	addi.l	#"WXYZ",$7FFF(a5)
+	addi.l	#"WXYZ",-2(sp)
 	addi.l	#1+1,$7FFF(a2)
 	addi.l	#1+1,$7FFF(a5)
+	addi.l	#1+1,-2(sp)
 	addi.l	#(3+4),$7FFF(a2)
 	addi.l	#(3+4),$7FFF(a5)
+	addi.l	#(3+4),-2(sp)
 	addi.l	#equ_1,$7F(a2,d5.w)
 	addi.l	#equ_1,$7F(a5,d2.w)
 	addi.l	#equ_1,$0F(a5,d2.l)
@@ -2549,10 +2659,13 @@ label_start:
 	cmpi.b	#"X",$1
 	cmpi.b	#0,$7FFF(a2)
 	cmpi.b	#0,$7FFF(a5)
+	cmpi.b	#0,-2(sp)
 	cmpi.b	#$FF,$7FFF(a2)
 	cmpi.b	#$FF,$7FFF(a5)
+	cmpi.b	#$FF,-2(sp)
 	cmpi.b	#"X",$7FFF(a2)
 	cmpi.b	#"X",$7FFF(a5)
+	cmpi.b	#"X",-2(sp)
 	cmpi.b	#0,$7F(a2,d5.w)
 	cmpi.b	#0,$7F(a5,d2.w)
 	cmpi.b	#0,$0F(a5,d2.l)
@@ -2671,18 +2784,25 @@ label_start:
 	cmpi.w	#$FFFF,$1
 	cmpi.w	#0,$7FFF(a2)
 	cmpi.w	#0,$7FFF(a5)
+	cmpi.w	#0,-2(sp)
 	cmpi.w	#4,$7FFF(a2)
 	cmpi.w	#4,$7FFF(a5)
+	cmpi.w	#4,-2(sp)
 	cmpi.w	#$FF,$7FFF(a2)
 	cmpi.w	#$FF,$7FFF(a5)
+	cmpi.w	#$FF,-2(sp)
 	cmpi.w	#"XY",$7FFF(a2)
 	cmpi.w	#"XY",$7FFF(a5)
+	cmpi.w	#"XY",-2(sp)
 	cmpi.w	#$2700,$7FFF(a2)
 	cmpi.w	#$2700,$7FFF(a5)
+	cmpi.w	#$2700,-2(sp)
 	cmpi.w	#$7FFF,$7FFF(a2)
 	cmpi.w	#$7FFF,$7FFF(a5)
+	cmpi.w	#$7FFF,-2(sp)
 	cmpi.w	#$FFFF,$7FFF(a2)
 	cmpi.w	#$FFFF,$7FFF(a5)
+	cmpi.w	#$FFFF,-2(sp)
 	cmpi.w	#0,$7F(a2,d5.w)
 	cmpi.w	#0,$7F(a5,d2.w)
 	cmpi.w	#0,$0F(a5,d2.l)
@@ -2895,28 +3015,40 @@ label_start:
 	cmpi.l	#(3+4),$1
 	cmpi.l	#equ_1,$7FFF(a2)
 	cmpi.l	#equ_1,$7FFF(a5)
+	cmpi.l	#equ_1,-2(sp)
 	cmpi.l	#equ_equ_1,$7FFF(a2)
 	cmpi.l	#equ_equ_1,$7FFF(a5)
+	cmpi.l	#equ_equ_1,-2(sp)
 	cmpi.l	#equ_1_plus_equ_1,$7FFF(a2)
 	cmpi.l	#equ_1_plus_equ_1,$7FFF(a5)
+	cmpi.l	#equ_1_plus_equ_1,-2(sp)
 	cmpi.l	#0,$7FFF(a2)
 	cmpi.l	#0,$7FFF(a5)
+	cmpi.l	#0,-2(sp)
 	cmpi.l	#4,$7FFF(a2)
 	cmpi.l	#4,$7FFF(a5)
+	cmpi.l	#4,-2(sp)
 	cmpi.l	#$FF,$7FFF(a2)
 	cmpi.l	#$FF,$7FFF(a5)
+	cmpi.l	#$FF,-2(sp)
 	cmpi.l	#$7FFF,$7FFF(a2)
 	cmpi.l	#$7FFF,$7FFF(a5)
+	cmpi.l	#$7FFF,-2(sp)
 	cmpi.l	#$FFFF,$7FFF(a2)
 	cmpi.l	#$FFFF,$7FFF(a5)
+	cmpi.l	#$FFFF,-2(sp)
 	cmpi.l	#$FFFFFFFF,$7FFF(a2)
 	cmpi.l	#$FFFFFFFF,$7FFF(a5)
+	cmpi.l	#$FFFFFFFF,-2(sp)
 	cmpi.l	#"WXYZ",$7FFF(a2)
 	cmpi.l	#"WXYZ",$7FFF(a5)
+	cmpi.l	#"WXYZ",-2(sp)
 	cmpi.l	#1+1,$7FFF(a2)
 	cmpi.l	#1+1,$7FFF(a5)
+	cmpi.l	#1+1,-2(sp)
 	cmpi.l	#(3+4),$7FFF(a2)
 	cmpi.l	#(3+4),$7FFF(a5)
+	cmpi.l	#(3+4),-2(sp)
 	cmpi.l	#equ_1,$7F(a2,d5.w)
 	cmpi.l	#equ_1,$7F(a5,d2.w)
 	cmpi.l	#equ_1,$0F(a5,d2.l)
@@ -3028,8 +3160,10 @@ label_start:
 	btst.b	d5,$1
 	btst.b	d2,$7FFF(a2)
 	btst.b	d2,$7FFF(a5)
+	btst.b	d2,-2(sp)
 	btst.b	d5,$7FFF(a2)
 	btst.b	d5,$7FFF(a5)
+	btst.b	d5,-2(sp)
 	btst.b	d2,$7F(a2,d5.w)
 	btst.b	d2,$7F(a5,d2.w)
 	btst.b	d2,$0F(a5,d2.l)
@@ -3078,8 +3212,10 @@ label_start:
 	btst	d5,$1
 	btst	d2,$7FFF(a2)
 	btst	d2,$7FFF(a5)
+	btst	d2,-2(sp)
 	btst	d5,$7FFF(a2)
 	btst	d5,$7FFF(a5)
+	btst	d5,-2(sp)
 	btst	d2,$7F(a2,d5.w)
 	btst	d2,$7F(a5,d2.w)
 	btst	d2,$0F(a5,d2.l)
@@ -3154,10 +3290,13 @@ label_start:
 	btst.b	#"X",$1
 	btst.b	#0,$7FFF(a2)
 	btst.b	#0,$7FFF(a5)
+	btst.b	#0,-2(sp)
 	btst.b	#$FF,$7FFF(a2)
 	btst.b	#$FF,$7FFF(a5)
+	btst.b	#$FF,-2(sp)
 	btst.b	#"X",$7FFF(a2)
 	btst.b	#"X",$7FFF(a5)
+	btst.b	#"X",-2(sp)
 	btst.b	#0,$7F(a2,d5.w)
 	btst.b	#0,$7F(a5,d2.w)
 	btst.b	#0,$0F(a5,d2.l)
@@ -3229,10 +3368,13 @@ label_start:
 	btst	#"X",$1
 	btst	#0,$7FFF(a2)
 	btst	#0,$7FFF(a5)
+	btst	#0,-2(sp)
 	btst	#$FF,$7FFF(a2)
 	btst	#$FF,$7FFF(a5)
+	btst	#$FF,-2(sp)
 	btst	#"X",$7FFF(a2)
 	btst	#"X",$7FFF(a5)
+	btst	#"X",-2(sp)
 	btst	#0,$7F(a2,d5.w)
 	btst	#0,$7F(a5,d2.w)
 	btst	#0,$0F(a5,d2.l)
@@ -3299,8 +3441,10 @@ label_start:
 	bchg.b	d5,$1
 	bchg.b	d2,$7FFF(a2)
 	bchg.b	d2,$7FFF(a5)
+	bchg.b	d2,-2(sp)
 	bchg.b	d5,$7FFF(a2)
 	bchg.b	d5,$7FFF(a5)
+	bchg.b	d5,-2(sp)
 	bchg.b	d2,$7F(a2,d5.w)
 	bchg.b	d2,$7F(a5,d2.w)
 	bchg.b	d2,$0F(a5,d2.l)
@@ -3339,8 +3483,10 @@ label_start:
 	bchg	d5,$1
 	bchg	d2,$7FFF(a2)
 	bchg	d2,$7FFF(a5)
+	bchg	d2,-2(sp)
 	bchg	d5,$7FFF(a2)
 	bchg	d5,$7FFF(a5)
+	bchg	d5,-2(sp)
 	bchg	d2,$7F(a2,d5.w)
 	bchg	d2,$7F(a5,d2.w)
 	bchg	d2,$0F(a5,d2.l)
@@ -3405,10 +3551,13 @@ label_start:
 	bchg.b	#"X",$1
 	bchg.b	#0,$7FFF(a2)
 	bchg.b	#0,$7FFF(a5)
+	bchg.b	#0,-2(sp)
 	bchg.b	#$FF,$7FFF(a2)
 	bchg.b	#$FF,$7FFF(a5)
+	bchg.b	#$FF,-2(sp)
 	bchg.b	#"X",$7FFF(a2)
 	bchg.b	#"X",$7FFF(a5)
+	bchg.b	#"X",-2(sp)
 	bchg.b	#0,$7F(a2,d5.w)
 	bchg.b	#0,$7F(a5,d2.w)
 	bchg.b	#0,$0F(a5,d2.l)
@@ -3465,10 +3614,13 @@ label_start:
 	bchg	#"X",$1
 	bchg	#0,$7FFF(a2)
 	bchg	#0,$7FFF(a5)
+	bchg	#0,-2(sp)
 	bchg	#$FF,$7FFF(a2)
 	bchg	#$FF,$7FFF(a5)
+	bchg	#$FF,-2(sp)
 	bchg	#"X",$7FFF(a2)
 	bchg	#"X",$7FFF(a5)
+	bchg	#"X",-2(sp)
 	bchg	#0,$7F(a2,d5.w)
 	bchg	#0,$7F(a5,d2.w)
 	bchg	#0,$0F(a5,d2.l)
@@ -3520,8 +3672,10 @@ label_start:
 	bclr.b	d5,$1
 	bclr.b	d2,$7FFF(a2)
 	bclr.b	d2,$7FFF(a5)
+	bclr.b	d2,-2(sp)
 	bclr.b	d5,$7FFF(a2)
 	bclr.b	d5,$7FFF(a5)
+	bclr.b	d5,-2(sp)
 	bclr.b	d2,$7F(a2,d5.w)
 	bclr.b	d2,$7F(a5,d2.w)
 	bclr.b	d2,$0F(a5,d2.l)
@@ -3560,8 +3714,10 @@ label_start:
 	bclr	d5,$1
 	bclr	d2,$7FFF(a2)
 	bclr	d2,$7FFF(a5)
+	bclr	d2,-2(sp)
 	bclr	d5,$7FFF(a2)
 	bclr	d5,$7FFF(a5)
+	bclr	d5,-2(sp)
 	bclr	d2,$7F(a2,d5.w)
 	bclr	d2,$7F(a5,d2.w)
 	bclr	d2,$0F(a5,d2.l)
@@ -3626,10 +3782,13 @@ label_start:
 	bclr.b	#"X",$1
 	bclr.b	#0,$7FFF(a2)
 	bclr.b	#0,$7FFF(a5)
+	bclr.b	#0,-2(sp)
 	bclr.b	#$FF,$7FFF(a2)
 	bclr.b	#$FF,$7FFF(a5)
+	bclr.b	#$FF,-2(sp)
 	bclr.b	#"X",$7FFF(a2)
 	bclr.b	#"X",$7FFF(a5)
+	bclr.b	#"X",-2(sp)
 	bclr.b	#0,$7F(a2,d5.w)
 	bclr.b	#0,$7F(a5,d2.w)
 	bclr.b	#0,$0F(a5,d2.l)
@@ -3686,10 +3845,13 @@ label_start:
 	bclr	#"X",$1
 	bclr	#0,$7FFF(a2)
 	bclr	#0,$7FFF(a5)
+	bclr	#0,-2(sp)
 	bclr	#$FF,$7FFF(a2)
 	bclr	#$FF,$7FFF(a5)
+	bclr	#$FF,-2(sp)
 	bclr	#"X",$7FFF(a2)
 	bclr	#"X",$7FFF(a5)
+	bclr	#"X",-2(sp)
 	bclr	#0,$7F(a2,d5.w)
 	bclr	#0,$7F(a5,d2.w)
 	bclr	#0,$0F(a5,d2.l)
@@ -3741,8 +3903,10 @@ label_start:
 	bset.b	d5,$1
 	bset.b	d2,$7FFF(a2)
 	bset.b	d2,$7FFF(a5)
+	bset.b	d2,-2(sp)
 	bset.b	d5,$7FFF(a2)
 	bset.b	d5,$7FFF(a5)
+	bset.b	d5,-2(sp)
 	bset.b	d2,$7F(a2,d5.w)
 	bset.b	d2,$7F(a5,d2.w)
 	bset.b	d2,$0F(a5,d2.l)
@@ -3781,8 +3945,10 @@ label_start:
 	bset	d5,$1
 	bset	d2,$7FFF(a2)
 	bset	d2,$7FFF(a5)
+	bset	d2,-2(sp)
 	bset	d5,$7FFF(a2)
 	bset	d5,$7FFF(a5)
+	bset	d5,-2(sp)
 	bset	d2,$7F(a2,d5.w)
 	bset	d2,$7F(a5,d2.w)
 	bset	d2,$0F(a5,d2.l)
@@ -3847,10 +4013,13 @@ label_start:
 	bset.b	#"X",$1
 	bset.b	#0,$7FFF(a2)
 	bset.b	#0,$7FFF(a5)
+	bset.b	#0,-2(sp)
 	bset.b	#$FF,$7FFF(a2)
 	bset.b	#$FF,$7FFF(a5)
+	bset.b	#$FF,-2(sp)
 	bset.b	#"X",$7FFF(a2)
 	bset.b	#"X",$7FFF(a5)
+	bset.b	#"X",-2(sp)
 	bset.b	#0,$7F(a2,d5.w)
 	bset.b	#0,$7F(a5,d2.w)
 	bset.b	#0,$0F(a5,d2.l)
@@ -3907,10 +4076,13 @@ label_start:
 	bset	#"X",$1
 	bset	#0,$7FFF(a2)
 	bset	#0,$7FFF(a5)
+	bset	#0,-2(sp)
 	bset	#$FF,$7FFF(a2)
 	bset	#$FF,$7FFF(a5)
+	bset	#$FF,-2(sp)
 	bset	#"X",$7FFF(a2)
 	bset	#"X",$7FFF(a5)
+	bset	#"X",-2(sp)
 	bset	#0,$7F(a2,d5.w)
 	bset	#0,$7F(a5,d2.w)
 	bset	#0,$0F(a5,d2.l)
@@ -3940,6 +4112,7 @@ label_start:
 	st.b	$1
 	st.b	$7FFF(a2)
 	st.b	$7FFF(a5)
+	st.b	-2(sp)
 	st.b	$7F(a2,d5.w)
 	st.b	$7F(a5,d2.w)
 	st.b	$0F(a5,d2.l)
@@ -3962,6 +4135,7 @@ label_start:
 	st	$1
 	st	$7FFF(a2)
 	st	$7FFF(a5)
+	st	-2(sp)
 	st	$7F(a2,d5.w)
 	st	$7F(a5,d2.w)
 	st	$0F(a5,d2.l)
@@ -3985,6 +4159,7 @@ label_start:
 	sf.b	$1
 	sf.b	$7FFF(a2)
 	sf.b	$7FFF(a5)
+	sf.b	-2(sp)
 	sf.b	$7F(a2,d5.w)
 	sf.b	$7F(a5,d2.w)
 	sf.b	$0F(a5,d2.l)
@@ -4007,6 +4182,7 @@ label_start:
 	sf	$1
 	sf	$7FFF(a2)
 	sf	$7FFF(a5)
+	sf	-2(sp)
 	sf	$7F(a2,d5.w)
 	sf	$7F(a5,d2.w)
 	sf	$0F(a5,d2.l)
@@ -4030,6 +4206,7 @@ label_start:
 	shi.b	$1
 	shi.b	$7FFF(a2)
 	shi.b	$7FFF(a5)
+	shi.b	-2(sp)
 	shi.b	$7F(a2,d5.w)
 	shi.b	$7F(a5,d2.w)
 	shi.b	$0F(a5,d2.l)
@@ -4052,6 +4229,7 @@ label_start:
 	shi	$1
 	shi	$7FFF(a2)
 	shi	$7FFF(a5)
+	shi	-2(sp)
 	shi	$7F(a2,d5.w)
 	shi	$7F(a5,d2.w)
 	shi	$0F(a5,d2.l)
@@ -4075,6 +4253,7 @@ label_start:
 	sls.b	$1
 	sls.b	$7FFF(a2)
 	sls.b	$7FFF(a5)
+	sls.b	-2(sp)
 	sls.b	$7F(a2,d5.w)
 	sls.b	$7F(a5,d2.w)
 	sls.b	$0F(a5,d2.l)
@@ -4097,6 +4276,7 @@ label_start:
 	sls	$1
 	sls	$7FFF(a2)
 	sls	$7FFF(a5)
+	sls	-2(sp)
 	sls	$7F(a2,d5.w)
 	sls	$7F(a5,d2.w)
 	sls	$0F(a5,d2.l)
@@ -4120,6 +4300,7 @@ label_start:
 	scc.b	$1
 	scc.b	$7FFF(a2)
 	scc.b	$7FFF(a5)
+	scc.b	-2(sp)
 	scc.b	$7F(a2,d5.w)
 	scc.b	$7F(a5,d2.w)
 	scc.b	$0F(a5,d2.l)
@@ -4142,6 +4323,7 @@ label_start:
 	scc	$1
 	scc	$7FFF(a2)
 	scc	$7FFF(a5)
+	scc	-2(sp)
 	scc	$7F(a2,d5.w)
 	scc	$7F(a5,d2.w)
 	scc	$0F(a5,d2.l)
@@ -4165,6 +4347,7 @@ label_start:
 	scs.b	$1
 	scs.b	$7FFF(a2)
 	scs.b	$7FFF(a5)
+	scs.b	-2(sp)
 	scs.b	$7F(a2,d5.w)
 	scs.b	$7F(a5,d2.w)
 	scs.b	$0F(a5,d2.l)
@@ -4187,6 +4370,7 @@ label_start:
 	scs	$1
 	scs	$7FFF(a2)
 	scs	$7FFF(a5)
+	scs	-2(sp)
 	scs	$7F(a2,d5.w)
 	scs	$7F(a5,d2.w)
 	scs	$0F(a5,d2.l)
@@ -4210,6 +4394,7 @@ label_start:
 	sne.b	$1
 	sne.b	$7FFF(a2)
 	sne.b	$7FFF(a5)
+	sne.b	-2(sp)
 	sne.b	$7F(a2,d5.w)
 	sne.b	$7F(a5,d2.w)
 	sne.b	$0F(a5,d2.l)
@@ -4232,6 +4417,7 @@ label_start:
 	sne	$1
 	sne	$7FFF(a2)
 	sne	$7FFF(a5)
+	sne	-2(sp)
 	sne	$7F(a2,d5.w)
 	sne	$7F(a5,d2.w)
 	sne	$0F(a5,d2.l)
@@ -4255,6 +4441,7 @@ label_start:
 	seq.b	$1
 	seq.b	$7FFF(a2)
 	seq.b	$7FFF(a5)
+	seq.b	-2(sp)
 	seq.b	$7F(a2,d5.w)
 	seq.b	$7F(a5,d2.w)
 	seq.b	$0F(a5,d2.l)
@@ -4277,6 +4464,7 @@ label_start:
 	seq	$1
 	seq	$7FFF(a2)
 	seq	$7FFF(a5)
+	seq	-2(sp)
 	seq	$7F(a2,d5.w)
 	seq	$7F(a5,d2.w)
 	seq	$0F(a5,d2.l)
@@ -4300,6 +4488,7 @@ label_start:
 	svc.b	$1
 	svc.b	$7FFF(a2)
 	svc.b	$7FFF(a5)
+	svc.b	-2(sp)
 	svc.b	$7F(a2,d5.w)
 	svc.b	$7F(a5,d2.w)
 	svc.b	$0F(a5,d2.l)
@@ -4322,6 +4511,7 @@ label_start:
 	svc	$1
 	svc	$7FFF(a2)
 	svc	$7FFF(a5)
+	svc	-2(sp)
 	svc	$7F(a2,d5.w)
 	svc	$7F(a5,d2.w)
 	svc	$0F(a5,d2.l)
@@ -4345,6 +4535,7 @@ label_start:
 	svs.b	$1
 	svs.b	$7FFF(a2)
 	svs.b	$7FFF(a5)
+	svs.b	-2(sp)
 	svs.b	$7F(a2,d5.w)
 	svs.b	$7F(a5,d2.w)
 	svs.b	$0F(a5,d2.l)
@@ -4367,6 +4558,7 @@ label_start:
 	svs	$1
 	svs	$7FFF(a2)
 	svs	$7FFF(a5)
+	svs	-2(sp)
 	svs	$7F(a2,d5.w)
 	svs	$7F(a5,d2.w)
 	svs	$0F(a5,d2.l)
@@ -4390,6 +4582,7 @@ label_start:
 	spl.b	$1
 	spl.b	$7FFF(a2)
 	spl.b	$7FFF(a5)
+	spl.b	-2(sp)
 	spl.b	$7F(a2,d5.w)
 	spl.b	$7F(a5,d2.w)
 	spl.b	$0F(a5,d2.l)
@@ -4412,6 +4605,7 @@ label_start:
 	spl	$1
 	spl	$7FFF(a2)
 	spl	$7FFF(a5)
+	spl	-2(sp)
 	spl	$7F(a2,d5.w)
 	spl	$7F(a5,d2.w)
 	spl	$0F(a5,d2.l)
@@ -4435,6 +4629,7 @@ label_start:
 	smi.b	$1
 	smi.b	$7FFF(a2)
 	smi.b	$7FFF(a5)
+	smi.b	-2(sp)
 	smi.b	$7F(a2,d5.w)
 	smi.b	$7F(a5,d2.w)
 	smi.b	$0F(a5,d2.l)
@@ -4457,6 +4652,7 @@ label_start:
 	smi	$1
 	smi	$7FFF(a2)
 	smi	$7FFF(a5)
+	smi	-2(sp)
 	smi	$7F(a2,d5.w)
 	smi	$7F(a5,d2.w)
 	smi	$0F(a5,d2.l)
@@ -4480,6 +4676,7 @@ label_start:
 	sge.b	$1
 	sge.b	$7FFF(a2)
 	sge.b	$7FFF(a5)
+	sge.b	-2(sp)
 	sge.b	$7F(a2,d5.w)
 	sge.b	$7F(a5,d2.w)
 	sge.b	$0F(a5,d2.l)
@@ -4502,6 +4699,7 @@ label_start:
 	sge	$1
 	sge	$7FFF(a2)
 	sge	$7FFF(a5)
+	sge	-2(sp)
 	sge	$7F(a2,d5.w)
 	sge	$7F(a5,d2.w)
 	sge	$0F(a5,d2.l)
@@ -4525,6 +4723,7 @@ label_start:
 	slt.b	$1
 	slt.b	$7FFF(a2)
 	slt.b	$7FFF(a5)
+	slt.b	-2(sp)
 	slt.b	$7F(a2,d5.w)
 	slt.b	$7F(a5,d2.w)
 	slt.b	$0F(a5,d2.l)
@@ -4547,6 +4746,7 @@ label_start:
 	slt	$1
 	slt	$7FFF(a2)
 	slt	$7FFF(a5)
+	slt	-2(sp)
 	slt	$7F(a2,d5.w)
 	slt	$7F(a5,d2.w)
 	slt	$0F(a5,d2.l)
@@ -4570,6 +4770,7 @@ label_start:
 	sgt.b	$1
 	sgt.b	$7FFF(a2)
 	sgt.b	$7FFF(a5)
+	sgt.b	-2(sp)
 	sgt.b	$7F(a2,d5.w)
 	sgt.b	$7F(a5,d2.w)
 	sgt.b	$0F(a5,d2.l)
@@ -4592,6 +4793,7 @@ label_start:
 	sgt	$1
 	sgt	$7FFF(a2)
 	sgt	$7FFF(a5)
+	sgt	-2(sp)
 	sgt	$7F(a2,d5.w)
 	sgt	$7F(a5,d2.w)
 	sgt	$0F(a5,d2.l)
@@ -4615,6 +4817,7 @@ label_start:
 	sle.b	$1
 	sle.b	$7FFF(a2)
 	sle.b	$7FFF(a5)
+	sle.b	-2(sp)
 	sle.b	$7F(a2,d5.w)
 	sle.b	$7F(a5,d2.w)
 	sle.b	$0F(a5,d2.l)
@@ -4637,6 +4840,7 @@ label_start:
 	sle	$1
 	sle	$7FFF(a2)
 	sle	$7FFF(a5)
+	sle	-2(sp)
 	sle	$7F(a2,d5.w)
 	sle	$7F(a5,d2.w)
 	sle	$0F(a5,d2.l)
@@ -4660,6 +4864,7 @@ label_start:
 	shs.b	$1
 	shs.b	$7FFF(a2)
 	shs.b	$7FFF(a5)
+	shs.b	-2(sp)
 	shs.b	$7F(a2,d5.w)
 	shs.b	$7F(a5,d2.w)
 	shs.b	$0F(a5,d2.l)
@@ -4682,6 +4887,7 @@ label_start:
 	shs	$1
 	shs	$7FFF(a2)
 	shs	$7FFF(a5)
+	shs	-2(sp)
 	shs	$7F(a2,d5.w)
 	shs	$7F(a5,d2.w)
 	shs	$0F(a5,d2.l)
@@ -4705,6 +4911,7 @@ label_start:
 	slo.b	$1
 	slo.b	$7FFF(a2)
 	slo.b	$7FFF(a5)
+	slo.b	-2(sp)
 	slo.b	$7F(a2,d5.w)
 	slo.b	$7F(a5,d2.w)
 	slo.b	$0F(a5,d2.l)
@@ -4727,6 +4934,7 @@ label_start:
 	slo	$1
 	slo	$7FFF(a2)
 	slo	$7FFF(a5)
+	slo	-2(sp)
 	slo	$7F(a2,d5.w)
 	slo	$7F(a5,d2.w)
 	slo	$0F(a5,d2.l)
@@ -5026,18 +5234,26 @@ label_start:
 	movep.w	$7FFF(a2),d5
 	movep.w	$7FFF(a5),d2
 	movep.w	$7FFF(a5),d5
+	movep.w	-2(sp),d2
+	movep.w	-2(sp),d5
 	movep.l	$7FFF(a2),d2
 	movep.l	$7FFF(a2),d5
 	movep.l	$7FFF(a5),d2
 	movep.l	$7FFF(a5),d5
+	movep.l	-2(sp),d2
+	movep.l	-2(sp),d5
 	movep.w	d2,$7FFF(a2)
 	movep.w	d2,$7FFF(a5)
+	movep.w	d2,-2(sp)
 	movep.w	d5,$7FFF(a2)
 	movep.w	d5,$7FFF(a5)
+	movep.w	d5,-2(sp)
 	movep.l	d2,$7FFF(a2)
 	movep.l	d2,$7FFF(a5)
+	movep.l	d2,-2(sp)
 	movep.l	d5,$7FFF(a2)
 	movep.l	d5,$7FFF(a5)
+	movep.l	d5,-2(sp)
 
 	movea.w	(a2),a2
 	movea.w	(a2),a5
@@ -5119,6 +5335,10 @@ label_start:
 	movea.w	$7FFF(a5),a5
 	movea.w	$7FFF(a5),a7
 	movea.w	$7FFF(a5),sp
+	movea.w	-2(sp),a2
+	movea.w	-2(sp),a5
+	movea.w	-2(sp),a7
+	movea.w	-2(sp),sp
 	movea.w	$7F(a2,d5.w),a2
 	movea.w	$7F(a2,d5.w),a5
 	movea.w	$7F(a2,d5.w),a7
@@ -5271,6 +5491,10 @@ label_start:
 	movea.l	$7FFF(a5),a5
 	movea.l	$7FFF(a5),a7
 	movea.l	$7FFF(a5),sp
+	movea.l	-2(sp),a2
+	movea.l	-2(sp),a5
+	movea.l	-2(sp),a7
+	movea.l	-2(sp),sp
 	movea.l	$7F(a2,d5.w),a2
 	movea.l	$7F(a2,d5.w),a5
 	movea.l	$7F(a2,d5.w),a7
@@ -5394,8 +5618,10 @@ label_start:
 	move.b	(a5),$1
 	move.b	(a2),$7FFF(a2)
 	move.b	(a2),$7FFF(a5)
+	move.b	(a2),-2(sp)
 	move.b	(a5),$7FFF(a2)
 	move.b	(a5),$7FFF(a5)
+	move.b	(a5),-2(sp)
 	move.b	(a2),$7F(a2,d5.w)
 	move.b	(a2),$7F(a5,d2.w)
 	move.b	(a2),$0F(a5,d2.l)
@@ -5452,10 +5678,13 @@ label_start:
 	move.b	(a5)+,$1
 	move.b	(a1)+,$7FFF(a2)
 	move.b	(a1)+,$7FFF(a5)
+	move.b	(a1)+,-2(sp)
 	move.b	(a2)+,$7FFF(a2)
 	move.b	(a2)+,$7FFF(a5)
+	move.b	(a2)+,-2(sp)
 	move.b	(a5)+,$7FFF(a2)
 	move.b	(a5)+,$7FFF(a5)
+	move.b	(a5)+,-2(sp)
 	move.b	(a1)+,$7F(a2,d5.w)
 	move.b	(a1)+,$7F(a5,d2.w)
 	move.b	(a1)+,$0F(a5,d2.l)
@@ -5518,10 +5747,13 @@ label_start:
 	move.b	-(sp),$1
 	move.b	-(a2),$7FFF(a2)
 	move.b	-(a2),$7FFF(a5)
+	move.b	-(a2),-2(sp)
 	move.b	-(a5),$7FFF(a2)
 	move.b	-(a5),$7FFF(a5)
+	move.b	-(a5),-2(sp)
 	move.b	-(sp),$7FFF(a2)
 	move.b	-(sp),$7FFF(a5)
+	move.b	-(sp),-2(sp)
 	move.b	-(a2),$7F(a2,d5.w)
 	move.b	-(a2),$7F(a5,d2.w)
 	move.b	-(a2),$0F(a5,d2.l)
@@ -5598,12 +5830,16 @@ label_start:
 	move.b	$1,$1
 	move.b	($FFFFFFFF).l,$7FFF(a2)
 	move.b	($FFFFFFFF).l,$7FFF(a5)
+	move.b	($FFFFFFFF).l,-2(sp)
 	move.b	label_start.l,$7FFF(a2)
 	move.b	label_start.l,$7FFF(a5)
+	move.b	label_start.l,-2(sp)
 	move.b	$FFFFFFFF,$7FFF(a2)
 	move.b	$FFFFFFFF,$7FFF(a5)
+	move.b	$FFFFFFFF,-2(sp)
 	move.b	$1,$7FFF(a2)
 	move.b	$1,$7FFF(a5)
+	move.b	$1,-2(sp)
 	move.b	($FFFFFFFF).l,$7F(a2,d5.w)
 	move.b	($FFFFFFFF).l,$7F(a5,d2.w)
 	move.b	($FFFFFFFF).l,$0F(a5,d2.l)
@@ -5658,8 +5894,10 @@ label_start:
 	move.b	$1,$1
 	move.b	($FFFFFFFF).w,$7FFF(a2)
 	move.b	($FFFFFFFF).w,$7FFF(a5)
+	move.b	($FFFFFFFF).w,-2(sp)
 	move.b	$1,$7FFF(a2)
 	move.b	$1,$7FFF(a5)
+	move.b	$1,-2(sp)
 	move.b	($FFFFFFFF).w,$7F(a2,d5.w)
 	move.b	($FFFFFFFF).w,$7F(a5,d2.w)
 	move.b	($FFFFFFFF).w,$0F(a5,d2.l)
@@ -5676,18 +5914,26 @@ label_start:
 	move.b	$7FFF(a2),(a5)
 	move.b	$7FFF(a5),(a2)
 	move.b	$7FFF(a5),(a5)
+	move.b	-2(sp),(a2)
+	move.b	-2(sp),(a5)
 	move.b	$7FFF(a2),(a1)+
 	move.b	$7FFF(a2),(a2)+
 	move.b	$7FFF(a2),(a5)+
 	move.b	$7FFF(a5),(a1)+
 	move.b	$7FFF(a5),(a2)+
 	move.b	$7FFF(a5),(a5)+
+	move.b	-2(sp),(a1)+
+	move.b	-2(sp),(a2)+
+	move.b	-2(sp),(a5)+
 	move.b	$7FFF(a2),-(a2)
 	move.b	$7FFF(a2),-(a5)
 	move.b	$7FFF(a2),-(sp)
 	move.b	$7FFF(a5),-(a2)
 	move.b	$7FFF(a5),-(a5)
 	move.b	$7FFF(a5),-(sp)
+	move.b	-2(sp),-(a2)
+	move.b	-2(sp),-(a5)
+	move.b	-2(sp),-(sp)
 	move.b	$7FFF(a2),($FFFFFFFF).l
 	move.b	$7FFF(a2),label_start.l
 	move.b	$7FFF(a2),$FFFFFFFF
@@ -5696,14 +5942,25 @@ label_start:
 	move.b	$7FFF(a5),label_start.l
 	move.b	$7FFF(a5),$FFFFFFFF
 	move.b	$7FFF(a5),$1
+	move.b	-2(sp),($FFFFFFFF).l
+	move.b	-2(sp),label_start.l
+	move.b	-2(sp),$FFFFFFFF
+	move.b	-2(sp),$1
 	move.b	$7FFF(a2),($FFFFFFFF).w
 	move.b	$7FFF(a2),$1
 	move.b	$7FFF(a5),($FFFFFFFF).w
 	move.b	$7FFF(a5),$1
+	move.b	-2(sp),($FFFFFFFF).w
+	move.b	-2(sp),$1
 	move.b	$7FFF(a2),$7FFF(a2)
 	move.b	$7FFF(a2),$7FFF(a5)
+	move.b	$7FFF(a2),-2(sp)
 	move.b	$7FFF(a5),$7FFF(a2)
 	move.b	$7FFF(a5),$7FFF(a5)
+	move.b	$7FFF(a5),-2(sp)
+	move.b	-2(sp),$7FFF(a2)
+	move.b	-2(sp),$7FFF(a5)
+	move.b	-2(sp),-2(sp)
 	move.b	$7FFF(a2),$7F(a2,d5.w)
 	move.b	$7FFF(a2),$7F(a5,d2.w)
 	move.b	$7FFF(a2),$0F(a5,d2.l)
@@ -5712,10 +5969,16 @@ label_start:
 	move.b	$7FFF(a5),$7F(a5,d2.w)
 	move.b	$7FFF(a5),$0F(a5,d2.l)
 	move.b	$7FFF(a5),$1+1(a5,d2.l)
+	move.b	-2(sp),$7F(a2,d5.w)
+	move.b	-2(sp),$7F(a5,d2.w)
+	move.b	-2(sp),$0F(a5,d2.l)
+	move.b	-2(sp),$1+1(a5,d2.l)
 	move.b	$7FFF(a2),d2
 	move.b	$7FFF(a2),d5
 	move.b	$7FFF(a5),d2
 	move.b	$7FFF(a5),d5
+	move.b	-2(sp),d2
+	move.b	-2(sp),d5
 	move.b	$7F(a2,d5.w),(a2)
 	move.b	$7F(a2,d5.w),(a5)
 	move.b	$7F(a5,d2.w),(a2)
@@ -5774,12 +6037,16 @@ label_start:
 	move.b	$1+1(a5,d2.l),$1
 	move.b	$7F(a2,d5.w),$7FFF(a2)
 	move.b	$7F(a2,d5.w),$7FFF(a5)
+	move.b	$7F(a2,d5.w),-2(sp)
 	move.b	$7F(a5,d2.w),$7FFF(a2)
 	move.b	$7F(a5,d2.w),$7FFF(a5)
+	move.b	$7F(a5,d2.w),-2(sp)
 	move.b	$0F(a5,d2.l),$7FFF(a2)
 	move.b	$0F(a5,d2.l),$7FFF(a5)
+	move.b	$0F(a5,d2.l),-2(sp)
 	move.b	$1+1(a5,d2.l),$7FFF(a2)
 	move.b	$1+1(a5,d2.l),$7FFF(a5)
+	move.b	$1+1(a5,d2.l),-2(sp)
 	move.b	$7F(a2,d5.w),$7F(a2,d5.w)
 	move.b	$7F(a2,d5.w),$7F(a5,d2.w)
 	move.b	$7F(a2,d5.w),$0F(a5,d2.l)
@@ -5834,8 +6101,10 @@ label_start:
 	move.b	@-2(pc),$1
 	move.b	@(pc),$7FFF(a2)
 	move.b	@(pc),$7FFF(a5)
+	move.b	@(pc),-2(sp)
 	move.b	@-2(pc),$7FFF(a2)
 	move.b	@-2(pc),$7FFF(a5)
+	move.b	@-2(pc),-2(sp)
 	move.b	@(pc),$7F(a2,d5.w)
 	move.b	@(pc),$7F(a5,d2.w)
 	move.b	@(pc),$0F(a5,d2.l)
@@ -5892,10 +6161,13 @@ label_start:
 	move.b	@-2(pc,d1.l),$1
 	move.b	@(pc,d5.w),$7FFF(a2)
 	move.b	@(pc,d5.w),$7FFF(a5)
+	move.b	@(pc,d5.w),-2(sp)
 	move.b	@-2(pc,d5.w),$7FFF(a2)
 	move.b	@-2(pc,d5.w),$7FFF(a5)
+	move.b	@-2(pc,d5.w),-2(sp)
 	move.b	@-2(pc,d1.l),$7FFF(a2)
 	move.b	@-2(pc,d1.l),$7FFF(a5)
+	move.b	@-2(pc,d1.l),-2(sp)
 	move.b	@(pc,d5.w),$7F(a2,d5.w)
 	move.b	@(pc,d5.w),$7F(a5,d2.w)
 	move.b	@(pc,d5.w),$0F(a5,d2.l)
@@ -5944,8 +6216,10 @@ label_start:
 	move.b	d5,$1
 	move.b	d2,$7FFF(a2)
 	move.b	d2,$7FFF(a5)
+	move.b	d2,-2(sp)
 	move.b	d5,$7FFF(a2)
 	move.b	d5,$7FFF(a5)
+	move.b	d5,-2(sp)
 	move.b	d2,$7F(a2,d5.w)
 	move.b	d2,$7F(a5,d2.w)
 	move.b	d2,$0F(a5,d2.l)
@@ -6002,10 +6276,13 @@ label_start:
 	move.b	#"X",$1
 	move.b	#0,$7FFF(a2)
 	move.b	#0,$7FFF(a5)
+	move.b	#0,-2(sp)
 	move.b	#$FF,$7FFF(a2)
 	move.b	#$FF,$7FFF(a5)
+	move.b	#$FF,-2(sp)
 	move.b	#"X",$7FFF(a2)
 	move.b	#"X",$7FFF(a5)
+	move.b	#"X",-2(sp)
 	move.b	#0,$7F(a2,d5.w)
 	move.b	#0,$7F(a5,d2.w)
 	move.b	#0,$0F(a5,d2.l)
@@ -6054,8 +6331,10 @@ label_start:
 	move.w	(a5),$1
 	move.w	(a2),$7FFF(a2)
 	move.w	(a2),$7FFF(a5)
+	move.w	(a2),-2(sp)
 	move.w	(a5),$7FFF(a2)
 	move.w	(a5),$7FFF(a5)
+	move.w	(a5),-2(sp)
 	move.w	(a2),$7F(a2,d5.w)
 	move.w	(a2),$7F(a5,d2.w)
 	move.w	(a2),$0F(a5,d2.l)
@@ -6112,10 +6391,13 @@ label_start:
 	move.w	(a5)+,$1
 	move.w	(a1)+,$7FFF(a2)
 	move.w	(a1)+,$7FFF(a5)
+	move.w	(a1)+,-2(sp)
 	move.w	(a2)+,$7FFF(a2)
 	move.w	(a2)+,$7FFF(a5)
+	move.w	(a2)+,-2(sp)
 	move.w	(a5)+,$7FFF(a2)
 	move.w	(a5)+,$7FFF(a5)
+	move.w	(a5)+,-2(sp)
 	move.w	(a1)+,$7F(a2,d5.w)
 	move.w	(a1)+,$7F(a5,d2.w)
 	move.w	(a1)+,$0F(a5,d2.l)
@@ -6178,10 +6460,13 @@ label_start:
 	move.w	-(sp),$1
 	move.w	-(a2),$7FFF(a2)
 	move.w	-(a2),$7FFF(a5)
+	move.w	-(a2),-2(sp)
 	move.w	-(a5),$7FFF(a2)
 	move.w	-(a5),$7FFF(a5)
+	move.w	-(a5),-2(sp)
 	move.w	-(sp),$7FFF(a2)
 	move.w	-(sp),$7FFF(a5)
+	move.w	-(sp),-2(sp)
 	move.w	-(a2),$7F(a2,d5.w)
 	move.w	-(a2),$7F(a5,d2.w)
 	move.w	-(a2),$0F(a5,d2.l)
@@ -6258,12 +6543,16 @@ label_start:
 	move.w	$1,$1
 	move.w	($FFFFFFFF).l,$7FFF(a2)
 	move.w	($FFFFFFFF).l,$7FFF(a5)
+	move.w	($FFFFFFFF).l,-2(sp)
 	move.w	label_start.l,$7FFF(a2)
 	move.w	label_start.l,$7FFF(a5)
+	move.w	label_start.l,-2(sp)
 	move.w	$FFFFFFFF,$7FFF(a2)
 	move.w	$FFFFFFFF,$7FFF(a5)
+	move.w	$FFFFFFFF,-2(sp)
 	move.w	$1,$7FFF(a2)
 	move.w	$1,$7FFF(a5)
+	move.w	$1,-2(sp)
 	move.w	($FFFFFFFF).l,$7F(a2,d5.w)
 	move.w	($FFFFFFFF).l,$7F(a5,d2.w)
 	move.w	($FFFFFFFF).l,$0F(a5,d2.l)
@@ -6318,8 +6607,10 @@ label_start:
 	move.w	$1,$1
 	move.w	($FFFFFFFF).w,$7FFF(a2)
 	move.w	($FFFFFFFF).w,$7FFF(a5)
+	move.w	($FFFFFFFF).w,-2(sp)
 	move.w	$1,$7FFF(a2)
 	move.w	$1,$7FFF(a5)
+	move.w	$1,-2(sp)
 	move.w	($FFFFFFFF).w,$7F(a2,d5.w)
 	move.w	($FFFFFFFF).w,$7F(a5,d2.w)
 	move.w	($FFFFFFFF).w,$0F(a5,d2.l)
@@ -6336,18 +6627,26 @@ label_start:
 	move.w	$7FFF(a2),(a5)
 	move.w	$7FFF(a5),(a2)
 	move.w	$7FFF(a5),(a5)
+	move.w	-2(sp),(a2)
+	move.w	-2(sp),(a5)
 	move.w	$7FFF(a2),(a1)+
 	move.w	$7FFF(a2),(a2)+
 	move.w	$7FFF(a2),(a5)+
 	move.w	$7FFF(a5),(a1)+
 	move.w	$7FFF(a5),(a2)+
 	move.w	$7FFF(a5),(a5)+
+	move.w	-2(sp),(a1)+
+	move.w	-2(sp),(a2)+
+	move.w	-2(sp),(a5)+
 	move.w	$7FFF(a2),-(a2)
 	move.w	$7FFF(a2),-(a5)
 	move.w	$7FFF(a2),-(sp)
 	move.w	$7FFF(a5),-(a2)
 	move.w	$7FFF(a5),-(a5)
 	move.w	$7FFF(a5),-(sp)
+	move.w	-2(sp),-(a2)
+	move.w	-2(sp),-(a5)
+	move.w	-2(sp),-(sp)
 	move.w	$7FFF(a2),($FFFFFFFF).l
 	move.w	$7FFF(a2),label_start.l
 	move.w	$7FFF(a2),$FFFFFFFF
@@ -6356,14 +6655,25 @@ label_start:
 	move.w	$7FFF(a5),label_start.l
 	move.w	$7FFF(a5),$FFFFFFFF
 	move.w	$7FFF(a5),$1
+	move.w	-2(sp),($FFFFFFFF).l
+	move.w	-2(sp),label_start.l
+	move.w	-2(sp),$FFFFFFFF
+	move.w	-2(sp),$1
 	move.w	$7FFF(a2),($FFFFFFFF).w
 	move.w	$7FFF(a2),$1
 	move.w	$7FFF(a5),($FFFFFFFF).w
 	move.w	$7FFF(a5),$1
+	move.w	-2(sp),($FFFFFFFF).w
+	move.w	-2(sp),$1
 	move.w	$7FFF(a2),$7FFF(a2)
 	move.w	$7FFF(a2),$7FFF(a5)
+	move.w	$7FFF(a2),-2(sp)
 	move.w	$7FFF(a5),$7FFF(a2)
 	move.w	$7FFF(a5),$7FFF(a5)
+	move.w	$7FFF(a5),-2(sp)
+	move.w	-2(sp),$7FFF(a2)
+	move.w	-2(sp),$7FFF(a5)
+	move.w	-2(sp),-2(sp)
 	move.w	$7FFF(a2),$7F(a2,d5.w)
 	move.w	$7FFF(a2),$7F(a5,d2.w)
 	move.w	$7FFF(a2),$0F(a5,d2.l)
@@ -6372,10 +6682,16 @@ label_start:
 	move.w	$7FFF(a5),$7F(a5,d2.w)
 	move.w	$7FFF(a5),$0F(a5,d2.l)
 	move.w	$7FFF(a5),$1+1(a5,d2.l)
+	move.w	-2(sp),$7F(a2,d5.w)
+	move.w	-2(sp),$7F(a5,d2.w)
+	move.w	-2(sp),$0F(a5,d2.l)
+	move.w	-2(sp),$1+1(a5,d2.l)
 	move.w	$7FFF(a2),d2
 	move.w	$7FFF(a2),d5
 	move.w	$7FFF(a5),d2
 	move.w	$7FFF(a5),d5
+	move.w	-2(sp),d2
+	move.w	-2(sp),d5
 	move.w	$7F(a2,d5.w),(a2)
 	move.w	$7F(a2,d5.w),(a5)
 	move.w	$7F(a5,d2.w),(a2)
@@ -6434,12 +6750,16 @@ label_start:
 	move.w	$1+1(a5,d2.l),$1
 	move.w	$7F(a2,d5.w),$7FFF(a2)
 	move.w	$7F(a2,d5.w),$7FFF(a5)
+	move.w	$7F(a2,d5.w),-2(sp)
 	move.w	$7F(a5,d2.w),$7FFF(a2)
 	move.w	$7F(a5,d2.w),$7FFF(a5)
+	move.w	$7F(a5,d2.w),-2(sp)
 	move.w	$0F(a5,d2.l),$7FFF(a2)
 	move.w	$0F(a5,d2.l),$7FFF(a5)
+	move.w	$0F(a5,d2.l),-2(sp)
 	move.w	$1+1(a5,d2.l),$7FFF(a2)
 	move.w	$1+1(a5,d2.l),$7FFF(a5)
+	move.w	$1+1(a5,d2.l),-2(sp)
 	move.w	$7F(a2,d5.w),$7F(a2,d5.w)
 	move.w	$7F(a2,d5.w),$7F(a5,d2.w)
 	move.w	$7F(a2,d5.w),$0F(a5,d2.l)
@@ -6494,8 +6814,10 @@ label_start:
 	move.w	@-2(pc),$1
 	move.w	@(pc),$7FFF(a2)
 	move.w	@(pc),$7FFF(a5)
+	move.w	@(pc),-2(sp)
 	move.w	@-2(pc),$7FFF(a2)
 	move.w	@-2(pc),$7FFF(a5)
+	move.w	@-2(pc),-2(sp)
 	move.w	@(pc),$7F(a2,d5.w)
 	move.w	@(pc),$7F(a5,d2.w)
 	move.w	@(pc),$0F(a5,d2.l)
@@ -6552,10 +6874,13 @@ label_start:
 	move.w	@-2(pc,d1.l),$1
 	move.w	@(pc,d5.w),$7FFF(a2)
 	move.w	@(pc,d5.w),$7FFF(a5)
+	move.w	@(pc,d5.w),-2(sp)
 	move.w	@-2(pc,d5.w),$7FFF(a2)
 	move.w	@-2(pc,d5.w),$7FFF(a5)
+	move.w	@-2(pc,d5.w),-2(sp)
 	move.w	@-2(pc,d1.l),$7FFF(a2)
 	move.w	@-2(pc,d1.l),$7FFF(a5)
+	move.w	@-2(pc,d1.l),-2(sp)
 	move.w	@(pc,d5.w),$7F(a2,d5.w)
 	move.w	@(pc,d5.w),$7F(a5,d2.w)
 	move.w	@(pc,d5.w),$0F(a5,d2.l)
@@ -6604,8 +6929,10 @@ label_start:
 	move.w	d5,$1
 	move.w	d2,$7FFF(a2)
 	move.w	d2,$7FFF(a5)
+	move.w	d2,-2(sp)
 	move.w	d5,$7FFF(a2)
 	move.w	d5,$7FFF(a5)
+	move.w	d5,-2(sp)
 	move.w	d2,$7F(a2,d5.w)
 	move.w	d2,$7F(a5,d2.w)
 	move.w	d2,$0F(a5,d2.l)
@@ -6718,18 +7045,25 @@ label_start:
 	move.w	#$FFFF,$1
 	move.w	#0,$7FFF(a2)
 	move.w	#0,$7FFF(a5)
+	move.w	#0,-2(sp)
 	move.w	#4,$7FFF(a2)
 	move.w	#4,$7FFF(a5)
+	move.w	#4,-2(sp)
 	move.w	#$FF,$7FFF(a2)
 	move.w	#$FF,$7FFF(a5)
+	move.w	#$FF,-2(sp)
 	move.w	#"XY",$7FFF(a2)
 	move.w	#"XY",$7FFF(a5)
+	move.w	#"XY",-2(sp)
 	move.w	#$2700,$7FFF(a2)
 	move.w	#$2700,$7FFF(a5)
+	move.w	#$2700,-2(sp)
 	move.w	#$7FFF,$7FFF(a2)
 	move.w	#$7FFF,$7FFF(a5)
+	move.w	#$7FFF,-2(sp)
 	move.w	#$FFFF,$7FFF(a2)
 	move.w	#$FFFF,$7FFF(a5)
+	move.w	#$FFFF,-2(sp)
 	move.w	#0,$7F(a2,d5.w)
 	move.w	#0,$7F(a5,d2.w)
 	move.w	#0,$0F(a5,d2.l)
@@ -6802,8 +7136,10 @@ label_start:
 	move.l	(a5),$1
 	move.l	(a2),$7FFF(a2)
 	move.l	(a2),$7FFF(a5)
+	move.l	(a2),-2(sp)
 	move.l	(a5),$7FFF(a2)
 	move.l	(a5),$7FFF(a5)
+	move.l	(a5),-2(sp)
 	move.l	(a2),$7F(a2,d5.w)
 	move.l	(a2),$7F(a5,d2.w)
 	move.l	(a2),$0F(a5,d2.l)
@@ -6860,10 +7196,13 @@ label_start:
 	move.l	(a5)+,$1
 	move.l	(a1)+,$7FFF(a2)
 	move.l	(a1)+,$7FFF(a5)
+	move.l	(a1)+,-2(sp)
 	move.l	(a2)+,$7FFF(a2)
 	move.l	(a2)+,$7FFF(a5)
+	move.l	(a2)+,-2(sp)
 	move.l	(a5)+,$7FFF(a2)
 	move.l	(a5)+,$7FFF(a5)
+	move.l	(a5)+,-2(sp)
 	move.l	(a1)+,$7F(a2,d5.w)
 	move.l	(a1)+,$7F(a5,d2.w)
 	move.l	(a1)+,$0F(a5,d2.l)
@@ -6926,10 +7265,13 @@ label_start:
 	move.l	-(sp),$1
 	move.l	-(a2),$7FFF(a2)
 	move.l	-(a2),$7FFF(a5)
+	move.l	-(a2),-2(sp)
 	move.l	-(a5),$7FFF(a2)
 	move.l	-(a5),$7FFF(a5)
+	move.l	-(a5),-2(sp)
 	move.l	-(sp),$7FFF(a2)
 	move.l	-(sp),$7FFF(a5)
+	move.l	-(sp),-2(sp)
 	move.l	-(a2),$7F(a2,d5.w)
 	move.l	-(a2),$7F(a5,d2.w)
 	move.l	-(a2),$0F(a5,d2.l)
@@ -7006,12 +7348,16 @@ label_start:
 	move.l	$1,$1
 	move.l	($FFFFFFFF).l,$7FFF(a2)
 	move.l	($FFFFFFFF).l,$7FFF(a5)
+	move.l	($FFFFFFFF).l,-2(sp)
 	move.l	label_start.l,$7FFF(a2)
 	move.l	label_start.l,$7FFF(a5)
+	move.l	label_start.l,-2(sp)
 	move.l	$FFFFFFFF,$7FFF(a2)
 	move.l	$FFFFFFFF,$7FFF(a5)
+	move.l	$FFFFFFFF,-2(sp)
 	move.l	$1,$7FFF(a2)
 	move.l	$1,$7FFF(a5)
+	move.l	$1,-2(sp)
 	move.l	($FFFFFFFF).l,$7F(a2,d5.w)
 	move.l	($FFFFFFFF).l,$7F(a5,d2.w)
 	move.l	($FFFFFFFF).l,$0F(a5,d2.l)
@@ -7066,8 +7412,10 @@ label_start:
 	move.l	$1,$1
 	move.l	($FFFFFFFF).w,$7FFF(a2)
 	move.l	($FFFFFFFF).w,$7FFF(a5)
+	move.l	($FFFFFFFF).w,-2(sp)
 	move.l	$1,$7FFF(a2)
 	move.l	$1,$7FFF(a5)
+	move.l	$1,-2(sp)
 	move.l	($FFFFFFFF).w,$7F(a2,d5.w)
 	move.l	($FFFFFFFF).w,$7F(a5,d2.w)
 	move.l	($FFFFFFFF).w,$0F(a5,d2.l)
@@ -7084,18 +7432,26 @@ label_start:
 	move.l	$7FFF(a2),(a5)
 	move.l	$7FFF(a5),(a2)
 	move.l	$7FFF(a5),(a5)
+	move.l	-2(sp),(a2)
+	move.l	-2(sp),(a5)
 	move.l	$7FFF(a2),(a1)+
 	move.l	$7FFF(a2),(a2)+
 	move.l	$7FFF(a2),(a5)+
 	move.l	$7FFF(a5),(a1)+
 	move.l	$7FFF(a5),(a2)+
 	move.l	$7FFF(a5),(a5)+
+	move.l	-2(sp),(a1)+
+	move.l	-2(sp),(a2)+
+	move.l	-2(sp),(a5)+
 	move.l	$7FFF(a2),-(a2)
 	move.l	$7FFF(a2),-(a5)
 	move.l	$7FFF(a2),-(sp)
 	move.l	$7FFF(a5),-(a2)
 	move.l	$7FFF(a5),-(a5)
 	move.l	$7FFF(a5),-(sp)
+	move.l	-2(sp),-(a2)
+	move.l	-2(sp),-(a5)
+	move.l	-2(sp),-(sp)
 	move.l	$7FFF(a2),($FFFFFFFF).l
 	move.l	$7FFF(a2),label_start.l
 	move.l	$7FFF(a2),$FFFFFFFF
@@ -7104,14 +7460,25 @@ label_start:
 	move.l	$7FFF(a5),label_start.l
 	move.l	$7FFF(a5),$FFFFFFFF
 	move.l	$7FFF(a5),$1
+	move.l	-2(sp),($FFFFFFFF).l
+	move.l	-2(sp),label_start.l
+	move.l	-2(sp),$FFFFFFFF
+	move.l	-2(sp),$1
 	move.l	$7FFF(a2),($FFFFFFFF).w
 	move.l	$7FFF(a2),$1
 	move.l	$7FFF(a5),($FFFFFFFF).w
 	move.l	$7FFF(a5),$1
+	move.l	-2(sp),($FFFFFFFF).w
+	move.l	-2(sp),$1
 	move.l	$7FFF(a2),$7FFF(a2)
 	move.l	$7FFF(a2),$7FFF(a5)
+	move.l	$7FFF(a2),-2(sp)
 	move.l	$7FFF(a5),$7FFF(a2)
 	move.l	$7FFF(a5),$7FFF(a5)
+	move.l	$7FFF(a5),-2(sp)
+	move.l	-2(sp),$7FFF(a2)
+	move.l	-2(sp),$7FFF(a5)
+	move.l	-2(sp),-2(sp)
 	move.l	$7FFF(a2),$7F(a2,d5.w)
 	move.l	$7FFF(a2),$7F(a5,d2.w)
 	move.l	$7FFF(a2),$0F(a5,d2.l)
@@ -7120,10 +7487,16 @@ label_start:
 	move.l	$7FFF(a5),$7F(a5,d2.w)
 	move.l	$7FFF(a5),$0F(a5,d2.l)
 	move.l	$7FFF(a5),$1+1(a5,d2.l)
+	move.l	-2(sp),$7F(a2,d5.w)
+	move.l	-2(sp),$7F(a5,d2.w)
+	move.l	-2(sp),$0F(a5,d2.l)
+	move.l	-2(sp),$1+1(a5,d2.l)
 	move.l	$7FFF(a2),d2
 	move.l	$7FFF(a2),d5
 	move.l	$7FFF(a5),d2
 	move.l	$7FFF(a5),d5
+	move.l	-2(sp),d2
+	move.l	-2(sp),d5
 	move.l	$7F(a2,d5.w),(a2)
 	move.l	$7F(a2,d5.w),(a5)
 	move.l	$7F(a5,d2.w),(a2)
@@ -7182,12 +7555,16 @@ label_start:
 	move.l	$1+1(a5,d2.l),$1
 	move.l	$7F(a2,d5.w),$7FFF(a2)
 	move.l	$7F(a2,d5.w),$7FFF(a5)
+	move.l	$7F(a2,d5.w),-2(sp)
 	move.l	$7F(a5,d2.w),$7FFF(a2)
 	move.l	$7F(a5,d2.w),$7FFF(a5)
+	move.l	$7F(a5,d2.w),-2(sp)
 	move.l	$0F(a5,d2.l),$7FFF(a2)
 	move.l	$0F(a5,d2.l),$7FFF(a5)
+	move.l	$0F(a5,d2.l),-2(sp)
 	move.l	$1+1(a5,d2.l),$7FFF(a2)
 	move.l	$1+1(a5,d2.l),$7FFF(a5)
+	move.l	$1+1(a5,d2.l),-2(sp)
 	move.l	$7F(a2,d5.w),$7F(a2,d5.w)
 	move.l	$7F(a2,d5.w),$7F(a5,d2.w)
 	move.l	$7F(a2,d5.w),$0F(a5,d2.l)
@@ -7242,8 +7619,10 @@ label_start:
 	move.l	@-2(pc),$1
 	move.l	@(pc),$7FFF(a2)
 	move.l	@(pc),$7FFF(a5)
+	move.l	@(pc),-2(sp)
 	move.l	@-2(pc),$7FFF(a2)
 	move.l	@-2(pc),$7FFF(a5)
+	move.l	@-2(pc),-2(sp)
 	move.l	@(pc),$7F(a2,d5.w)
 	move.l	@(pc),$7F(a5,d2.w)
 	move.l	@(pc),$0F(a5,d2.l)
@@ -7300,10 +7679,13 @@ label_start:
 	move.l	@-2(pc,d1.l),$1
 	move.l	@(pc,d5.w),$7FFF(a2)
 	move.l	@(pc,d5.w),$7FFF(a5)
+	move.l	@(pc,d5.w),-2(sp)
 	move.l	@-2(pc,d5.w),$7FFF(a2)
 	move.l	@-2(pc,d5.w),$7FFF(a5)
+	move.l	@-2(pc,d5.w),-2(sp)
 	move.l	@-2(pc,d1.l),$7FFF(a2)
 	move.l	@-2(pc,d1.l),$7FFF(a5)
+	move.l	@-2(pc,d1.l),-2(sp)
 	move.l	@(pc,d5.w),$7F(a2,d5.w)
 	move.l	@(pc,d5.w),$7F(a5,d2.w)
 	move.l	@(pc,d5.w),$0F(a5,d2.l)
@@ -7352,8 +7734,10 @@ label_start:
 	move.l	d5,$1
 	move.l	d2,$7FFF(a2)
 	move.l	d2,$7FFF(a5)
+	move.l	d2,-2(sp)
 	move.l	d5,$7FFF(a2)
 	move.l	d5,$7FFF(a5)
+	move.l	d5,-2(sp)
 	move.l	d2,$7F(a2,d5.w)
 	move.l	d2,$7F(a5,d2.w)
 	move.l	d2,$0F(a5,d2.l)
@@ -7536,28 +7920,40 @@ label_start:
 	move.l	#(3+4),$1
 	move.l	#equ_1,$7FFF(a2)
 	move.l	#equ_1,$7FFF(a5)
+	move.l	#equ_1,-2(sp)
 	move.l	#equ_equ_1,$7FFF(a2)
 	move.l	#equ_equ_1,$7FFF(a5)
+	move.l	#equ_equ_1,-2(sp)
 	move.l	#equ_1_plus_equ_1,$7FFF(a2)
 	move.l	#equ_1_plus_equ_1,$7FFF(a5)
+	move.l	#equ_1_plus_equ_1,-2(sp)
 	move.l	#0,$7FFF(a2)
 	move.l	#0,$7FFF(a5)
+	move.l	#0,-2(sp)
 	move.l	#4,$7FFF(a2)
 	move.l	#4,$7FFF(a5)
+	move.l	#4,-2(sp)
 	move.l	#$FF,$7FFF(a2)
 	move.l	#$FF,$7FFF(a5)
+	move.l	#$FF,-2(sp)
 	move.l	#$7FFF,$7FFF(a2)
 	move.l	#$7FFF,$7FFF(a5)
+	move.l	#$7FFF,-2(sp)
 	move.l	#$FFFF,$7FFF(a2)
 	move.l	#$FFFF,$7FFF(a5)
+	move.l	#$FFFF,-2(sp)
 	move.l	#$FFFFFFFF,$7FFF(a2)
 	move.l	#$FFFFFFFF,$7FFF(a5)
+	move.l	#$FFFFFFFF,-2(sp)
 	move.l	#"WXYZ",$7FFF(a2)
 	move.l	#"WXYZ",$7FFF(a5)
+	move.l	#"WXYZ",-2(sp)
 	move.l	#1+1,$7FFF(a2)
 	move.l	#1+1,$7FFF(a5)
+	move.l	#1+1,-2(sp)
 	move.l	#(3+4),$7FFF(a2)
 	move.l	#(3+4),$7FFF(a5)
+	move.l	#(3+4),-2(sp)
 	move.l	#equ_1,$7F(a2,d5.w)
 	move.l	#equ_1,$7F(a5,d2.w)
 	move.l	#equ_1,$0F(a5,d2.l)
@@ -7688,12 +8084,16 @@ label_start:
 	move.w	sp,$1
 	move.w	a2,$7FFF(a2)
 	move.w	a2,$7FFF(a5)
+	move.w	a2,-2(sp)
 	move.w	a5,$7FFF(a2)
 	move.w	a5,$7FFF(a5)
+	move.w	a5,-2(sp)
 	move.w	a7,$7FFF(a2)
 	move.w	a7,$7FFF(a5)
+	move.w	a7,-2(sp)
 	move.w	sp,$7FFF(a2)
 	move.w	sp,$7FFF(a5)
+	move.w	sp,-2(sp)
 	move.w	a2,$7F(a2,d5.w)
 	move.w	a2,$7F(a5,d2.w)
 	move.w	a2,$0F(a5,d2.l)
@@ -7776,12 +8176,16 @@ label_start:
 	move.l	sp,$1
 	move.l	a2,$7FFF(a2)
 	move.l	a2,$7FFF(a5)
+	move.l	a2,-2(sp)
 	move.l	a5,$7FFF(a2)
 	move.l	a5,$7FFF(a5)
+	move.l	a5,-2(sp)
 	move.l	a7,$7FFF(a2)
 	move.l	a7,$7FFF(a5)
+	move.l	a7,-2(sp)
 	move.l	sp,$7FFF(a2)
 	move.l	sp,$7FFF(a5)
+	move.l	sp,-2(sp)
 	move.l	a2,$7F(a2,d5.w)
 	move.l	a2,$7F(a5,d2.w)
 	move.l	a2,$0F(a5,d2.l)
@@ -7822,6 +8226,7 @@ label_start:
 	move.w	sr,$1
 	move.w	sr,$7FFF(a2)
 	move.w	sr,$7FFF(a5)
+	move.w	sr,-2(sp)
 	move.w	sr,$7F(a2,d5.w)
 	move.w	sr,$7F(a5,d2.w)
 	move.w	sr,$0F(a5,d2.l)
@@ -7844,6 +8249,7 @@ label_start:
 	move.w	$1,ccr
 	move.w	$7FFF(a2),ccr
 	move.w	$7FFF(a5),ccr
+	move.w	-2(sp),ccr
 	move.w	$7F(a2,d5.w),ccr
 	move.w	$7F(a5,d2.w),ccr
 	move.w	$0F(a5,d2.l),ccr
@@ -7878,6 +8284,7 @@ label_start:
 	move.w	$1,sr
 	move.w	$7FFF(a2),sr
 	move.w	$7FFF(a5),sr
+	move.w	-2(sp),sr
 	move.w	$7F(a2,d5.w),sr
 	move.w	$7F(a5,d2.w),sr
 	move.w	$0F(a5,d2.l),sr
@@ -7929,6 +8336,7 @@ label_start:
 	negx.b	$1
 	negx.b	$7FFF(a2)
 	negx.b	$7FFF(a5)
+	negx.b	-2(sp)
 	negx.b	$7F(a2,d5.w)
 	negx.b	$7F(a5,d2.w)
 	negx.b	$0F(a5,d2.l)
@@ -7951,6 +8359,7 @@ label_start:
 	negx.w	$1
 	negx.w	$7FFF(a2)
 	negx.w	$7FFF(a5)
+	negx.w	-2(sp)
 	negx.w	$7F(a2,d5.w)
 	negx.w	$7F(a5,d2.w)
 	negx.w	$0F(a5,d2.l)
@@ -7973,6 +8382,7 @@ label_start:
 	negx.l	$1
 	negx.l	$7FFF(a2)
 	negx.l	$7FFF(a5)
+	negx.l	-2(sp)
 	negx.l	$7F(a2,d5.w)
 	negx.l	$7F(a5,d2.w)
 	negx.l	$0F(a5,d2.l)
@@ -7996,6 +8406,7 @@ label_start:
 	clr.b	$1
 	clr.b	$7FFF(a2)
 	clr.b	$7FFF(a5)
+	clr.b	-2(sp)
 	clr.b	$7F(a2,d5.w)
 	clr.b	$7F(a5,d2.w)
 	clr.b	$0F(a5,d2.l)
@@ -8018,6 +8429,7 @@ label_start:
 	clr.w	$1
 	clr.w	$7FFF(a2)
 	clr.w	$7FFF(a5)
+	clr.w	-2(sp)
 	clr.w	$7F(a2,d5.w)
 	clr.w	$7F(a5,d2.w)
 	clr.w	$0F(a5,d2.l)
@@ -8040,6 +8452,7 @@ label_start:
 	clr.l	$1
 	clr.l	$7FFF(a2)
 	clr.l	$7FFF(a5)
+	clr.l	-2(sp)
 	clr.l	$7F(a2,d5.w)
 	clr.l	$7F(a5,d2.w)
 	clr.l	$0F(a5,d2.l)
@@ -8063,6 +8476,7 @@ label_start:
 	neg.b	$1
 	neg.b	$7FFF(a2)
 	neg.b	$7FFF(a5)
+	neg.b	-2(sp)
 	neg.b	$7F(a2,d5.w)
 	neg.b	$7F(a5,d2.w)
 	neg.b	$0F(a5,d2.l)
@@ -8085,6 +8499,7 @@ label_start:
 	neg.w	$1
 	neg.w	$7FFF(a2)
 	neg.w	$7FFF(a5)
+	neg.w	-2(sp)
 	neg.w	$7F(a2,d5.w)
 	neg.w	$7F(a5,d2.w)
 	neg.w	$0F(a5,d2.l)
@@ -8107,6 +8522,7 @@ label_start:
 	neg.l	$1
 	neg.l	$7FFF(a2)
 	neg.l	$7FFF(a5)
+	neg.l	-2(sp)
 	neg.l	$7F(a2,d5.w)
 	neg.l	$7F(a5,d2.w)
 	neg.l	$0F(a5,d2.l)
@@ -8130,6 +8546,7 @@ label_start:
 	not.b	$1
 	not.b	$7FFF(a2)
 	not.b	$7FFF(a5)
+	not.b	-2(sp)
 	not.b	$7F(a2,d5.w)
 	not.b	$7F(a5,d2.w)
 	not.b	$0F(a5,d2.l)
@@ -8152,6 +8569,7 @@ label_start:
 	not.w	$1
 	not.w	$7FFF(a2)
 	not.w	$7FFF(a5)
+	not.w	-2(sp)
 	not.w	$7F(a2,d5.w)
 	not.w	$7F(a5,d2.w)
 	not.w	$0F(a5,d2.l)
@@ -8174,6 +8592,7 @@ label_start:
 	not.l	$1
 	not.l	$7FFF(a2)
 	not.l	$7FFF(a5)
+	not.l	-2(sp)
 	not.l	$7F(a2,d5.w)
 	not.l	$7F(a5,d2.w)
 	not.l	$0F(a5,d2.l)
@@ -8197,6 +8616,7 @@ label_start:
 	tas.b	$1
 	tas.b	$7FFF(a2)
 	tas.b	$7FFF(a5)
+	tas.b	-2(sp)
 	tas.b	$7F(a2,d5.w)
 	tas.b	$7F(a5,d2.w)
 	tas.b	$0F(a5,d2.l)
@@ -8219,6 +8639,7 @@ label_start:
 	tas	$1
 	tas	$7FFF(a2)
 	tas	$7FFF(a5)
+	tas	-2(sp)
 	tas	$7F(a2,d5.w)
 	tas	$7F(a5,d2.w)
 	tas	$0F(a5,d2.l)
@@ -8252,6 +8673,7 @@ label_start:
 	nbcd.b	$1
 	nbcd.b	$7FFF(a2)
 	nbcd.b	$7FFF(a5)
+	nbcd.b	-2(sp)
 	nbcd.b	$7F(a2,d5.w)
 	nbcd.b	$7F(a5,d2.w)
 	nbcd.b	$0F(a5,d2.l)
@@ -8274,6 +8696,7 @@ label_start:
 	nbcd	$1
 	nbcd	$7FFF(a2)
 	nbcd	$7FFF(a5)
+	nbcd	-2(sp)
 	nbcd	$7F(a2,d5.w)
 	nbcd	$7F(a5,d2.w)
 	nbcd	$0F(a5,d2.l)
@@ -8291,6 +8714,7 @@ label_start:
 	pea.l	$1
 	pea.l	$7FFF(a2)
 	pea.l	$7FFF(a5)
+	pea.l	-2(sp)
 	pea.l	$7F(a2,d5.w)
 	pea.l	$7F(a5,d2.w)
 	pea.l	$0F(a5,d2.l)
@@ -8310,6 +8734,7 @@ label_start:
 	pea	$1
 	pea	$7FFF(a2)
 	pea	$7FFF(a5)
+	pea	-2(sp)
 	pea	$7F(a2,d5.w)
 	pea	$7F(a5,d2.w)
 	pea	$0F(a5,d2.l)
@@ -8350,6 +8775,7 @@ label_start:
 	tst.b	$1
 	tst.b	$7FFF(a2)
 	tst.b	$7FFF(a5)
+	tst.b	-2(sp)
 	tst.b	$7F(a2,d5.w)
 	tst.b	$7F(a5,d2.w)
 	tst.b	$0F(a5,d2.l)
@@ -8372,6 +8798,7 @@ label_start:
 	tst.w	$1
 	tst.w	$7FFF(a2)
 	tst.w	$7FFF(a5)
+	tst.w	-2(sp)
 	tst.w	$7F(a2,d5.w)
 	tst.w	$7F(a5,d2.w)
 	tst.w	$0F(a5,d2.l)
@@ -8394,6 +8821,7 @@ label_start:
 	tst.l	$1
 	tst.l	$7FFF(a2)
 	tst.l	$7FFF(a5)
+	tst.l	-2(sp)
 	tst.l	$7F(a2,d5.w)
 	tst.l	$7F(a5,d2.w)
 	tst.l	$0F(a5,d2.l)
@@ -8475,6 +8903,7 @@ label_start:
 	jsr	$1
 	jsr	$7FFF(a2)
 	jsr	$7FFF(a5)
+	jsr	-2(sp)
 	jsr	$7F(a2,d5.w)
 	jsr	$7F(a5,d2.w)
 	jsr	$0F(a5,d2.l)
@@ -8495,6 +8924,7 @@ label_start:
 	jmp	$1
 	jmp	$7FFF(a2)
 	jmp	$7FFF(a5)
+	jmp	-2(sp)
 	jmp	$7F(a2,d5.w)
 	jmp	$7F(a5,d2.w)
 	jmp	$0F(a5,d2.l)
@@ -8562,14 +8992,19 @@ label_start:
 	movem.w	d0/d1/d2/d3-d4,$1
 	movem.w	d2,$7FFF(a2)
 	movem.w	d2,$7FFF(a5)
+	movem.w	d2,-2(sp)
 	movem.w	d5-a7,$7FFF(a2)
 	movem.w	d5-a7,$7FFF(a5)
+	movem.w	d5-a7,-2(sp)
 	movem.w	d0-d7/a0-a7,$7FFF(a2)
 	movem.w	d0-d7/a0-a7,$7FFF(a5)
+	movem.w	d0-d7/a0-a7,-2(sp)
 	movem.w	d0-d1/a0-a1,$7FFF(a2)
 	movem.w	d0-d1/a0-a1,$7FFF(a5)
+	movem.w	d0-d1/a0-a1,-2(sp)
 	movem.w	d0/d1/d2/d3-d4,$7FFF(a2)
 	movem.w	d0/d1/d2/d3-d4,$7FFF(a5)
+	movem.w	d0/d1/d2/d3-d4,-2(sp)
 	movem.w	d2,$7F(a2,d5.w)
 	movem.w	d2,$7F(a5,d2.w)
 	movem.w	d2,$0F(a5,d2.l)
@@ -8647,14 +9082,19 @@ label_start:
 	movem.l	d0/d1/d2/d3-d4,$1
 	movem.l	d2,$7FFF(a2)
 	movem.l	d2,$7FFF(a5)
+	movem.l	d2,-2(sp)
 	movem.l	d5-a7,$7FFF(a2)
 	movem.l	d5-a7,$7FFF(a5)
+	movem.l	d5-a7,-2(sp)
 	movem.l	d0-d7/a0-a7,$7FFF(a2)
 	movem.l	d0-d7/a0-a7,$7FFF(a5)
+	movem.l	d0-d7/a0-a7,-2(sp)
 	movem.l	d0-d1/a0-a1,$7FFF(a2)
 	movem.l	d0-d1/a0-a1,$7FFF(a5)
+	movem.l	d0-d1/a0-a1,-2(sp)
 	movem.l	d0/d1/d2/d3-d4,$7FFF(a2)
 	movem.l	d0/d1/d2/d3-d4,$7FFF(a5)
+	movem.l	d0/d1/d2/d3-d4,-2(sp)
 	movem.l	d2,$7F(a2,d5.w)
 	movem.l	d2,$7F(a5,d2.w)
 	movem.l	d2,$0F(a5,d2.l)
@@ -8740,6 +9180,11 @@ label_start:
 	movem.w	$7FFF(a5),d0-d7/a0-a7
 	movem.w	$7FFF(a5),d0-d1/a0-a1
 	movem.w	$7FFF(a5),d0/d1/d2/d3-d4
+	movem.w	-2(sp),d2
+	movem.w	-2(sp),d5-a7
+	movem.w	-2(sp),d0-d7/a0-a7
+	movem.w	-2(sp),d0-d1/a0-a1
+	movem.w	-2(sp),d0/d1/d2/d3-d4
 	movem.w	$7F(a2,d5.w),d2
 	movem.w	$7F(a2,d5.w),d5-a7
 	movem.w	$7F(a2,d5.w),d0-d7/a0-a7
@@ -8850,6 +9295,11 @@ label_start:
 	movem.l	$7FFF(a5),d0-d7/a0-a7
 	movem.l	$7FFF(a5),d0-d1/a0-a1
 	movem.l	$7FFF(a5),d0/d1/d2/d3-d4
+	movem.l	-2(sp),d2
+	movem.l	-2(sp),d5-a7
+	movem.l	-2(sp),d0-d7/a0-a7
+	movem.l	-2(sp),d0-d1/a0-a1
+	movem.l	-2(sp),d0/d1/d2/d3-d4
 	movem.l	$7F(a2,d5.w),d2
 	movem.l	$7F(a2,d5.w),d5-a7
 	movem.l	$7F(a2,d5.w),d0-d7/a0-a7
@@ -8936,6 +9386,10 @@ label_start:
 	lea.l	$7FFF(a5),a5
 	lea.l	$7FFF(a5),a7
 	lea.l	$7FFF(a5),sp
+	lea.l	-2(sp),a2
+	lea.l	-2(sp),a5
+	lea.l	-2(sp),a7
+	lea.l	-2(sp),sp
 	lea.l	$7F(a2,d5.w),a2
 	lea.l	$7F(a2,d5.w),a5
 	lea.l	$7F(a2,d5.w),a7
@@ -9012,6 +9466,10 @@ label_start:
 	lea	$7FFF(a5),a5
 	lea	$7FFF(a5),a7
 	lea	$7FFF(a5),sp
+	lea	-2(sp),a2
+	lea	-2(sp),a5
+	lea	-2(sp),a7
+	lea	-2(sp),sp
 	lea	$7F(a2,d5.w),a2
 	lea	$7F(a2,d5.w),a5
 	lea	$7F(a2,d5.w),a7
@@ -9081,6 +9539,8 @@ label_start:
 	chk.w	$7FFF(a2),d5
 	chk.w	$7FFF(a5),d2
 	chk.w	$7FFF(a5),d5
+	chk.w	-2(sp),d2
+	chk.w	-2(sp),d5
 	chk.w	$7F(a2,d5.w),d2
 	chk.w	$7F(a2,d5.w),d5
 	chk.w	$7F(a5,d2.w),d2
@@ -9149,6 +9609,8 @@ label_start:
 	chk	$7FFF(a2),d5
 	chk	$7FFF(a5),d2
 	chk	$7FFF(a5),d5
+	chk	-2(sp),d2
+	chk	-2(sp),d5
 	chk	$7F(a2,d5.w),d2
 	chk	$7F(a2,d5.w),d5
 	chk	$7F(a5,d2.w),d2
@@ -9216,8 +9678,10 @@ label_start:
 	addq.b	#7,$1
 	addq.b	#1,$7FFF(a2)
 	addq.b	#1,$7FFF(a5)
+	addq.b	#1,-2(sp)
 	addq.b	#7,$7FFF(a2)
 	addq.b	#7,$7FFF(a5)
+	addq.b	#7,-2(sp)
 	addq.b	#1,$7F(a2,d5.w)
 	addq.b	#1,$7F(a5,d2.w)
 	addq.b	#1,$0F(a5,d2.l)
@@ -9260,8 +9724,10 @@ label_start:
 	addq.w	#7,$1
 	addq.w	#1,$7FFF(a2)
 	addq.w	#1,$7FFF(a5)
+	addq.w	#1,-2(sp)
 	addq.w	#7,$7FFF(a2)
 	addq.w	#7,$7FFF(a5)
+	addq.w	#7,-2(sp)
 	addq.w	#1,$7F(a2,d5.w)
 	addq.w	#1,$7F(a5,d2.w)
 	addq.w	#1,$0F(a5,d2.l)
@@ -9304,8 +9770,10 @@ label_start:
 	addq.l	#7,$1
 	addq.l	#1,$7FFF(a2)
 	addq.l	#1,$7FFF(a5)
+	addq.l	#1,-2(sp)
 	addq.l	#7,$7FFF(a2)
 	addq.l	#7,$7FFF(a5)
+	addq.l	#7,-2(sp)
 	addq.l	#1,$7F(a2,d5.w)
 	addq.l	#1,$7F(a5,d2.w)
 	addq.l	#1,$0F(a5,d2.l)
@@ -9365,8 +9833,10 @@ label_start:
 	subq.b	#7,$1
 	subq.b	#1,$7FFF(a2)
 	subq.b	#1,$7FFF(a5)
+	subq.b	#1,-2(sp)
 	subq.b	#7,$7FFF(a2)
 	subq.b	#7,$7FFF(a5)
+	subq.b	#7,-2(sp)
 	subq.b	#1,$7F(a2,d5.w)
 	subq.b	#1,$7F(a5,d2.w)
 	subq.b	#1,$0F(a5,d2.l)
@@ -9409,8 +9879,10 @@ label_start:
 	subq.w	#7,$1
 	subq.w	#1,$7FFF(a2)
 	subq.w	#1,$7FFF(a5)
+	subq.w	#1,-2(sp)
 	subq.w	#7,$7FFF(a2)
 	subq.w	#7,$7FFF(a5)
+	subq.w	#7,-2(sp)
 	subq.w	#1,$7F(a2,d5.w)
 	subq.w	#1,$7F(a5,d2.w)
 	subq.w	#1,$0F(a5,d2.l)
@@ -9453,8 +9925,10 @@ label_start:
 	subq.l	#7,$1
 	subq.l	#1,$7FFF(a2)
 	subq.l	#1,$7FFF(a5)
+	subq.l	#1,-2(sp)
 	subq.l	#7,$7FFF(a2)
 	subq.l	#7,$7FFF(a5)
+	subq.l	#7,-2(sp)
 	subq.l	#1,$7F(a2,d5.w)
 	subq.l	#1,$7F(a5,d2.w)
 	subq.l	#1,$0F(a5,d2.l)
@@ -9525,6 +9999,8 @@ label_start:
 	divu.w	$7FFF(a2),d5
 	divu.w	$7FFF(a5),d2
 	divu.w	$7FFF(a5),d5
+	divu.w	-2(sp),d2
+	divu.w	-2(sp),d5
 	divu.w	$7F(a2,d5.w),d2
 	divu.w	$7F(a2,d5.w),d5
 	divu.w	$7F(a5,d2.w),d2
@@ -9593,6 +10069,8 @@ label_start:
 	divu	$7FFF(a2),d5
 	divu	$7FFF(a5),d2
 	divu	$7FFF(a5),d5
+	divu	-2(sp),d2
+	divu	-2(sp),d5
 	divu	$7F(a2,d5.w),d2
 	divu	$7F(a2,d5.w),d5
 	divu	$7F(a5,d2.w),d2
@@ -9662,6 +10140,8 @@ label_start:
 	divs.w	$7FFF(a2),d5
 	divs.w	$7FFF(a5),d2
 	divs.w	$7FFF(a5),d5
+	divs.w	-2(sp),d2
+	divs.w	-2(sp),d5
 	divs.w	$7F(a2,d5.w),d2
 	divs.w	$7F(a2,d5.w),d5
 	divs.w	$7F(a5,d2.w),d2
@@ -9730,6 +10210,8 @@ label_start:
 	divs	$7FFF(a2),d5
 	divs	$7FFF(a5),d2
 	divs	$7FFF(a5),d5
+	divs	-2(sp),d2
+	divs	-2(sp),d5
 	divs	$7F(a2,d5.w),d2
 	divs	$7F(a2,d5.w),d5
 	divs	$7F(a5,d2.w),d2
@@ -9853,6 +10335,8 @@ label_start:
 	or.b	$7FFF(a2),d5
 	or.b	$7FFF(a5),d2
 	or.b	$7FFF(a5),d5
+	or.b	-2(sp),d2
+	or.b	-2(sp),d5
 	or.b	$7F(a2,d5.w),d2
 	or.b	$7F(a2,d5.w),d5
 	or.b	$7F(a5,d2.w),d2
@@ -9907,6 +10391,8 @@ label_start:
 	or.w	$7FFF(a2),d5
 	or.w	$7FFF(a5),d2
 	or.w	$7FFF(a5),d5
+	or.w	-2(sp),d2
+	or.w	-2(sp),d5
 	or.w	$7F(a2,d5.w),d2
 	or.w	$7F(a2,d5.w),d5
 	or.w	$7F(a5,d2.w),d2
@@ -9961,6 +10447,8 @@ label_start:
 	or.l	$7FFF(a2),d5
 	or.l	$7FFF(a5),d2
 	or.l	$7FFF(a5),d5
+	or.l	-2(sp),d2
+	or.l	-2(sp),d5
 	or.l	$7F(a2,d5.w),d2
 	or.l	$7F(a2,d5.w),d5
 	or.l	$7F(a5,d2.w),d2
@@ -10013,8 +10501,10 @@ label_start:
 	or.b	d5,$1
 	or.b	d2,$7FFF(a2)
 	or.b	d2,$7FFF(a5)
+	or.b	d2,-2(sp)
 	or.b	d5,$7FFF(a2)
 	or.b	d5,$7FFF(a5)
+	or.b	d5,-2(sp)
 	or.b	d2,$7F(a2,d5.w)
 	or.b	d2,$7F(a5,d2.w)
 	or.b	d2,$0F(a5,d2.l)
@@ -10053,8 +10543,10 @@ label_start:
 	or.w	d5,$1
 	or.w	d2,$7FFF(a2)
 	or.w	d2,$7FFF(a5)
+	or.w	d2,-2(sp)
 	or.w	d5,$7FFF(a2)
 	or.w	d5,$7FFF(a5)
+	or.w	d5,-2(sp)
 	or.w	d2,$7F(a2,d5.w)
 	or.w	d2,$7F(a5,d2.w)
 	or.w	d2,$0F(a5,d2.l)
@@ -10093,8 +10585,10 @@ label_start:
 	or.l	d5,$1
 	or.l	d2,$7FFF(a2)
 	or.l	d2,$7FFF(a5)
+	or.l	d2,-2(sp)
 	or.l	d5,$7FFF(a2)
 	or.l	d5,$7FFF(a5)
+	or.l	d5,-2(sp)
 	or.l	d2,$7F(a2,d5.w)
 	or.l	d2,$7F(a5,d2.w)
 	or.l	d2,$0F(a5,d2.l)
@@ -10136,6 +10630,8 @@ label_start:
 	and.b	$7FFF(a2),d5
 	and.b	$7FFF(a5),d2
 	and.b	$7FFF(a5),d5
+	and.b	-2(sp),d2
+	and.b	-2(sp),d5
 	and.b	$7F(a2,d5.w),d2
 	and.b	$7F(a2,d5.w),d5
 	and.b	$7F(a5,d2.w),d2
@@ -10190,6 +10686,8 @@ label_start:
 	and.w	$7FFF(a2),d5
 	and.w	$7FFF(a5),d2
 	and.w	$7FFF(a5),d5
+	and.w	-2(sp),d2
+	and.w	-2(sp),d5
 	and.w	$7F(a2,d5.w),d2
 	and.w	$7F(a2,d5.w),d5
 	and.w	$7F(a5,d2.w),d2
@@ -10244,6 +10742,8 @@ label_start:
 	and.l	$7FFF(a2),d5
 	and.l	$7FFF(a5),d2
 	and.l	$7FFF(a5),d5
+	and.l	-2(sp),d2
+	and.l	-2(sp),d5
 	and.l	$7F(a2,d5.w),d2
 	and.l	$7F(a2,d5.w),d5
 	and.l	$7F(a5,d2.w),d2
@@ -10296,8 +10796,10 @@ label_start:
 	and.b	d5,$1
 	and.b	d2,$7FFF(a2)
 	and.b	d2,$7FFF(a5)
+	and.b	d2,-2(sp)
 	and.b	d5,$7FFF(a2)
 	and.b	d5,$7FFF(a5)
+	and.b	d5,-2(sp)
 	and.b	d2,$7F(a2,d5.w)
 	and.b	d2,$7F(a5,d2.w)
 	and.b	d2,$0F(a5,d2.l)
@@ -10336,8 +10838,10 @@ label_start:
 	and.w	d5,$1
 	and.w	d2,$7FFF(a2)
 	and.w	d2,$7FFF(a5)
+	and.w	d2,-2(sp)
 	and.w	d5,$7FFF(a2)
 	and.w	d5,$7FFF(a5)
+	and.w	d5,-2(sp)
 	and.w	d2,$7F(a2,d5.w)
 	and.w	d2,$7F(a5,d2.w)
 	and.w	d2,$0F(a5,d2.l)
@@ -10376,8 +10880,10 @@ label_start:
 	and.l	d5,$1
 	and.l	d2,$7FFF(a2)
 	and.l	d2,$7FFF(a5)
+	and.l	d2,-2(sp)
 	and.l	d5,$7FFF(a2)
 	and.l	d5,$7FFF(a5)
+	and.l	d5,-2(sp)
 	and.l	d2,$7F(a2,d5.w)
 	and.l	d2,$7F(a5,d2.w)
 	and.l	d2,$0F(a5,d2.l)
@@ -10419,6 +10925,8 @@ label_start:
 	sub.b	$7FFF(a2),d5
 	sub.b	$7FFF(a5),d2
 	sub.b	$7FFF(a5),d5
+	sub.b	-2(sp),d2
+	sub.b	-2(sp),d5
 	sub.b	$7F(a2,d5.w),d2
 	sub.b	$7F(a2,d5.w),d5
 	sub.b	$7F(a5,d2.w),d2
@@ -10473,6 +10981,8 @@ label_start:
 	sub.w	$7FFF(a2),d5
 	sub.w	$7FFF(a5),d2
 	sub.w	$7FFF(a5),d5
+	sub.w	-2(sp),d2
+	sub.w	-2(sp),d5
 	sub.w	$7F(a2,d5.w),d2
 	sub.w	$7F(a2,d5.w),d5
 	sub.w	$7F(a5,d2.w),d2
@@ -10527,6 +11037,8 @@ label_start:
 	sub.l	$7FFF(a2),d5
 	sub.l	$7FFF(a5),d2
 	sub.l	$7FFF(a5),d5
+	sub.l	-2(sp),d2
+	sub.l	-2(sp),d5
 	sub.l	$7F(a2,d5.w),d2
 	sub.l	$7F(a2,d5.w),d5
 	sub.l	$7F(a5,d2.w),d2
@@ -10595,8 +11107,10 @@ label_start:
 	sub.b	d5,$1
 	sub.b	d2,$7FFF(a2)
 	sub.b	d2,$7FFF(a5)
+	sub.b	d2,-2(sp)
 	sub.b	d5,$7FFF(a2)
 	sub.b	d5,$7FFF(a5)
+	sub.b	d5,-2(sp)
 	sub.b	d2,$7F(a2,d5.w)
 	sub.b	d2,$7F(a5,d2.w)
 	sub.b	d2,$0F(a5,d2.l)
@@ -10635,8 +11149,10 @@ label_start:
 	sub.w	d5,$1
 	sub.w	d2,$7FFF(a2)
 	sub.w	d2,$7FFF(a5)
+	sub.w	d2,-2(sp)
 	sub.w	d5,$7FFF(a2)
 	sub.w	d5,$7FFF(a5)
+	sub.w	d5,-2(sp)
 	sub.w	d2,$7F(a2,d5.w)
 	sub.w	d2,$7F(a5,d2.w)
 	sub.w	d2,$0F(a5,d2.l)
@@ -10675,8 +11191,10 @@ label_start:
 	sub.l	d5,$1
 	sub.l	d2,$7FFF(a2)
 	sub.l	d2,$7FFF(a5)
+	sub.l	d2,-2(sp)
 	sub.l	d5,$7FFF(a2)
 	sub.l	d5,$7FFF(a5)
+	sub.l	d5,-2(sp)
 	sub.l	d2,$7F(a2,d5.w)
 	sub.l	d2,$7F(a5,d2.w)
 	sub.l	d2,$0F(a5,d2.l)
@@ -10718,6 +11236,8 @@ label_start:
 	add.b	$7FFF(a2),d5
 	add.b	$7FFF(a5),d2
 	add.b	$7FFF(a5),d5
+	add.b	-2(sp),d2
+	add.b	-2(sp),d5
 	add.b	$7F(a2,d5.w),d2
 	add.b	$7F(a2,d5.w),d5
 	add.b	$7F(a5,d2.w),d2
@@ -10772,6 +11292,8 @@ label_start:
 	add.w	$7FFF(a2),d5
 	add.w	$7FFF(a5),d2
 	add.w	$7FFF(a5),d5
+	add.w	-2(sp),d2
+	add.w	-2(sp),d5
 	add.w	$7F(a2,d5.w),d2
 	add.w	$7F(a2,d5.w),d5
 	add.w	$7F(a5,d2.w),d2
@@ -10826,6 +11348,8 @@ label_start:
 	add.l	$7FFF(a2),d5
 	add.l	$7FFF(a5),d2
 	add.l	$7FFF(a5),d5
+	add.l	-2(sp),d2
+	add.l	-2(sp),d5
 	add.l	$7F(a2,d5.w),d2
 	add.l	$7F(a2,d5.w),d5
 	add.l	$7F(a5,d2.w),d2
@@ -10894,8 +11418,10 @@ label_start:
 	add.b	d5,$1
 	add.b	d2,$7FFF(a2)
 	add.b	d2,$7FFF(a5)
+	add.b	d2,-2(sp)
 	add.b	d5,$7FFF(a2)
 	add.b	d5,$7FFF(a5)
+	add.b	d5,-2(sp)
 	add.b	d2,$7F(a2,d5.w)
 	add.b	d2,$7F(a5,d2.w)
 	add.b	d2,$0F(a5,d2.l)
@@ -10934,8 +11460,10 @@ label_start:
 	add.w	d5,$1
 	add.w	d2,$7FFF(a2)
 	add.w	d2,$7FFF(a5)
+	add.w	d2,-2(sp)
 	add.w	d5,$7FFF(a2)
 	add.w	d5,$7FFF(a5)
+	add.w	d5,-2(sp)
 	add.w	d2,$7F(a2,d5.w)
 	add.w	d2,$7F(a5,d2.w)
 	add.w	d2,$0F(a5,d2.l)
@@ -10974,8 +11502,10 @@ label_start:
 	add.l	d5,$1
 	add.l	d2,$7FFF(a2)
 	add.l	d2,$7FFF(a5)
+	add.l	d2,-2(sp)
 	add.l	d5,$7FFF(a2)
 	add.l	d5,$7FFF(a5)
+	add.l	d5,-2(sp)
 	add.l	d2,$7F(a2,d5.w)
 	add.l	d2,$7F(a5,d2.w)
 	add.l	d2,$0F(a5,d2.l)
@@ -11145,6 +11675,10 @@ label_start:
 	suba.w	$7FFF(a5),a5
 	suba.w	$7FFF(a5),a7
 	suba.w	$7FFF(a5),sp
+	suba.w	-2(sp),a2
+	suba.w	-2(sp),a5
+	suba.w	-2(sp),a7
+	suba.w	-2(sp),sp
 	suba.w	$7F(a2,d5.w),a2
 	suba.w	$7F(a2,d5.w),a5
 	suba.w	$7F(a2,d5.w),a7
@@ -11297,6 +11831,10 @@ label_start:
 	suba.l	$7FFF(a5),a5
 	suba.l	$7FFF(a5),a7
 	suba.l	$7FFF(a5),sp
+	suba.l	-2(sp),a2
+	suba.l	-2(sp),a5
+	suba.l	-2(sp),a7
+	suba.l	-2(sp),sp
 	suba.l	$7F(a2,d5.w),a2
 	suba.l	$7F(a2,d5.w),a5
 	suba.l	$7F(a2,d5.w),a7
@@ -11420,8 +11958,10 @@ label_start:
 	eor.b	d5,$1
 	eor.b	d2,$7FFF(a2)
 	eor.b	d2,$7FFF(a5)
+	eor.b	d2,-2(sp)
 	eor.b	d5,$7FFF(a2)
 	eor.b	d5,$7FFF(a5)
+	eor.b	d5,-2(sp)
 	eor.b	d2,$7F(a2,d5.w)
 	eor.b	d2,$7F(a5,d2.w)
 	eor.b	d2,$0F(a5,d2.l)
@@ -11464,8 +12004,10 @@ label_start:
 	eor.w	d5,$1
 	eor.w	d2,$7FFF(a2)
 	eor.w	d2,$7FFF(a5)
+	eor.w	d2,-2(sp)
 	eor.w	d5,$7FFF(a2)
 	eor.w	d5,$7FFF(a5)
+	eor.w	d5,-2(sp)
 	eor.w	d2,$7F(a2,d5.w)
 	eor.w	d2,$7F(a5,d2.w)
 	eor.w	d2,$0F(a5,d2.l)
@@ -11508,8 +12050,10 @@ label_start:
 	eor.l	d5,$1
 	eor.l	d2,$7FFF(a2)
 	eor.l	d2,$7FFF(a5)
+	eor.l	d2,-2(sp)
 	eor.l	d5,$7FFF(a2)
 	eor.l	d5,$7FFF(a5)
+	eor.l	d5,-2(sp)
 	eor.l	d2,$7F(a2,d5.w)
 	eor.l	d2,$7F(a5,d2.w)
 	eor.l	d2,$0F(a5,d2.l)
@@ -11583,6 +12127,8 @@ label_start:
 	cmp.b	$7FFF(a2),d5
 	cmp.b	$7FFF(a5),d2
 	cmp.b	$7FFF(a5),d5
+	cmp.b	-2(sp),d2
+	cmp.b	-2(sp),d5
 	cmp.b	$7F(a2,d5.w),d2
 	cmp.b	$7F(a2,d5.w),d5
 	cmp.b	$7F(a5,d2.w),d2
@@ -11637,6 +12183,8 @@ label_start:
 	cmp.w	$7FFF(a2),d5
 	cmp.w	$7FFF(a5),d2
 	cmp.w	$7FFF(a5),d5
+	cmp.w	-2(sp),d2
+	cmp.w	-2(sp),d5
 	cmp.w	$7F(a2,d5.w),d2
 	cmp.w	$7F(a2,d5.w),d5
 	cmp.w	$7F(a5,d2.w),d2
@@ -11691,6 +12239,8 @@ label_start:
 	cmp.l	$7FFF(a2),d5
 	cmp.l	$7FFF(a5),d2
 	cmp.l	$7FFF(a5),d5
+	cmp.l	-2(sp),d2
+	cmp.l	-2(sp),d5
 	cmp.l	$7F(a2,d5.w),d2
 	cmp.l	$7F(a2,d5.w),d5
 	cmp.l	$7F(a5,d2.w),d2
@@ -11810,6 +12360,10 @@ label_start:
 	cmpa.w	$7FFF(a5),a5
 	cmpa.w	$7FFF(a5),a7
 	cmpa.w	$7FFF(a5),sp
+	cmpa.w	-2(sp),a2
+	cmpa.w	-2(sp),a5
+	cmpa.w	-2(sp),a7
+	cmpa.w	-2(sp),sp
 	cmpa.w	$7F(a2,d5.w),a2
 	cmpa.w	$7F(a2,d5.w),a5
 	cmpa.w	$7F(a2,d5.w),a7
@@ -11962,6 +12516,10 @@ label_start:
 	cmpa.l	$7FFF(a5),a5
 	cmpa.l	$7FFF(a5),a7
 	cmpa.l	$7FFF(a5),sp
+	cmpa.l	-2(sp),a2
+	cmpa.l	-2(sp),a5
+	cmpa.l	-2(sp),a7
+	cmpa.l	-2(sp),sp
 	cmpa.l	$7F(a2,d5.w),a2
 	cmpa.l	$7F(a2,d5.w),a5
 	cmpa.l	$7F(a2,d5.w),a7
@@ -12087,6 +12645,8 @@ label_start:
 	mulu.w	$7FFF(a2),d5
 	mulu.w	$7FFF(a5),d2
 	mulu.w	$7FFF(a5),d5
+	mulu.w	-2(sp),d2
+	mulu.w	-2(sp),d5
 	mulu.w	$7F(a2,d5.w),d2
 	mulu.w	$7F(a2,d5.w),d5
 	mulu.w	$7F(a5,d2.w),d2
@@ -12155,6 +12715,8 @@ label_start:
 	mulu	$7FFF(a2),d5
 	mulu	$7FFF(a5),d2
 	mulu	$7FFF(a5),d5
+	mulu	-2(sp),d2
+	mulu	-2(sp),d5
 	mulu	$7F(a2,d5.w),d2
 	mulu	$7F(a2,d5.w),d5
 	mulu	$7F(a5,d2.w),d2
@@ -12224,6 +12786,8 @@ label_start:
 	muls.w	$7FFF(a2),d5
 	muls.w	$7FFF(a5),d2
 	muls.w	$7FFF(a5),d5
+	muls.w	-2(sp),d2
+	muls.w	-2(sp),d5
 	muls.w	$7F(a2,d5.w),d2
 	muls.w	$7F(a2,d5.w),d5
 	muls.w	$7F(a5,d2.w),d2
@@ -12292,6 +12856,8 @@ label_start:
 	muls	$7FFF(a2),d5
 	muls	$7FFF(a5),d2
 	muls	$7FFF(a5),d5
+	muls	-2(sp),d2
+	muls	-2(sp),d5
 	muls	$7F(a2,d5.w),d2
 	muls	$7F(a2,d5.w),d5
 	muls	$7F(a5,d2.w),d2
@@ -12482,6 +13048,10 @@ label_start:
 	adda.w	$7FFF(a5),a5
 	adda.w	$7FFF(a5),a7
 	adda.w	$7FFF(a5),sp
+	adda.w	-2(sp),a2
+	adda.w	-2(sp),a5
+	adda.w	-2(sp),a7
+	adda.w	-2(sp),sp
 	adda.w	$7F(a2,d5.w),a2
 	adda.w	$7F(a2,d5.w),a5
 	adda.w	$7F(a2,d5.w),a7
@@ -12634,6 +13204,10 @@ label_start:
 	adda.l	$7FFF(a5),a5
 	adda.l	$7FFF(a5),a7
 	adda.l	$7FFF(a5),sp
+	adda.l	-2(sp),a2
+	adda.l	-2(sp),a5
+	adda.l	-2(sp),a7
+	adda.l	-2(sp),sp
 	adda.l	$7F(a2,d5.w),a2
 	adda.l	$7F(a2,d5.w),a5
 	adda.l	$7F(a2,d5.w),a7
@@ -12767,6 +13341,7 @@ label_start:
 	asl.w	$1
 	asl.w	$7FFF(a2)
 	asl.w	$7FFF(a5)
+	asl.w	-2(sp)
 	asl.w	$7F(a2,d5.w)
 	asl.w	$7F(a5,d2.w)
 	asl.w	$0F(a5,d2.l)
@@ -12787,6 +13362,7 @@ label_start:
 	asl	$1
 	asl	$7FFF(a2)
 	asl	$7FFF(a5)
+	asl	-2(sp)
 	asl	$7F(a2,d5.w)
 	asl	$7F(a5,d2.w)
 	asl	$0F(a5,d2.l)
@@ -12832,6 +13408,7 @@ label_start:
 	asr.w	$1
 	asr.w	$7FFF(a2)
 	asr.w	$7FFF(a5)
+	asr.w	-2(sp)
 	asr.w	$7F(a2,d5.w)
 	asr.w	$7F(a5,d2.w)
 	asr.w	$0F(a5,d2.l)
@@ -12852,6 +13429,7 @@ label_start:
 	asr	$1
 	asr	$7FFF(a2)
 	asr	$7FFF(a5)
+	asr	-2(sp)
 	asr	$7F(a2,d5.w)
 	asr	$7F(a5,d2.w)
 	asr	$0F(a5,d2.l)
@@ -12897,6 +13475,7 @@ label_start:
 	lsl.w	$1
 	lsl.w	$7FFF(a2)
 	lsl.w	$7FFF(a5)
+	lsl.w	-2(sp)
 	lsl.w	$7F(a2,d5.w)
 	lsl.w	$7F(a5,d2.w)
 	lsl.w	$0F(a5,d2.l)
@@ -12917,6 +13496,7 @@ label_start:
 	lsl	$1
 	lsl	$7FFF(a2)
 	lsl	$7FFF(a5)
+	lsl	-2(sp)
 	lsl	$7F(a2,d5.w)
 	lsl	$7F(a5,d2.w)
 	lsl	$0F(a5,d2.l)
@@ -12962,6 +13542,7 @@ label_start:
 	lsr.w	$1
 	lsr.w	$7FFF(a2)
 	lsr.w	$7FFF(a5)
+	lsr.w	-2(sp)
 	lsr.w	$7F(a2,d5.w)
 	lsr.w	$7F(a5,d2.w)
 	lsr.w	$0F(a5,d2.l)
@@ -12982,6 +13563,7 @@ label_start:
 	lsr	$1
 	lsr	$7FFF(a2)
 	lsr	$7FFF(a5)
+	lsr	-2(sp)
 	lsr	$7F(a2,d5.w)
 	lsr	$7F(a5,d2.w)
 	lsr	$0F(a5,d2.l)
@@ -13027,6 +13609,7 @@ label_start:
 	roxl.w	$1
 	roxl.w	$7FFF(a2)
 	roxl.w	$7FFF(a5)
+	roxl.w	-2(sp)
 	roxl.w	$7F(a2,d5.w)
 	roxl.w	$7F(a5,d2.w)
 	roxl.w	$0F(a5,d2.l)
@@ -13047,6 +13630,7 @@ label_start:
 	roxl	$1
 	roxl	$7FFF(a2)
 	roxl	$7FFF(a5)
+	roxl	-2(sp)
 	roxl	$7F(a2,d5.w)
 	roxl	$7F(a5,d2.w)
 	roxl	$0F(a5,d2.l)
@@ -13092,6 +13676,7 @@ label_start:
 	roxr.w	$1
 	roxr.w	$7FFF(a2)
 	roxr.w	$7FFF(a5)
+	roxr.w	-2(sp)
 	roxr.w	$7F(a2,d5.w)
 	roxr.w	$7F(a5,d2.w)
 	roxr.w	$0F(a5,d2.l)
@@ -13112,6 +13697,7 @@ label_start:
 	roxr	$1
 	roxr	$7FFF(a2)
 	roxr	$7FFF(a5)
+	roxr	-2(sp)
 	roxr	$7F(a2,d5.w)
 	roxr	$7F(a5,d2.w)
 	roxr	$0F(a5,d2.l)
@@ -13157,6 +13743,7 @@ label_start:
 	rol.w	$1
 	rol.w	$7FFF(a2)
 	rol.w	$7FFF(a5)
+	rol.w	-2(sp)
 	rol.w	$7F(a2,d5.w)
 	rol.w	$7F(a5,d2.w)
 	rol.w	$0F(a5,d2.l)
@@ -13177,6 +13764,7 @@ label_start:
 	rol	$1
 	rol	$7FFF(a2)
 	rol	$7FFF(a5)
+	rol	-2(sp)
 	rol	$7F(a2,d5.w)
 	rol	$7F(a5,d2.w)
 	rol	$0F(a5,d2.l)
@@ -13222,6 +13810,7 @@ label_start:
 	ror.w	$1
 	ror.w	$7FFF(a2)
 	ror.w	$7FFF(a5)
+	ror.w	-2(sp)
 	ror.w	$7F(a2,d5.w)
 	ror.w	$7F(a5,d2.w)
 	ror.w	$0F(a5,d2.l)
@@ -13242,6 +13831,7 @@ label_start:
 	ror	$1
 	ror	$7FFF(a2)
 	ror	$7FFF(a5)
+	ror	-2(sp)
 	ror	$7F(a2,d5.w)
 	ror	$7F(a5,d2.w)
 	ror	$0F(a5,d2.l)
