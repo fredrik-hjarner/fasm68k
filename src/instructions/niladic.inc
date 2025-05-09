@@ -12,6 +12,7 @@ iterate <instr, instr_word>, \
     trapv,      0100_1110__0111_0110_b
 
     calminstruction instr?
+        assert_word_aligned
         emit_be 2, instr_word
     end calminstruction
 
