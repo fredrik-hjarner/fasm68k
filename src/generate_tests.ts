@@ -9,9 +9,9 @@ const instructionsData = data;
 // Example values for each addressing mode
 const examples: Record<OperandType, string[]> = {
   "dn": ["d2", "d5"],
-  "an": ["a2", "a5", "a7", "sp"],
+  "an": ["a2", "a7", "sp"],
   "(an)": ["(a2)", "(a5)"],
-  "(an)+": ["(a1)+", "(a2)+", "(a5)+"],
+  "(an)+": ["(a1)+", "(a5)+"],
   "-(an)": ["-(a2)", "-(a5)", "-(sp)"],
   // indirect addressing with displacement
   "d(an)": [
