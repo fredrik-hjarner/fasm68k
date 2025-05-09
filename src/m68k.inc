@@ -38,9 +38,13 @@ macro calminstruction?.assert_data_reg? value*
     @ @done:
 end macro
 
-; TODO: Implement.
-macro calminstruction?.assert_word_aligned? ea*
-    err "assert_word_aligned is not implemented!"
+macro calminstruction?.assert_word_aligned?
+        new @done
+        check ($ mod 2) = 0
+        @ jyes @done
+        err "Instruction placed on an odd address!" bappend \
+                " Instructions are required to be word-aligned."
+    @ @done:
 end macro
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

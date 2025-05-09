@@ -15,6 +15,8 @@ iterate <size,  size_bit>, \
         l,      1b
 
     calminstruction movep.size? op1*, op2*
+            assert_word_aligned
+
             local direction
             local reg_bits1
             local reg_bits2
@@ -61,6 +63,8 @@ iterate <size,  size_bits>, \
         l,      10b
 
     calminstruction cmpm.size? an1*, an2*
+        assert_word_aligned
+
         call m68k.parse_operand@op1, an1
         call m68k.parse_operand@op2, an2
 
@@ -81,6 +85,8 @@ end iterate ; <size, size_bits>
 ; Note that the encoding of the 3 M bits are not explained in:
 ;     http://goldencrystal.free.fr/M68kOpcodes-v2.3.pdf
 calminstruction exg.l? reg1*, reg2*
+            assert_word_aligned
+
             local type_bits1
             local type_bits2
             local reg1_bits
@@ -126,6 +132,8 @@ end calminstruction
 ; Syntax:
 ;     chk.w <ea>,dn
 calminstruction chk.w? operands&
+    assert_word_aligned
+
     call m68k.split_operands, operands
     call m68k.parse_operand@op1, m68k.split_operands_result.op1
     call m68k.parse_operand@op2, m68k.split_operands_result.op2
@@ -144,6 +152,8 @@ end calminstruction
 ; Sample syntax:
 ;     link a6,#-12
 calminstruction link.w? an*, imm*
+    assert_word_aligned
+
     call m68k.parse_operand@op1, an
     call m68k.parse_operand@op2, imm
 
@@ -169,6 +179,8 @@ iterate <instr,  first_byte>, \
         l,      10b
 
         calminstruction instr.size op1*, op2*
+            assert_word_aligned
+
             local m_bit
 
             ; Init default values
@@ -203,6 +215,8 @@ iterate <instr,  first_byte>, \
         abcd,    11000001b
 
         calminstruction instr.b op1*, op2*
+                assert_word_aligned
+
                 local m_bit
 
                 ; Init default values
@@ -239,6 +253,8 @@ iterate <instr,  first_byte>, \
             l,      1b
 
             calminstruction instr.size operands&
+                assert_word_aligned
+
                 ; TODO: I am not sure why I have to do this to get the call to work.
                 arrange _size, =size
 
@@ -266,6 +282,8 @@ iterate <size,  size_bits>, \
         ; Syntax:
         ;     EOR.[bwl] Dn,<ea>
         calminstruction eor.size? operands&
+                assert_word_aligned
+
                 call m68k.split_operands, operands
                 call m68k.parse_operand@op1, m68k.split_operands_result.op1
                 call m68k.parse_operand@op2, m68k.split_operands_result.op2
@@ -286,6 +304,8 @@ iterate <size,  size_bits>, \
         ; Syntax:
         ;     CMP.[bwl] <ea>,Dn
         calminstruction cmp.size? operands&
+                assert_word_aligned
+
                 call m68k.split_operands, operands
                 call m68k.parse_operand@op1, m68k.split_operands_result.op1
                 call m68k.parse_operand@op2, m68k.split_operands_result.op2
@@ -319,6 +339,8 @@ iterate <instr,  first_byte>, \
         muls,    11000001b
 
         calminstruction instr.w? operands&
+            assert_word_aligned
+
             call m68k.split_operands, operands
             call m68k.parse_operand@op1, m68k.split_operands_result.op1
             call m68k.parse_operand@op2, m68k.split_operands_result.op2
@@ -364,6 +386,8 @@ iterate <instr,  instr_bits>, \
              l,    2
 
         calminstruction instr.size? operands&
+                assert_word_aligned
+
                 local op1_bits
                 local op1_type_bit
                 local bit_index
@@ -416,6 +440,8 @@ iterate <size,  size_bits>, \
         ;     movem.[wl] <ea>,<register list>
         ;     movem.[wl] <register list>,<ea>
         calminstruction movem.size? operands&
+                    assert_word_aligned
+
                     local direction
                     local bit_mask
                     local ea_mode_bits
@@ -502,6 +528,8 @@ iterate <instr,  first_byte>, \
             l,      10b
 
             calminstruction instr.size? operands&
+                    assert_word_aligned
+
                     local _size
 
                     ; TODO: I am not sure why I have to do this to get the call to work.
@@ -592,6 +620,8 @@ iterate <cc,  cc_bits>, \
         ; Also, check if displacement is a valid displacement.
         ; 0 is not allowed for .b I think.
         calminstruction? db#cc.w? dn*, label*
+            assert_word_aligned
+
             local pc
             local label_val
 
@@ -617,6 +647,8 @@ iterate <size,  size_bits>, \
         l,      10b
 
         calminstruction movea.size? operands&
+            assert_word_aligned
+
             ; display 10 bappend 'movea:' bappend 10
 
             local tmp
@@ -640,6 +672,8 @@ end iterate ; <size, size_bits>
 
 ; TODO: Comment
 calminstruction lea.l? operands&
+    assert_word_aligned
+
     call m68k.split_operands, operands
     call m68k.parse_operand@op1, m68k.split_operands_result.op1
     call m68k.parse_operand@op2, m68k.split_operands_result.op2
@@ -672,6 +706,8 @@ iterate <instr,  first_byte>, \
             l,      10b
 
             calminstruction instr.size? operands&
+                assert_word_aligned
+
                 local tmp
 
                 call m68k.split_operands, operands
@@ -706,6 +742,8 @@ end iterate ; <instr, first_byte>
 ;       whatever formats you can use in normal m68k assemblers
 ;       I assume 1111_1111b and -1d are should both be allowed?!
 calminstruction moveq.l? data*, dn*
+    assert_word_aligned
+
     call m68k.parse_operand@op1, data
     call m68k.parse_operand@op2, dn
 
