@@ -6,29 +6,29 @@ rsset $FF0000
 ;;                                                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    include "consts.inc"
-    include "macros.inc"
+include "consts.inc"
+include "macros.inc"
 
 ; =====================================================================
 ; HEADER 512 bytes ($200 bytes)
 ; =====================================================================
 
-    include "vectors.inc"         ; interrupt vectors
-    include "meta.inc"            ; ROM metadata (console name, region, etc.)
+include "vectors.inc"         ; interrupt vectors
+include "meta.inc"            ; ROM metadata (console name, region, etc.)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DATA                                                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    include "planes/a.inc"
-    include "planes/b.inc"
+include "planes/a.inc"
+include "planes/b.inc"
 
 ; =====================================================================
 ; OTHER INCLUDES
 ; =====================================================================
 
-    include "functions.inc"
-    include "timers.inc"
+include "functions.inc"
+include "timers.inc"
 
 ; =====================================================================
 ; PROGRAM START (Code begins at $200 because the ROM header is $200 bytes)

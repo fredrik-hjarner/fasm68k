@@ -54,19 +54,6 @@ calminstruction set_vdp_register reg_nr, value
     assemble cmd
 end calminstruction
 
-calminstruction meta_version
-        local tmp, quote, s_since_2025, m_since_2025
-
-        arrange quote, '
-
-        compute tmp, __time__
-        compute s_since_2025, tmp - 1735686000
-        compute m_since_2025, s_since_2025 / 60
-        arrange tmp, =GM m_since_2025
-        stringify tmp
-        emit lengthof tmp, tmp
-end calminstruction
-
 ; TODO: Explain exactly what this does and how it is intended to be used.
 ; arguments:
 ;     r: 0-7
@@ -81,7 +68,6 @@ calminstruction set_palette_color? r, g, b
     arrange tmp, =move.=w= =#tmp,=vdp_data.=l
     assemble tmp
 end calminstruction
-define set_palette_color +set_palette_color
 
 ; arguments:
 ;     addr: address: $0000-$FFFF
@@ -93,7 +79,6 @@ calminstruction set_write_vram? addr
     arrange tmp, =move.=l= =#$40000000+(((addr)&$3FFF)<<16)+(((addr)&$C000)>>14),=vdp_ctrl.=l
     assemble tmp
 end calminstruction
-define set_write_vram +set_write_vram
 
 ; arguments:
 ;     addr: address: $00-$FF
@@ -105,36 +90,6 @@ calminstruction set_write_vsram? addr
     arrange tmp, =move.=l= =#$40000010+((addr)<<16),=vdp_ctrl.=l
     assemble tmp
 end calminstruction
-define set_write_vsram +set_write_vsram
-
-; bappend
-; Util macro for CALM to concatenate strings with shorter syntax.
-; Only works when added to preprocess.asm
-; Example:
-;     calminstruction tester
-;         local tmp, tmp2
-;         bappend tmp, 13, 10
-;         display tmp ; Output: empty line
-;         bappend tmp, "a", "b", "c", 13, 10
-;         display tmp ; Output: abc
-;         compute tmp2, "$"
-;         bappend tmp, tmp2, "a", "b", "c", 13, 10
-;         display tmp ; Output: $abc
-;     end calminstruction
-;     tester
-; OBSERVE! I managed to make a version of append that works without
-; preprocess.asm so I am using that instead.
-; macro bappend dest*, strings&
-;     emit compute dest, ""
-;     iterate string, strings
-;         emit compute dest, dest bappend string
-;     end iterate
-; end macro
-
-; Make visible to the preprocessor
-; define bappend +bappend
-define set_vdp_register +set_vdp_register
-define meta_version +meta_version
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PLANE STUFF                                                                ;;
@@ -206,7 +161,6 @@ calminstruction str_to_tile_indices str
         jump next
     done:
 end calminstruction
-define str_to_tile_indices +str_to_tile_indices
 
 ; arguments:
 ;     c: color: 0-15
@@ -217,4 +171,3 @@ calminstruction create_single_color_tile? c
     transform tmp
     assemble tmp
 end calminstruction
-define create_single_color_tile +create_single_color_tile

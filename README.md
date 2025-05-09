@@ -70,6 +70,9 @@ TODO
 - Macros are completely different and it's the main reason for this project to
 exist. fasmg's macro langauge is more powerful than the macro languages of other
 assemblers. Check out [fasmg's manual](https://flatassembler.net/docs.php?article=fasmg_manual) for more information.
+- fasm68k is less pedantic when it comes to the use of whitespace. You may place
+an instruction in the "first column" (without any leading whitespace) for
+example.
 - fasm68k does not support `*` to get the current address. Either use `@` or `$`
 instead.
 - Some operators are different. While I have added support for `<<` and `>> `for
