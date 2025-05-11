@@ -6,3 +6,7 @@
 	path = fasm2
 	url = git@github.com:tgrysztar/fasm2.git
 	branch = master
+[submodule "examples/RetailClerk89_fasm68k"]
+	path = examples/RetailClerk89_fasm68k
+	url = git@github.com:fredrik-hjarner/RetailClerk89_fasm68k.git
+	branch = main

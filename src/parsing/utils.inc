@@ -40,9 +40,13 @@ calminstruction m68k.parse_indirect_displacement operand*
 
         match tmp1(tmp2), operand
         jyes next2
-        ; display 'matched tmp1(tmp2)' bappend 10
+        ; else try to match (tmp1,tmp2) variant syntax
+        ; TODO: Verify that this works!
+        match (tmp1=,tmp2), operand
+        jyes next2
         jump nope
     ; next:
+        ; display 'matched tmp1(tmp2)' bappend 10
     ;     call m68k.is_one_token, tmp1
     ;     jyup next2
     ;     ; display 'tmp1 is one token' bappend 10
@@ -291,14 +295,26 @@ calminstruction m68k.parse_mem_index operand*
         compute m68k.parse_mem_index_result.s,            0
         compute m68k.parse_mem_index_result.d,            0
 
-        match d(an=,xn.s), operand
+        match d?(an=,xn.s), operand
+        jno try_without_size_siffix
+        jump next
+    try_without_size_siffix:
+        match d?(an=,xn), operand
         jno nope
+        arrange s, =w ; default to word if not explicit size specified.
         ; display 'matched d(an,xn.s)' bappend 10
 
         ; TODO: Actually it could be several tokens such as in `$123` (seems #$123 is not valid format)
         ; That's computable anyway i.e. d should be computable into a number.
     ; validate_d_is_one_token:
+    next: ; TODO: better label name
+        match ,d
+        jyes no_d
         compute d, d
+        jump proceed ; TODO: better label name
+    no_d:
+        compute d, 0
+    proceed:
         ; match tmp1 tmp2, d
         ; jyes nope
         ; arrange tmp, d

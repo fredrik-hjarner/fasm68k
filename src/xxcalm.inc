@@ -111,3 +111,23 @@ macro calminstruction?.arr_tra? var*, val*
     arrange var, val
     transform var
 end macro
+
+; TODO: Comment/explain.
+macro calminstruction?.eval? str*
+    asm eval str
+end macro
+
+; TODO: Comment/explain.
+; TODO: Make into a calminstruction?
+; Just a helper for the `calminstruction?.bool?` util.
+struc xxcalm._bool? expr*
+    if expr
+        eval 'define . 1'
+    else
+        eval 'define . 0'
+    endif
+end struc
+
+macro calminstruction?.bool? result*, bool_expr*
+    asm result xxcalm._bool? bool_expr
+end macro

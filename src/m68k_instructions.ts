@@ -582,7 +582,9 @@ export const data: InstructionSet = [
         sourceOperands: [ // verified
           "dn",       "abs.w",
           /*"an",*/   "abs.l",
-          "(an)",     //"imm",
+          // `imm` is NOT supported but since `add/sub` will be auto-fixed to
+          // `addi/subi` it is supported "in practice".
+          "(an)",     "imm",
           "(an)+",
           "-(an)",
           "d(an)",    "d(pc)",
@@ -643,6 +645,9 @@ export const data: InstructionSet = [
       {
         sizes: ["b", "w", "l"], // verified
         sourceOperands: ["dn"], // verified
+        // `imm` is NOT supported but since `eor` will be auto-fixed to `eori`
+        // it is supported "in practice".
+        // TODO: Add imm and make sure I am not missing anything.
         destOperands: dataAlterableAddressingModes32, // verified
       }
     ]
@@ -677,7 +682,9 @@ export const data: InstructionSet = [
         sourceOperands: [ // TODO: Double-check this.
           "dn",       "abs.w",
           /*"an",*/   "abs.l",
-          "(an)",     //"imm",
+          // `imm` is NOT supported but since `cmp` will be auto-fixed to
+          // `cmpi` it is supported "in practice".
+          "(an)",     "imm",
           "(an)+",
           "-(an)",
           "d(an)",    "d(pc)",

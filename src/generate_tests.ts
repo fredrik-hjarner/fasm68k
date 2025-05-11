@@ -17,9 +17,11 @@ const examples: Record<OperandType, string[]> = {
   "d(an)": [
     "$7FFF(a2)",
     "$7FFF(a5)",
+    // "($7FFF,a5)", // TODO: Switch this test on!
     "-2(sp)",
     // "(-2)(sp)", // TODO: This causes errors.
   ],
+  // indirect addressing with displacement and index
   "d(an,ix)": [
     "$7F(a2,d5.w)",
     "$7F(a5,d2.w)",
@@ -27,6 +29,8 @@ const examples: Record<OperandType, string[]> = {
     "$1+1(a5,d2.l)",
     "-2(a5,d2.l)",
     // "($1+1)(a5,d2.l)", // TODO: This causes errors.
+    '(a0,d1.w)',
+    '(a1,d6)',
   ],
   "abs.w": [
     "($FFFFFFFF).w",
@@ -37,6 +41,7 @@ const examples: Record<OperandType, string[]> = {
     'label_start.l',
     '$FFFFFFFF',
     '$1',
+    // '(label_start)'
   ],
   // pc displacment
   "d(pc)": [
@@ -63,12 +68,17 @@ const examples: Record<OperandType, string[]> = {
     '#"WXYZ"',
     "#1+1",
     '#(3+4)',
+    // '#-1',
   ],
   "imm3": ["#1", "#7"],
   "imm4": ["#2"],
   "imm8": ["#0", "#$FF", '#"X"'],
   // s suffix means signed
-  "imm8s": ["#0", "#$7F"],
+  "imm8s": [
+    "#0",
+    "#$7F",
+    '#-1',
+  ],
   "imm16": ["#0", "#4", "#$FF", '#"XY"', "#$2700", "#$7FFF",  "#$FFFF"],
   // TODO: singed numbers
   "imm16s": ["#0", "#4", "#$FF", "#$2700", "#$7FFF",  "#$FFFF"],
@@ -195,7 +205,15 @@ label_start:
   }
   
   // Add label for instructions that need it
-  // output += `\nlabel:\n`;
+  output += `
+; edge cases and so on
+    add.l #$00060000, d6 ; compat_vasm_add_bug1
+
+; labels
+label_end:
+
+; equs and defines
+`;
   
   return output;
 }

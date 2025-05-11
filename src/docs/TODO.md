@@ -67,6 +67,20 @@
 * TODO: Check the real instruction reference instead since it is more reliable:
   https://www.nxp.com/docs/en/reference-manual/M68000PRM.pdf
   https://web.njit.edu/~rosensta/classes/architecture/252software/code.pdf
+* addq (and subq?) without size suffix is not allowed on clownassembler but IS
+      allowed on vasm. fasm68k should probably mimic vasm in this case.
+* I should probably support % for binary numbers where I can, but allow to
+      toggle that setting off and recommend users to not use it.
+* Make a vs code extension that understands the CALM language.
+      Also I'd be nice to show an extra set of line numbers that are relative to
+      the current beginning calminstruction/macro (so it matches fasmg error
+      message output format sort of).
+* Make a `stringify_number` util takes handles negative values.
+* Make util that contrain a number to be within a range, maybe.
+* vasm actually excodes this incorrectly (I tried with no-opts, not sure if that
+      makes a difference though):
+      `add.l #$00060000, d6`
+      I should file a bug report.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; things that cause unrecoverable errors in fasmg                            ;;

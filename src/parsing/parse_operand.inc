@@ -116,6 +116,8 @@ iterate op, @op1,@op2
             ; check_if_indirect_an:
                     match (an), operand
                     jno check_if_minus_an
+                    call m68k.is_one_token, an
+                    jnope check_if_minus_an
                     check an relativeto m68k.address_reg
                     jno check_if_minus_an
                     compute type, '(an)'
