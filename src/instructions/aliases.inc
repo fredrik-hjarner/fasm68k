@@ -197,3 +197,19 @@ end macro
 macro bsr? line&
     bsr.w line
 end macro
+
+macro addq? line&
+    addq.w line
+end macro
+
+macro subq? line&
+    subq.w line
+end macro
+
+macro clr line&
+    clr.w line
+end macro
+
+macro adda line&
+    adda.w line
+end macro

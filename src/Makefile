@@ -25,8 +25,9 @@ build_vasm:
 	sed 's/@/\*/g' tests/valid_instructions.asm | vasm -no-opt -Fbin -spaces -wfail -o tests/test.bin
 #	vasm -Fbin -spaces -wfail -o tests/test.bin tests/valid_instructions.asm
 
+# TODO: what's best -v1 or -v2? option
 build:
-	../fasm68k tests/valid_instructions.asm tests/test.bin -e20
+	../fasm68k tests/valid_instructions.asm tests/test.bin -e20 -v2
 
 # build2 is just for me to have a separate test file to play around with.
 build2:

@@ -1,7 +1,7 @@
 # fasm68k - Motorola 68000 instruction set for fasmg (flat assembler g)
 
 **Note**: Consider this to be in alpha stage. Currently supports all 68k
-instructions that are validated with about [10,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
+instructions that are validated with about [14,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
 but the code might still
 contain bugs. If you find bugs then don't hesitate reporting them, since the
 hardest part is to find the bugs while it might be way easier to fix them.
@@ -83,6 +83,32 @@ bit shifting, the preferred way is to use `shl` and `shr`. Likewise try to use
 with @ `@label1`).
 - Currently no optimizations and might be missing some aliases for some
 instructions.
+
+<details>
+<summary>In comparison to vasm (vasmm68k_mot)</summary>
+<blockquote>
+### ORG
+
+`ORG` works very differently in vasm and fasmg. In fasmg the addresses in after
+`ORG` are based on the value specified in the argument. In vasm the `ORG`
+command actually adds empty bytes up to the specified address.
+
+- [x] I will add a compatibility setting to support the vasm behaviour. It is recommended to have that setting disabled unless you need it.
+</blockquote>
+</details>
+
+## History
+
+- 2025-03-28:
+  - Humble beginnings: Initial implementation of `nop`, `rte` and `rts`.
+- 2025-05-05:
+  - Alpha "release".
+  - Rudimentary implementation of all 680000 instructions and all addressing modes.
+  - First commit to the `fasm68k` repository.
+- 2025-05-06:
+  - fasm68k can correctly assemble all BigEvilCorporation's `megadrive_samples`.
+- 2025-05-12:
+  - fasm68k can correctly assemble RetailClerk89 (took about 30-40 hours to get it working).
 
 ## Acknowledgments and attributions
 

@@ -1,6 +1,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DIRECTIVES                                                                 ;;
 ;; TODO: Have these in alphabetical order.                                    ;;
+;; TODO: Regarding this file... it should be split up because some of them    ;;
+;;       are only relevant for supporting speficic assemblers (for example    ;;
+;;       vasm). A loy of the stuff should probably be move into compat file   ;;
+;;       or a compat folder.                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; rs address counter for "reserved" data.
@@ -15,9 +19,11 @@ m68k.rs = 0
 define m68k.old_org
 m68k.old_org = 0
 
-calminstruction dc.b? tail&
+calminstruction dc.b? line&
         local head, tail, length, last_argument
         compute last_argument, 0
+        arrange tail, line
+        replace_legacy_operators tail
     next:
         match head=,tail, tail
         jyes at_least_two_arguments
@@ -43,9 +49,11 @@ end calminstruction
 ;     dc.b line
 ; end macro
 
-calminstruction dc.w? tail&
+calminstruction dc.w? line&
         local head, tail, last_argument
         compute last_argument, 0
+        arrange tail, line
+        replace_legacy_operators tail
     next:
         match head=,tail, tail
         jyes at_least_two_arguments
@@ -65,9 +73,11 @@ end calminstruction
 ;     dc.w line
 ; end macro
 
-calminstruction dc.l? tail&
+calminstruction dc.l? line&
         local head, tail, last_argument
         compute last_argument, 0
+        arrange tail, line
+        replace_legacy_operators tail
     next:
         match head=,tail, tail
         jyes at_least_two_arguments
@@ -113,13 +123,13 @@ iterate <size, bytes>, \
         ; dcb.b <exp>[,<fill>]
         ;     Insert <exp> zero or <fill> bytes into the current section.
         ; TODO: Test this.
-        calminstruction dcb.size? exp*, fill
+        calminstruction dcb.size? count*, fill:0
             local i
-            compute i, fill
+            compute i, count
             emit_next:
                 check i > 0
                 jno done
-                emit_be bytes, exp
+                emit_be bytes, fill
                 compute i, i - 1
                 jump emit_next
             done:

@@ -14,7 +14,7 @@ iterate <size,  size_bit>, \
         w,      0b, \
         l,      1b
 
-    calminstruction movep.size? op1*, op2*
+    calminstruction movep.size? operands&
             assert_word_aligned
 
             local direction
@@ -23,8 +23,9 @@ iterate <size,  size_bit>, \
             local ext_bytes
             local ext_bytes_bits
 
-            call m68k.parse_operand@op1, op1
-            call m68k.parse_operand@op2, op2
+            call m68k.split_operands, operands
+            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+            call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
             ; Initial default values
             compute direction, 1 ; Default is dn to (d,an)
@@ -291,8 +292,16 @@ iterate <size,  size_bits>, \
             ; Show error message if imm
                 check @op1.type = 'imm'
                 jno skip_error
-                err '`eor` does not allow the first operand to' \
-                    bappend ' be an immediate. Use `eori` instead'
+                display '`eor` does not allow the first operand to' \
+                    bappend ' be an immediate. Will use `eori` instead.' \
+                    bappend 13 bappend 10
+                
+                ; local cmd
+                ; arrange cmd, =eor=i.=size operands
+                ; stringify cmd
+                ; eval cmd
+                call eori.size, operands
+                exit
             skip_error:
                 emit_be 1, 10110001b + @op1.ea_reg_bits shl 1
                 emit_be 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
@@ -306,16 +315,50 @@ iterate <size,  size_bits>, \
         calminstruction cmp.size? operands&
                 assert_word_aligned
 
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1
-                call m68k.parse_operand@op2, m68k.split_operands_result.op2
+                local _size
 
-            ; Show error message if imm
-                check @op1.type = 'imm'
-                jno skip_error
-                err '`cmp` does not allow the first operand to' \
-                    bappend ' be an immediate. Use `cmpi` instead'
-            skip_error:
+                ; TODO: I am not sure why I have to do this to get the call to work.
+                ; TODO: Can I use backtick instead pehaps?
+                arrange _size, =size
+
+                call m68k.split_operands, operands
+                call m68k.parse_operand@op1, m68k.split_operands_result.op1, _size
+                call m68k.parse_operand@op2, m68k.split_operands_result.op2, _size
+
+            ; Show error message if imm ; TODO: Move comment. better comments.
+                check @op2.type = 'an'
+                jno skip_an
+                display '`cmp` does not allow the second operand to be' \
+                    bappend ' an address register. Will use `cmpa` instead.' \
+                    bappend 13 bappend 10
+                ; local cmd
+                ; arrange cmd, =cmp=a.=size operands
+                ; stringify cmd
+                ; eval cmd
+                call cmpa.size, operands
+                exit
+            skip_an:
+
+                local is_compat_vasm_cmp_bug1 ; TODO: Remove
+                bool is_compat_vasm_cmp_bug1, \
+                    m68k.settings.compat_vasm_cmp_bug1 = 1 & \
+                    (`size = 'b')
+
+                check @op1.type = 'imm' & \
+                    ~is_compat_vasm_cmp_bug1
+
+                jno skip_imm
+                display '`cmp` does not allow the first operand to' \
+                    bappend ' be an immediate. Will use `cmpi` instead.' \
+                    bappend 13 bappend 10
+                
+                ; local cmd
+                ; arrange cmd, =cmp=i.=size operands
+                ; stringify cmd
+                ; eval cmd
+                call cmpi.size, operands
+                exit
+            skip_imm:
                 emit_be 1, 10110000b + @op2.ea_reg_bits shl 1
                 emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
@@ -533,23 +576,99 @@ iterate <instr,  first_byte>, \
                     local _size
 
                     ; TODO: I am not sure why I have to do this to get the call to work.
+                    ; TODO: Can I use backtick instead pehaps?
                     arrange _size, =size
 
                     call m68k.split_operands, operands
                     call m68k.parse_operand@op1, m68k.split_operands_result.op1, _size
                     call m68k.parse_operand@op2, m68k.split_operands_result.op2, _size
 
+                ; Auto-fix add/sub to adda/suba if second operand is an
+                    check @op2.type = 'an' & (`instr = 'add' | `instr = 'sub')
+                    jno skip_auto_fix_an
+                ; auto_fix_an:
+                    ; local cmd
+                    ; arrange cmd, =instr=a.=size operands
+                    ; stringify cmd
+                    ; eval cmd
+                    call instr#a.size, operands
+                    exit
+                skip_auto_fix_an:
+
                 ; Show error message if imm
-                    check @op1.type = 'imm'
+                    local is_compat_vasm_add_bug1
+                    bool is_compat_vasm_add_bug1, \
+                        m68k.settings.compat_vasm_add_bug1 = 1 & \
+                        `instr = 'add' & \
+                        `size = 'l' & \
+                        @op2.type = 'dn'
+
+                    local is_compat_vasm_add_bug2
+                    bool is_compat_vasm_add_bug2, \
+                        m68k.settings.compat_vasm_add_bug2 = 1 & \
+                        `instr = 'add' & \
+                        `size = 'w' & \
+                        @op2.type = 'dn'
+
+                    local is_compat_vasm_add_bug3
+                    bool is_compat_vasm_add_bug3, \
+                        m68k.settings.compat_vasm_add_bug3 = 1 & \
+                        `instr = 'add' & \
+                        `size = 'w' & \
+                        @op2.type = 'dn'
+
+                    local is_compat_vasm_and_bug1
+                    bool is_compat_vasm_and_bug1, \
+                        m68k.settings.compat_vasm_add_bug1 = 1 & \
+                        `instr = 'and' & \
+                        @op2.type = 'dn'
+
+                    local is_compat_vasm_sub_bug1
+                    bool is_compat_vasm_sub_bug1, \
+                        m68k.settings.compat_vasm_sub_bug1 = 1 & \
+                        `instr = 'sub' & \
+                        `size = 'w' & \
+                        (@op1.imm >= 10b)
+
+                    local is_compat_vasm_sub_bug2
+                    bool is_compat_vasm_sub_bug2, \
+                        m68k.settings.compat_vasm_sub_bug2 = 1 & \
+                        `instr = 'sub' & \
+                        `size = 'w' & \
+                        @op2.type = 'dn' & \
+                        (@op2.ea_reg_bits = 011b | @op2.ea_reg_bits = 110b) & \
+                        (@op1.imm = 1)
+
+                    local is_compat_vasm_or_bug1
+                    bool is_compat_vasm_or_bug1, \
+                        m68k.settings.compat_vasm_or_bug1 = 1 & \
+                        `instr = 'or'
+
+                    check @op1.type = 'imm' & \
+                        ~is_compat_vasm_add_bug1 & \
+                        ~is_compat_vasm_add_bug2 & \
+                        ~is_compat_vasm_add_bug3 & \
+                        ~is_compat_vasm_and_bug1 & \
+                        ~is_compat_vasm_sub_bug1 & \
+                        ~is_compat_vasm_sub_bug2 & \
+                        ~is_compat_vasm_or_bug1
+
                     jno skip_error
                     local wrong, correct
                     arr_str wrong, `=instr`
                     arr_str correct, `=instr=i`
-                    err wrong \
+                    display wrong \
                         bappend ' does not allow the first operand to' \
-                        bappend ' be an immediate. Use ' \
+                        bappend ' be an immediate. Will use ' \
                         bappend correct \
-                        bappend ' instead'
+                        bappend ' instead.' bappend 13 bappend 10
+
+                    ; local cmd
+                    ; arrange cmd, =instr=i.=size operands
+                    ; stringify cmd
+                    ; eval cmd
+                    call instr#i.size, operands
+                    exit
                 skip_error:
 
                     ; TODO: This is a sloppy check, do a more complete check in the
@@ -750,5 +869,5 @@ calminstruction moveq.l? data*, dn*
     assert_data_reg dn
 
     emit_be 1, 01110000b + @op2.ea_reg_bits shl 1
-    emit_be 1, data
+    emit_be 1, @op1.imm
 end calminstruction
