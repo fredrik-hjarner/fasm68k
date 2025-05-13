@@ -3390,10 +3390,22 @@ label_start:
 	btst.l	d2,d5
 	btst.l	d5,d2
 	btst.l	d5,d5
+	btst.l	#0,d2
+	btst.l	#0,d5
+	btst.l	#$FF,d2
+	btst.l	#$FF,d5
+	btst.l	#"X",d2
+	btst.l	#"X",d5
 	btst	d2,d2
 	btst	d2,d5
 	btst	d5,d2
 	btst	d5,d5
+	btst	#0,d2
+	btst	#0,d5
+	btst	#$FF,d2
+	btst	#$FF,d5
+	btst	#"X",d2
+	btst	#"X",d5
 	btst.b	d2,(a2)
 	btst.b	d2,(a5)
 	btst.b	d5,(a2)
@@ -3450,6 +3462,12 @@ label_start:
 	btst.b	d5,@(pc,d5.w)
 	btst.b	d5,@-2(pc,d5.w)
 	btst.b	d5,@-2(pc,d1.l)
+	btst.b	d2,#0
+	btst.b	d2,#$FF
+	btst.b	d2,#"X"
+	btst.b	d5,#0
+	btst.b	d5,#$FF
+	btst.b	d5,#"X"
 	btst	d2,(a2)
 	btst	d2,(a5)
 	btst	d5,(a2)
@@ -3506,18 +3524,12 @@ label_start:
 	btst	d5,@(pc,d5.w)
 	btst	d5,@-2(pc,d5.w)
 	btst	d5,@-2(pc,d1.l)
-	btst.l	#0,d2
-	btst.l	#0,d5
-	btst.l	#$FF,d2
-	btst.l	#$FF,d5
-	btst.l	#"X",d2
-	btst.l	#"X",d5
-	btst	#0,d2
-	btst	#0,d5
-	btst	#$FF,d2
-	btst	#$FF,d5
-	btst	#"X",d2
-	btst	#"X",d5
+	btst	d2,#0
+	btst	d2,#$FF
+	btst	d2,#"X"
+	btst	d5,#0
+	btst	d5,#$FF
+	btst	d5,#"X"
 	btst.b	#0,(a2)
 	btst.b	#0,(a5)
 	btst.b	#$FF,(a2)

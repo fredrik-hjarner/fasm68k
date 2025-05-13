@@ -1,3 +1,7 @@
+////////////////////////////////////////////////////////////////////////////////
+// THIS FILE CONTAINS ALL THE VALID INSTRUCTIONS AND THEIR VARIANTS.          //
+////////////////////////////////////////////////////////////////////////////////
+
 // Types for M68k instructions data
 export type OperandType = 
     | "dn" | "an" | "(an)" | "(an)+" | "-(an)" | "d(an)" | "d(an,ix)" 
@@ -21,6 +25,8 @@ export type Group = {
 
 export type InstructionSet = Group[];
 
+// TODO: Remove all of these all32, dataAddressingModes8 etc. and have them
+// inline instead. That makes it easier to verify that all's correct.
 // All <ea> addressing modes 32-bits
 const all32 = [
   "dn",       "abs.w",
@@ -104,81 +110,88 @@ export const data: InstructionSet = [
   {
     instructions: ["dc"],
     variants: [
-      {
-        sizes: ["b"],
-        sourceOperands: [],
-        destOperands: ["dc.b"]
-      },
-      {
-        sizes: ["w"],
-        sourceOperands: [],
-        destOperands: ["dc.w"]
-      },
-      {
-        sizes: ["l"],
-        sourceOperands: [],
-        destOperands: ["dc.l"]
-      }
+      { sizes: ["b"], sourceOperands: [], destOperands: ["dc.b"] },
+      { sizes: ["w"], sourceOperands: [], destOperands: ["dc.w"] },
+      { sizes: ["l"], sourceOperands: [], destOperands: ["dc.l"] },
     ]
   },
-  // Immediate to CCR/SR instructions group
   {
+    // All verified. I am very confident that this is correct.
     instructions: ["ori", "andi", "eori"],
     variants: [
       // CCR variant
       {
-        sizes: ["b", ""],
-        sourceOperands: ["imm8"],
-        destOperands: ["ccr"]
+        sizes: ["b", ""],           // ori=verified, andi=veri, eori=veri
+        sourceOperands: ["imm8"],   // ori=verified, andi=veri, eori=veri
+        destOperands: ["ccr"]       // ori=verified, andi=veri, eori=veri
       },
       // SR variant
       {
-        sizes: ["w", ""],
-        sourceOperands: ["imm16"],
-        destOperands: ["sr"]
+        sizes: ["w", ""],           // ori=verified, andi=veri, eori=veri
+        sourceOperands: ["imm16"],  // ori=verified, andi=veri, eori=veri
+        destOperands: ["sr"]        // ori=verified, andi=veri, eori=veri
       },
       // Standard variant
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: ["imm"],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
-      }
+        sizes: ["b", "w", "l"],     // ori=verified, andi=veri, eori=veri
+        sourceOperands: ["imm"],    // ori=verified, andi=veri, eori=veri
+        destOperands:
+          dataAlterableAddressingModes32, // ori=verified, andi=veri, eori=veri
+      },
     ]
   },
-  // Immediate to memory/register instructions
   {
+    // All verified. I am very confident that this is correct.
     instructions: ["subi", "addi", "cmpi"],
     variants: [
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: ["imm"],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        sizes: ["b", "w", "l"],   // subi=verified, addi=veri, cmpi=veri
+        sourceOperands: ["imm"],  // subi=verified, addi=veri, cmpi=veri
+        destOperands:
+          // Note: Reference says "dataAddressingModes" for cmpi, but adds that:
+          //       "PC relative addressing modes do not apply to MC68000"
+          dataAlterableAddressingModes32, // subi=verified, addi=veri, cmpi=veri
       }
     ]
   },
-  // Bit manipulation instructions - BTST (supports PC-relative addressing)
   {
+    // Verified. Should be correct.
+    //
+    // Assembler syntax:
+    //     BTST Dn,      <ea>
+    //     BTST #<data>, <ea>
     instructions: ["btst"],
     variants: [
       {
-        sizes: ["l", ""],
-        sourceOperands: ["dn"],
-        destOperands: ["dn"]
+        sizes: ["l", ""],               // verified
+        sourceOperands: ["dn", "imm8"], // verified
+        destOperands: ["dn"]            // verified
       },
       {
-        sizes: ["b", ""],
-        sourceOperands: ["dn"],
-        destOperands: ["(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"]
+        sizes: ["b", ""],       // verified
+        sourceOperands: ["dn"], // verified
+        destOperands: [         // verified
+          /*"dn",*/   "abs.w",
+          /*"an",*/   "abs.l",
+          "(an)",     "imm8",
+          "(an)+",
+          "-(an)",
+          "d(an)",    "d(pc)",
+          "d(an,ix)", "d(pc,ix)"
+        ],
       },
       {
-        sizes: ["l", ""],
-        sourceOperands: ["imm8"],
-        destOperands: ["dn"]
-      },
-      {
-        sizes: ["b", ""],
-        sourceOperands: ["imm8"],
-        destOperands: ["(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"]
+        sizes: ["b", ""],         // verified
+        sourceOperands: ["imm8"], // verified
+        destOperands: [           // verified
+          /*"dn",*/   "abs.w",
+          /*"an",*/   "abs.l",
+          "(an)",     //"imm",
+          "(an)+",
+          "-(an)",
+          "d(an)",    "d(pc)",
+          "d(an,ix)", "d(pc,ix)"
+        ],
       }
     ]
   },
