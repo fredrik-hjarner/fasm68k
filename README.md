@@ -115,3 +115,4 @@ command actually adds empty bytes up to the specified address.
 - [Tomasz Grysztar](https://github.com/tgrysztar) for fasmg.
 - [BigEvilCorporation](https://github.com/BigEvilCorporation) for the megadrive_samples which I simply adapted for fasm68k.
 - The [vasm](http://sun.hasenbraten.de/vasm/) and [clownassembler](https://github.com/Clownacy/clownassembler) assemblers were very helpful for determining correct behaviour of the encoding of the instructions.
+- [Hugues Johnson's](https://github.com/HuguesJohnson) [RetailClerk89](https://github.com/HuguesJohnson/RetailClerk89) was a great game to test fasm68k with.

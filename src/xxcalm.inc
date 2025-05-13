@@ -131,3 +131,11 @@ end struc
 macro calminstruction?.bool? result*, bool_expr*
     asm result xxcalm._bool? bool_expr
 end macro
+
+; Taken from https://board.flatassembler.net/topic.php?p=243916#243907
+struc tokenize? string*
+        eval 'define . ',string
+end struc
+macro calminstruction?.tokenize? val*
+    asm val tokenize val
+end macro

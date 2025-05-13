@@ -10,13 +10,21 @@
 define m68k.settings?
 namespace m68k.settings?
     iterate <setting, default_value, description>, \
+        \ ;; GENERAL SETTINGS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        \
         \ ; TODO: Comment.
         \ ; TODO: Actually use this setting in code.
         compat_word_align_instructions, 0, "", \
         \ ; TODO: Comment.
         compat_colonless_labels, 0, "", \
+        \ ; TODO: Comment.
+        \ ; Replace %01010101 with 01010101b in "some" situations.
+        \ ; Only use this when you need to (for example when it's to tedious to
+        \ ; replace all % with b in an old codebase you convert from another
+        \ ; assembler to fasm68k).
+        compat_binary_percent_prefix, 0, "", \
         \
-        \ ;; VASM SPECIFIC ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+        \ ;; VASM SPECIFIC ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         \
         \ ; TODO: Explain.
         \ ; vasm encodes add etc with immediates incorrectly.
