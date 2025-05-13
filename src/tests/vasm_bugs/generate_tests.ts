@@ -8,11 +8,11 @@ const instructionsData = data;
 
 // Example values for each addressing mode
 const examples: Record<OperandType, string[]> = {
-  "dn": ["d2", "d5"],
-  "an": ["a2", "a7", "sp"],
-  "(an)": ["(a2)", "(a5)"],
-  "(an)+": ["(a1)+", "(a5)+"],
-  "-(an)": ["-(a2)", "-(a5)", "-(sp)"],
+  "dn": ["d1","d2","d3","d4","d5"],
+  "an": ["a1","a2","a3","a4","a5","a6","a7","sp"],
+  "(an)": ["(a1)", "(a2)", "(a3)", "(a4)", "(a5)", "(a6)", "(a7)", "(sp)"],
+  "(an)+": ["(a1)+", "(a2)+", "(a3)+", "(a4)+", "(a5)+", "(a6)+", "(a7)+", "(sp)+"],
+  "-(an)": ["-(a1)", "-(a2)", "-(a3)", "-(a4)", "-(a5)", "-(a6)", "-(a7)", "-(sp)"],
   // indirect addressing with displacement
   "d(an)": [
     "$7FFF(a2)",
@@ -56,9 +56,9 @@ const examples: Record<OperandType, string[]> = {
   ],
   // TODO: Rename to imm32?
   "imm": [
-    "#equ_1",
-    '#equ_equ_1',
-    '#equ_1_plus_equ_1',
+    // "#equ_1",
+    // '#equ_equ_1',
+    // '#equ_1_plus_equ_1',
     "#0",
     "#4",
     "#$FF",
@@ -68,7 +68,8 @@ const examples: Record<OperandType, string[]> = {
     '#"WXYZ"',
     "#1+1",
     '#(3+4)',
-    // '#-1',
+    '#-1',
+    '#-2',
   ],
   "imm3": ["#1", "#7"],
   "imm4": ["#2"],
