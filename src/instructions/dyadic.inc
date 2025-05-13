@@ -342,7 +342,7 @@ iterate <size,  size_bits>, \
                 local is_compat_vasm_cmp_bug1 ; TODO: Remove
                 bool is_compat_vasm_cmp_bug1, \
                     m68k.settings.compat_vasm_cmp_bug1 = 1 & \
-                    (`size = 'b')
+                    (`size = 'b' | `size = 'l')
 
                 check @op1.type = 'imm' & \
                     ~is_compat_vasm_cmp_bug1
@@ -635,8 +635,7 @@ iterate <instr,  first_byte>, \
                         m68k.settings.compat_vasm_sub_bug2 = 1 & \
                         `instr = 'sub' & \
                         `size = 'w' & \
-                        @op2.type = 'dn' & \
-                        (@op2.ea_reg_bits = 011b | @op2.ea_reg_bits = 110b) & \
+                        (@op2.ea_reg_bits = 011b | @op2.ea_reg_bits = 110b | @op2.ea_reg_bits = 111b) & \
                         (@op1.imm = 1)
 
                     local is_compat_vasm_or_bug1

@@ -10,3 +10,7 @@
 	path = examples/RetailClerk89_fasm68k
 	url = git@github.com:fredrik-hjarner/RetailClerk89_fasm68k.git
 	branch = main
+[submodule "examples/speedrun-tower_fasm68k"]
+	path = examples/speedrun-tower_fasm68k
+	url = git@github.com:fredrik-hjarner/speedrun-tower_fasm68k.git
+	branch = main

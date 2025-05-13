@@ -108,11 +108,14 @@ command actually adds empty bytes up to the specified address.
 - 2025-05-06:
   - fasm68k can correctly assemble all BigEvilCorporation's `megadrive_samples`.
 - 2025-05-12:
-  - fasm68k can correctly assemble RetailClerk89 (took about 30-40 hours to get it working).
+  - fasm68k can correctly assemble Hugues Johnson's RetailClerk89. It took about 30-40 hours to get it to produce identical binary.
+- 2025-05-13:
+  - fasm68k can correctly assemble Hugues Johnson's Speedrun Tower. It took 45 minutes to get it to run in an emulator and about 1 hour to produce identical binary.
 
 ## Acknowledgments and attributions
 
 - [Tomasz Grysztar](https://github.com/tgrysztar) for fasmg.
 - [BigEvilCorporation](https://github.com/BigEvilCorporation) for the megadrive_samples which I simply adapted for fasm68k.
 - The [vasm](http://sun.hasenbraten.de/vasm/) and [clownassembler](https://github.com/Clownacy/clownassembler) assemblers were very helpful for determining correct behaviour of the encoding of the instructions.
-- [Hugues Johnson's](https://github.com/HuguesJohnson) [RetailClerk89](https://github.com/HuguesJohnson/RetailClerk89) was a great game to test fasm68k with.
+- [Hugues Johnson's](https://github.com/HuguesJohnson) [RetailClerk89](https://github.com/HuguesJohnson/RetailClerk89) and [Speedrun Tower](https://github.com/HuguesJohnson/speedrun-tower) were great games to test fasm68k with.
+- Exodus and Kega Fusion emulators were used to test the output of fasm68k.
