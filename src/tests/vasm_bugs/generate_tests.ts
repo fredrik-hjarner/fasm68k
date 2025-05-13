@@ -132,6 +132,27 @@ label_start:
 `;
   let previousInstrName = ""; // Track the previous instruction name
   
+  // Helper function to ensure the string has even length
+  function ensureEvenLength(str: string): string {
+    // Split by first whitespace to separate instruction from arguments
+    const parts = str.split(/\s+(.+)/);
+    
+    if (parts.length < 2) {
+      // No arguments, just check if we need padding
+      return str.length % 2 === 0 ? str : str + ' ';
+    }
+    
+    const [instr, args] = parts;
+    const combined = instr + ' ' + args;
+    
+    // If combined length is odd, add an extra space between instruction and args
+    if (combined.length % 2 !== 0) {
+      return instr + '  ' + args; // Two spaces between instruction and args
+    }
+    
+    return combined;
+  }
+  
   // Process each group in the data
   for (const group of instructionsData) {
     // Get the variants for this group
@@ -148,7 +169,11 @@ label_start:
       for (const variant of variants) {
         // Handle instructions with no operands
         if (variant.sourceOperands.length === 0 && variant.destOperands.length === 0) {
-          output += `\t${instrName}\n`;
+          const instruction = `\t${instrName}`;
+          // Create a clean version of the instruction text without tabs
+          const cleanText = instruction.trim();
+          const evenText = ensureEvenLength(cleanText);
+          output += `\tdc.b '${evenText}'\n${instruction}\n`;
           continue;
         }
 
@@ -165,7 +190,10 @@ label_start:
               const destExamples = getExampleValues(destOp, instrName, size);
               
               for (const destExample of destExamples) {
-                output += `\t${instrName}${sizeSuffix}\t${destExample}\n`;
+                const instruction = `\t${instrName}${sizeSuffix}\t${destExample}`;
+                const cleanText = instruction.trim();
+                const evenText = ensureEvenLength(cleanText);
+                output += `\tdc.b '${evenText}'\n${instruction}\n`;
               }
             }
           }
@@ -175,7 +203,10 @@ label_start:
               const srcExamples = getExampleValues(srcOp, instrName, size);
               
               for (const srcExample of srcExamples) {
-                output += `\t${instrName}${sizeSuffix}\t${srcExample}\n`;
+                const instruction = `\t${instrName}${sizeSuffix}\t${srcExample}`;
+                const cleanText = instruction.trim();
+                const evenText = ensureEvenLength(cleanText);
+                output += `\tdc.b '${evenText}'\n${instruction}\n`;
               }
             }
           }
@@ -191,7 +222,10 @@ label_start:
                 // Generate all combinations of source and dest examples
                 for (const srcExample of srcExamples) {
                   for (const destExample of destExamples) {
-                    output += `\t${instrName}${sizeSuffix}\t${srcExample},${destExample}\n`;
+                    const instruction = `\t${instrName}${sizeSuffix}\t${srcExample},${destExample}`;
+                    const cleanText = instruction.trim();
+                    const evenText = ensureEvenLength(cleanText);
+                    output += `\tdc.b '${evenText}'\n${instruction}\n`;
                   }
                 }
               }
@@ -207,7 +241,6 @@ label_start:
   // Add label for instructions that need it
   output += `
 ; edge cases and so on
-    add.l #$00060000, d6 ; compat_vasm_add_bug1
 
 ; labels
 label_end:
