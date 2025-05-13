@@ -256,28 +256,38 @@ export const data: InstructionSet = [
   },
   // MOVEP
   {
+    // Verified. Should be correct.
     instructions: ["movep"],
     variants: [
       {
-        sizes: ["w", "l"],
-        sourceOperands: ["d(an)"],
-        destOperands: ["dn"]
+        sizes: ["w", "l"],          // verified
+        sourceOperands: ["d(an)"],  // verified
+        destOperands: ["dn"]        // verified
       },
       {
-        sizes: ["w", "l"],
-        sourceOperands: ["dn"],
-        destOperands: ["d(an)"]
+        sizes: ["w", "l"],          // verified
+        sourceOperands: ["dn"],     // verified
+        destOperands: ["d(an)"]     // verified
       }
     ]
   },
   // MOVEA
   {
+    // Verified. I am very confident that this is correct.
     instructions: ["movea"],
     variants: [
       {
-        sizes: ["w", "l"],
-        sourceOperands: ["dn", "an", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm"],
-        destOperands: ["an"]
+        sizes: ["w", "l"],    // verified
+        sourceOperands: [     // verified
+          "dn",       "abs.w",
+          "an",       "abs.l",
+          "(an)",     "imm",
+          "(an)+",
+          "-(an)",
+          "d(an)",    "d(pc)",
+          "d(an,ix)", "d(pc,ix)"
+        ],
+        destOperands: ["an"]  // verified
       }
     ]
   },
@@ -351,23 +361,32 @@ export const data: InstructionSet = [
   },
   // TAS instruction (byte only)
   {
+    // Verified. I am very confident that this is correct.
     instructions: ["tas"],
     variants: [
       {
-        sizes: ["b", ""],
-        sourceOperands: [],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        sizes: ["b", ""],   // verified
+        sourceOperands: [], // verified
+        destOperands: [     // verified
+          "dn",       "abs.w",
+          /*"an",*/   "abs.l",
+          "(an)",     //"imm",
+          "(an)+",
+          "-(an)",
+          "d(an)",    //"d(pc)",
+          "d(an,ix)", //"d(pc,ix)"
+        ],
       }
     ]
   },
-  // Register-only operations
   {
+    // Verified. I am very confident that this is correct.
     instructions: ["ext"],
     variants: [
       {
-        sizes: ["w", "l"],
-        sourceOperands: [],
-        destOperands: ["dn"]
+        sizes: ["w", "l"],    // verified
+        sourceOperands: [],   // verified
+        destOperands: ["dn"]  // verified
       }
     ]
   },
@@ -406,23 +425,29 @@ export const data: InstructionSet = [
   },
   // No operand instructions
   {
+    // Verified. I am very confident that this is correct.
     instructions: ["illegal", "reset", "nop", "rte", "rts", "trapv", "rtr"],
     variants: [
-      {
-        sizes: [""],
-        sourceOperands: [],
-        destOperands: []
-      }
+      { sizes: [""], sourceOperands: [], destOperands: [] } // verified
     ]
   },
   // TST
   {
+    // Verified. I am very confident that this is correct.
     instructions: ["tst"],
     variants: [
       {
-        sizes: ["b", "w", "l"],
-        sourceOperands: [],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        sizes: ["b", "w", "l"], // verified
+        sourceOperands: [],     // verified
+        destOperands: [         // verified
+          "dn",       "abs.w",
+          /*"an",*/   "abs.l",
+          "(an)",     //"imm",
+          "(an)+",
+          "-(an)",
+          "d(an)",    //"d(pc)",
+          "d(an,ix)", //"d(pc,ix)"
+        ],
       }
     ]
   },
