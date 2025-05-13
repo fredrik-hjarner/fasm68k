@@ -72,7 +72,7 @@ const examples: Record<OperandType, string[]> = {
   ],
   "imm3": ["#1", "#7"],
   "imm4": ["#2"],
-  "imm8": ["#0", "#$FF", '#"X"'],
+  "imm8": ["#0", "#$FF", '#"X"'], // TODO: add negative examples too?
   // s suffix means signed
   "imm8s": [
     "#0",

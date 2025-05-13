@@ -1,7 +1,7 @@
 # fasm68k - Motorola 68000 instruction set for fasmg (flat assembler g)
 
 **Note**: Consider this to be in alpha stage. Currently supports all 68k
-instructions that are validated with about [14,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
+instructions that are validated with about [16,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
 but the code might still
 contain bugs. If you find bugs then don't hesitate reporting them, since the
 hardest part is to find the bugs while it might be way easier to fix them.
@@ -119,3 +119,4 @@ command actually adds empty bytes up to the specified address.
 - The [vasm](http://sun.hasenbraten.de/vasm/) and [clownassembler](https://github.com/Clownacy/clownassembler) assemblers were very helpful for determining correct behaviour of the encoding of the instructions.
 - [Hugues Johnson's](https://github.com/HuguesJohnson) [RetailClerk89](https://github.com/HuguesJohnson/RetailClerk89) and [Speedrun Tower](https://github.com/HuguesJohnson/speedrun-tower) were great games to test fasm68k with.
 - Exodus and Kega Fusion emulators were used to test the output of fasm68k.
+- [This m68k encoding pdf](http://goldencrystal.free.fr/M68kOpcodes-v2.3.pdf) by GoldenCrystal was extremely helpful.

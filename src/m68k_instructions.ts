@@ -32,10 +32,32 @@ const all32 = [
   "d(an,ix)", "d(pc,ix)"
 ] satisfies OperandType[];
 
+////////////////////////////////////////////////////////////////////////////////
+// dataAddressingModes8                                                       //
+////////////////////////////////////////////////////////////////////////////////
+
+const dataAddressingModes8 = [
+  "dn",       "abs.w",
+  /*"an",*/   "abs.l",
+  "(an)",     "imm8",
+  "(an)+",
+  "-(an)",
+  "d(an)",    "d(pc)",
+  "d(an,ix)", "d(pc,ix)"
+] satisfies OperandType[];
 const dataAddressingModes16 = [
   "dn",       "abs.w",
   /*"an",*/   "abs.l",
   "(an)",     "imm16",
+  "(an)+",
+  "-(an)",
+  "d(an)",    "d(pc)",
+  "d(an,ix)", "d(pc,ix)"
+] satisfies OperandType[];
+const dataAddressingModes32 = [
+  "dn",       "abs.w",
+  /*"an",*/   "abs.l",
+  "(an)",     "imm", // TODO: Rename to imm32!
   "(an)+",
   "-(an)",
   "d(an)",    "d(pc)",
@@ -248,12 +270,25 @@ export const data: InstructionSet = [
   },
   // MOVE
   {
+    // Quote from reference manual:
+    //     NOTE
+    //     Most assemblers use MOVEA when the destination is an
+    //     address register.
+    //     MOVEQ can be used to move an immediate 8-bit value to a data
+    //     register.
     instructions: ["move"],
     variants: [
       {
         sizes: ["b", "w", "l"],
         sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "imm", "d(pc)", "d(pc,ix)"],
         destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+      },
+      // `an` is NOT supported but since `move` will be auto-fixed to `movea`
+      // it is supported "in practice".
+      {
+        sizes: ["w", "l"],
+        sourceOperands: all32,
+        destOperands: ["an"]
       },
       // // TODO: This includes "an"???
       // https://github.com/prb28/m68k-instructions-documentation/blob/master/instructions/move.md
@@ -545,8 +580,19 @@ export const data: InstructionSet = [
     instructions: ["or", "and"],
     variants: [
       {
-        sizes: ["b", "w", "l"], // verified
-        sourceOperands: dataAddressingModes16.except("imm16"), // verified
+        sizes: ["b"], // verified
+        // `imm` is NOT supported but since `or/and` will be auto-fixed to
+        // `ori/andi` is supported "in practice".
+        sourceOperands: dataAddressingModes8, // verified
+        destOperands: ["dn"] // verified
+      },
+      {
+        sizes: ["w", "l"], // verified
+        // `imm` is NOT supported but since `er/and` will be auto-fixed to
+        // `ori/andi` it is supported "in practice".
+        // TODO: I don't quite understand why the .w one accepts an imm32
+        //       in both vasm and clownassembler??
+        sourceOperands: dataAddressingModes32, // verified
         destOperands: ["dn"] // verified
       },
       {
@@ -597,6 +643,18 @@ export const data: InstructionSet = [
         sourceOperands: ["an"], // verified
         destOperands: ["dn"] // verified
       },
+      // `an` is NOT supported but since `move` will be auto-fixed to `movea`
+      // it is supported "in practice".
+      // TODO: I mean... what I could do in cases of auto-fixing is that
+      //       I could add the entire `movea` here, though that would probably
+      //       end up in duplicated tests maybe not sure.
+      //       Anyway that would be nicer than adding each thingie manually
+      //       hard-coded.
+      {
+        sizes: ["w", "l"],
+        sourceOperands: all32,
+        destOperands: ["an"]
+      },
       {
         sizes: ["b", "w", "l"], // verified
         sourceOperands: ["dn"], // verified
@@ -644,12 +702,29 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"], // verified
-        sourceOperands: ["dn"], // verified
         // `imm` is NOT supported but since `eor` will be auto-fixed to `eori`
         // it is supported "in practice".
         // TODO: Add imm and make sure I am not missing anything.
+        sourceOperands: ["dn", "imm"], // verified
         destOperands: dataAlterableAddressingModes32, // verified
-      }
+      },
+      // TODO: vasm auto-fixes (I think) eor -> eori when 2nd operand is ccr/sr
+      //       but clownassembler does not, so it makes it hard to test since
+      //       I have no other assembler that does EVERYTHING so to speak, so
+      //       I settle for compatability with clownassembler for now (since
+      //       vI found bugs in vasm encodings for example).
+      // // CCR variant
+      // {
+      //   sizes: ["b", ""],
+      //   sourceOperands: ["imm8"],
+      //   destOperands: ["ccr"]
+      // },
+      // // SR variant
+      // {
+      //   sizes: ["w", ""],
+      //   sourceOperands: ["imm16"],
+      //   destOperands: ["sr"]
+      // },
     ]
   },
   // CMPM
@@ -696,7 +771,19 @@ export const data: InstructionSet = [
         sizes: ["w", "l"],
         sourceOperands: [ "an"],
         destOperands: ["dn"]
-      }
+      },
+      // `an` is NOT supported but since `cmp` will be auto-fixed to `cmpa`
+      // it is supported "in practice".
+      // TODO: I mean... what I could do in cases of auto-fixing is that
+      //       I could add the entire `movea` here, though that would probably
+      //       end up in duplicated tests maybe not sure.
+      //       Anyway that would be nicer than adding each thingie manually
+      //       hard-coded.
+      {
+        sizes: ["w", "l"],
+        sourceOperands: all32,
+        destOperands: ["an"]
+      },
     ]
   },
   // CMPA

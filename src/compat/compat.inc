@@ -10,14 +10,15 @@ end macro
 macro endc!
     end if
 end macro
-macro elseif!
-    else if
+macro elseif! line&
+    else if line
 end macro
 
 ; TODO: I might be going to far with this.
-; macro endm
-;     esc end macro
-; end macro
+; TODO: I am not sure why I needed this to be an unconditional macro.
+macro endm?!
+    esc end macro
+end macro
 
 ; TODO: I might be going to far with this.
 macro endr

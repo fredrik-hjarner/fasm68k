@@ -81,6 +81,10 @@
       makes a difference though):
       `add.l #$00060000, d6`
       I should file a bug report.
+* make my compat_binary_percent_prefix support these cases:
+      BUTTON_UP=%00000001
+      ESF_FM1 equ %00
+            should be quite simple to implement really.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; things that cause unrecoverable errors in fasmg                            ;;
