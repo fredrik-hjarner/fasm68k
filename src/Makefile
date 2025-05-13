@@ -52,5 +52,47 @@ clean:
 ## TESTING VASM BUGS                                                          ##
 ################################################################################
 
+## GENERATE TESTS ##############################################################
 
+gen_tests_vasm_bugs:
+	bun tests/vasm_bugs/generate_tests.ts
+.PHONY: gen_tests_vasm_bugs
 
+## TOP LEVEL COMMANDS ##########################################################
+
+fasm_vasm_bugs: gen_tests_vasm_bugs build_fasm_vasm_bugs hexdump_vasm_bugs
+.PHONY: fasm_vasm_bugs
+
+clown_vasm_bugs: gen_tests_vasm_bugs build_clown_vasm_bugs hexdump_vasm_bugs
+.PHONY: clown_vasm_bugs
+
+vasm_vasm_bugs: gen_tests_vasm_bugs build_vasm_vasm_bugs hexdump_vasm_bugs
+.PHONY: vasm_vasm_bugs
+
+## BUILD COMMANDS ##############################################################
+
+build_clown_vasm_bugs:
+	clownassembler -c -w -o tests/vasm_bugs/test.bin -i tests/vasm_bugs/valid_instructions.asm
+.PHONY: build_clown_vasm_bugs
+
+# vasm does not support @ but only * it seems?
+build_vasm_vasm_bugs:
+	sed 's/@/\*/g' tests/vasm_bugs/valid_instructions.asm | vasm -no-opt -Fbin -spaces -wfail -o tests/vasm_bugs/test.bin
+.PHONY: build_vasm_vasm_bugs
+
+build_fasm_vasm_bugs:
+	../fasm68k tests/vasm_bugs/valid_instructions.asm tests/vasm_bugs/test.bin -e20 -v2
+.PHONY: build_fasm_vasm_bugs
+
+## HEXDUMP #####################################################################
+
+hexdump_vasm_bugs:
+	xxd -b -c1 tests/vasm_bugs/test.bin | cut -d' ' -f2,4 > tests/vasm_bugs/test.hex
+#  hexdump -v -e '/1 "%02x\n"' tests/test.bin > tests/test.hex
+.PHONY: hexdump_vasm_bugs
+
+## CLEAN #######################################################################
+
+clean_vasm_bugs:
+	rm -f tests/vasm_bugs/test.bin tests/vasm_bugs/test.hex tests/vasm_bugs/valid_instructions.asm
+.PHONY: clean_vasm_bugs
