@@ -35,3 +35,7 @@ vasm encodes `eor` 100% correctly.
 all cmp.[bwl] <imm>, <dn> are encoded incorrectly.
 all cmp.[wl] <imm>, <an> are encoded incorrectly.
     though with `an` it becomes `cmpa` so that makes sense.
+
+## OBSERVE! There are actually more differences with these specific instructions but I have a problem pinpointing what the exact problem is and with which exact situations.
+
+## OBSERVE! I think I misunderstood the situation. `add -> addi` seems to only be a performance optimization??
