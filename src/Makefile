@@ -11,6 +11,11 @@ gen_tests:
 	bun tests/generate_tests.ts
 .PHONY: gen_tests
 
+# Generate instruction validation structure for fasm68k.
+gen_validation:
+	bun tests/generate_validation.ts
+.PHONY: gen_validation
+
 # clownassembler runs `valid_instructions.asm` directly while fasmg runs a wrapper
 # file that includes the m68k instruction set.
 # The reason is that * is not supported in fasmg and I don't know if I can
