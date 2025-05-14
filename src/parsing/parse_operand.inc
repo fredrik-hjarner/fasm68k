@@ -45,6 +45,14 @@ iterate op, @op1,@op2
         ;     'usp'
         ;     'label'           (label. this might be stange, dunno)
         define type
+        ; TODO: So I noted that I need the type (above) in the form of a token
+        ;       also, so I just slapped `type_token` here. Honestly, I should
+        ;       probably replace the current `type` that is a string with this
+        ;       `type_token` instead. Seems it is quite common that tokens are
+        ;       better to store and work with than strings.
+        ; `type_token` has other values, for now see the
+        ;       `instruction_validation_structure.inc` file.
+        define type_token
 
         ; TODO: Comment.
         ; 3 bits. 000b to 111b.
@@ -106,6 +114,7 @@ iterate op, @op1,@op2
 
                     ; default values
                     compute type, 'unknown'    ; TODO: Better default value?
+                    arrange type_token, =unknown ; TODO: Better default value?
                     compute ea_mode_bits, 123d ; TODO: Better default value?
                     compute ea_reg_bits,  123d ; TODO: Better default value?
                     compute ext_bytes, 0       ; TODO: Better default value?
@@ -121,6 +130,7 @@ iterate op, @op1,@op2
                     check an relativeto m68k.address_reg
                     jno check_if_minus_an
                     compute type, '(an)'
+                    arrange type_token, =indir_an
                     compute ea_mode_bits, 010b
                     compute ea_reg_bits, 0 scaleof an
                     jump done
@@ -131,6 +141,7 @@ iterate op, @op1,@op2
                     check an relativeto m68k.address_reg
                     jno check_if_plus_an
                     compute type, '-(an)'
+                    arrange type_token, =an_pre_decr
                     compute ea_mode_bits, 100b
                     compute ea_reg_bits, 0 scaleof an
                     jump done
@@ -141,6 +152,7 @@ iterate op, @op1,@op2
                     check an relativeto m68k.address_reg
                     jno check_if_immediate
                     compute type, '(an)+'
+                    arrange type_token, =an_post_decr
                     compute ea_mode_bits, 011b
                     compute ea_reg_bits, 0 scaleof an
                     jump done
@@ -171,6 +183,7 @@ iterate op, @op1,@op2
                     err 'immediate_addressing_error' ; TODO: better err message.
                 skip_immediate_addressing_error:
                     compute type, 'imm'
+                    arrange type_token, =imm
                     compute ea_mode_bits, 111b
                     compute ea_reg_bits, 100b
                     compute imm, maybe_number
@@ -208,6 +221,7 @@ iterate op, @op1,@op2
                     check maybe_abs relativeto 0
                     jno check_if_abs_l
                     compute type, 'abs.w'
+                    arrange type_token, =abs_w
                     compute ea_mode_bits, 111b
                     compute ea_reg_bits, 000b
                     compute ext_bytes, 2
@@ -228,6 +242,7 @@ iterate op, @op1,@op2
                     check maybe_abs relativeto 0
                     jno check_if_dn
                     compute type, 'abs.l'
+                    arrange type_token, =abs_l
                     compute ea_mode_bits, 111b
                     compute ea_reg_bits, 001b
                     compute ext_bytes, 4
@@ -248,6 +263,7 @@ iterate op, @op1,@op2
                     check operand relativeto m68k.data_reg
                     jno check_if_an
                     compute type, 'dn'
+                    arrange type_token, =dn
                     compute ea_mode_bits, 000b
                     compute ea_reg_bits, operand - m68k.data_reg
                     ; compute ext_bytes, 0
@@ -260,6 +276,7 @@ iterate op, @op1,@op2
                     check operand relativeto m68k.address_reg
                     jno sr
                     compute type, 'an'
+                    arrange type_token, =an
                     compute ea_mode_bits, 001b
                     compute ea_reg_bits, operand - m68k.address_reg
                     ; compute ext_bytes, 0
@@ -285,6 +302,7 @@ iterate op, @op1,@op2
                     check operand relativeto sr
                     jno ccr
                     compute type, 'sr'
+                    arrange type_token, =sr
                     jump done
             ;; ccr ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             ccr:
@@ -294,6 +312,7 @@ iterate op, @op1,@op2
                     check operand relativeto ccr
                     jno usp
                     compute type, 'ccr'
+                    arrange type_token, =ccr
                     jump done
             ;; usp ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             usp:
@@ -303,12 +322,14 @@ iterate op, @op1,@op2
                     check operand relativeto usp
                     jno check_indirect_displacement
                     compute type, 'usp'
+                    arrange type_token, =usp
                     jump done
             ;; (d,an) a.k.a. d(an) - indirect address with displacement ;;;;;;;;
             check_indirect_displacement:
                     call m68k.parse_indirect_displacement, operand
                     jnope check_pc_displacement
                     compute type, '(d,an)'
+                    arrange type_token, =an_displace
                     compute ea_mode_bits, 101b
                     compute ea_reg_bits, 0 scaleof m68k.ret_reg
                     compute ext_bytes, 2
@@ -319,6 +340,7 @@ iterate op, @op1,@op2
                     call m68k.parse_pc_displacement, operand
                     jnope check_pc_index
                     compute type, '(d,pc)'
+                    arrange type_token, =pc_displace
                     compute ea_mode_bits, 111b
                     compute ea_reg_bits, 010b
                     compute ext_bytes, 2
@@ -350,6 +372,7 @@ iterate op, @op1,@op2
                     check m68k.parse_pc_index_result.is_pc_index = 1
                     jno check_memory_index
                     compute type, '(d,pc,xn)'
+                    arrange type_token, =pc_index
                     compute ea_mode_bits, 111b
                     compute ea_reg_bits, 011b
                     compute ext_bytes, 2
@@ -385,6 +408,7 @@ iterate op, @op1,@op2
                     check m68k.parse_mem_index_result.is_mem_index = 1
                     jno check_abs_without_size_suffix
                     compute type, '(d,an,xn)'
+                    arrange type_token, =an_index
                     compute ea_mode_bits, 110b
                     compute ea_reg_bits, m68k.parse_mem_index_result.an
                     compute ext_bytes, 2
@@ -410,6 +434,7 @@ iterate op, @op1,@op2
                     check operand relativeto 0
                     jno unknown
                     compute type, 'abs.l'
+                    arrange type_token, =abs_l
                     compute ea_mode_bits, 111b
                     compute ea_reg_bits, 001b
                     compute ext_bytes, 4

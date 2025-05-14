@@ -18,6 +18,7 @@ include "settings.inc"
 include "endianness.inc"
 include "xxcalm.inc"
 include "compat/compat.inc"
+include "validation/validate_instruction.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ASSERTS                                                                    ;;

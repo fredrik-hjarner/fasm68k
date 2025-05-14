@@ -27,6 +27,16 @@ iterate <size,  size_bit>, \
             call m68k.parse_operand@op1, m68k.split_operands_result.op1
             call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
+        ;; START - TESTING NEW VALIDATION ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+            ; TODO: So this is my first attempt at validating. WHat I want now
+            ;       is to merge
+            ;           split_operands, parse_operand(a) and validate
+            ;       into a single function.
+            xcall validate, <movep>, <size>, @op1.type_token, @op2.type_token
+
+        ;; END  - TESTING NEW VALIDATION ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
             ; Initial default values
             compute direction, 1 ; Default is dn to (d,an)
             compute reg_bits1, @op1.ea_reg_bits ; Default is dn to (d,an)

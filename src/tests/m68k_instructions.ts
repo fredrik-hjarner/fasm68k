@@ -10,6 +10,7 @@ export type OperandType =
     | "sr" | "usp" | "dc.b" | "dc.w" | "dc.l";
 
 // "" means without size suffix.
+// TODO: Change '' to '_' so it's more consistant with the generated fasmg file.
 export type OperandSize = "b" | "w" | "l" | "s" | "";
 
 export type InstructionVariant = {
