@@ -73,11 +73,12 @@ iterate <size,  size_bits>, \
         w,      01b, \
         l,      10b
 
-    calminstruction cmpm.size? an1*, an2*
+    calminstruction cmpm.size? operands&
         assert_word_aligned
 
-        call m68k.parse_operand@op1, an1
-        call m68k.parse_operand@op2, an2
+        call m68k.split_operands, operands
+        call m68k.parse_operand@op1, m68k.split_operands_result.op1
+        call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
         emit_be 1, 10110001b + @op2.ea_reg_bits shl 1
         emit_be 1, size_bits shl 6 + 001b shl 3 + @op1.ea_reg_bits
@@ -95,7 +96,7 @@ end iterate ; <size, size_bits>
 ;     exg a7,d5
 ; Note that the encoding of the 3 M bits are not explained in:
 ;     http://goldencrystal.free.fr/M68kOpcodes-v2.3.pdf
-calminstruction exg.l? reg1*, reg2*
+calminstruction exg.l? operands&
             assert_word_aligned
 
             local type_bits1
@@ -103,8 +104,9 @@ calminstruction exg.l? reg1*, reg2*
             local reg1_bits
             local reg2_bits
 
-            call m68k.parse_operand@op1, reg1
-            call m68k.parse_operand@op2, reg2
+            call m68k.split_operands, operands
+            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+            call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
             ; Init default values
             compute type_bits1, 01b ; default to dn,dn
@@ -162,11 +164,12 @@ end calminstruction
 ;     link.w an,#<displacement>
 ; Sample syntax:
 ;     link a6,#-12
-calminstruction link.w? an*, imm*
+calminstruction link.w? operands&
     assert_word_aligned
 
-    call m68k.parse_operand@op1, an
-    call m68k.parse_operand@op2, imm
+    call m68k.split_operands, operands
+    call m68k.parse_operand@op1, m68k.split_operands_result.op1
+    call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
     emit_be 2, 0100111001010000b + @op1.ea_reg_bits
 
@@ -189,7 +192,7 @@ iterate <instr,  first_byte>, \
         w,      01b, \
         l,      10b
 
-        calminstruction instr.size op1*, op2*
+        calminstruction instr.size? operands&
             assert_word_aligned
 
             local m_bit
@@ -197,8 +200,9 @@ iterate <instr,  first_byte>, \
             ; Init default values
             compute m_bit, 0 ; dn to dn
 
-            call m68k.parse_operand@op1, op1
-            call m68k.parse_operand@op2, op2
+            call m68k.split_operands, operands
+            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+            call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
             ; TODO: This check is just to make it work. I need
             ; to make a more serious check for valid addressing modes.
@@ -225,7 +229,7 @@ iterate <instr,  first_byte>, \
         sbcd,    10000001b, \
         abcd,    11000001b
 
-        calminstruction instr.b op1*, op2*
+        calminstruction instr.b? operands&
                 assert_word_aligned
 
                 local m_bit
@@ -233,8 +237,9 @@ iterate <instr,  first_byte>, \
                 ; Init default values
                 compute m_bit, 0 ; dn to dn
 
-                call m68k.parse_operand@op1, op1
-                call m68k.parse_operand@op2, op2
+                call m68k.split_operands, operands
+                call m68k.parse_operand@op1, m68k.split_operands_result.op1
+                call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
                 ; TODO: This check is just to make it work. I need
                 ; to make a more serious check for valid addressing modes.
@@ -747,23 +752,22 @@ iterate <cc,  cc_bits>, \
         ; Maybe do that in parse_operand?
         ; Also, check if displacement is a valid displacement.
         ; 0 is not allowed for .b I think.
-        calminstruction? db#cc.w? dn*, label*
+        calminstruction? db#cc.w? operands&
             assert_word_aligned
 
             local pc
-            local label_val
 
-            call m68k.parse_operand@op1, dn
-            ; call m68k.parse_operand@op2, label
-
-            compute pc, $ + 2
-            compute label_val, label
+            call m68k.split_operands, operands
+            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+            call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
             emit_be 1, 01010000b + cc_bits
             emit_be 1, 11001000b + @op1.ea_reg_bits
 
             ; immediate word
-            emit_be 2, label_val - pc
+            ; this looks strange but works.
+            ;     ext_bytes_bits will contain the value the label (op2).
+            emit_be 2, @op2.ext_bytes_bits - $
         end calminstruction
 
 end iterate ; <cc, cc_bits>
@@ -869,13 +873,12 @@ end iterate ; <instr, first_byte>
 ; TODO: Figure out how to work with signed numbers so it works with
 ;       whatever formats you can use in normal m68k assemblers
 ;       I assume 1111_1111b and -1d are should both be allowed?!
-calminstruction moveq.l? data*, dn*
+calminstruction moveq.l? operands&
     assert_word_aligned
 
-    call m68k.parse_operand@op1, data
-    call m68k.parse_operand@op2, dn
-
-    assert_data_reg dn
+    call m68k.split_operands, operands
+    call m68k.parse_operand@op1, m68k.split_operands_result.op1
+    call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
     emit_be 1, 01110000b + @op2.ea_reg_bits shl 1
     emit_be 1, @op1.imm
