@@ -400,6 +400,8 @@ iterate op, @op1,@op2
                         m68k.parse_mem_index_result.d bswap 1
                     jump done
             ;; Check for "abs" again
+            ; I think this case will cover labels because I don't think labels
+            ;     usually have a size suffix... might need to double check this.
             check_abs_without_size_suffix:
                     ; TODO: Possibly refactor this. Reason I check for absolute
                     ;       addressing at two places is because the 1st place

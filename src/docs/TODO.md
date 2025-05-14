@@ -85,6 +85,8 @@
       BUTTON_UP=%00000001
       ESF_FM1 equ %00
             should be quite simple to implement really.
+* Does my code handle immediate values correctly I mean with the # prefix?
+      Just double-check this.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; things that cause unrecoverable errors in fasmg                            ;;

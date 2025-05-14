@@ -14,8 +14,8 @@ export type OperandSize = "b" | "w" | "l" | "s" | "";
 
 export type InstructionVariant = {
     sizes: OperandSize[];
-    sourceOperands: OperandType[];
-    destOperands: OperandType[];
+    op1: OperandType[];
+    op2: OperandType[];
 };
 
 export type Group = {
@@ -107,12 +107,14 @@ Array.prototype.except = function(value) {
 
 export const data: InstructionSet = [
   // Data declaration instructions
+  // I mean `dc` is more of a `directive` so have in mind it's different.
+  //     For example `dc` is completely variadic which no real instruction is. 
   {
     instructions: ["dc"],
     variants: [
-      { sizes: ["b"], sourceOperands: [], destOperands: ["dc.b"] },
-      { sizes: ["w"], sourceOperands: [], destOperands: ["dc.w"] },
-      { sizes: ["l"], sourceOperands: [], destOperands: ["dc.l"] },
+      { sizes: ["b"], op1: ["dc.b"], op2: [] },
+      { sizes: ["w"], op1: ["dc.w"], op2: [] },
+      { sizes: ["l"], op1: ["dc.l"], op2: [] },
     ]
   },
   {
@@ -122,20 +124,20 @@ export const data: InstructionSet = [
       // CCR variant
       {
         sizes: ["b", ""],           // ori=verified, andi=veri, eori=veri
-        sourceOperands: ["imm8"],   // ori=verified, andi=veri, eori=veri
-        destOperands: ["ccr"]       // ori=verified, andi=veri, eori=veri
+        op1: ["imm8"],   // ori=verified, andi=veri, eori=veri
+        op2: ["ccr"]       // ori=verified, andi=veri, eori=veri
       },
       // SR variant
       {
         sizes: ["w", ""],           // ori=verified, andi=veri, eori=veri
-        sourceOperands: ["imm16"],  // ori=verified, andi=veri, eori=veri
-        destOperands: ["sr"]        // ori=verified, andi=veri, eori=veri
+        op1: ["imm16"],  // ori=verified, andi=veri, eori=veri
+        op2: ["sr"]        // ori=verified, andi=veri, eori=veri
       },
       // Standard variant
       {
         sizes: ["b", "w", "l"],     // ori=verified, andi=veri, eori=veri
-        sourceOperands: ["imm"],    // ori=verified, andi=veri, eori=veri
-        destOperands:
+        op1: ["imm"],    // ori=verified, andi=veri, eori=veri
+        op2:
           dataAlterableAddressingModes32, // ori=verified, andi=veri, eori=veri
       },
     ]
@@ -146,8 +148,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"],   // subi=verified, addi=veri, cmpi=veri
-        sourceOperands: ["imm"],  // subi=verified, addi=veri, cmpi=veri
-        destOperands:
+        op1: ["imm"],  // subi=verified, addi=veri, cmpi=veri
+        op2:
           // Note: Reference says "dataAddressingModes" for cmpi, but adds that:
           //       "PC relative addressing modes do not apply to MC68000"
           dataAlterableAddressingModes32, // subi=verified, addi=veri, cmpi=veri
@@ -164,13 +166,13 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["l", ""],               // verified
-        sourceOperands: ["dn", "imm8"], // verified
-        destOperands: ["dn"]            // verified
+        op1: ["dn", "imm8"], // verified
+        op2: ["dn"]            // verified
       },
       {
         sizes: ["b", ""],       // verified
-        sourceOperands: ["dn"], // verified
-        destOperands: [         // verified
+        op1: ["dn"], // verified
+        op2: [         // verified
           /*"dn",*/   "abs.w",
           /*"an",*/   "abs.l",
           "(an)",     "imm8",
@@ -182,8 +184,8 @@ export const data: InstructionSet = [
       },
       {
         sizes: ["b", ""],         // verified
-        sourceOperands: ["imm8"], // verified
-        destOperands: [           // verified
+        op1: ["imm8"], // verified
+        op2: [           // verified
           /*"dn",*/   "abs.w",
           /*"an",*/   "abs.l",
           "(an)",     //"imm",
@@ -201,56 +203,59 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["l", ""],
-        sourceOperands: ["dn"],
-        destOperands: ["dn"]
+        op1: ["dn"],
+        op2: ["dn"]
       },
       {
         sizes: ["b", ""],
-        sourceOperands: ["dn"],
-        destOperands: ["(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["dn"],
+        op2: ["(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
       },
       {
         sizes: ["l", ""],
-        sourceOperands: ["imm8"],
-        destOperands: ["dn"]
+        op1: ["imm8"],
+        op2: ["dn"]
       },
       {
         sizes: ["b", ""],
-        sourceOperands: ["imm8"],
-        destOperands: ["(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["imm8"],
+        op2: ["(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
       }
     ]
   },
   // Set according to condition (Scc) instructions
   {
+    // TODO: Make sure these also contain all the aliases for conditions.
     instructions: ["st", "sf", "shi", "sls", "scc", "scs", "sne", "seq", "svc", "svs", "spl", "smi", "sge", "slt", "sgt", "sle", "shs", "slo"],
     variants: [
       {
         sizes: ["b", ""],
-        sourceOperands: [],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"],
+        op2: []
       }
     ]
   },
   // Branch instructions
   {
+    // TODO: Make sure these also contain all the aliases for conditions.
     instructions: ["bra", "bsr", "bhi", "bls", "bcc", "bcs", "bne", "beq", "bvc", "bvs", "bpl", "bmi", "bge", "blt", "bgt", "ble", "bhs", "blo"],
     variants: [
       {
         sizes: ["s", "w", ""],
-        sourceOperands: ["label"],
-        destOperands: []
+        op1: ["label"],
+        op2: []
       }
     ]
   },
   // DBcc instructions
   {
+    // TODO: Make sure these also contain all the aliases for conditions.
     instructions: ["dbt", "dbf", "dbhi", "dbls", "dbcc", "dbcs", "dbne", "dbeq", "dbvc", "dbvs", "dbpl", "dbmi", "dbge", "dblt", "dbgt", "dble", "dbhs", "dblo"],
     variants: [
       {
         sizes: ["w", ""],
-        sourceOperands: ["dn"],
-        destOperands: ["label"]
+        op1: ["dn"],
+        op2: ["label"]
       }
     ]
   },
@@ -261,13 +266,13 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", "l"],          // verified
-        sourceOperands: ["d(an)"],  // verified
-        destOperands: ["dn"]        // verified
+        op1: ["d(an)"],  // verified
+        op2: ["dn"]        // verified
       },
       {
         sizes: ["w", "l"],          // verified
-        sourceOperands: ["dn"],     // verified
-        destOperands: ["d(an)"]     // verified
+        op1: ["dn"],     // verified
+        op2: ["d(an)"]     // verified
       }
     ]
   },
@@ -278,7 +283,7 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", "l"],    // verified
-        sourceOperands: [     // verified
+        op1: [     // verified
           "dn",       "abs.w",
           "an",       "abs.l",
           "(an)",     "imm",
@@ -287,7 +292,7 @@ export const data: InstructionSet = [
           "d(an)",    "d(pc)",
           "d(an,ix)", "d(pc,ix)"
         ],
-        destOperands: ["an"]  // verified
+        op2: ["an"]  // verified
       }
     ]
   },
@@ -303,48 +308,48 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"],
-        sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "imm", "d(pc)", "d(pc,ix)"],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "imm", "d(pc)", "d(pc,ix)"],
+        op2: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
       },
       // `an` is NOT supported but since `move` will be auto-fixed to `movea`
       // it is supported "in practice".
       {
         sizes: ["w", "l"],
-        sourceOperands: all32,
-        destOperands: ["an"]
+        op1: all32,
+        op2: ["an"]
       },
       // // TODO: This includes "an"???
       // https://github.com/prb28/m68k-instructions-documentation/blob/master/instructions/move.md
       {
         sizes: ["w", "l"],
-        sourceOperands: ["an"],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["an"],
+        op2: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
       },
       {
         sizes: ["w"],
-        sourceOperands: ["sr"],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["sr"],
+        op2: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
       },
       {
         sizes: ["w"],
-        sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm"],
-        destOperands: ["ccr"]
+        op1: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm"],
+        op2: ["ccr"]
       },
       {
         sizes: ["w"],
-        sourceOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm"],
-        destOperands: ["sr"]
+        op1: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm"],
+        op2: ["sr"]
       },
       // MOVE USP
       {
         sizes: ["l", ""],
-        sourceOperands: ["usp"],
-        destOperands: ["an"]
+        op1: ["usp"],
+        op2: ["an"]
       },
       {
         sizes: ["l", ""],
-        sourceOperands: ["an"],
-        destOperands: ["usp"]
+        op1: ["an"],
+        op2: ["usp"]
       }
     ]
   },
@@ -354,8 +359,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"],
-        sourceOperands: [],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"],
+        op2: []
       }
     ]
   },
@@ -366,8 +371,7 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", ""],   // verified
-        sourceOperands: [], // verified
-        destOperands: [     // verified
+        op1: [     // verified
           "dn",       "abs.w",
           /*"an",*/   "abs.l",
           "(an)",     //"imm",
@@ -376,6 +380,7 @@ export const data: InstructionSet = [
           "d(an)",    //"d(pc)",
           "d(an,ix)", //"d(pc,ix)"
         ],
+        op2: [], // verified
       }
     ]
   },
@@ -385,8 +390,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", "l"],    // verified
-        sourceOperands: [],   // verified
-        destOperands: ["dn"]  // verified
+        op1: ["dn"],   // verified
+        op2: []  // verified
       }
     ]
   },
@@ -396,8 +401,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", ""],
-        sourceOperands: [],
-        destOperands: ["dn"]
+        op1: ["dn"],
+        op2: []
       }
     ]
   },
@@ -407,8 +412,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", ""],
-        sourceOperands: [],
-        destOperands: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"],
+        op2: []
       }
     ]
   },
@@ -418,8 +423,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["l", ""],
-        sourceOperands: ["(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
-        destOperands: []
+        op1: ["(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
+        op2: []
       }
     ]
   },
@@ -428,7 +433,7 @@ export const data: InstructionSet = [
     // Verified. I am very confident that this is correct.
     instructions: ["illegal", "reset", "nop", "rte", "rts", "trapv", "rtr"],
     variants: [
-      { sizes: [""], sourceOperands: [], destOperands: [] } // verified
+      { sizes: [""], op1: [], op2: [] } // verified
     ]
   },
   // TST
@@ -438,8 +443,7 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"], // verified
-        sourceOperands: [],     // verified
-        destOperands: [         // verified
+        op1: [       // verified
           "dn",       "abs.w",
           /*"an",*/   "abs.l",
           "(an)",     //"imm",
@@ -448,6 +452,7 @@ export const data: InstructionSet = [
           "d(an)",    //"d(pc)",
           "d(an,ix)", //"d(pc,ix)"
         ],
+        op2: [],       // verified
       }
     ]
   },
@@ -457,8 +462,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: [""],
-        sourceOperands: ["imm4"],
-        destOperands: []
+        op1: ["imm4"],
+        op2: []
       }
     ]
   },
@@ -468,8 +473,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", ""],
-        sourceOperands: ["an"],
-        destOperands: ["imm16s"]
+        op1: ["an"],
+        op2: ["imm16s"]
       }
     ]
   },
@@ -479,8 +484,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: [""],
-        sourceOperands: [],
-        destOperands: ["an"]
+        op1: ["an"],
+        op2: []
       }
     ]
   },
@@ -490,8 +495,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: [""],
-        sourceOperands: ["imm16"],
-        destOperands: []
+        op1: ["imm16"],
+        op2: []
       }
     ]
   },
@@ -501,8 +506,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: [""],
-        sourceOperands: ["(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
-        destOperands: []
+        op1: ["(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
+        op2: []
       }
     ]
   },
@@ -512,13 +517,13 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", "l"],
-        sourceOperands: ["register_list"],
-        destOperands: ["(an)", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["register_list"],
+        op2: ["(an)", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
       },
       {
         sizes: ["w", "l"],
-        sourceOperands: ["(an)", "(an)+", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
-        destOperands: ["register_list"]
+        op1: ["(an)", "(an)+", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)"],
+        op2: ["register_list"]
       }
     ]
   },
@@ -528,8 +533,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["l", ""], // verified
-        sourceOperands: controlAddressingModes, // verified
-        destOperands: ["an"] // verified
+        op1: controlAddressingModes, // verified
+        op2: ["an"] // verified
       }
     ]
   },
@@ -539,8 +544,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", ""], // verified
-        sourceOperands: dataAddressingModes16, // verified
-        destOperands: ["dn"] // verified
+        op1: dataAddressingModes16, // verified
+        op2: ["dn"] // verified
       }
     ]
   },
@@ -550,8 +555,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"], // verified
-        sourceOperands: ["imm3"], // verified
-        destOperands: [ // verified
+        op1: ["imm3"], // verified
+        op2: [ // verified
           "dn",       "abs.w",
           /*"an",*/   "abs.l",
           "(an)",     //"imm",
@@ -563,8 +568,8 @@ export const data: InstructionSet = [
       },
       {
         sizes: ["w", "l"],
-        sourceOperands: ["imm3"],
-        destOperands: ["an"]
+        op1: ["imm3"],
+        op2: ["an"]
       },
     ]
   },
@@ -574,8 +579,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["l", ""], // verified
-        sourceOperands: ["imm8s"], // verified
-        destOperands: ["dn"] // verified
+        op1: ["imm8s"], // verified
+        op2: ["dn"] // verified
       }
     ]
   },
@@ -585,8 +590,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", ""], // verified
-        sourceOperands: dataAddressingModes16, // verified
-        destOperands: ["dn"] // verified
+        op1: dataAddressingModes16, // verified
+        op2: ["dn"] // verified
       }
     ]
   },
@@ -596,13 +601,13 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", ""], // verified
-        sourceOperands: ["dn"], // verified
-        destOperands: ["dn"] // verified
+        op1: ["dn"], // verified
+        op2: ["dn"] // verified
       },
       {
         sizes: ["b", ""], // verified
-        sourceOperands: ["-(an)"], // verified
-        destOperands: ["-(an)"] // verified
+        op1: ["-(an)"], // verified
+        op2: ["-(an)"] // verified
       },
     ]
   },
@@ -621,8 +626,8 @@ export const data: InstructionSet = [
         sizes: ["b"], // verified
         // `imm` is NOT supported but since `or/and` will be auto-fixed to
         // `ori/andi` is supported "in practice".
-        sourceOperands: dataAddressingModes8, // verified
-        destOperands: ["dn"] // verified
+        op1: dataAddressingModes8, // verified
+        op2: ["dn"] // verified
       },
       {
         sizes: ["w", "l"], // verified
@@ -630,13 +635,13 @@ export const data: InstructionSet = [
         // `ori/andi` it is supported "in practice".
         // TODO: I don't quite understand why the .w one accepts an imm32
         //       in both vasm and clownassembler??
-        sourceOperands: dataAddressingModes32, // verified
-        destOperands: ["dn"] // verified
+        op1: dataAddressingModes32, // verified
+        op2: ["dn"] // verified
       },
       {
         sizes: ["b", "w", "l"], // verified
-        sourceOperands: ["dn"], // verified
-        destOperands: [ // verified
+        op1: ["dn"], // verified
+        op2: [ // verified
           /*"dn",*/   "abs.w",
           /*"an",*/   "abs.l",
           "(an)",     //"imm",
@@ -663,7 +668,7 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"], // verified
-        sourceOperands: [ // verified
+        op1: [ // verified
           "dn",       "abs.w",
           /*"an",*/   "abs.l",
           // `imm` is NOT supported but since `add/sub` will be auto-fixed to
@@ -674,12 +679,12 @@ export const data: InstructionSet = [
           "d(an)",    "d(pc)",
           "d(an,ix)", "d(pc,ix)"
         ],
-        destOperands: ["dn"] // verified
+        op2: ["dn"] // verified
       },
       {
         sizes: ["w", "l"], // verified
-        sourceOperands: ["an"], // verified
-        destOperands: ["dn"] // verified
+        op1: ["an"], // verified
+        op2: ["dn"] // verified
       },
       // `an` is NOT supported but since `move` will be auto-fixed to `movea`
       // it is supported "in practice".
@@ -690,13 +695,13 @@ export const data: InstructionSet = [
       //       hard-coded.
       {
         sizes: ["w", "l"],
-        sourceOperands: all32,
-        destOperands: ["an"]
+        op1: all32,
+        op2: ["an"]
       },
       {
         sizes: ["b", "w", "l"], // verified
-        sourceOperands: ["dn"], // verified
-        destOperands: [ // verified
+        op1: ["dn"], // verified
+        op2: [ // verified
           /*"dn",*/   "abs.w",
           /*"an",*/   "abs.l",
           "(an)",     //"imm",
@@ -713,13 +718,13 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"], // verified
-        sourceOperands: ["dn"], // verified
-        destOperands: ["dn"] // verified
+        op1: ["dn"], // verified
+        op2: ["dn"] // verified
       },
       {
         sizes: ["b", "w", "l"], // verified
-        sourceOperands: ["-(an)"], // verified
-        destOperands: ["-(an)"] // verified
+        op1: ["-(an)"], // verified
+        op2: ["-(an)"] // verified
       }
     ]
   },
@@ -729,8 +734,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", "l"], // verified
-        sourceOperands: all32, // verified
-        destOperands: ["an"] // verified
+        op1: all32, // verified
+        op2: ["an"] // verified
       }
     ]
   },
@@ -743,8 +748,8 @@ export const data: InstructionSet = [
         // `imm` is NOT supported but since `eor` will be auto-fixed to `eori`
         // it is supported "in practice".
         // TODO: Add imm and make sure I am not missing anything.
-        sourceOperands: ["dn", "imm"], // verified
-        destOperands: dataAlterableAddressingModes32, // verified
+        op1: ["dn", "imm"], // verified
+        op2: dataAlterableAddressingModes32, // verified
       },
       // TODO: vasm auto-fixes (I think) eor -> eori when 2nd operand is ccr/sr
       //       but clownassembler does not, so it makes it hard to test since
@@ -754,14 +759,14 @@ export const data: InstructionSet = [
       // // CCR variant
       // {
       //   sizes: ["b", ""],
-      //   sourceOperands: ["imm8"],
-      //   destOperands: ["ccr"]
+      //   op1: ["imm8"],
+      //   op2: ["ccr"]
       // },
       // // SR variant
       // {
       //   sizes: ["w", ""],
-      //   sourceOperands: ["imm16"],
-      //   destOperands: ["sr"]
+      //   op1: ["imm16"],
+      //   op2: ["sr"]
       // },
     ]
   },
@@ -771,8 +776,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"], // verified
-        sourceOperands: ["(an)+"], // verified
-        destOperands: ["(an)+"] // verified
+        op1: ["(an)+"], // verified
+        op2: ["(an)+"] // verified
       }
     ]
   },
@@ -792,7 +797,7 @@ export const data: InstructionSet = [
         */
         // Does that mean cmp does not support memory-to-memory compares
         // or just that cmpm is more effecient for memory-to-memory compares?
-        sourceOperands: [ // TODO: Double-check this.
+        op1: [ // TODO: Double-check this.
           "dn",       "abs.w",
           /*"an",*/   "abs.l",
           // `imm` is NOT supported but since `cmp` will be auto-fixed to
@@ -803,12 +808,12 @@ export const data: InstructionSet = [
           "d(an)",    "d(pc)",
           "d(an,ix)", "d(pc,ix)"
         ],
-        destOperands: ["dn"]
+        op2: ["dn"]
       },
       {
         sizes: ["w", "l"],
-        sourceOperands: [ "an"],
-        destOperands: ["dn"]
+        op1: [ "an"],
+        op2: ["dn"]
       },
       // `an` is NOT supported but since `cmp` will be auto-fixed to `cmpa`
       // it is supported "in practice".
@@ -819,8 +824,8 @@ export const data: InstructionSet = [
       //       hard-coded.
       {
         sizes: ["w", "l"],
-        sourceOperands: all32,
-        destOperands: ["an"]
+        op1: all32,
+        op2: ["an"]
       },
     ]
   },
@@ -830,8 +835,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", "l"], // verified
-        sourceOperands: all32, // verified
-        destOperands: ["an"] // verified
+        op1: all32, // verified
+        op2: ["an"] // verified
       }
     ]
   },
@@ -841,8 +846,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", ""], // verified
-        sourceOperands: dataAddressingModes16, // verified,
-        destOperands: ["dn"] // verified
+        op1: dataAddressingModes16, // verified,
+        op2: ["dn"] // verified
       }
     ]
   },
@@ -852,8 +857,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["l", ""], // verified
-        sourceOperands: ["dn", "an"], // verified
-        destOperands: ["dn", "an"] // verified
+        op1: ["dn", "an"], // verified
+        op2: ["dn", "an"] // verified
       }
     ]
   },
@@ -863,8 +868,8 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["w", "l"], // verified
-        sourceOperands: all32, // verified,
-        destOperands: ["an"] // verified
+        op1: all32, // verified,
+        op2: ["an"] // verified
       }
     ]
   },
@@ -874,13 +879,13 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b", "w", "l"],
-        sourceOperands: ["dn", "imm3"],
-        destOperands: ["dn"]
+        op1: ["dn", "imm3"],
+        op2: ["dn"]
       },
       {
         sizes: ["w", ""],
-        sourceOperands: [],
-        destOperands: ["(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
+        op1: ["(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"],
+        op2: []
       }
     ]
   }

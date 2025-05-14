@@ -147,7 +147,7 @@ label_start:
       // Process variants
       for (const variant of variants) {
         // Handle instructions with no operands
-        if (variant.sourceOperands.length === 0 && variant.destOperands.length === 0) {
+        if (variant.op1.length === 0 && variant.op2.length === 0) {
           output += `\t${instrName}\n`;
           continue;
         }
@@ -160,8 +160,8 @@ label_start:
           const sizeSuffix = size ? `.${size}` : '';
           
           // Single operand instructions (dest only)
-          if (variant.sourceOperands.length === 0 && variant.destOperands.length > 0) {
-            for (const destOp of variant.destOperands.slice().sort()) {
+          if (variant.op1.length === 0 && variant.op2.length > 0) {
+            for (const destOp of variant.op2.slice().sort()) {
               const destExamples = getExampleValues(destOp, instrName, size);
               
               for (const destExample of destExamples) {
@@ -170,8 +170,8 @@ label_start:
             }
           }
           // Source-only instructions (like branch)
-          else if (variant.sourceOperands.length > 0 && variant.destOperands.length === 0) {
-            for (const srcOp of variant.sourceOperands.slice().sort()) {
+          else if (variant.op1.length > 0 && variant.op2.length === 0) {
+            for (const srcOp of variant.op1.slice().sort()) {
               const srcExamples = getExampleValues(srcOp, instrName, size);
               
               for (const srcExample of srcExamples) {
@@ -180,12 +180,12 @@ label_start:
             }
           }
           // Two-operand instructions - systematically generate all combinations
-          else if (variant.sourceOperands.length > 0 && variant.destOperands.length > 0) {
+          else if (variant.op1.length > 0 && variant.op2.length > 0) {
             // Generate all combinations for all instructions
-            for (const srcOp of variant.sourceOperands.slice().sort()) {
+            for (const srcOp of variant.op1.slice().sort()) {
               const srcExamples = getExampleValues(srcOp, instrName, size);
               
-              for (const destOp of variant.destOperands.slice().sort()) {
+              for (const destOp of variant.op2.slice().sort()) {
                 const destExamples = getExampleValues(destOp, instrName, size);
                 
                 // Generate all combinations of source and dest examples
