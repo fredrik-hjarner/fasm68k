@@ -87,6 +87,8 @@
             should be quite simple to implement really.
 * Does my code handle immediate values correctly I mean with the # prefix?
       Just double-check this.
+* Find out exactly which instructions can have the .s size suffix!!
+      I need to know that and it it to m68k_instructions.ts file!!
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; things that cause unrecoverable errors in fasmg                            ;;

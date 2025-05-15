@@ -2,25 +2,13 @@
 ;; ALIAS MACROS FOR INSTRUCTIONS THAT ONLY HAVE ONE SIZE                      ;;
 ;; TODO: Would these be faster as calminstructions??                          ;;
 ;; TODO: Setting boolean to enable/disable these??                            ;;
+;; TODO: Remove all non-size-suffix aliases in this file and bake that into   ;;
+;;       the instruction itself since then my validation can understand       ;;
+;;       whether an execution of an instruction lacks a size suffix or not.   ;;
+;;       What I mean is that an alias like `nbcd -> nbcd.b` will make the     ;;
+;;       the validation see the size as `b` which is not correct, it should   ;;
+;;       see `_`.                                                             ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; TODO: ori to ccr
-
-;; TODO: ori to sr
-
-;; TODO: andi to ccr
-
-;; TODO: andi to sr
-
-;; TODO: eori to ccr
-
-;; TODO: eori to sr
-
-;; TODO: move from sr
-
-;; TODO: move to ccr
-
-;; TODO: move to sr
 
 macro nbcd line&
     nbcd.b line
@@ -41,8 +29,6 @@ end macro
 macro link line&
     link.w line
 end macro
-
-;; TODO: move usp
 
 macro lea line&
     lea.l line
@@ -118,37 +104,40 @@ end macro
 ;; TODO: Move this into a separate file.                                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-macro btst line&
-    ; TODO: I have no idea which is the correct one or even what the difference
-    ;       between btst.b and btst.l is. The tests does not seem to have cases
-    ;       where the difference comes to light!
-    ; btst.b line
-    btst.l line
-end macro
-
-macro bchg line&
-    ; TODO: I have no idea which is the correct one or even what the difference
-    ;       between bchg.b and bchg.l is. The tests does not seem to have cases
-    ;       where the difference comes to light!
-    ; bchg.b line
-    bchg.l line
-end macro
-
-macro bclr line&
-    ; TODO: I have no idea which is the correct one or even what the difference
-    ;       between bclr.b and bclr.l is. The tests does not seem to have cases
-    ;       where the difference comes to light!
-    ; bclr.b line
-    bclr.l line
-end macro
-
-macro bset line&
-    ; TODO: I have no idea which is the correct one or even what the difference
-    ;       between bset.b and bset.l is. The tests does not seem to have cases
-    ;       where the difference comes to light!
-    ; bset.b line
-    bset.l line
-end macro
+; TODO: All of btst, bchg, bclr, bset here are commented out because I had to
+;      solve this issue in the instruction itself which I should also probabaly
+;      do for ALL other instructions too since it works better together with my
+;      validation code (validate_instruction.inc and
+;      instruction_validation_structure.inc).
+;
+; macro btst line&
+;     ; TODO: I have no idea which is the correct one or even what the difference
+;     ;       between btst.b and btst.l is. The tests does not seem to have cases
+;     ;       where the difference comes to light!
+;     ; btst.b line
+;     btst.l line
+; end macro
+; macro bchg line&
+;     ; TODO: I have no idea which is the correct one or even what the difference
+;     ;       between bchg.b and bchg.l is. The tests does not seem to have cases
+;     ;       where the difference comes to light!
+;     ; bchg.b line
+;     bchg.l line
+; end macro
+; macro bclr line&
+;     ; TODO: I have no idea which is the correct one or even what the difference
+;     ;       between bclr.b and bclr.l is. The tests does not seem to have cases
+;     ;       where the difference comes to light!
+;     ; bclr.b line
+;     bclr.l line
+; end macro
+; macro bset line&
+;     ; TODO: I have no idea which is the correct one or even what the difference
+;     ;       between bset.b and bset.l is. The tests does not seem to have cases
+;     ;       where the difference comes to light!
+;     ; bset.b line
+;     bset.l line
+; end macro
 
 iterate d, l,r
 

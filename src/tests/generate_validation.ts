@@ -101,7 +101,7 @@ namespace m68k.valid_instructions
 }
 
 // Main execution
-const outputPath = path.join(__dirname, 'generated_validation.asm');
+const outputPath = path.join(__dirname, '../validation/instruction_validation_structure.inc');
 const fasmgCode = generateFasmgValidation();
 fs.writeFileSync(outputPath, fasmgCode);
 console.log(`FASMG validation structure written to ${outputPath}`); 

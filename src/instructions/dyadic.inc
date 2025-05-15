@@ -15,27 +15,14 @@ iterate <size,  size_bit>, \
         l,      1b
 
     calminstruction movep.size? operands&
-            assert_word_aligned
+            xcall m68k.parse_and_validate_instruction, \
+                <movep>, operands, <size>, <size>
 
             local direction
             local reg_bits1
             local reg_bits2
             local ext_bytes
             local ext_bytes_bits
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
-            call m68k.parse_operand@op2, m68k.split_operands_result.op2
-
-        ;; START - TESTING NEW VALIDATION ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-            ; TODO: So this is my first attempt at validating. WHat I want now
-            ;       is to merge
-            ;           split_operands, parse_operand(a) and validate
-            ;       into a single function.
-            xcall validate, <movep>, <size>, @op1.type_token, @op2.type_token
-
-        ;; END  - TESTING NEW VALIDATION ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
             ; Initial default values
             compute direction, 1 ; Default is dn to (d,an)
@@ -74,12 +61,8 @@ iterate <size,  size_bits>, \
         l,      10b
 
     calminstruction cmpm.size? operands&
-        assert_word_aligned
-
-        call m68k.split_operands, operands
-        call m68k.parse_operand@op1, m68k.split_operands_result.op1
-        call m68k.parse_operand@op2, m68k.split_operands_result.op2
-
+        xcall m68k.parse_and_validate_instruction, \
+            <cmpm>, operands, <size>, <size>
         emit_be 1, 10110001b + @op2.ea_reg_bits shl 1
         emit_be 1, size_bits shl 6 + 001b shl 3 + @op1.ea_reg_bits
     end calminstruction
@@ -97,16 +80,12 @@ end iterate ; <size, size_bits>
 ; Note that the encoding of the 3 M bits are not explained in:
 ;     http://goldencrystal.free.fr/M68kOpcodes-v2.3.pdf
 calminstruction exg.l? operands&
-            assert_word_aligned
+            xcall m68k.parse_and_validate_instruction, <exg>, operands, <l>, <l>
 
             local type_bits1
             local type_bits2
             local reg1_bits
             local reg2_bits
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
-            call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
             ; Init default values
             compute type_bits1, 01b ; default to dn,dn
@@ -145,11 +124,7 @@ end calminstruction
 ; Syntax:
 ;     chk.w <ea>,dn
 calminstruction chk.w? operands&
-    assert_word_aligned
-
-    call m68k.split_operands, operands
-    call m68k.parse_operand@op1, m68k.split_operands_result.op1
-    call m68k.parse_operand@op2, m68k.split_operands_result.op2
+    xcall m68k.parse_and_validate_instruction, <chk>, operands, <w>, <w>
 
     emit_be 1, 01000001b + @op2.ea_reg_bits shl 1
     emit_be 1, 10000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
@@ -165,11 +140,7 @@ end calminstruction
 ; Sample syntax:
 ;     link a6,#-12
 calminstruction link.w? operands&
-    assert_word_aligned
-
-    call m68k.split_operands, operands
-    call m68k.parse_operand@op1, m68k.split_operands_result.op1
-    call m68k.parse_operand@op2, m68k.split_operands_result.op2
+    xcall m68k.parse_and_validate_instruction, <link>, operands, <w>, <w>
 
     emit_be 2, 0100111001010000b + @op1.ea_reg_bits
 
@@ -193,16 +164,13 @@ iterate <instr,  first_byte>, \
         l,      10b
 
         calminstruction instr.size? operands&
-            assert_word_aligned
+            xcall m68k.parse_and_validate_instruction, \
+                <instr>, operands, <size>, <size>
 
             local m_bit
 
             ; Init default values
             compute m_bit, 0 ; dn to dn
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
-            call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
             ; TODO: This check is just to make it work. I need
             ; to make a more serious check for valid addressing modes.
@@ -230,16 +198,13 @@ iterate <instr,  first_byte>, \
         abcd,    11000001b
 
         calminstruction instr.b? operands&
-                assert_word_aligned
+                xcall m68k.parse_and_validate_instruction, \
+                    <instr>, operands, <b>, <b>
 
                 local m_bit
 
                 ; Init default values
                 compute m_bit, 0 ; dn to dn
-
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1
-                call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
                 ; TODO: This check is just to make it work. I need
                 ; to make a more serious check for valid addressing modes.
@@ -268,15 +233,9 @@ iterate <instr,  first_byte>, \
             w,      0b, \
             l,      1b
 
-            calminstruction instr.size operands&
-                assert_word_aligned
-
-                ; TODO: I am not sure why I have to do this to get the call to work.
-                arrange _size, =size
-
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1, _size
-                call m68k.parse_operand@op2, m68k.split_operands_result.op2, _size
+            calminstruction instr.size? operands&
+                xcall m68k.parse_and_validate_instruction, \
+                    <instr>, operands, <size>, <size>
 
                 emit_be 1, first_byte + @op2.ea_reg_bits shl 1 + size_bit
                 emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
@@ -298,11 +257,8 @@ iterate <size,  size_bits>, \
         ; Syntax:
         ;     EOR.[bwl] Dn,<ea>
         calminstruction eor.size? operands&
-                assert_word_aligned
-
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1
-                call m68k.parse_operand@op2, m68k.split_operands_result.op2
+                xcall m68k.parse_and_validate_instruction, \
+                    <eor>, operands, <size>, <size>
 
             ; Show error message if imm
                 check @op1.type = 'imm'
@@ -328,17 +284,8 @@ iterate <size,  size_bits>, \
         ; Syntax:
         ;     CMP.[bwl] <ea>,Dn
         calminstruction cmp.size? operands&
-                assert_word_aligned
-
-                local _size
-
-                ; TODO: I am not sure why I have to do this to get the call to work.
-                ; TODO: Can I use backtick instead pehaps?
-                arrange _size, =size
-
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1, _size
-                call m68k.parse_operand@op2, m68k.split_operands_result.op2, _size
+                xcall m68k.parse_and_validate_instruction, \
+                    <cmp>, operands, <size>, <size>
 
             ; Show error message if imm ; TODO: Move comment. better comments.
                 check @op2.type = 'an'
@@ -397,11 +344,8 @@ iterate <instr,  first_byte>, \
         muls,    11000001b
 
         calminstruction instr.w? operands&
-            assert_word_aligned
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
-            call m68k.parse_operand@op2, m68k.split_operands_result.op2
+            xcall m68k.parse_and_validate_instruction, \
+                <instr>, operands, <w>, <w>
 
             emit_be 1, first_byte + @op2.ea_reg_bits shl 1
             emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
@@ -439,12 +383,15 @@ iterate <instr,  instr_bits>, \
     ;       bits are changed, that seems reasonable? I require explicit .[bwl]
     ;       but maybe another assembler when .[bwl] is not input on <ea> it will
     ;       take the size from the instruction suffix.. yea that must be it.
-    iterate <size, size_in_bytes>, \
-             b,    2, \
-             l,    2
+    iterate <size, dot_size, size_in_bytes>, \
+             _,    ,         2,  \
+             b,    .b,       2,  \
+             l,    .l,       2
 
-        calminstruction instr.size? operands&
-                assert_word_aligned
+        calminstruction instr#dot_size? operands&
+                ; TODO: I don't quite understand why I have to pass <b> here?
+                xcall m68k.parse_and_validate_instruction, \
+                    <instr>, operands, <size>, <b>
 
                 local op1_bits
                 local op1_type_bit
@@ -456,10 +403,6 @@ iterate <instr,  instr_bits>, \
                 compute op1_type_bit, 1000b ; This is the value when op1 is imm
                 compute bit_index, 0
                 compute bit_index_size, size_in_bytes ; This is the value when op1 is imm
-
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1
-                call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
                 ; TODO:
                 ;   If type was a token instead of a value, the I suppose I
@@ -586,17 +529,8 @@ iterate <instr,  first_byte>, \
             l,      10b
 
             calminstruction instr.size? operands&
-                    assert_word_aligned
-
-                    local _size
-
-                    ; TODO: I am not sure why I have to do this to get the call to work.
-                    ; TODO: Can I use backtick instead pehaps?
-                    arrange _size, =size
-
-                    call m68k.split_operands, operands
-                    call m68k.parse_operand@op1, m68k.split_operands_result.op1, _size
-                    call m68k.parse_operand@op2, m68k.split_operands_result.op2, _size
+                    xcall m68k.parse_and_validate_instruction, \
+                        <instr>, operands, <size>, <size>
 
                 ; Auto-fix add/sub to adda/suba if second operand is an
                     check @op2.type = 'an' & (`instr = 'add' | `instr = 'sub')
@@ -753,13 +687,10 @@ iterate <cc,  cc_bits>, \
         ; Also, check if displacement is a valid displacement.
         ; 0 is not allowed for .b I think.
         calminstruction? db#cc.w? operands&
-            assert_word_aligned
+            xcall m68k.parse_and_validate_instruction, \
+                <db#cc>, operands, <w>, <w>
 
             local pc
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
-            call m68k.parse_operand@op2, m68k.split_operands_result.op2
 
             emit_be 1, 01010000b + cc_bits
             emit_be 1, 11001000b + @op1.ea_reg_bits
@@ -779,16 +710,8 @@ iterate <size,  size_bits>, \
         l,      10b
 
         calminstruction movea.size? operands&
-            assert_word_aligned
-
-            ; display 10 bappend 'movea:' bappend 10
-
-            local tmp
-            arrange tmp, =size
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1, tmp
-            call m68k.parse_operand@op2, m68k.split_operands_result.op2
+            xcall m68k.parse_and_validate_instruction, \
+                <movea>, operands, <size>, <size>
 
             emit_be 1, size_bits shl 4 + @op2.ea_reg_bits shl 1
             emit_be 1, 01000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
@@ -804,11 +727,7 @@ end iterate ; <size, size_bits>
 
 ; TODO: Comment
 calminstruction lea.l? operands&
-    assert_word_aligned
-
-    call m68k.split_operands, operands
-    call m68k.parse_operand@op1, m68k.split_operands_result.op1
-    call m68k.parse_operand@op2, m68k.split_operands_result.op2
+    xcall m68k.parse_and_validate_instruction, <lea>, operands, <l>, <l>
 
     emit_be 1, 01000001b + @op2.ea_reg_bits shl 1
     emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
@@ -838,17 +757,13 @@ iterate <instr,  first_byte>, \
             l,      10b
 
             calminstruction instr.size? operands&
-                assert_word_aligned
-
-                local tmp
-
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1
-                call m68k.parse_operand@op2, m68k.split_operands_result.op2
+                xcall m68k.parse_and_validate_instruction, \
+                    <instr>, operands, <size>, <size>
 
                 assert_min @op1.imm, 1
                 assert_max @op1.imm, 8
 
+                local tmp
                 ; 8 is encoded as 000b
                 compute tmp, @op1.imm mod 8
                 emit_be 1, first_byte + tmp shl 1
@@ -874,12 +789,7 @@ end iterate ; <instr, first_byte>
 ;       whatever formats you can use in normal m68k assemblers
 ;       I assume 1111_1111b and -1d are should both be allowed?!
 calminstruction moveq.l? operands&
-    assert_word_aligned
-
-    call m68k.split_operands, operands
-    call m68k.parse_operand@op1, m68k.split_operands_result.op1
-    call m68k.parse_operand@op2, m68k.split_operands_result.op2
-
+    xcall m68k.parse_and_validate_instruction, <moveq>, operands, <l>, <l>
     emit_be 1, 01110000b + @op2.ea_reg_bits shl 1
     emit_be 1, @op1.imm
 end calminstruction

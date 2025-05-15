@@ -21,30 +21,6 @@ iterate <instr,  instr_bits>, \
                 w,             01b, \
                 l,             10b
 
-            ; Supposed to be called.
-            calminstruction instr#dir#size#_dyadic_data_reg? dn1*, dn2*
-                assert_data_reg dn1
-                assert_data_reg dn2
-
-                emit_be 1, 11100000b + (0 scaleof dn1) shl 1 + dir_bit
-                emit_be 1, size_bits shl 6 + 1 shl 5 + instr_bits shl 3 + \
-                        (0 scaleof dn2)
-            end calminstruction
-
-            ; Supposed to be called.
-            calminstruction instr#dir#size#_dyadic_imm? imm*, dn*
-                    local tmp
-
-                    assert_min imm, 1
-                    assert_max imm, 8
-                    assert_data_reg dn
-
-                    ; 8 is encoded as 0, I think mod with 8 takes care of that.
-                    compute tmp, imm mod 8
-                    emit_be 1, 11100000b + (tmp shl 1) + dir_bit
-                    emit_be 1, size_bits shl 6 + instr_bits shl 3 + (0 scaleof dn)
-            end calminstruction
-
             ; Description:
             ;     Arithmetic Shift Left.
             ;     See the different variants for more documentation.
@@ -59,21 +35,30 @@ iterate <instr,  instr_bits>, \
             calminstruction instr#dir#.#size? operands&
                         assert_word_aligned
 
-                        local op1, op2
-
                         call m68k.split_operands, operands
-                        arr_tra op1, =m68k.=split_operands_result.=op1
-                        arr_tra op2, =m68k.=split_operands_result.=op2
+                        xcall m68k.parse_operand@op1, m68k.split_operands_result.op1
+                        xcall m68k.parse_operand@op2, m68k.split_operands_result.op2
+
                         check m68k.split_operands_result.num_operands = 1
                         jyes one_operand
                 ; two_operands:
-                        check op1 relativeto m68k.data_reg
+                        match =dn, @op1.type_token
                         jyes data_reg
                     ; immediate:
-                        call instr#dir#size#_dyadic_imm, op1, op2
+                        assert_min @op1.imm, 1
+                        assert_max @op1.imm, 8
+
+                        local tmp
+                        ; 8 is encoded as 0, I think mod with 8 takes care of that.
+                        compute tmp, @op1.imm mod 8
+                        emit_be 1, 11100000b + (tmp shl 1) + dir_bit
+                        emit_be 1, size_bits shl 6 + instr_bits shl 3 + \
+                                @op2.ea_reg_bits
                         exit
                     data_reg:
-                        call instr#dir#size#_dyadic_data_reg, op1, op2
+                        emit_be 1, 11100000b + @op1.ea_reg_bits shl 1 + dir_bit
+                        emit_be 1, size_bits shl 6 + 1 shl 5 + instr_bits \
+                                shl 3 + @op2.ea_reg_bits
                         exit
                 one_operand:
                         ; TODO: I think this one can only be .w

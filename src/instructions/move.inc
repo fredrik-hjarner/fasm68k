@@ -4,12 +4,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Supposed to be called.
-calminstruction move_macro? op1*, op2*, size
-        assert_word_aligned
-
-        call m68k.parse_operand@op1, op1, size
-        call m68k.parse_operand@op2, op2, size
-
+calminstruction move_macro? size
         ; TODO: This checks could be more complete.
         check @op1.type = 'sr'
         jyes sr_to_ea
@@ -64,24 +59,19 @@ end calminstruction
 ;     move.[bwl] <ea1>, <ea2>
 iterate size,  b,w,l
     calminstruction move.size? operands&
-        local _size
-
-        ; TODO: I am not sure why I have to do this to get the `call` to work...
-        arrange _size, =size
-
+        assert_word_aligned
         call m68k.split_operands, operands
-        call move_macro, \
-            m68k.split_operands_result.op1, \
-            m68k.split_operands_result.op2, \
-            _size
+        xcall m68k.parse_operand@op1, m68k.split_operands_result.op1, <size>
+        xcall m68k.parse_operand@op2, m68k.split_operands_result.op2, <size>
+        xcall move_macro, <size>
     end calminstruction
 end iterate
-
 calminstruction move? operands&
+    assert_word_aligned
     call m68k.split_operands, operands
-    call move_macro, \
-        m68k.split_operands_result.op1, \
-        m68k.split_operands_result.op2
+    call m68k.parse_operand@op1, m68k.split_operands_result.op1
+    call m68k.parse_operand@op2, m68k.split_operands_result.op2
+    call move_macro
 end calminstruction
 
 ; TODO: Comment

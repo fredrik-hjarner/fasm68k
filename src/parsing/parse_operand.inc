@@ -101,7 +101,7 @@ iterate op, @op1,@op2
         ;
         ; The `instr_size` argument is needed to set `ext_bytes` to the correct
         ; value for immediate values (when the official syntax specifies <ea>).
-        calminstruction m68k.parse_operand#op operand*, instr_size
+        calminstruction m68k.parse_operand#op operand, instr_size
                     local tmp
                     local opstr
                     local maybe_number
@@ -114,13 +114,19 @@ iterate op, @op1,@op2
 
                     ; default values
                     compute type, 'unknown'    ; TODO: Better default value?
-                    arrange type_token, =unknown ; TODO: Better default value?
+                    arrange type_token, =_     ; TODO: Better default value?
                     compute ea_mode_bits, 123d ; TODO: Better default value?
                     compute ea_reg_bits,  123d ; TODO: Better default value?
                     compute ext_bytes, 0       ; TODO: Better default value?
                     compute ext_bytes_bits, 0  ; TODO: Better default value?
                     compute imm, 0             ; TODO: Better default value?
 
+            ;; check if empty ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                    ; If split operands only finds one argument then the other
+                    ; argumnt will be empty, which is perfectly valid since some
+                    ; instructions only have one operand.
+                    match ,operand
+                    jyes done
             ;; (an) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             ; check_if_indirect_an:
                     match (an), operand
@@ -152,7 +158,7 @@ iterate op, @op1,@op2
                     check an relativeto m68k.address_reg
                     jno check_if_immediate
                     compute type, '(an)+'
-                    arrange type_token, =an_post_decr
+                    arrange type_token, =an_post_incr
                     compute ea_mode_bits, 011b
                     compute ea_reg_bits, 0 scaleof an
                     jump done
@@ -372,7 +378,7 @@ iterate op, @op1,@op2
                     check m68k.parse_pc_index_result.is_pc_index = 1
                     jno check_memory_index
                     compute type, '(d,pc,xn)'
-                    arrange type_token, =pc_index
+                    arrange type_token, =pc_idx
                     compute ea_mode_bits, 111b
                     compute ea_reg_bits, 011b
                     compute ext_bytes, 2
@@ -408,7 +414,7 @@ iterate op, @op1,@op2
                     check m68k.parse_mem_index_result.is_mem_index = 1
                     jno check_abs_without_size_suffix
                     compute type, '(d,an,xn)'
-                    arrange type_token, =an_index
+                    arrange type_token, =an_idx
                     compute ea_mode_bits, 110b
                     compute ea_reg_bits, m68k.parse_mem_index_result.an
                     compute ext_bytes, 2
@@ -519,6 +525,9 @@ end iterate
 ;; SPLIT_OPERANDS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; TODO: Comment. Look at comment on the commented out function above.
+; TODO: Remove this, it will no longer be needed!
+; TODO: Well... I still need to think about a way for the user to be able
+;       to make use of the parsing stuff so they can use it in their own code.
 define m68k.split_operands_result
 namespace m68k.split_operands_result
     define num_operands
@@ -534,12 +543,39 @@ calminstruction m68k.split_operands? line&
         match op1 =, op2, line, ()
         jyes two_operands
     ; one_operand:
-        call m68k.parse_operand@op1, line
         compute m68k.split_operands_result.num_operands, 1
         arrange m68k.split_operands_result.op1, line
+        arrange m68k.split_operands_result.op2,
         exit
     two_operands:
         compute m68k.split_operands_result.num_operands, 2
         arrange m68k.split_operands_result.op1, op1
         arrange m68k.split_operands_result.op2, op2
+end calminstruction
+; TODO: This is a refactoring of the function above to include more stuff.
+; Remove the function above and replace with this one.
+; TODO: Might be a bit unclear what `imm_size` is though it's related to how
+;       maybe bytes an immediate will take up in an extention word I think...
+calminstruction m68k.parse_and_validate_instruction? instr*, \
+                                                     operands*, \
+                                                     size_suffix, \
+                                                     imm_size
+        assert_word_aligned
+
+        local op1, op2
+        match op1 =, op2, operands, ()
+        jyes two_operands
+    ; one_operand:
+        ; TODO: Remove num_operands. Can just check if type is _ instead.
+        compute m68k.split_operands_result.num_operands, 1
+        call m68k.parse_operand@op1, operands, imm_size
+        call m68k.parse_operand@op2
+        jump validate
+    two_operands:
+        ; TODO: Remove num_operands. Can just check if type is _ instead.
+        compute m68k.split_operands_result.num_operands, 2
+        call m68k.parse_operand@op1, op1, imm_size
+        call m68k.parse_operand@op2, op2, imm_size
+    validate:
+        xcall validate, instr, size_suffix, @op1.type_token, @op2.type_token
 end calminstruction

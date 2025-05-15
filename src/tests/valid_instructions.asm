@@ -5372,6 +5372,8 @@ label_start:
 
 	bra.s	@
 	bra.s	@-2
+	bra.b	@
+	bra.b	@-2
 	bra.w	@
 	bra.w	@-2
 	bra	@
@@ -5379,6 +5381,8 @@ label_start:
 
 	bsr.s	@
 	bsr.s	@-2
+	bsr.b	@
+	bsr.b	@-2
 	bsr.w	@
 	bsr.w	@-2
 	bsr	@
@@ -5386,6 +5390,8 @@ label_start:
 
 	bhi.s	@
 	bhi.s	@-2
+	bhi.b	@
+	bhi.b	@-2
 	bhi.w	@
 	bhi.w	@-2
 	bhi	@
@@ -5393,6 +5399,8 @@ label_start:
 
 	bls.s	@
 	bls.s	@-2
+	bls.b	@
+	bls.b	@-2
 	bls.w	@
 	bls.w	@-2
 	bls	@
@@ -5400,6 +5408,8 @@ label_start:
 
 	bcc.s	@
 	bcc.s	@-2
+	bcc.b	@
+	bcc.b	@-2
 	bcc.w	@
 	bcc.w	@-2
 	bcc	@
@@ -5407,6 +5417,8 @@ label_start:
 
 	bcs.s	@
 	bcs.s	@-2
+	bcs.b	@
+	bcs.b	@-2
 	bcs.w	@
 	bcs.w	@-2
 	bcs	@
@@ -5414,6 +5426,8 @@ label_start:
 
 	bne.s	@
 	bne.s	@-2
+	bne.b	@
+	bne.b	@-2
 	bne.w	@
 	bne.w	@-2
 	bne	@
@@ -5421,6 +5435,8 @@ label_start:
 
 	beq.s	@
 	beq.s	@-2
+	beq.b	@
+	beq.b	@-2
 	beq.w	@
 	beq.w	@-2
 	beq	@
@@ -5428,6 +5444,8 @@ label_start:
 
 	bvc.s	@
 	bvc.s	@-2
+	bvc.b	@
+	bvc.b	@-2
 	bvc.w	@
 	bvc.w	@-2
 	bvc	@
@@ -5435,6 +5453,8 @@ label_start:
 
 	bvs.s	@
 	bvs.s	@-2
+	bvs.b	@
+	bvs.b	@-2
 	bvs.w	@
 	bvs.w	@-2
 	bvs	@
@@ -5442,6 +5462,8 @@ label_start:
 
 	bpl.s	@
 	bpl.s	@-2
+	bpl.b	@
+	bpl.b	@-2
 	bpl.w	@
 	bpl.w	@-2
 	bpl	@
@@ -5449,6 +5471,8 @@ label_start:
 
 	bmi.s	@
 	bmi.s	@-2
+	bmi.b	@
+	bmi.b	@-2
 	bmi.w	@
 	bmi.w	@-2
 	bmi	@
@@ -5456,6 +5480,8 @@ label_start:
 
 	bge.s	@
 	bge.s	@-2
+	bge.b	@
+	bge.b	@-2
 	bge.w	@
 	bge.w	@-2
 	bge	@
@@ -5463,6 +5489,8 @@ label_start:
 
 	blt.s	@
 	blt.s	@-2
+	blt.b	@
+	blt.b	@-2
 	blt.w	@
 	blt.w	@-2
 	blt	@
@@ -5470,6 +5498,8 @@ label_start:
 
 	bgt.s	@
 	bgt.s	@-2
+	bgt.b	@
+	bgt.b	@-2
 	bgt.w	@
 	bgt.w	@-2
 	bgt	@
@@ -5477,6 +5507,8 @@ label_start:
 
 	ble.s	@
 	ble.s	@-2
+	ble.b	@
+	ble.b	@-2
 	ble.w	@
 	ble.w	@-2
 	ble	@
@@ -5484,6 +5516,8 @@ label_start:
 
 	bhs.s	@
 	bhs.s	@-2
+	bhs.b	@
+	bhs.b	@-2
 	bhs.w	@
 	bhs.w	@-2
 	bhs	@
@@ -5491,6 +5525,8 @@ label_start:
 
 	blo.s	@
 	blo.s	@-2
+	blo.b	@
+	blo.b	@-2
 	blo.w	@
 	blo.w	@-2
 	blo	@

@@ -8,9 +8,8 @@
 ;     unlk an
 ; Attributes:
 ;     Unsized
-calminstruction unlk? an*
-    assert_word_aligned
-    call m68k.parse_operand@op1, an
+calminstruction unlk? operands&
+    xcall m68k.parse_and_validate_instruction, <unlk>, operands, <_>
     emit_be 2, 0100111001011000b + @op1.ea_reg_bits
 end calminstruction
 
@@ -23,13 +22,9 @@ end calminstruction
 ;     stop #setup ; TODO: Observe this example. I must make that work!!!
 ; Attributes:
 ;     Unsized
-calminstruction stop? imm*
-    assert_word_aligned
-    call m68k.parse_operand@op1, imm
-
+calminstruction stop? operands&
+    xcall m68k.parse_and_validate_instruction, <stop>, operands, <_>
     emit_be 2, 0100111001110010b
-
-    ; imm
     emit_be 2, @op1.imm
 end calminstruction
 
@@ -39,21 +34,13 @@ end calminstruction
 ;     nbcd.b <ea>
 ;     pea.l  <ea>
 ;     tas.b  <ea>
-; TODO:
-;     !!!
-;     THESE INSTRUCTIONS WERE PRETTY NICELY IMPLEMENTED
-;     CHECK TO SEE IF ANY OTHER INSTRUCTIONS COULD BE BAKED INTO THIS PATTER
-;     AND ADDED INTO THE BODY OF THIS ITERATE CONSTRUCTION.
-iterate <instr, instr_word>, \
-        nbcd.b, 0100100000000000b, \
-        pea.l,  0100100001000000b, \
-        tas.b,  0100101011000000b
+iterate <instr, size, dot_size, instr_word>, \
+        nbcd,   b,    .b,       0100100000000000b, \
+        pea,    l,    .l,       0100100001000000b, \
+        tas,    b,    .b,       0100101011000000b
 
-        calminstruction instr? operands&
-            assert_word_aligned
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+        calminstruction instr#dot_size? operands&
+            xcall m68k.parse_and_validate_instruction, <instr>, operands, <size>
 
             emit_be 2, instr_word + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
@@ -93,10 +80,7 @@ iterate <cc,  cc_bits>, \
         le,     1111b
 
         calminstruction s#cc.b? operands&
-                assert_word_aligned
-
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1
+                xcall m68k.parse_and_validate_instruction, <s#cc>, operands, <b>
 
                 emit_be 1, 01010000b + cc_bits
                 emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
@@ -135,17 +119,14 @@ iterate <instr,  first_byte>, \
             l,      10b
     
         calminstruction instr.size? operands&
-                assert_word_aligned
+            xcall m68k.parse_and_validate_instruction, <instr>, operands, <size>
 
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1
+            emit_be 1, first_byte
+            emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
 
-                emit_be 1, first_byte
-                emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
-
-                ; <ea> extension words
-                call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
-            end calminstruction
+            ; <ea> extension words
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+        end calminstruction
 
     end iterate ; <size, size_bits>
 end iterate ; <instr, first_byte>
@@ -182,41 +163,31 @@ iterate <cc,  cc_bits>, \
         ; Also, check if displacement is a valid displacement.
         ; 0 is not allowed for .b I think.
         ; TODO: How will this be able to work with both label and literals???
-        calminstruction? b#cc.b? label*
-            assert_word_aligned
+        calminstruction? b#cc.b? operands&
+            xcall m68k.parse_and_validate_instruction, <b#cc>, operands, <b>
 
             local pc
-            local label_val
-
-            ; call m68k.parse_operand@op1, label
-
             compute pc, $ + 2
-            compute label_val, label
 
             emit_be 1, 01100000b + cc_bits
 
-            ; Assume label is $10 and address is $20
-            ; $10 - $20 = $10
-            emit_be 1, label_val - pc
+            ; may look strange but it works.
+            ; @op1.ext_bytes_bits will contain the value the label (op1).
+            emit_be 1, @op1.ext_bytes_bits - pc
         end calminstruction
 
         ; TODO: Check if fits in a word. Maybe do that in parse_operand?
         ;' Warn if fits in a byte.
         ; TODO: How will this be able to work with both label and literals???
-        calminstruction? b#cc.w? label*
+        calminstruction? b#cc.w? operands&
             assert_word_aligned
 
-            local pc
-            local label_val
-
-            ; call m68k.parse_operand@op1, label
-
-            compute pc, $ + 2
-            compute label_val, label
+            call m68k.split_operands, operands
+            call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
             emit_be 1, 01100000b + cc_bits
             emit_be 1, 0 ; second byte being zero
-            emit_be 2, label_val - pc
+            emit_be 2, @op1.ext_bytes_bits - $
         end calminstruction
 
         ; alias for .b
@@ -247,41 +218,31 @@ iterate <instr,  first_byte>, \
         ; Also, check if displacement is a valid displacement.
         ; 0 is not allowed for .b I think.
         ; TODO: How will this be able to work with both label and literals???
-        calminstruction? instr.b? label*
+        calminstruction? instr.b? operands&
                 assert_word_aligned
 
+                call m68k.split_operands, operands
+                call m68k.parse_operand@op1, m68k.split_operands_result.op1
+
                 local pc
-                local label_val
-
-                ; call m68k.parse_operand@op1, label
-
                 compute pc, $ + 2
-                compute label_val, label
 
                 emit_be 1, first_byte
-
-                ; Assume label is $10 and address is $20
-                ; $10 - $20 = $10
-                emit_be 1, label_val - pc
+                emit_be 1, @op1.ext_bytes_bits - pc
         end calminstruction
 
         ; TODO: Check if fits in a word. Maybe do that in parse_operand?
         ;' Warn if fits in a byte.
         ; TODO: How will this be able to work with both label and literals???
-        calminstruction? instr.w? label*
+        calminstruction? instr.w? operands&
             assert_word_aligned
 
-            local pc
-            local label_val
-
-            ; call m68k.parse_operand@op1, label
-
-            compute pc, $ + 2
-            compute label_val, label
+            call m68k.split_operands, operands
+            call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
             emit_be 1, first_byte
             emit_be 1, 0 ; second byte being zero
-            emit_be 2, label_val - pc
+            emit_be 2, @op1.ext_bytes_bits - $
         end calminstruction
 
 end iterate ; <instr, first_byte>
@@ -294,10 +255,12 @@ iterate <size,  size_bit>, \
         w,      0, \
         l,      1
 
-        calminstruction ext.size? dn*
+        calminstruction ext.size? operands&
             assert_word_aligned
-            call m68k.parse_operand@op1, dn
-            assert_data_reg dn
+
+            call m68k.split_operands, operands
+            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+
             emit_be 2, 0100_1000___1000_0000_b + size_bit shl 6 + @op1.ea_reg_bits
         end calminstruction
             
@@ -338,12 +301,11 @@ end iterate ; <instr, second_byte>
 ; Exchange the upper and lower 16-bit words of a data register.
 ; arguments:
 ;     dn: data register (d0 - d7)
-calminstruction swap.w? dn*
+calminstruction swap.w? operands&
     assert_word_aligned
 
-    call m68k.parse_operand@op1, dn
-
-    assert_data_reg dn
+    call m68k.split_operands, operands
+    call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
     emit_be 2, 0100_1000__0100_0000b + @op1.ea_reg_bits
 end calminstruction
@@ -353,10 +315,11 @@ end calminstruction
 ; Trigger any of the 16 "trap" interrupts.
 ; arguments:
 ;     vector: 0000 - 1111
-calminstruction trap? vector*
+calminstruction trap? operands&
         assert_word_aligned
 
-        call m68k.parse_operand@op1, vector
+        call m68k.split_operands, operands
+        call m68k.parse_operand@op1, m68k.split_operands_result.op1
 
         check @op1.type eq 'imm'
         jyes skip_error
@@ -367,8 +330,8 @@ calminstruction trap? vector*
         err 'trap only accepts immediate values'
     skip_error:
 
-        assert_min vector, 0
-        assert_max vector, 15
+        assert_min @op1.imm, 0
+        assert_max @op1.imm, 15
 
-        emit_be 2, 0100_1110__0100_0000b + vector
+        emit_be 2, 0100_1110__0100_0000b + @op1.imm
 end calminstruction

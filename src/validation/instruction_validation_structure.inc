@@ -1091,6 +1091,9 @@ namespace m68k.valid_instructions
 	define bra.s
 	define bra.s.abs_l
 	define bra.s.abs_l._
+	define bra.b
+	define bra.b.abs_l
+	define bra.b.abs_l._
 	define bra.w
 	define bra.w.abs_l
 	define bra.w.abs_l._
@@ -1102,6 +1105,9 @@ namespace m68k.valid_instructions
 	define bsr.s
 	define bsr.s.abs_l
 	define bsr.s.abs_l._
+	define bsr.b
+	define bsr.b.abs_l
+	define bsr.b.abs_l._
 	define bsr.w
 	define bsr.w.abs_l
 	define bsr.w.abs_l._
@@ -1113,6 +1119,9 @@ namespace m68k.valid_instructions
 	define bhi.s
 	define bhi.s.abs_l
 	define bhi.s.abs_l._
+	define bhi.b
+	define bhi.b.abs_l
+	define bhi.b.abs_l._
 	define bhi.w
 	define bhi.w.abs_l
 	define bhi.w.abs_l._
@@ -1124,6 +1133,9 @@ namespace m68k.valid_instructions
 	define bls.s
 	define bls.s.abs_l
 	define bls.s.abs_l._
+	define bls.b
+	define bls.b.abs_l
+	define bls.b.abs_l._
 	define bls.w
 	define bls.w.abs_l
 	define bls.w.abs_l._
@@ -1135,6 +1147,9 @@ namespace m68k.valid_instructions
 	define bcc.s
 	define bcc.s.abs_l
 	define bcc.s.abs_l._
+	define bcc.b
+	define bcc.b.abs_l
+	define bcc.b.abs_l._
 	define bcc.w
 	define bcc.w.abs_l
 	define bcc.w.abs_l._
@@ -1146,6 +1161,9 @@ namespace m68k.valid_instructions
 	define bcs.s
 	define bcs.s.abs_l
 	define bcs.s.abs_l._
+	define bcs.b
+	define bcs.b.abs_l
+	define bcs.b.abs_l._
 	define bcs.w
 	define bcs.w.abs_l
 	define bcs.w.abs_l._
@@ -1157,6 +1175,9 @@ namespace m68k.valid_instructions
 	define bne.s
 	define bne.s.abs_l
 	define bne.s.abs_l._
+	define bne.b
+	define bne.b.abs_l
+	define bne.b.abs_l._
 	define bne.w
 	define bne.w.abs_l
 	define bne.w.abs_l._
@@ -1168,6 +1189,9 @@ namespace m68k.valid_instructions
 	define beq.s
 	define beq.s.abs_l
 	define beq.s.abs_l._
+	define beq.b
+	define beq.b.abs_l
+	define beq.b.abs_l._
 	define beq.w
 	define beq.w.abs_l
 	define beq.w.abs_l._
@@ -1179,6 +1203,9 @@ namespace m68k.valid_instructions
 	define bvc.s
 	define bvc.s.abs_l
 	define bvc.s.abs_l._
+	define bvc.b
+	define bvc.b.abs_l
+	define bvc.b.abs_l._
 	define bvc.w
 	define bvc.w.abs_l
 	define bvc.w.abs_l._
@@ -1190,6 +1217,9 @@ namespace m68k.valid_instructions
 	define bvs.s
 	define bvs.s.abs_l
 	define bvs.s.abs_l._
+	define bvs.b
+	define bvs.b.abs_l
+	define bvs.b.abs_l._
 	define bvs.w
 	define bvs.w.abs_l
 	define bvs.w.abs_l._
@@ -1201,6 +1231,9 @@ namespace m68k.valid_instructions
 	define bpl.s
 	define bpl.s.abs_l
 	define bpl.s.abs_l._
+	define bpl.b
+	define bpl.b.abs_l
+	define bpl.b.abs_l._
 	define bpl.w
 	define bpl.w.abs_l
 	define bpl.w.abs_l._
@@ -1212,6 +1245,9 @@ namespace m68k.valid_instructions
 	define bmi.s
 	define bmi.s.abs_l
 	define bmi.s.abs_l._
+	define bmi.b
+	define bmi.b.abs_l
+	define bmi.b.abs_l._
 	define bmi.w
 	define bmi.w.abs_l
 	define bmi.w.abs_l._
@@ -1223,6 +1259,9 @@ namespace m68k.valid_instructions
 	define bge.s
 	define bge.s.abs_l
 	define bge.s.abs_l._
+	define bge.b
+	define bge.b.abs_l
+	define bge.b.abs_l._
 	define bge.w
 	define bge.w.abs_l
 	define bge.w.abs_l._
@@ -1234,6 +1273,9 @@ namespace m68k.valid_instructions
 	define blt.s
 	define blt.s.abs_l
 	define blt.s.abs_l._
+	define blt.b
+	define blt.b.abs_l
+	define blt.b.abs_l._
 	define blt.w
 	define blt.w.abs_l
 	define blt.w.abs_l._
@@ -1245,6 +1287,9 @@ namespace m68k.valid_instructions
 	define bgt.s
 	define bgt.s.abs_l
 	define bgt.s.abs_l._
+	define bgt.b
+	define bgt.b.abs_l
+	define bgt.b.abs_l._
 	define bgt.w
 	define bgt.w.abs_l
 	define bgt.w.abs_l._
@@ -1256,6 +1301,9 @@ namespace m68k.valid_instructions
 	define ble.s
 	define ble.s.abs_l
 	define ble.s.abs_l._
+	define ble.b
+	define ble.b.abs_l
+	define ble.b.abs_l._
 	define ble.w
 	define ble.w.abs_l
 	define ble.w.abs_l._
@@ -1267,6 +1315,9 @@ namespace m68k.valid_instructions
 	define bhs.s
 	define bhs.s.abs_l
 	define bhs.s.abs_l._
+	define bhs.b
+	define bhs.b.abs_l
+	define bhs.b.abs_l._
 	define bhs.w
 	define bhs.w.abs_l
 	define bhs.w.abs_l._
@@ -1278,6 +1329,9 @@ namespace m68k.valid_instructions
 	define blo.s
 	define blo.s.abs_l
 	define blo.s.abs_l._
+	define blo.b
+	define blo.b.abs_l
+	define blo.b.abs_l._
 	define blo.w
 	define blo.w.abs_l
 	define blo.w.abs_l._
