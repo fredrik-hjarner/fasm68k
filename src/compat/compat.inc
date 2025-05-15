@@ -187,6 +187,8 @@ if m68k.settings.compat_colonless_labels = 1
     ; end struc
     ; A more conservative approach.
     ; TODO: Is this faster/better as a calminstruction?
+    ;       Not sure but rewrite this into a calminstruction anyway!
+    ;       btw labeled macroinstructions can't catch `equ`s
     struc (name) ? tail&
             match , tail 
                     .:
