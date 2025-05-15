@@ -32,7 +32,7 @@ iterate <size,  size_bit>, \
             compute ext_bytes_bits, @op2.ext_bytes_bits ;Default is dn to (d,an)
 
         ; check_direction:
-            check @op2.type = 'dn'
+            match =dn, @op2.type_token
             jno emit_bytes
             compute direction, 0
             compute reg_bits1, @op2.ea_reg_bits
@@ -94,20 +94,26 @@ calminstruction exg.l? operands&
             compute reg2_bits,  @op2.ea_reg_bits ; default to dn,dn
 
     ; check_dn_an:
-            check @op1.type = 'dn' & @op2.type = 'an'
+            match =dn, @op1.type_token
+            jno check_an_an
+            match =an, @op2.type_token
             jno check_an_an
             compute type_bits1, 10b
             compute type_bits2, 1b
             jump emit_bytes
     check_an_an:
-            check @op1.type = 'an' & @op2.type = 'an'
+            match =an, @op1.type_token
+            jno check_an_dn
+            match =an, @op2.type_token
             jno check_an_dn
             ; compute type_bits1, 01b
             compute type_bits2, 1b
             jump emit_bytes
     check_an_dn:
             ; seems `exg.l a7,d5` is encoded as `exg.l d5,a7`
-            check @op1.type = 'an' & @op2.type = 'dn'
+            match =an, @op1.type_token
+            jno emit_bytes
+            match =dn, @op2.type_token
             jno emit_bytes
             compute type_bits1, 10b
             compute type_bits2, 1b
@@ -174,7 +180,7 @@ iterate <instr,  first_byte>, \
 
             ; TODO: This check is just to make it work. I need
             ; to make a more serious check for valid addressing modes.
-            check @op1.type = '-(an)'
+            match =an_pre_decr, @op1.type_token
             jno emit_bytes
         ; Is -(an) to -(an)
             compute m_bit, 1
@@ -208,7 +214,7 @@ iterate <instr,  first_byte>, \
 
                 ; TODO: This check is just to make it work. I need
                 ; to make a more serious check for valid addressing modes.
-                check @op1.type = '-(an)'
+                match =an_pre_decr, @op1.type_token
                 jno emit_bytes
             ; Is -(an) to -(an)
                 compute m_bit, 1
@@ -261,7 +267,7 @@ iterate <size,  size_bits>, \
                     <eor>, operands, <size>, <size>
 
             ; Show error message if imm
-                check @op1.type = 'imm'
+                match =imm, @op1.type_token
                 jno skip_error
                 display '`eor` does not allow the first operand to' \
                     bappend ' be an immediate. Will use `eori` instead.' \
@@ -288,7 +294,7 @@ iterate <size,  size_bits>, \
                     <cmp>, operands, <size>, <size>
 
             ; Show error message if imm ; TODO: Move comment. better comments.
-                check @op2.type = 'an'
+                match =an, @op2.type_token
                 jno skip_an
                 display '`cmp` does not allow the second operand to be' \
                     bappend ' an address register. Will use `cmpa` instead.' \
@@ -407,7 +413,7 @@ iterate <instr,  instr_bits>, \
                 ; TODO:
                 ;   If type was a token instead of a value, the I suppose I
                 ;   could use transform too, i.e. transform the type to 1 or 0.
-                check @op1.type = 'dn'
+                match =dn, @op1.type_token
                 jno op1_is_imm ; TODO: I mean I have not validated that though...
             ; op1_is_dn
                 compute op1_bits, @op1.ea_reg_bits shl 1
@@ -474,7 +480,7 @@ iterate <size,  size_bits>, \
                     compute ext_bytes_bits, @op1.ext_bytes_bits
                     compute bit_mask, @reg_list2.mask_word
                     ; check if reverse mask should be used
-                    check @op1.type = '-(an)'
+                    match =an_pre_decr, @op1.type_token
                     jno skip_reverse1
                 ; reverse:
                     compute bit_mask, @reg_list2.mask_word_reverse
@@ -489,7 +495,7 @@ iterate <size,  size_bits>, \
                     compute ext_bytes_bits, @op2.ext_bytes_bits
                     compute bit_mask, @reg_list1.mask_word
                     ; check if reverse mask should be used
-                    check @op2.type = '-(an)'
+                    match =an_pre_decr, @op2.type_token
                     jno skip_reverse2
                 ; reverse:
                     compute bit_mask, @reg_list1.mask_word_reverse
@@ -623,7 +629,7 @@ iterate <instr,  first_byte>, \
                     ; future.
                     ; TODO: Is there anything such as ternary in fasmg? 
                     ; @op1.type = 'dn' ? 1 : 0
-                    check @op2.type = 'dn'
+                    match =dn, @op2.type_token
                     jno dn_to_ea
                 ; ea_to_dn:
                     emit_be 1, first_byte + @op2.ea_reg_bits shl 1

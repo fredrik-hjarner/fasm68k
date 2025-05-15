@@ -300,7 +300,7 @@ end calminstruction
 calminstruction trap? operands&
         xcall m68k.parse_and_validate_instruction, <trap>, operands, <_>
 
-        check @op1.type eq 'imm'
+        match =imm, @op1.type_token
         jyes skip_error
         ; TODO: I should prolly have a better way to display error messages
         ; Some more general error handling stuff.

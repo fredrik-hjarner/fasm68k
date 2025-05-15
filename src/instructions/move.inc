@@ -22,15 +22,15 @@ iterate <size, dot_size>, \
                                                     <size>, \
                                                     <size>
             ; TODO: This checks could be more complete.
-            check @op1.type = 'sr'
+            match =sr, @op1.type_token
             jyes sr_to_ea
-            check @op2.type = 'ccr'
+            match =ccr, @op2.type_token
             jyes ea_to_ccr
-            check @op2.type = 'sr'
+            match =sr, @op2.type_token
             jyes ea_to_sr
-            check @op1.type = 'usp'
+            match =usp, @op1.type_token
             jyes usp_to_an
-            check @op2.type = 'usp'
+            match =usp, @op2.type_token
             jyes an_to_usp
             jump ea_to_ea
 
