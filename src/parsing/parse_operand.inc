@@ -537,7 +537,10 @@ end namespace
 
 ; Supposed to be called.
 ; TODO: Maybe it's better to add @op1.tokens and @op2.tokens to hold the
-;       tokens of the operands?
+;       tokens of the operands? Yes That will also aid in making error messages
+;       I think!
+; TODO: This legacy `split_operands` is only used by `movem`, I'd like to
+;       remove this eventually.
 calminstruction m68k.split_operands? line&
         local op1, op2
         match op1 =, op2, line, ()

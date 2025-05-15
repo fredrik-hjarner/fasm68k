@@ -3,53 +3,6 @@
 ;; TODO: Could probably be refactored a bit.                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; Supposed to be called.
-calminstruction move_macro? size
-        ; TODO: This checks could be more complete.
-        check @op1.type = 'sr'
-        jyes sr_to_ea
-        check @op2.type = 'ccr'
-        jyes ea_to_ccr
-        check @op2.type = 'sr'
-        jyes ea_to_sr
-        check @op1.type = 'usp'
-        jyes usp_to_an
-        check @op2.type = 'usp'
-        jyes an_to_usp
-        jump ea_to_ea
-
-    sr_to_ea:
-        emit_be 1, 0100_0000_b
-        emit_be 1, 1100_0000_b + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits 
-        ; op1 extension words
-        call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
-        jump done
-    ea_to_ccr:
-        emit_be 1, 0100_0100_b
-        emit_be 1, 1100_0000_b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits 
-        ; op1 extension words
-        call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
-        jump done
-    ea_to_sr:
-        emit_be 1, 01000110b
-        emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits 
-        ; op1 extension words
-        call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
-        jump done
-    usp_to_an:
-        emit_be 2, 0100_1110__0110_1000_b + @op2.ea_reg_bits
-        jump done
-    an_to_usp:
-        emit_be 2, 0100_1110__0110_0000_b + @op1.ea_reg_bits
-        jump done
-    ea_to_ea:
-        call move_ea_to_ea, size
-        jump done
-    done:
-end calminstruction
-
-; TODO: move.[bwl] prolly should use `macro calminstruction?.` extensions that
-; can be in the .[bwl] variants reused
 ; Syntax:
 ;     move.w     sr,   <ea>
 ;     move.w     <ea>, ccr
@@ -57,22 +10,61 @@ end calminstruction
 ;     move.l     usp,  an
 ;     move.l     an,   usp
 ;     move.[bwl] <ea1>, <ea2>
-iterate size,  b,w,l
-    calminstruction move.size? operands&
-        assert_word_aligned
-        call m68k.split_operands, operands
-        xcall m68k.parse_operand@op1, m68k.split_operands_result.op1, <size>
-        xcall m68k.parse_operand@op2, m68k.split_operands_result.op2, <size>
-        xcall move_macro, <size>
+iterate <size, dot_size>, \
+        _,     , \
+        b,     .b, \
+        w,     .w, \
+        l,     .l
+
+    calminstruction move#dot_size? operands&
+            xcall m68k.parse_and_validate_instruction, <move>, \
+                                                    operands, \
+                                                    <size>, \
+                                                    <size>
+            ; TODO: This checks could be more complete.
+            check @op1.type = 'sr'
+            jyes sr_to_ea
+            check @op2.type = 'ccr'
+            jyes ea_to_ccr
+            check @op2.type = 'sr'
+            jyes ea_to_sr
+            check @op1.type = 'usp'
+            jyes usp_to_an
+            check @op2.type = 'usp'
+            jyes an_to_usp
+            jump ea_to_ea
+
+        sr_to_ea:
+            emit_be 1, 0100_0000_b
+            emit_be 1, 1100_0000_b + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits 
+            ; op1 extension words
+            call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+            jump done
+        ea_to_ccr:
+            emit_be 1, 0100_0100_b
+            emit_be 1, 1100_0000_b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits 
+            ; op1 extension words
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            jump done
+        ea_to_sr:
+            emit_be 1, 01000110b
+            emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits 
+            ; op1 extension words
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            jump done
+        usp_to_an:
+            emit_be 2, 0100_1110__0110_1000_b + @op2.ea_reg_bits
+            jump done
+        an_to_usp:
+            emit_be 2, 0100_1110__0110_0000_b + @op1.ea_reg_bits
+            jump done
+        ea_to_ea:
+            xcall move_ea_to_ea, <size>
+            jump done
+        done:
     end calminstruction
-end iterate
-calminstruction move? operands&
-    assert_word_aligned
-    call m68k.split_operands, operands
-    call m68k.parse_operand@op1, m68k.split_operands_result.op1
-    call m68k.parse_operand@op2, m68k.split_operands_result.op2
-    call move_macro
-end calminstruction
+
+end iterate ; <size, dot_size>
 
 ; TODO: Comment
 ; For move_ea_to_ea specifically!

@@ -1339,6 +1339,14 @@ namespace m68k.valid_instructions
 	define blo._.abs_l
 	define blo._.abs_l._
 
+	define dbra
+	define dbra.w
+	define dbra.w.dn
+	define dbra.w.dn.abs_l
+	define dbra._
+	define dbra._.dn
+	define dbra._.dn.abs_l
+
 	define dbt
 	define dbt.w
 	define dbt.w.dn
@@ -1920,6 +1928,16 @@ namespace m68k.valid_instructions
 	define move.l.an.an_idx
 	define move.l.an.abs_w
 	define move.l.an.abs_l
+	define move._
+	define move._.sr
+	define move._.sr.dn
+	define move._.sr.indir_an
+	define move._.sr.an_post_incr
+	define move._.sr.an_pre_decr
+	define move._.sr.an_displace
+	define move._.sr.an_idx
+	define move._.sr.abs_w
+	define move._.sr.abs_l
 	define move.w
 	define move.w.sr
 	define move.w.sr.dn
@@ -2816,8 +2834,6 @@ namespace m68k.valid_instructions
 	define or.b.abs_l.dn
 	define or.b.indir_an
 	define or.b.indir_an.dn
-	define or.b.imm
-	define or.b.imm.dn
 	define or.b.an_post_incr
 	define or.b.an_post_incr.dn
 	define or.b.an_pre_decr
@@ -2839,8 +2855,6 @@ namespace m68k.valid_instructions
 	define or.w.abs_l.dn
 	define or.w.indir_an
 	define or.w.indir_an.dn
-	define or.w.imm
-	define or.w.imm.dn
 	define or.w.an_post_incr
 	define or.w.an_post_incr.dn
 	define or.w.an_pre_decr
@@ -2862,8 +2876,6 @@ namespace m68k.valid_instructions
 	define or.l.abs_l.dn
 	define or.l.indir_an
 	define or.l.indir_an.dn
-	define or.l.imm
-	define or.l.imm.dn
 	define or.l.an_post_incr
 	define or.l.an_post_incr.dn
 	define or.l.an_pre_decr
@@ -2903,6 +2915,36 @@ namespace m68k.valid_instructions
 	define or.l.dn.an_pre_decr
 	define or.l.dn.an_displace
 	define or.l.dn.an_idx
+	define or.b
+	define or.b.imm
+	define or.b.imm.dn
+	define or.b.imm.abs_w
+	define or.b.imm.abs_l
+	define or.b.imm.indir_an
+	define or.b.imm.an_post_incr
+	define or.b.imm.an_pre_decr
+	define or.b.imm.an_displace
+	define or.b.imm.an_idx
+	define or.w
+	define or.w.imm
+	define or.w.imm.dn
+	define or.w.imm.abs_w
+	define or.w.imm.abs_l
+	define or.w.imm.indir_an
+	define or.w.imm.an_post_incr
+	define or.w.imm.an_pre_decr
+	define or.w.imm.an_displace
+	define or.w.imm.an_idx
+	define or.l
+	define or.l.imm
+	define or.l.imm.dn
+	define or.l.imm.abs_w
+	define or.l.imm.abs_l
+	define or.l.imm.indir_an
+	define or.l.imm.an_post_incr
+	define or.l.imm.an_pre_decr
+	define or.l.imm.an_displace
+	define or.l.imm.an_idx
 
 	define and
 	define and.b
@@ -2914,8 +2956,6 @@ namespace m68k.valid_instructions
 	define and.b.abs_l.dn
 	define and.b.indir_an
 	define and.b.indir_an.dn
-	define and.b.imm
-	define and.b.imm.dn
 	define and.b.an_post_incr
 	define and.b.an_post_incr.dn
 	define and.b.an_pre_decr
@@ -2937,8 +2977,6 @@ namespace m68k.valid_instructions
 	define and.w.abs_l.dn
 	define and.w.indir_an
 	define and.w.indir_an.dn
-	define and.w.imm
-	define and.w.imm.dn
 	define and.w.an_post_incr
 	define and.w.an_post_incr.dn
 	define and.w.an_pre_decr
@@ -2960,8 +2998,6 @@ namespace m68k.valid_instructions
 	define and.l.abs_l.dn
 	define and.l.indir_an
 	define and.l.indir_an.dn
-	define and.l.imm
-	define and.l.imm.dn
 	define and.l.an_post_incr
 	define and.l.an_post_incr.dn
 	define and.l.an_pre_decr
@@ -3001,6 +3037,36 @@ namespace m68k.valid_instructions
 	define and.l.dn.an_pre_decr
 	define and.l.dn.an_displace
 	define and.l.dn.an_idx
+	define and.b
+	define and.b.imm
+	define and.b.imm.dn
+	define and.b.imm.abs_w
+	define and.b.imm.abs_l
+	define and.b.imm.indir_an
+	define and.b.imm.an_post_incr
+	define and.b.imm.an_pre_decr
+	define and.b.imm.an_displace
+	define and.b.imm.an_idx
+	define and.w
+	define and.w.imm
+	define and.w.imm.dn
+	define and.w.imm.abs_w
+	define and.w.imm.abs_l
+	define and.w.imm.indir_an
+	define and.w.imm.an_post_incr
+	define and.w.imm.an_pre_decr
+	define and.w.imm.an_displace
+	define and.w.imm.an_idx
+	define and.l
+	define and.l.imm
+	define and.l.imm.dn
+	define and.l.imm.abs_w
+	define and.l.imm.abs_l
+	define and.l.imm.indir_an
+	define and.l.imm.an_post_incr
+	define and.l.imm.an_pre_decr
+	define and.l.imm.an_displace
+	define and.l.imm.an_idx
 
 	define sub
 	define sub.b
@@ -3012,8 +3078,6 @@ namespace m68k.valid_instructions
 	define sub.b.abs_l.dn
 	define sub.b.indir_an
 	define sub.b.indir_an.dn
-	define sub.b.imm
-	define sub.b.imm.dn
 	define sub.b.an_post_incr
 	define sub.b.an_post_incr.dn
 	define sub.b.an_pre_decr
@@ -3035,8 +3099,6 @@ namespace m68k.valid_instructions
 	define sub.w.abs_l.dn
 	define sub.w.indir_an
 	define sub.w.indir_an.dn
-	define sub.w.imm
-	define sub.w.imm.dn
 	define sub.w.an_post_incr
 	define sub.w.an_post_incr.dn
 	define sub.w.an_pre_decr
@@ -3058,8 +3120,6 @@ namespace m68k.valid_instructions
 	define sub.l.abs_l.dn
 	define sub.l.indir_an
 	define sub.l.indir_an.dn
-	define sub.l.imm
-	define sub.l.imm.dn
 	define sub.l.an_post_incr
 	define sub.l.an_post_incr.dn
 	define sub.l.an_pre_decr
@@ -3155,6 +3215,36 @@ namespace m68k.valid_instructions
 	define sub.l.dn.an_pre_decr
 	define sub.l.dn.an_displace
 	define sub.l.dn.an_idx
+	define sub.b
+	define sub.b.imm
+	define sub.b.imm.dn
+	define sub.b.imm.abs_w
+	define sub.b.imm.abs_l
+	define sub.b.imm.indir_an
+	define sub.b.imm.an_post_incr
+	define sub.b.imm.an_pre_decr
+	define sub.b.imm.an_displace
+	define sub.b.imm.an_idx
+	define sub.w
+	define sub.w.imm
+	define sub.w.imm.dn
+	define sub.w.imm.abs_w
+	define sub.w.imm.abs_l
+	define sub.w.imm.indir_an
+	define sub.w.imm.an_post_incr
+	define sub.w.imm.an_pre_decr
+	define sub.w.imm.an_displace
+	define sub.w.imm.an_idx
+	define sub.l
+	define sub.l.imm
+	define sub.l.imm.dn
+	define sub.l.imm.abs_w
+	define sub.l.imm.abs_l
+	define sub.l.imm.indir_an
+	define sub.l.imm.an_post_incr
+	define sub.l.imm.an_pre_decr
+	define sub.l.imm.an_displace
+	define sub.l.imm.an_idx
 
 	define add
 	define add.b
@@ -3166,8 +3256,6 @@ namespace m68k.valid_instructions
 	define add.b.abs_l.dn
 	define add.b.indir_an
 	define add.b.indir_an.dn
-	define add.b.imm
-	define add.b.imm.dn
 	define add.b.an_post_incr
 	define add.b.an_post_incr.dn
 	define add.b.an_pre_decr
@@ -3189,8 +3277,6 @@ namespace m68k.valid_instructions
 	define add.w.abs_l.dn
 	define add.w.indir_an
 	define add.w.indir_an.dn
-	define add.w.imm
-	define add.w.imm.dn
 	define add.w.an_post_incr
 	define add.w.an_post_incr.dn
 	define add.w.an_pre_decr
@@ -3212,8 +3298,6 @@ namespace m68k.valid_instructions
 	define add.l.abs_l.dn
 	define add.l.indir_an
 	define add.l.indir_an.dn
-	define add.l.imm
-	define add.l.imm.dn
 	define add.l.an_post_incr
 	define add.l.an_post_incr.dn
 	define add.l.an_pre_decr
@@ -3309,6 +3393,36 @@ namespace m68k.valid_instructions
 	define add.l.dn.an_pre_decr
 	define add.l.dn.an_displace
 	define add.l.dn.an_idx
+	define add.b
+	define add.b.imm
+	define add.b.imm.dn
+	define add.b.imm.abs_w
+	define add.b.imm.abs_l
+	define add.b.imm.indir_an
+	define add.b.imm.an_post_incr
+	define add.b.imm.an_pre_decr
+	define add.b.imm.an_displace
+	define add.b.imm.an_idx
+	define add.w
+	define add.w.imm
+	define add.w.imm.dn
+	define add.w.imm.abs_w
+	define add.w.imm.abs_l
+	define add.w.imm.indir_an
+	define add.w.imm.an_post_incr
+	define add.w.imm.an_pre_decr
+	define add.w.imm.an_displace
+	define add.w.imm.an_idx
+	define add.l
+	define add.l.imm
+	define add.l.imm.dn
+	define add.l.imm.abs_w
+	define add.l.imm.abs_l
+	define add.l.imm.indir_an
+	define add.l.imm.an_post_incr
+	define add.l.imm.an_pre_decr
+	define add.l.imm.an_displace
+	define add.l.imm.an_idx
 
 	define subx
 	define subx.b
@@ -3482,8 +3596,6 @@ namespace m68k.valid_instructions
 	define cmp.b.abs_l.dn
 	define cmp.b.indir_an
 	define cmp.b.indir_an.dn
-	define cmp.b.imm
-	define cmp.b.imm.dn
 	define cmp.b.an_post_incr
 	define cmp.b.an_post_incr.dn
 	define cmp.b.an_pre_decr
@@ -3505,8 +3617,6 @@ namespace m68k.valid_instructions
 	define cmp.w.abs_l.dn
 	define cmp.w.indir_an
 	define cmp.w.indir_an.dn
-	define cmp.w.imm
-	define cmp.w.imm.dn
 	define cmp.w.an_post_incr
 	define cmp.w.an_post_incr.dn
 	define cmp.w.an_pre_decr
@@ -3528,8 +3638,6 @@ namespace m68k.valid_instructions
 	define cmp.l.abs_l.dn
 	define cmp.l.indir_an
 	define cmp.l.indir_an.dn
-	define cmp.l.imm
-	define cmp.l.imm.dn
 	define cmp.l.an_post_incr
 	define cmp.l.an_post_incr.dn
 	define cmp.l.an_pre_decr
@@ -3598,6 +3706,36 @@ namespace m68k.valid_instructions
 	define cmp.l.an_idx.an
 	define cmp.l.pc_idx
 	define cmp.l.pc_idx.an
+	define cmp.b
+	define cmp.b.imm
+	define cmp.b.imm.dn
+	define cmp.b.imm.abs_w
+	define cmp.b.imm.abs_l
+	define cmp.b.imm.indir_an
+	define cmp.b.imm.an_post_incr
+	define cmp.b.imm.an_pre_decr
+	define cmp.b.imm.an_displace
+	define cmp.b.imm.an_idx
+	define cmp.w
+	define cmp.w.imm
+	define cmp.w.imm.dn
+	define cmp.w.imm.abs_w
+	define cmp.w.imm.abs_l
+	define cmp.w.imm.indir_an
+	define cmp.w.imm.an_post_incr
+	define cmp.w.imm.an_pre_decr
+	define cmp.w.imm.an_displace
+	define cmp.w.imm.an_idx
+	define cmp.l
+	define cmp.l.imm
+	define cmp.l.imm.dn
+	define cmp.l.imm.abs_w
+	define cmp.l.imm.abs_l
+	define cmp.l.imm.indir_an
+	define cmp.l.imm.an_post_incr
+	define cmp.l.imm.an_pre_decr
+	define cmp.l.imm.an_displace
+	define cmp.l.imm.an_idx
 
 	define cmpa
 	define cmpa.w

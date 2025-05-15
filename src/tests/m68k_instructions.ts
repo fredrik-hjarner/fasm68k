@@ -239,7 +239,27 @@ export const data: InstructionSet = [
   // Branch instructions
   {
     // TODO: Make sure these also contain all the aliases for conditions.
-    instructions: ["bra", "bsr", "bhi", "bls", "bcc", "bcs", "bne", "beq", "bvc", "bvs", "bpl", "bmi", "bge", "blt", "bgt", "ble", "bhs", "blo"],
+    //       Yep, I think I got them all.
+    instructions: [
+      "bra", // bra instruction
+      "bsr", // bsr instruction
+      "bhi", // now the rest are bcc instructions
+      "bls",
+      "bcc",
+      "bcs",
+      "bne",
+      "beq",
+      "bvc",
+      "bvs",
+      "bpl",
+      "bmi",
+      "bge",
+      "blt",
+      "bgt",
+      "ble",
+      "bhs",
+      "blo"
+    ],
     variants: [
       {
         sizes: ["s", "b", "w", ""],
@@ -251,7 +271,28 @@ export const data: InstructionSet = [
   // DBcc instructions
   {
     // TODO: Make sure these also contain all the aliases for conditions.
-    instructions: ["dbt", "dbf", "dbhi", "dbls", "dbcc", "dbcs", "dbne", "dbeq", "dbvc", "dbvs", "dbpl", "dbmi", "dbge", "dblt", "dbgt", "dble", "dbhs", "dblo"],
+    //       Yep, I think I got them all.
+    instructions: [
+      "dbra",
+      "dbt",
+      "dbf",
+      "dbhi",
+      "dbls",
+      "dbcc",
+      "dbcs",
+      "dbne",
+      "dbeq",
+      "dbvc",
+      "dbvs",
+      "dbpl",
+      "dbmi",
+      "dbge",
+      "dblt",
+      "dbgt",
+      "dble",
+      "dbhs",
+      "dblo"
+    ],
     variants: [
       {
         sizes: ["w", ""],
@@ -327,7 +368,7 @@ export const data: InstructionSet = [
         op2: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
       },
       {
-        sizes: ["w"],
+        sizes: ["", "w"],
         op1: ["sr"],
         op2: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
       },
@@ -625,18 +666,12 @@ export const data: InstructionSet = [
     variants: [
       {
         sizes: ["b"], // verified
-        // `imm` is NOT supported but since `or/and` will be auto-fixed to
-        // `ori/andi` is supported "in practice".
-        op1: dataAddressingModes8, // verified
+        op1: dataAddressingModes8.except("imm8"), // verified
         op2: ["dn"] // verified
       },
       {
         sizes: ["w", "l"], // verified
-        // `imm` is NOT supported but since `er/and` will be auto-fixed to
-        // `ori/andi` it is supported "in practice".
-        // TODO: I don't quite understand why the .w one accepts an imm32
-        //       in both vasm and clownassembler??
-        op1: dataAddressingModes32, // verified
+        op1: dataAddressingModes32.except("imm"), // verified
         op2: ["dn"] // verified
       },
       {
@@ -650,7 +685,15 @@ export const data: InstructionSet = [
           "-(an)",
           "d(an)",    //"d(pc)",
           "d(an,ix)", //"d(pc,ix)"
-        ]
+        ],
+      },
+      // Copied from ori/andi
+      // Reason is: or/and auto-fixes into ori/andi, so in practise supports
+      // the variant beneath.
+      {
+        sizes: ["b", "w", "l"],
+        op1: ["imm"],
+        op2: dataAlterableAddressingModes32,
       },
     ]
   },
@@ -672,9 +715,7 @@ export const data: InstructionSet = [
         op1: [ // verified
           "dn",       "abs.w",
           /*"an",*/   "abs.l",
-          // `imm` is NOT supported but since `add/sub` will be auto-fixed to
-          // `addi/subi` it is supported "in practice".
-          "(an)",     "imm",
+          "(an)",     //"imm",
           "(an)+",
           "-(an)",
           "d(an)",    "d(pc)",
@@ -711,6 +752,19 @@ export const data: InstructionSet = [
           "d(an)",    //"d(pc)",
           "d(an,ix)", //"d(pc,ix)"
         ]
+      },
+      // Copied from subi/addi
+      // Reason is: add/sub auto-fixes into addi/subi, so in practise supports
+      // the variant beneath.
+      // TODO: For all the auto-fix cases I should really not copy-paste like
+      // this instead I should have them defined in just one place.
+      {
+        sizes: ["b", "w", "l"],
+        op1: ["imm"],
+        op2:
+          // Note: Reference says "dataAddressingModes" for cmpi, but adds that:
+          //       "PC relative addressing modes do not apply to MC68000"
+          dataAlterableAddressingModes32,
       }
     ]
   },
@@ -801,9 +855,7 @@ export const data: InstructionSet = [
         op1: [ // TODO: Double-check this.
           "dn",       "abs.w",
           /*"an",*/   "abs.l",
-          // `imm` is NOT supported but since `cmp` will be auto-fixed to
-          // `cmpi` it is supported "in practice".
-          "(an)",     "imm",
+          "(an)",     //"imm",
           "(an)+",
           "-(an)",
           "d(an)",    "d(pc)",
@@ -828,6 +880,17 @@ export const data: InstructionSet = [
         op1: all32,
         op2: ["an"]
       },
+      // Copied from subi/addi/cmpi
+      // Reason is: cmp auto-fixes into cmpi, so in practise supports the
+      // variant beneath.
+      {
+        sizes: ["b", "w", "l"],
+        op1: ["imm"],
+        op2:
+          // Note: Reference says "dataAddressingModes" for cmpi, but adds that:
+          //       "PC relative addressing modes do not apply to MC68000"
+          dataAlterableAddressingModes32,
+      }
     ]
   },
   // CMPA

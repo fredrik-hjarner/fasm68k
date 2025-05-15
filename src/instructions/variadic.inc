@@ -33,11 +33,10 @@ iterate <instr,  instr_bits>, \
             ;         - or an immediate value 000 - 111
             ;     dn: The data register that gets shifted: d0 - d7
             calminstruction instr#dir#.#size? operands&
-                        assert_word_aligned
-
-                        call m68k.split_operands, operands
-                        xcall m68k.parse_operand@op1, m68k.split_operands_result.op1
-                        xcall m68k.parse_operand@op2, m68k.split_operands_result.op2
+                        xcall m68k.parse_and_validate_instruction, <instr#dir>,\
+                                                                  operands, \
+                                                                  <size>, \
+                                                                  <size>
 
                         check m68k.split_operands_result.num_operands = 1
                         jyes one_operand

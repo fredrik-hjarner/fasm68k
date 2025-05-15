@@ -180,10 +180,7 @@ iterate <cc,  cc_bits>, \
         ;' Warn if fits in a byte.
         ; TODO: How will this be able to work with both label and literals???
         calminstruction? b#cc.w? operands&
-            assert_word_aligned
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+            xcall m68k.parse_and_validate_instruction, <b#cc>, operands, <w>
 
             emit_be 1, 01100000b + cc_bits
             emit_be 1, 0 ; second byte being zero
@@ -219,10 +216,7 @@ iterate <instr,  first_byte>, \
         ; 0 is not allowed for .b I think.
         ; TODO: How will this be able to work with both label and literals???
         calminstruction? instr.b? operands&
-                assert_word_aligned
-
-                call m68k.split_operands, operands
-                call m68k.parse_operand@op1, m68k.split_operands_result.op1
+                xcall m68k.parse_and_validate_instruction, <instr>, operands, <b>
 
                 local pc
                 compute pc, $ + 2
@@ -235,10 +229,7 @@ iterate <instr,  first_byte>, \
         ;' Warn if fits in a byte.
         ; TODO: How will this be able to work with both label and literals???
         calminstruction? instr.w? operands&
-            assert_word_aligned
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+            xcall m68k.parse_and_validate_instruction, <instr>, operands, <b>
 
             emit_be 1, first_byte
             emit_be 1, 0 ; second byte being zero
@@ -256,10 +247,7 @@ iterate <size,  size_bit>, \
         l,      1
 
         calminstruction ext.size? operands&
-            assert_word_aligned
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+            xcall m68k.parse_and_validate_instruction, <ext>, operands, <size>
 
             emit_be 2, 0100_1000___1000_0000_b + size_bit shl 6 + @op1.ea_reg_bits
         end calminstruction
@@ -282,10 +270,7 @@ iterate <instr,  second_byte>, \
         jsr,     10000000b
 
         calminstruction instr? operands&
-            assert_word_aligned
-
-            call m68k.split_operands, operands
-            call m68k.parse_operand@op1, m68k.split_operands_result.op1
+            xcall m68k.parse_and_validate_instruction, <instr>, operands, <_>
 
             emit_be 1, 01001110b
             emit_be 1, second_byte + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
@@ -302,10 +287,7 @@ end iterate ; <instr, second_byte>
 ; arguments:
 ;     dn: data register (d0 - d7)
 calminstruction swap.w? operands&
-    assert_word_aligned
-
-    call m68k.split_operands, operands
-    call m68k.parse_operand@op1, m68k.split_operands_result.op1
+    xcall m68k.parse_and_validate_instruction, <swap>, operands, <w>
 
     emit_be 2, 0100_1000__0100_0000b + @op1.ea_reg_bits
 end calminstruction
@@ -316,10 +298,7 @@ end calminstruction
 ; arguments:
 ;     vector: 0000 - 1111
 calminstruction trap? operands&
-        assert_word_aligned
-
-        call m68k.split_operands, operands
-        call m68k.parse_operand@op1, m68k.split_operands_result.op1
+        xcall m68k.parse_and_validate_instruction, <trap>, operands, <_>
 
         check @op1.type eq 'imm'
         jyes skip_error

@@ -1,10 +1,10 @@
-all: gen_tests build hexdump
+all: gen_tests gen_validation build hexdump
 .PHONY: all
 
-clown: gen_tests clownassembler hexdump
+clown: gen_tests gen_validation clownassembler hexdump
 .PHONY: clown
 
-vasm: gen_tests build_vasm hexdump
+vasm: gen_tests gen_validation build_vasm hexdump
 .PHONY: vasm
 
 gen_tests:
@@ -52,6 +52,10 @@ hexdump:
 clean:
 	rm -f tests/test.bin tests/test.hex
 .PHONY: clean
+
+commit_count:
+	git rev-list --count HEAD
+.PHONY: commit_count
 
 ################################################################################
 ## TESTING VASM BUGS                                                          ##

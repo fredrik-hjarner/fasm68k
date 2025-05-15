@@ -29,21 +29,16 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
         cmpi,    0000110000000000b,  0,                  0
     ; TODO: Can I remove the imm_bytes now and use the stuff from
     ; parse_operand instread?
-    iterate <size,  size_str, size_bits,  imm_bytes>, \
-            <>,      '',       0,          0, \
-            .b,      'b',      00b,        2, \
-            .w,      'w',      01b,        2, \
-            .l,      'l',      10b,        4
+    iterate <size,  dot_size,  size_str, size_bits,  imm_bytes>, \
+            _,      ,          '',       0,          0, \
+            b,      .b,        'b',      00b,        2, \
+            w,      .w,        'w',      01b,        2, \
+            l,      .l,        'l',      10b,        4
 
-            calminstruction instr#size? operands&
-                        assert_word_aligned
-
-                        local tmp
-
-                        call m68k.split_operands, operands
-                        call m68k.parse_operand@op1, m68k.split_operands_result.op1
-                        call m68k.parse_operand@op2, m68k.split_operands_result.op2
-
+            calminstruction instr#dot_size? operands&
+                        xcall m68k.parse_and_validate_instruction, <instr>, \
+                                                                   operands, \
+                                                                   <size>
                 ;; CHECK CCR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                         ; TODO: Add .type_token for convenience? Prolly not...
                         check ccr_variant <> 0 & @op2.type = 'ccr' & \
@@ -81,5 +76,5 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                         call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
             end calminstruction
 
-    end iterate ; <size, size_bits>
+    end iterate ; <size, dot_size, size_str, size_bits, imm_bytes>
 end iterate ; <instr, instr_word>
