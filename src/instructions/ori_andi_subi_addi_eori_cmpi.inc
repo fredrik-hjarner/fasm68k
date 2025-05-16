@@ -41,8 +41,9 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                                                                    <size>
                 ;; CHECK CCR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                         ; TODO: Add .type_token for convenience? Prolly not...
-                        check ccr_variant <> 0 & @op2.type = 'ccr' & \
-                              (size_str = 'b' | size_str = '')
+                        ; check ccr_variant <> 0 & @op2.type = 'ccr' & \
+                        ;       (size_str = 'b' | size_str = '')
+                        match =ccr, @op2.type_token
                         jno check_sr
                     ; ccr:
                         emit_be 2, ccr_variant
@@ -52,8 +53,9 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                         exit
                 ;; CKECK SR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                 check_sr:
-                        check sr_variant <> 0 & @op2.type = 'sr' & \
-                              (size_str = 'w' | size_str = '')
+                        ; check sr_variant <> 0 & @op2.type = 'sr' & \
+                        ;       (size_str = 'w' | size_str = '')
+                        match =sr, @op2.type_token
                         jno normal_case
                     ; sr:
                         emit_be 2, sr_variant
@@ -66,14 +68,14 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                         ; assert_min imm, 1
                         ; assert_max imm, 8
 
-                        emit_be 2, instr_word + size_bits shl 6 + \
+                        emit_be 2, instr_word or size_bits shl 6 or \
                                 @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
                         
                         ; immediate bytes
                         emit_be imm_bytes, @op1.imm
 
                         ; extension words
-                        call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+                        emit_be @op2.ext_bytes, @op2.ext_bytes_bits
             end calminstruction
 
     end iterate ; <size, dot_size, size_str, size_bits, imm_bytes>

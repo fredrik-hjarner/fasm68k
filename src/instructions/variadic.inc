@@ -50,13 +50,13 @@ iterate <instr,  instr_bits>, \
                         local tmp
                         ; 8 is encoded as 0, I think mod with 8 takes care of that.
                         compute tmp, @op1.imm mod 8
-                        emit_be 1, 11100000b + (tmp shl 1) + dir_bit
-                        emit_be 1, size_bits shl 6 + instr_bits shl 3 + \
+                        emit 1, 11100000b or (tmp shl 1) or dir_bit
+                        emit 1, size_bits shl 6 or instr_bits shl 3 or \
                                 @op2.ea_reg_bits
                         exit
                     data_reg:
-                        emit_be 1, 11100000b + @op1.ea_reg_bits shl 1 + dir_bit
-                        emit_be 1, size_bits shl 6 + 1 shl 5 + instr_bits \
+                        emit 1, 11100000b or @op1.ea_reg_bits shl 1 or dir_bit
+                        emit 1, size_bits shl 6 or 1 shl 5 or instr_bits \
                                 shl 3 + @op2.ea_reg_bits
                         exit
                 one_operand:
@@ -64,12 +64,12 @@ iterate <instr,  instr_bits>, \
                         ; Seems manual says if monadic then it shift a word.
                         ; Double-check this. As it is I generate instructions
                         ; for all sizes right now.
-                        emit_be 1, 11100000b + instr_bits shl 1 + dir_bit
-                        emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + \
+                        emit 1, 11100000b or instr_bits shl 1 or dir_bit
+                        emit 1, 11000000b or @op1.ea_mode_bits shl 3 or \
                                 @op1.ea_reg_bits
 
                         ; <ea> extension words
-                        call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+                        emit_be @op1.ext_bytes, @op1.ext_bytes_bits
             end calminstruction
 
         end iterate ; <size, size_bits>

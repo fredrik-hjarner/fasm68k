@@ -108,18 +108,18 @@ iterate op, @op1,@op2
                     local maybe_abs
 
                     ; stringify operand so I can print it to debug.
-                    arrange opstr, operand
-                    stringify opstr
+                    ; arrange opstr, operand
+                    ; stringify opstr
                     ; display opstr bappend 9
 
                     ; default values
                     compute type, 'unknown'    ; TODO: Better default value?
                     arrange type_token, =_     ; TODO: Better default value?
-                    compute ea_mode_bits, 123d ; TODO: Better default value?
-                    compute ea_reg_bits,  123d ; TODO: Better default value?
+                    ; compute ea_mode_bits, 123d ; TODO: Better default value?
+                    ; compute ea_reg_bits,  123d ; TODO: Better default value?
                     compute ext_bytes, 0       ; TODO: Better default value?
                     compute ext_bytes_bits, 0  ; TODO: Better default value?
-                    compute imm, 0             ; TODO: Better default value?
+                    ; compute imm, 0             ; TODO: Better default value?
 
             ;; check if empty ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                     ; If split operands only finds one argument then the other
@@ -128,44 +128,15 @@ iterate op, @op1,@op2
                     match ,operand
                     jyes done
             ;; (an) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-            ; check_if_indirect_an:
-                    match (an), operand
-                    jno check_if_minus_an
-                    call m68k.is_one_token, an
-                    jnope check_if_minus_an
-                    check an relativeto m68k.address_reg
-                    jno check_if_minus_an
-                    compute type, '(an)'
-                    arrange type_token, =indir_an
-                    compute ea_mode_bits, 010b
-                    compute ea_reg_bits, 0 scaleof an
-                    jump done
+                    parse_indirect_an operand
             ; -(an) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-            check_if_minus_an:
-                    match -(an), operand
-                    jno check_if_plus_an
-                    check an relativeto m68k.address_reg
-                    jno check_if_plus_an
-                    compute type, '-(an)'
-                    arrange type_token, =an_pre_decr
-                    compute ea_mode_bits, 100b
-                    compute ea_reg_bits, 0 scaleof an
-                    jump done
+                    parse_indirect_pre_decr operand
             ; (an)+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-            check_if_plus_an:
-                    match (an)+, operand
-                    jno check_if_immediate
-                    check an relativeto m68k.address_reg
-                    jno check_if_immediate
-                    compute type, '(an)+'
-                    arrange type_token, =an_post_incr
-                    compute ea_mode_bits, 011b
-                    compute ea_reg_bits, 0 scaleof an
-                    jump done
+                    parse_indirect_post_incr operand
             ;; imm ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             ; TODO: Immediate can have either 1 or 2 extension words!
             check_if_immediate:
-                    match =# maybe_number, operand, ()
+                    match =# maybe_number, operand
                     jno check_if_abs_w
                 ; hash_prefix:
                     ; fasmg uses shl instead of <<
@@ -183,7 +154,7 @@ iterate op, @op1,@op2
                     ; reverse order.
                     compute str_len, lengthof maybe_number
                     compute maybe_number, maybe_number bswap str_len
-                    compute maybe_number, +maybe_number
+                    ; compute maybe_number, +maybe_number
                     jump skip_immediate_addressing_error
                 is_not_string:
                     err 'immediate_addressing_error' ; TODO: better err message.
@@ -222,7 +193,7 @@ iterate op, @op1,@op2
                     jump done
             ;; abs.w ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             check_if_abs_w:
-                    match maybe_abs.=w, operand, ()
+                    match maybe_abs.=w, operand
                     jno check_if_abs_l
                     check maybe_abs relativeto 0
                     jno check_if_abs_l
@@ -243,7 +214,7 @@ iterate op, @op1,@op2
                     jump done
             ;; abs.l ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             check_if_abs_l:
-                    match maybe_abs.=l, operand, ()
+                    match maybe_abs.=l, operand
                     jno check_if_dn
                     check maybe_abs relativeto 0
                     jno check_if_dn
@@ -265,7 +236,7 @@ iterate op, @op1,@op2
             ;; Check if `dn` (direct data register addressing) ;;;;;;;;;;;;;;;;;
             check_if_dn:
                     call m68k.is_one_token, operand
-                    jnope check_if_an
+                    jnope check_indirect_displacement
                     check operand relativeto m68k.data_reg
                     jno check_if_an
                     compute type, 'dn'
@@ -277,8 +248,8 @@ iterate op, @op1,@op2
                     jump done
             ;; Check if `an` (direct address register addressing) ;;;;;;;;;;;;;;
             check_if_an:
-                    call m68k.is_one_token, operand
-                    jnope sr
+                    ; call m68k.is_one_token, operand
+                    ; jnope sr
                     check operand relativeto m68k.address_reg
                     jno sr
                     compute type, 'an'
@@ -302,30 +273,32 @@ iterate op, @op1,@op2
             ;         jump done
             ;; sr ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             sr:
-                    call m68k.is_one_token, operand
-                    jnope ccr
+                    ; call m68k.is_one_token, operand
+                    ; jnope check_indirect_displacement
                     ; TODO: Is it dumb to use relativeto here? equal better?
-                    check operand relativeto sr
+                    ; check operand relativeto sr
+                    match =sr, operand
                     jno ccr
                     compute type, 'sr'
                     arrange type_token, =sr
                     jump done
             ;; ccr ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             ccr:
-                    call m68k.is_one_token, operand
-                    jnope usp
+                    ; call m68k.is_one_token, operand
+                    ; jnope usp
                     ; TODO: Is it dumb to use relativeto here? equal better?
-                    check operand relativeto ccr
+                    ; check operand relativeto ccr
+                    match =ccr, operand
                     jno usp
                     compute type, 'ccr'
                     arrange type_token, =ccr
                     jump done
             ;; usp ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             usp:
-                    call m68k.is_one_token, operand
-                    jnope check_indirect_displacement
+                    ; call m68k.is_one_token, operand
+                    ; jnope check_indirect_displacement
                     ; TODO: Is it dumb to use relativeto here? equal better?
-                    check operand relativeto usp
+                    match =usp, operand
                     jno check_indirect_displacement
                     compute type, 'usp'
                     arrange type_token, =usp
@@ -421,9 +394,9 @@ iterate op, @op1,@op2
                     ; TODO: The displacement could only be max one byte
                     ;       and I should validate that.
                     compute ext_bytes_bits, \
-                        m68k.parse_mem_index_result.m shl 15 + \
-                        m68k.parse_mem_index_result.xn shl 12 + \
-                        m68k.parse_mem_index_result.s shl 11 + \
+                        m68k.parse_mem_index_result.m shl 15 or \
+                        m68k.parse_mem_index_result.xn shl 12 or \
+                        m68k.parse_mem_index_result.s shl 11 or \
                         \ ; bswap 1 makes sure negative numbers are contrained
                         \ ; to 1 byte. (-1 theoretically is has $FFFF...
                         \ ; stretching to infinity)
@@ -521,6 +494,58 @@ iterate op, @op1,@op2
 
     end namespace
 end iterate
+
+;; INDIRECT ADDRESSING ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+macro calminstruction?.parse_indirect_an? operand*
+        new @next
+        match (an), operand
+        @ jno @next
+        call m68k.is_one_token, an
+        @ jnope @next
+        check an relativeto m68k.address_reg
+        @ jno @next
+        compute type, '(an)'
+        arrange type_token, =indir_an
+        compute ea_mode_bits, 010b
+        compute ea_reg_bits, 0 scaleof an
+        exit
+    @ @next:
+end macro
+
+;; INDIRECT ADDRESSING WITH PRE-DECREMENT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+macro calminstruction?.parse_indirect_pre_decr? operand*
+        new @next
+        match -(an), operand
+        @ jno @next
+        ; check an relativeto m68k.address_reg
+        ; @ jno @next
+        compute type, '-(an)'
+        arrange type_token, =an_pre_decr
+        compute ea_mode_bits, 100b
+        ; compute ea_reg_bits, 0 scaleof an
+        compute ea_reg_bits, an - m68k.address_reg
+        exit
+    @ @next:
+end macro
+
+;; INDIRECT ADDRESSING WITH POST-INCREMENT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+macro calminstruction?.parse_indirect_post_incr? operand*
+        new @next
+        match (an)+, operand
+        @ jno @next
+        ; check an relativeto m68k.address_reg
+        ; @ jno @next
+        compute type, '(an)+'
+        arrange type_token, =an_post_incr
+        compute ea_mode_bits, 011b
+        ; compute ea_reg_bits, 0 scaleof an
+        compute ea_reg_bits, an - m68k.address_reg
+        exit
+    @ @next:
+end macro
 
 ;; SPLIT_OPERANDS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

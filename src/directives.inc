@@ -33,7 +33,7 @@ calminstruction dc.b? line&
     at_least_two_arguments:
         check head eqtype ''
         jyes string
-        emit_be 1, head
+        emit 1, head
         jump maybe_next
     string:
         compute length, lengthof head

@@ -37,3 +37,10 @@ So what are the concrete instructions:
  - [x] cmp -> cmpa
 
 yep that's all of them.
+
+## fasmg performance
+
+- matching tokens is faster than comparing strings.
+- seems that sometimes nested namespaces can make code slower.
+- 3rd argument to match makes the code slower
+    `match x, x, ()`

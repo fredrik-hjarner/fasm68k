@@ -10,22 +10,6 @@
 ;;       see `_`.                                                             ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-macro nbcd line&
-    nbcd.b line
-end macro
-
-macro swap line&
-    swap.w line
-end macro
-
-macro pea line&
-    pea.l line
-end macro
-
-macro tas line&
-    tas.b line
-end macro
-
 macro link line&
     link.w line
 end macro
@@ -42,13 +26,6 @@ end macro
 iterate cc, t,f,    hi,ls,cc,hs,cs,lo,ne,eq,vc,vs,pl,mi,ge,lt,gt,le
     macro s#cc? line&
         s#cc.b line
-    end macro
-end iterate
-
-; dbcc
-iterate cc,  t,f,ra,hi,ls,cc,hs,cs,lo,ne,eq,vc,vs,pl,mi,ge,lt,gt,le
-    macro db#cc? line&
-        db#cc.w line
     end macro
 end iterate
 
@@ -96,8 +73,6 @@ end macro
 macro bsr.s line&
     bsr.b line
 end macro
-
-; TODO: I have alias baked in somewhere in some instruction. Move it here!
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DEFAULT SIZES FOR SOME INSTRUCTIONS                                        ;;

@@ -21,11 +21,9 @@
       You can see some of my fix by searching for `pc_index` and
       `pc_displacement`.
 * I could probably have a `iterate <size, size_bytes>` and have bcc, bra and bsr
-      in it to save a bit of space/code duplication (also .s alias has to be
-      move into aliases.inc file for that to work smoothly).
+      in it to save a bit of space/code duplication.
 * Maybe I should have branching instruction have .s as default and .b as the
-      alias instead, dunno. Also I should move the alias into compat directory
-      maybe?
+      alias instead, dunno.
 * How should too large numbers behave? asl.w	($FFFFFFFF).w
       should it just be assigned max or should it wrap around??
       I currently have some code in parse_operand that sets too big numbers to
@@ -89,6 +87,9 @@
       Just double-check this.
 * Find out exactly which instructions can have the .s size suffix!!
       I need to know that and it it to m68k_instructions.ts file!!
+* I want to remove the aliases in the aliases.inc file. They hinder the
+      `validate` function from knowing the size of the instruction. So
+      bake the unsized instruction into the instructions itself.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; things that cause unrecoverable errors in fasmg                            ;;

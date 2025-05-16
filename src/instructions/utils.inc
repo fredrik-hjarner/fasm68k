@@ -29,6 +29,8 @@ calminstruction emit_ext_words? ext_bytes*, ext_bytes_bits*
         ;       where exactly this word is (will be emitted).
 
         ; TODO: Explain better.
+        ; `1 scaleof ext_bytes_bits` takes out the factor that I multiplied
+        ; the element `pc_index` or `pc_displacement` with.
         compute element_1_scale, 1 scaleof ext_bytes_bits
         ; If pc is part of it then 1 scaleof will not be 0, it could be positive
         ; and negative though. wll I dunno... Suure it can be negative if it
@@ -44,15 +46,16 @@ calminstruction emit_ext_words? ext_bytes*, ext_bytes_bits*
         jyes pc_displacement
     ; pc_index:
         compute element_1_scale, element_1_scale - $
-        ; use `store` and `load` for data massaging. needed so that negative
-        ; values are constrained within1 byte.
-        ; store one_byte:0, 1, element_1_scale
-        ; load element_1_scale, one_byte:0, 1
-        ; Actually using `bswap` for this is way shorter. Feels hacky but works.
+        ; use `bswap` data massaging. needed so that negative
+        ; values are constrained within 1 byte. Feels hacky but works.
         compute element_1_scale, element_1_scale bswap 1
+        ; `0 scaleof ext_bytes_bits` hold the "M Xn S" part of the 
+        ; `Brief Extension Word`, so we're just constructing the
+        ; `Brief Extension Word` here by or:ing the two parts together.
         emit_be ext_bytes, (0 scaleof ext_bytes_bits) or element_1_scale
         jump done
     pc_displacement:
+        ; `element_1_scale` holds the `d` part of `d(pc)`.
         emit_be ext_bytes, element_1_scale - $
         jump done
     default_case:

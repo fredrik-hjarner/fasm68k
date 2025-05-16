@@ -94,24 +94,6 @@ end calminstruction
 ;         assemble head
 ; end macro
 
-; ARRange, ASSemble
-macro calminstruction?.arr_ass? var*, val*
-    arrange var, val
-    assemble var
-end macro
-
-; ARRange, STRingify
-macro calminstruction?.arr_str? var*, val*
-    arrange var, val
-    stringify var
-end macro
-
-; ARRange, TRAnsform
-macro calminstruction?.arr_tra? var*, val*
-    arrange var, val
-    transform var
-end macro
-
 ; TODO: Comment/explain.
 macro calminstruction?.eval? str*
     asm eval str
@@ -139,3 +121,50 @@ end struc
 macro calminstruction?.tokenize? val*
     asm val tokenize val
 end macro
+
+macro calminstruction?.nice_err? line&
+    err 13 bappend 10 bappend 9 bappend line
+    exit ; also auto-exit since I think that's what one usually wants.
+end macro
+
+;; SOME UTILS TO MAKE CALM CODE SHORTER ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; ARRange -> ASSemble
+macro calminstruction?.arr_ass? var*, val*
+    arrange var, val
+    assemble var
+end macro
+
+; ARRange -> STRingify
+macro calminstruction?.arr_str? var*, val*
+    arrange var, val
+    stringify var
+end macro
+
+; ARRange -> TRAnsform
+macro calminstruction?.arr_tra? var*, val*
+    arrange var, val
+    transform var
+end macro
+
+; LOCal -> ARRange -> COMpute
+macro calminstruction?.loc_arr_com? var*, val*
+    local var
+    arrange var, val
+    compute var, var
+end macro
+
+; LOCal -> ARRange -> STRingify
+macro calminstruction?.loc_arr_str? var*, val*
+    local var
+    arrange var, val
+    stringify var
+end macro
+
+; LOCal -> COMpute
+macro calminstruction?.loc_com? var*, val*
+    local var
+    compute var, val
+end macro
+
+

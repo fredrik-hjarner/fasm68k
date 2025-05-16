@@ -10,7 +10,7 @@
 ;     Unsized
 calminstruction unlk? operands&
     xcall m68k.parse_and_validate_instruction, <unlk>, operands, <_>
-    emit_be 2, 0100111001011000b + @op1.ea_reg_bits
+    emit_be 2, 0100111001011000b or @op1.ea_reg_bits
 end calminstruction
 
 ;; STOP ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -35,14 +35,17 @@ end calminstruction
 ;     pea.l  <ea>
 ;     tas.b  <ea>
 iterate <instr, size, dot_size, instr_word>, \
+        nbcd,   _,    ,         0100100000000000b, \
         nbcd,   b,    .b,       0100100000000000b, \
+        pea,    _,    ,         0100100001000000b, \
         pea,    l,    .l,       0100100001000000b, \
+        tas,    _,    ,         0100101011000000b, \
         tas,    b,    .b,       0100101011000000b
 
         calminstruction instr#dot_size? operands&
             xcall m68k.parse_and_validate_instruction, <instr>, operands, <size>
 
-            emit_be 2, instr_word + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit_be 2, instr_word or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
             ; <ea> extension words
             call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -82,11 +85,11 @@ iterate <cc,  cc_bits>, \
         calminstruction s#cc.b? operands&
                 xcall m68k.parse_and_validate_instruction, <s#cc>, operands, <b>
 
-                emit_be 1, 01010000b + cc_bits
-                emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+                emit 1, 01010000b or cc_bits
+                emit 1, 11000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
                 ; <ea> extension words
-                call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+                emit_be @op1.ext_bytes, @op1.ext_bytes_bits
         end calminstruction
 
 end iterate ; <cc, cc_bits>
@@ -121,11 +124,11 @@ iterate <instr,  first_byte>, \
         calminstruction instr.size? operands&
             xcall m68k.parse_and_validate_instruction, <instr>, operands, <size>
 
-            emit_be 1, first_byte
-            emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit 1, first_byte
+            emit 1, size_bits shl 6 or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
             ; <ea> extension words
-            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            emit_be @op1.ext_bytes, @op1.ext_bytes_bits
         end calminstruction
 
     end iterate ; <size, size_bits>
@@ -169,11 +172,11 @@ iterate <cc,  cc_bits>, \
             local pc
             compute pc, $ + 2
 
-            emit_be 1, 01100000b + cc_bits
+            emit 1, 01100000b or cc_bits
 
             ; may look strange but it works.
             ; @op1.ext_bytes_bits will contain the value the label (op1).
-            emit_be 1, @op1.ext_bytes_bits - pc
+            emit 1, @op1.ext_bytes_bits - pc
         end calminstruction
 
         ; TODO: Check if fits in a word. Maybe do that in parse_operand?
@@ -182,18 +185,16 @@ iterate <cc,  cc_bits>, \
         calminstruction? b#cc.w? operands&
             xcall m68k.parse_and_validate_instruction, <b#cc>, operands, <w>
 
-            emit_be 1, 01100000b + cc_bits
-            emit_be 1, 0 ; second byte being zero
+            emit 1, 01100000b or cc_bits
+            emit 1, 0 ; second byte being zero
             emit_be 2, @op1.ext_bytes_bits - $
         end calminstruction
 
         ; alias for .b
-        ; TODO: Move to aliases.inc file!!!
         macro b#cc.s? line&
             b#cc.b line
         end macro
 
-        ; TODO: Move to aliases.inc file!!!
         macro b#cc? line&
             b#cc.w line
         end macro
@@ -221,8 +222,8 @@ iterate <instr,  first_byte>, \
                 local pc
                 compute pc, $ + 2
 
-                emit_be 1, first_byte
-                emit_be 1, @op1.ext_bytes_bits - pc
+                emit 1, first_byte
+                emit 1, @op1.ext_bytes_bits - pc
         end calminstruction
 
         ; TODO: Check if fits in a word. Maybe do that in parse_operand?
@@ -231,8 +232,8 @@ iterate <instr,  first_byte>, \
         calminstruction? instr.w? operands&
             xcall m68k.parse_and_validate_instruction, <instr>, operands, <b>
 
-            emit_be 1, first_byte
-            emit_be 1, 0 ; second byte being zero
+            emit 1, first_byte
+            emit 1, 0 ; second byte being zero
             emit_be 2, @op1.ext_bytes_bits - $
         end calminstruction
 
@@ -249,7 +250,7 @@ iterate <size,  size_bit>, \
         calminstruction ext.size? operands&
             xcall m68k.parse_and_validate_instruction, <ext>, operands, <size>
 
-            emit_be 2, 0100_1000___1000_0000_b + size_bit shl 6 + @op1.ea_reg_bits
+            emit_be 2, 0100_1000___1000_0000_b or size_bit shl 6 or @op1.ea_reg_bits
         end calminstruction
             
 end iterate ; <size, size_bit>
@@ -272,8 +273,8 @@ iterate <instr,  second_byte>, \
         calminstruction instr? operands&
             xcall m68k.parse_and_validate_instruction, <instr>, operands, <_>
 
-            emit_be 1, 01001110b
-            emit_be 1, second_byte + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit 1, 01001110b
+            emit 1, second_byte or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
             
             ; <ea> extension words
             call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -286,11 +287,17 @@ end iterate ; <instr, second_byte>
 ; Exchange the upper and lower 16-bit words of a data register.
 ; arguments:
 ;     dn: data register (d0 - d7)
-calminstruction swap.w? operands&
-    xcall m68k.parse_and_validate_instruction, <swap>, operands, <w>
+iterate <size, dot_size>, \
+         _,    ,  \
+         w,    .w
 
-    emit_be 2, 0100_1000__0100_0000b + @op1.ea_reg_bits
-end calminstruction
+    calminstruction swap#dot_size? operands&
+        xcall m68k.parse_and_validate_instruction, <swap>, operands, <w>
+
+        emit_be 2, 0100_1000__0100_0000b or @op1.ea_reg_bits
+    end calminstruction
+
+end iterate ; <size, dot_size>
 
 ; Syntax: trap #<vector>
 ;
@@ -312,5 +319,5 @@ calminstruction trap? operands&
         assert_min @op1.imm, 0
         assert_max @op1.imm, 15
 
-        emit_be 2, 0100_1110__0100_0000b + @op1.imm
+        emit_be 2, 0100_1110__0100_0000b or @op1.imm
 end calminstruction

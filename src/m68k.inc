@@ -42,15 +42,6 @@ macro calminstruction?.assert_max? value*, max*
     @ @done:
 end macro
 
-macro calminstruction?.assert_data_reg? value*
-        new @done
-        check value relativeto m68k.data_reg
-        @ jyes @done
-        ; TODO: I'd like to have a setting that warns or errors, or something.
-        err "Error: assert_data_reg"
-    @ @done:
-end macro
-
 macro calminstruction?.assert_word_aligned?
         new @done
         check ($ mod 2) = 0

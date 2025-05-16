@@ -12,7 +12,7 @@
 ;     movep (input,a6),d5
 iterate <size,  size_bit>, \
         w,      0b, \
-        l,      1b
+        l,      1000000b
 
     calminstruction movep.size? operands&
             xcall m68k.parse_and_validate_instruction, \
@@ -25,7 +25,7 @@ iterate <size,  size_bit>, \
             local ext_bytes_bits
 
             ; Initial default values
-            compute direction, 1 ; Default is dn to (d,an)
+            compute direction, 10000000b ; Default is dn to (d,an)
             compute reg_bits1, @op1.ea_reg_bits ; Default is dn to (d,an)
             compute reg_bits2, @op2.ea_reg_bits ; Default is dn to (d,an)
             compute ext_bytes, @op2.ext_bytes   ; Default is dn to (d,an)
@@ -34,17 +34,17 @@ iterate <size,  size_bit>, \
         ; check_direction:
             match =dn, @op2.type_token
             jno emit_bytes
-            compute direction, 0
+            compute direction, 0b
             compute reg_bits1, @op2.ea_reg_bits
             compute reg_bits2, @op1.ea_reg_bits
             compute ext_bytes, @op1.ext_bytes
             compute ext_bytes_bits, @op1.ext_bytes_bits
         emit_bytes:
-            emit_be 1, 00000001b + reg_bits1 shl 1
-            emit_be 1, direction shl 7 + size_bit shl 6 + 001b shl 3 + reg_bits2
+            emit 1, 1b or reg_bits1 shl 1
+            emit 1, direction or size_bit or 1000b or reg_bits2
 
             ; extension words
-            call emit_ext_words, ext_bytes, ext_bytes_bits
+            emit_be ext_bytes, ext_bytes_bits
     end calminstruction
 
 end iterate ; <size, size_bit>
@@ -55,19 +55,19 @@ end iterate ; <size, size_bit>
 ;     cmpm.[bwl] (ay)+,(ax)+
 ; Sample syntax:
 ;     cmpm.b (a3)+,(a4)+
-iterate <size,  size_bits>, \
-        b,      00b, \
-        w,      01b, \
-        l,      10b
+iterate <size,  instr_bits>, \
+        b,      00001000b, \
+        w,      01001000b, \
+        l,      10001000b
 
     calminstruction cmpm.size? operands&
         xcall m68k.parse_and_validate_instruction, \
             <cmpm>, operands, <size>, <size>
-        emit_be 1, 10110001b + @op2.ea_reg_bits shl 1
-        emit_be 1, size_bits shl 6 + 001b shl 3 + @op1.ea_reg_bits
+        emit 1, 10110001b or @op2.ea_reg_bits shl 1
+        emit 1, instr_bits or @op1.ea_reg_bits
     end calminstruction
 
-end iterate ; <size, size_bits>
+end iterate ; <size, instr_bits>
 
 ;; EXG ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -88,8 +88,8 @@ calminstruction exg.l? operands&
             local reg2_bits
 
             ; Init default values
-            compute type_bits1, 01b ; default to dn,dn
-            compute type_bits2, 0b  ; default to dn,dn
+            compute type_bits1, 01000000b ; default to dn,dn
+            compute type_bits2, 0  ; default to dn,dn
             compute reg1_bits,  @op1.ea_reg_bits ; default to dn,dn
             compute reg2_bits,  @op2.ea_reg_bits ; default to dn,dn
 
@@ -98,16 +98,16 @@ calminstruction exg.l? operands&
             jno check_an_an
             match =an, @op2.type_token
             jno check_an_an
-            compute type_bits1, 10b
-            compute type_bits2, 1b
+            compute type_bits1, 10000000b
+            compute type_bits2, 1000b
             jump emit_bytes
     check_an_an:
             match =an, @op1.type_token
             jno check_an_dn
             match =an, @op2.type_token
             jno check_an_dn
-            ; compute type_bits1, 01b
-            compute type_bits2, 1b
+            ; compute type_bits1, 01000000b
+            compute type_bits2, 1000b
             jump emit_bytes
     check_an_dn:
             ; seems `exg.l a7,d5` is encoded as `exg.l d5,a7`
@@ -115,14 +115,14 @@ calminstruction exg.l? operands&
             jno emit_bytes
             match =dn, @op2.type_token
             jno emit_bytes
-            compute type_bits1, 10b
-            compute type_bits2, 1b
+            compute type_bits1, 10000000b
+            compute type_bits2, 1000b
         ; exchange reg1 and reg2
             compute reg1_bits,  @op2.ea_reg_bits
             compute reg2_bits,  @op1.ea_reg_bits
     emit_bytes:
-            emit_be 1, 11000001b + reg1_bits shl 1
-            emit_be 1, type_bits1 shl 6 + type_bits2 shl 3 + reg2_bits
+            emit 1, 11000001b or reg1_bits shl 1
+            emit 1, type_bits1 or type_bits2 or reg2_bits
 end calminstruction
 
 ;; CHK ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -132,8 +132,8 @@ end calminstruction
 calminstruction chk.w? operands&
     xcall m68k.parse_and_validate_instruction, <chk>, operands, <w>, <w>
 
-    emit_be 1, 01000001b + @op2.ea_reg_bits shl 1
-    emit_be 1, 10000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+    emit 1, 01000001b or @op2.ea_reg_bits shl 1
+    emit 1, 10000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
     ; <ea> extension words
     call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -148,10 +148,10 @@ end calminstruction
 calminstruction link.w? operands&
     xcall m68k.parse_and_validate_instruction, <link>, operands, <w>, <w>
 
-    emit_be 2, 0100111001010000b + @op1.ea_reg_bits
+    emit_be 2, 0100111001010000b or @op1.ea_reg_bits
 
     ; extension words
-    call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+    emit_be @op2.ext_bytes, @op2.ext_bytes_bits
 end calminstruction
 
 ;; SUBX, ADDX ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -165,9 +165,9 @@ iterate <instr,  first_byte>, \
         subx,    10010001b, \
         addx,    11010001b
     iterate <size,  size_bits>, \
-        b,      00b, \
-        w,      01b, \
-        l,      10b
+        b,      00000000b, \
+        w,      01000000b, \
+        l,      10000000b
 
         calminstruction instr.size? operands&
             xcall m68k.parse_and_validate_instruction, \
@@ -183,10 +183,10 @@ iterate <instr,  first_byte>, \
             match =an_pre_decr, @op1.type_token
             jno emit_bytes
         ; Is -(an) to -(an)
-            compute m_bit, 1
+            compute m_bit, 1000b
         emit_bytes:
-            emit_be 1, first_byte + @op2.ea_reg_bits shl 1
-            emit_be 1, size_bits shl 6 + m_bit shl 3 + @op1.ea_reg_bits
+            emit 1, first_byte or @op2.ea_reg_bits shl 1
+            emit 1, size_bits or m_bit or @op1.ea_reg_bits
         end calminstruction
     end iterate ; <size, size_bits>
 
@@ -217,10 +217,10 @@ iterate <instr,  first_byte>, \
                 match =an_pre_decr, @op1.type_token
                 jno emit_bytes
             ; Is -(an) to -(an)
-                compute m_bit, 1
+                compute m_bit, 1000b
             emit_bytes:
-                emit_be 1, first_byte + @op2.ea_reg_bits shl 1
-                emit_be 1, m_bit shl 3 + @op1.ea_reg_bits
+                emit 1, first_byte or @op2.ea_reg_bits shl 1
+                emit 1, m_bit or @op1.ea_reg_bits
         end calminstruction
 
 end iterate ; <instr, first_byte>
@@ -243,8 +243,8 @@ iterate <instr,  first_byte>, \
                 xcall m68k.parse_and_validate_instruction, \
                     <instr>, operands, <size>, <size>
 
-                emit_be 1, first_byte + @op2.ea_reg_bits shl 1 + size_bit
-                emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+                emit 1, first_byte or @op2.ea_reg_bits shl 1 or size_bit
+                emit 1, 11000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
                 ; <ea> extension words
                 call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -256,9 +256,9 @@ end iterate ; <instr, first_byte>
 ;; EOR, CMP ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 iterate <size,  size_bits>, \
-        b,      00b, \
-        w,      01b, \
-        l,      10b
+        b,      00000000b, \
+        w,      01000000b, \
+        l,      10000000b
 
         ; Syntax:
         ;     EOR.[bwl] Dn,<ea>
@@ -280,11 +280,11 @@ iterate <size,  size_bits>, \
                 call eori.size, operands
                 exit
             skip_error:
-                emit_be 1, 10110001b + @op1.ea_reg_bits shl 1
-                emit_be 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
+                emit 1, 10110001b or @op1.ea_reg_bits shl 1
+                emit 1, size_bits or @op2.ea_mode_bits shl 3 or @op2.ea_reg_bits
 
                 ; <ea> extension words
-                call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+                emit_be @op2.ext_bytes, @op2.ext_bytes_bits
         end calminstruction
 
         ; Syntax:
@@ -327,8 +327,8 @@ iterate <size,  size_bits>, \
                 call cmpi.size, operands
                 exit
             skip_imm:
-                emit_be 1, 10110000b + @op2.ea_reg_bits shl 1
-                emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+                emit 1, 10110000b or @op2.ea_reg_bits shl 1
+                emit 1, size_bits or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
                 ; <ea> extension words
                 call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -353,8 +353,8 @@ iterate <instr,  first_byte>, \
             xcall m68k.parse_and_validate_instruction, \
                 <instr>, operands, <w>, <w>
 
-            emit_be 1, first_byte + @op2.ea_reg_bits shl 1
-            emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit 1, first_byte or @op2.ea_reg_bits shl 1
+            emit 1, 11000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
             ; <ea> extension words
             call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -379,10 +379,10 @@ end iterate ; <instr, first_byte>
 ; TODO: When looking at: http://goldencrystal.free.fr/M68kOpcodes-v2.3.pdf
 ;       I don't see how size .b/.l is encoded...??
 iterate <instr,  instr_bits>, \
-        btst,    00b, \
-        bchg,    01b, \
-        bclr,    10b, \
-        bset,    11b
+        btst,    00000000b, \
+        bchg,    01000000b, \
+        bclr,    10000000b, \
+        bset,    11000000b
     ; TODO: I think the size_in_bytes is strange.
     ;       What even does .b and .l mean for these specific instructions?
     ;       I really need to figure this out, is it that the addressing mode
@@ -424,8 +424,8 @@ iterate <instr,  instr_bits>, \
                 compute bit_index, @op1.imm
             emit_bytes:
 
-                emit_be 1, op1_bits + op1_type_bit
-                emit_be 1, instr_bits shl 6 + @op2.ea_mode_bits shl 3 +  @op2.ea_reg_bits
+                emit 1, op1_bits or op1_type_bit
+                emit 1, instr_bits or @op2.ea_mode_bits shl 3 or  @op2.ea_reg_bits
 
                 ; bit index
                 emit_be bit_index_size, bit_index
@@ -440,8 +440,8 @@ end iterate ; <instr, instr_bits>
 ;; MOVEM ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 iterate <size,  size_bits>, \
-        w,      0b, \
-        l,      1b
+        w,      0000000b, \
+        l,      1000000b
 
         ; Syntax:
         ;     movem.[wl] <ea>,<register list>
@@ -471,7 +471,7 @@ iterate <size,  size_bits>, \
                     jyes reglist_to_ea
             ; ea_to_reglist:
                     call m68k.parse_operand@op1, m68k.split_operands_result.op1
-                    compute direction, 1
+                    compute direction, 100b
                     ; TODO: Instead of doing all these twice for the 2 cases
                     ;       can I not `arrange ea, @op1 or something??
                     compute ea_mode_bits, @op1.ea_mode_bits
@@ -501,8 +501,8 @@ iterate <size,  size_bits>, \
                     compute bit_mask, @reg_list1.mask_word_reverse
                 skip_reverse2: ; TODO: just jump to emit_bytes instead?
             emit_bytes:
-                    emit_be 1, 01001000b + direction shl 2
-                    emit_be 1, 10000000b + size_bits shl 6 + ea_mode_bits shl 3 + ea_reg_bits
+                    emit 1, 01001000b or direction
+                    emit 1, 10000000b or size_bits or ea_mode_bits shl 3 or ea_reg_bits
 
                     ; register list bit mask
                     emit_be 2, bit_mask
@@ -632,8 +632,8 @@ iterate <instr,  first_byte>, \
                     match =dn, @op2.type_token
                     jno dn_to_ea
                 ; ea_to_dn:
-                    emit_be 1, first_byte + @op2.ea_reg_bits shl 1
-                    emit_be 1, size_bits shl 6 + @op1.ea_mode_bits shl 3 +  @op1.ea_reg_bits
+                    emit 1, first_byte or @op2.ea_reg_bits shl 1
+                    emit 1, size_bits shl 6 or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
                     ; extension words
                     call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -641,13 +641,13 @@ iterate <instr,  first_byte>, \
                     exit
                 dn_to_ea:
                     ; first byte                                  dir
-                    emit_be 1, first_byte + @op1.ea_reg_bits shl 1 + 1
+                    emit 1, first_byte or @op1.ea_reg_bits shl 1 or 1
 
                     ; second byte
-                    emit_be 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 +  @op2.ea_reg_bits
+                    emit 1, size_bits shl 6 or @op2.ea_mode_bits shl 3 or  @op2.ea_reg_bits
 
                     ; extension words
-                    call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+                    emit_be @op2.ext_bytes, @op2.ext_bytes_bits
             end calminstruction
 
     end iterate ; <size, size_bits>
@@ -688,25 +688,29 @@ iterate <cc,  cc_bits>, \
         gt,     1110b, \
         le,     1111b
 
-        ; TODO: Check if displacement fits a in word.
-        ; Maybe do that in parse_operand?
-        ; Also, check if displacement is a valid displacement.
-        ; 0 is not allowed for .b I think.
-        calminstruction? db#cc.w? operands&
-            xcall m68k.parse_and_validate_instruction, \
-                <db#cc>, operands, <w>, <w>
+        iterate <size, dot_size>, \
+                _,    ,  \
+                w,    .w
+            ; TODO: Check if displacement fits a in word.
+            ; Maybe do that in parse_operand?
+            ; Also, check if displacement is a valid displacement.
+            ; 0 is not allowed for .b I think.
+            calminstruction? db#cc#dot_size? operands&
+                xcall m68k.parse_and_validate_instruction, \
+                    <db#cc>, operands, <size>, <w>
 
-            local pc
+                local pc
 
-            emit_be 1, 01010000b + cc_bits
-            emit_be 1, 11001000b + @op1.ea_reg_bits
+                emit 1, 01010000b or cc_bits
+                emit 1, 11001000b or @op1.ea_reg_bits
 
-            ; immediate word
-            ; this looks strange but works.
-            ;     ext_bytes_bits will contain the value the label (op2).
-            emit_be 2, @op2.ext_bytes_bits - $
-        end calminstruction
+                ; immediate word
+                ; this looks strange but works.
+                ;     ext_bytes_bits will contain the value the label (op2).
+                emit_be 2, @op2.ext_bytes_bits - $
+            end calminstruction
 
+    end iterate ; <size, dot_size>
 end iterate ; <cc, cc_bits>
 
 ; Syntax:
@@ -719,8 +723,8 @@ iterate <size,  size_bits>, \
             xcall m68k.parse_and_validate_instruction, \
                 <movea>, operands, <size>, <size>
 
-            emit_be 1, size_bits shl 4 + @op2.ea_reg_bits shl 1
-            emit_be 1, 01000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+            emit 1, size_bits shl 4 or @op2.ea_reg_bits shl 1
+            emit 1, 01000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
                         
             ; extension words
             ; TODO: So, seems the number of extension words depend upon .w,.l
@@ -735,8 +739,8 @@ end iterate ; <size, size_bits>
 calminstruction lea.l? operands&
     xcall m68k.parse_and_validate_instruction, <lea>, operands, <l>, <l>
 
-    emit_be 1, 01000001b + @op2.ea_reg_bits shl 1
-    emit_be 1, 11000000b + @op1.ea_mode_bits shl 3 + @op1.ea_reg_bits
+    emit 1, 01000001b or @op2.ea_reg_bits shl 1
+    emit 1, 11000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
                 
     ; extension words
     call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
@@ -772,11 +776,11 @@ iterate <instr,  first_byte>, \
                 local tmp
                 ; 8 is encoded as 000b
                 compute tmp, @op1.imm mod 8
-                emit_be 1, first_byte + tmp shl 1
-                emit_be 1, size_bits shl 6 + @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
+                emit 1, first_byte or tmp shl 1
+                emit 1, size_bits shl 6 or @op2.ea_mode_bits shl 3 or @op2.ea_reg_bits
                 
                 ; extension words
-                call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+                emit_be @op2.ext_bytes, @op2.ext_bytes_bits
             end calminstruction
 
     end iterate ; <size, size_bits>
@@ -796,6 +800,6 @@ end iterate ; <instr, first_byte>
 ;       I assume 1111_1111b and -1d are should both be allowed?!
 calminstruction moveq.l? operands&
     xcall m68k.parse_and_validate_instruction, <moveq>, operands, <l>, <l>
-    emit_be 1, 01110000b + @op2.ea_reg_bits shl 1
-    emit_be 1, @op1.imm
+    emit 1, 01110000b or @op2.ea_reg_bits shl 1
+    emit 1, @op1.imm
 end calminstruction
