@@ -4,6 +4,8 @@
 
 ;; MOVEP ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+define movep?
+
 ; Syntax:
 ;     movep dx,(d,ay)
 ;     movep (d,ay),dx
@@ -51,6 +53,8 @@ end iterate ; <size, size_bit>
 
 ;; CMPM ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+define cmpm?
+
 ; Syntax:
 ;     cmpm.[bwl] (ay)+,(ax)+
 ; Sample syntax:
@@ -70,6 +74,8 @@ iterate <size,  instr_bits>, \
 end iterate ; <size, instr_bits>
 
 ;; EXG ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+define exg?
 
 ; Syntax:
 ;     exg.l reg,reg
@@ -127,6 +133,8 @@ end calminstruction
 
 ;; CHK ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+define chk?
+
 ; Syntax:
 ;     chk.w <ea>,dn
 calminstruction chk.w? operands&
@@ -140,6 +148,8 @@ calminstruction chk.w? operands&
 end calminstruction
 
 ;; LINK ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+define link?
 
 ; Syntax:
 ;     link.w an,#<displacement>
@@ -164,6 +174,9 @@ end calminstruction
 iterate <instr,  first_byte>, \
         subx,    10010001b, \
         addx,    11010001b
+
+    define instr?
+
     iterate <size,  size_bits>, \
         b,      00000000b, \
         w,      01000000b, \
@@ -203,6 +216,8 @@ iterate <instr,  first_byte>, \
         sbcd,    10000001b, \
         abcd,    11000001b
 
+        define instr?
+
         calminstruction instr.b? operands&
                 xcall m68k.parse_and_validate_instruction, \
                     <instr>, operands, <b>, <b>
@@ -235,6 +250,9 @@ iterate <instr,  first_byte>, \
         suba,    10010000b, \
         cmpa,    10110000b, \
         adda,    11010000b
+
+    define instr?
+
     iterate <size,  size_bit>, \
             w,      0b, \
             l,      1b
@@ -259,6 +277,8 @@ iterate <size,  size_bits>, \
         b,      00000000b, \
         w,      01000000b, \
         l,      10000000b
+
+        define eor?
 
         ; Syntax:
         ;     EOR.[bwl] Dn,<ea>
@@ -286,6 +306,8 @@ iterate <size,  size_bits>, \
                 ; <ea> extension words
                 emit_be @op2.ext_bytes, @op2.ext_bytes_bits
         end calminstruction
+
+        define cmp?
 
         ; Syntax:
         ;     CMP.[bwl] <ea>,Dn
@@ -349,6 +371,8 @@ iterate <instr,  first_byte>, \
         mulu,    11000000b, \
         muls,    11000001b
 
+        define instr?
+
         calminstruction instr.w? operands&
             xcall m68k.parse_and_validate_instruction, \
                 <instr>, operands, <w>, <w>
@@ -383,6 +407,9 @@ iterate <instr,  instr_bits>, \
         bchg,    01000000b, \
         bclr,    10000000b, \
         bset,    11000000b
+
+    define instr?
+
     ; TODO: I think the size_in_bytes is strange.
     ;       What even does .b and .l mean for these specific instructions?
     ;       I really need to figure this out, is it that the addressing mode
@@ -438,6 +465,8 @@ iterate <instr,  instr_bits>, \
 end iterate ; <instr, instr_bits>
 
 ;; MOVEM ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+define movem?
 
 iterate <size,  size_bits>, \
         w,      0000000b, \
@@ -514,6 +543,11 @@ iterate <size,  size_bits>, \
 end iterate ; <size, size_bits>
 
 ;; OR, SUB, AND, ADD ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; define or? ;This crashes because it collides with `or` and `and` keywords.
+define sub?
+; define and? ; This crashes because it collides with `or` and `and` keywords.
+define add?
 
 ; Syntax:
 ;     or.[bwl]  <ea>,dn
@@ -688,6 +722,8 @@ iterate <cc,  cc_bits>, \
         gt,     1110b, \
         le,     1111b
 
+        define db#cc?
+
         iterate <size, dot_size>, \
                 _,    ,  \
                 w,    .w
@@ -713,6 +749,10 @@ iterate <cc,  cc_bits>, \
     end iterate ; <size, dot_size>
 end iterate ; <cc, cc_bits>
 
+;; MOVEA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+define movea?
+
 ; Syntax:
 ;     movea.[wl] <ea>,an
 iterate <size,  size_bits>, \
@@ -734,6 +774,10 @@ iterate <size,  size_bits>, \
         end calminstruction
 
 end iterate ; <size, size_bits>
+
+;; LEA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+define lea?
 
 ; TODO: Comment
 calminstruction lea.l? operands&
@@ -761,6 +805,9 @@ end calminstruction
 iterate <instr,  first_byte>, \
         addq,    01010000b, \
         subq,    01010001b
+
+    define instr?
+
     iterate <size,  size_bits>, \
             b,      00b, \
             w,      01b, \
@@ -785,6 +832,10 @@ iterate <instr,  first_byte>, \
 
     end iterate ; <size, size_bits>
 end iterate ; <instr, first_byte>
+
+;; MOVEQ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+define moveq?
 
 ; Description:
 ;     Move the literal to a data register. The literal data is an

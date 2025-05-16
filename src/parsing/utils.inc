@@ -202,7 +202,7 @@ calminstruction m68k.parse_pc_index operand*
         stringify s
         ; display "s: " bappend s bappend 10
 
-        check d eqtype 0 & _pc eq pc & (xn relativeto m68k.data_reg | xn relativeto m68k.address_reg) & (s = 'w' | s = 'l')
+        check d eqtype 0 & _pc eq pc & (xn relativeto m68k.data_reg | xn relativeto m68k.address_reg) & (s = 'w' | s = 'W' | s = 'l' | s = 'L')
         jno nope
         ; compute xxcalm.ret, 1
         ; ; display 10 bappend PC DISPLACEMENT" bappend 10 bappend 10
@@ -218,7 +218,7 @@ calminstruction m68k.parse_pc_index operand*
     skip2:
 
     ; set_size_bit
-        check s = 'l'
+        check s = 'l' | s = 'L'
         jno skip3 ; TODO: better label name
         compute m68k.parse_pc_index_result.s, 1
     skip3:
@@ -343,7 +343,7 @@ calminstruction m68k.parse_mem_index operand*
 
         check d eqtype 0 & an relativeto m68k.address_reg & \
               (xn relativeto m68k.data_reg | xn relativeto m68k.address_reg) & \
-              (s = 'w' | s = 'l')
+              (s = 'w' | s = 'W' | s = 'l' | s = 'L')
         jno nope
         ; compute xxcalm.ret, 1
         ; ; display 10 bappend PC DISPLACEMENT" bappend 10 bappend 10
@@ -359,7 +359,7 @@ calminstruction m68k.parse_mem_index operand*
     skip2:
 
     ; set_size_bit
-        check s = 'l'
+        check s = 'l' | s = 'L'
         jno skip3 ; TODO: better label name
         compute m68k.parse_mem_index_result.s, 1
     skip3:

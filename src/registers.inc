@@ -23,13 +23,13 @@ sp? := m68k.address_reg + 111b
 
 ; TODO: Do I even need these? I don't use them in any calculations?
 ; TODO: Comment
-element pc
+element pc?
 ; TODO: Comment
-element sr
+element sr?
 ; TODO: Comment
-element ccr
+element ccr?
 ; TODO: Comment
-element usp
+element usp?
 
 ; TODO: pc_displacement and pc_index are not really registers, so maybe move
 ;       them?

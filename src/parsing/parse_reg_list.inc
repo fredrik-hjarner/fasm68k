@@ -187,8 +187,8 @@ iterate reg_list, @reg_list1,@reg_list2
         define single_reg_mask_words_reverse
 
         iterate reg, d0,d1,d2,d3,d4,d5,d6,d7,a0,a1,a2,a3,a4,a5,a6,a7
-            define single_reg_mask_words.reg         1 shl (%-1)
-            define single_reg_mask_words_reverse.reg 1 shl (%%-%)
+            define single_reg_mask_words.reg?         1 shl (%-1)
+            define single_reg_mask_words_reverse.reg? 1 shl (%%-%)
         end iterate
 
 ;; parse_single_register ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

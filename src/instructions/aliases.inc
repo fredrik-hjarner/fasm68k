@@ -10,15 +10,15 @@
 ;;       see `_`.                                                             ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-macro link line&
+macro link? line&
     link.w line
 end macro
 
-macro lea line&
+macro lea? line&
     lea.l line
 end macro
 
-macro chk line&
+macro chk? line&
     chk.w line
 end macro
 
@@ -29,35 +29,35 @@ iterate cc, t,f,    hi,ls,cc,hs,cs,lo,ne,eq,vc,vs,pl,mi,ge,lt,gt,le
     end macro
 end iterate
 
-macro moveq line&
+macro moveq? line&
     moveq.l line
 end macro
 
-macro divu line&
+macro divu? line&
     divu.w line
 end macro
 
-macro divs line&
+macro divs? line&
     divs.w line
 end macro
 
-macro sbcd line&
+macro sbcd? line&
     sbcd.b line
 end macro
 
-macro mulu line&
+macro mulu? line&
     mulu.w line
 end macro
 
-macro muls line&
+macro muls? line&
     muls.w line
 end macro
 
-macro abcd line&
+macro abcd? line&
     abcd.b line
 end macro
 
-macro exg line&
+macro exg? line&
     exg.l line
 end macro
 
@@ -66,11 +66,11 @@ end macro
 ;; TODO: Which instructions? All, some?                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-macro bra.s line&
+macro bra.s? line&
     bra.b line
 end macro
 
-macro bsr.s line&
+macro bsr.s? line&
     bsr.b line
 end macro
 
@@ -116,7 +116,7 @@ end macro
 
 iterate d, l,r
 
-    macro as#d line&
+    macro as#d? line&
         ; TODO: I have no idea which is the correct one or even what the difference
         ;       between asl.b, asl.w, asl.l is. The tests does not have cases
         ;       where the difference comes to light!
@@ -125,7 +125,7 @@ iterate d, l,r
         ; as#d.l line
     end macro
 
-    macro ls#d line&
+    macro ls#d? line&
         ; TODO: I have no idea which is the correct one or even what the difference
         ;       between lsl.b, lsl.w, lsl.l is. The tests does not have cases
         ;       where the difference comes to light!
@@ -134,7 +134,7 @@ iterate d, l,r
         ; ls#d.l line
     end macro
 
-    macro rox#d line&
+    macro rox#d? line&
         ; TODO: I have no idea which is the correct one or even what the difference
         ;       between roxl.b, roxl.w, roxl.l is. The tests does not have cases
         ;       where the difference comes to light!
@@ -143,7 +143,7 @@ iterate d, l,r
         ; rox#d.l line
     end macro
 
-    macro ro#d line&
+    macro ro#d? line&
         ; TODO: I have no idea which is the correct one or even what the difference
         ;       between rol.b, rol.w, rol.l is. The tests does not have cases
         ;       where the difference comes to light!
@@ -170,10 +170,10 @@ macro subq? line&
     subq.w line
 end macro
 
-macro clr line&
+macro clr? line&
     clr.w line
 end macro
 
-macro adda line&
+macro adda? line&
     adda.w line
 end macro

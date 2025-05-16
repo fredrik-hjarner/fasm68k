@@ -30,6 +30,10 @@ end calminstruction
 
 ;; NCBD, PEA, TAS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+define nbcd?
+define pea?
+define tas?
+
 ; Syntax:
 ;     nbcd.b <ea>
 ;     pea.l  <ea>
@@ -82,6 +86,8 @@ iterate <cc,  cc_bits>, \
         gt,     1110b, \
         le,     1111b
 
+        define s#cc?
+
         calminstruction s#cc.b? operands&
                 xcall m68k.parse_and_validate_instruction, <s#cc>, operands, <b>
 
@@ -116,6 +122,9 @@ iterate <instr,  first_byte>, \
         neg,     01000100b, \
         not,     01000110b, \
         tst,     01001010b
+
+    define instr?
+
     iterate <size,  size_bits>, \
             b,      00b, \
             w,      01b, \
@@ -161,6 +170,8 @@ iterate <cc,  cc_bits>, \
         lt,     1101b, \
         gt,     1110b, \
         le,     1111b
+
+        define b#cc?
 
         ; TODO: Check if fits in a byte. Maybe do that in parse_operand?
         ; Also, check if displacement is a valid displacement.
@@ -212,6 +223,8 @@ iterate <instr,  first_byte>, \
         bra,     01100000b, \
         bsr,     01100001b
 
+        define instr?
+
         ; TODO: Check if fits in a byte. Maybe do that in parse_operand?
         ; Also, check if displacement is a valid displacement.
         ; 0 is not allowed for .b I think.
@@ -240,6 +253,8 @@ iterate <instr,  first_byte>, \
 end iterate ; <instr, first_byte>
 
 ;; EXL ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+define ext?
 
 ; Syntax:
 ;     ext.[wl] dn
@@ -281,6 +296,10 @@ iterate <instr,  second_byte>, \
         end calminstruction
 
 end iterate ; <instr, second_byte>
+
+;; SWAP ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+define swap?
 
 ; Syntax: swap dn
 ;

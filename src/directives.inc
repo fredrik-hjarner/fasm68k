@@ -19,6 +19,7 @@ m68k.rs = 0
 define m68k.old_org
 m68k.old_org = 0
 
+define dc?
 calminstruction dc.b? line&
         local head, tail, length, last_argument
         compute last_argument, 0

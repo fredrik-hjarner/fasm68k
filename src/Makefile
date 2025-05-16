@@ -25,7 +25,7 @@ gen_validation:
 clownassembler:
 #	clownassembler -c -o tests/test.bin -i tests/valid_instructions.asm
 # -w silences warnings.
-	clownassembler -c -w -o tests/test.bin -i tests/valid_instructions.asm
+	clownassembler -c -l valid_instructions.lst -w -o tests/test.bin -i tests/valid_instructions.asm
 .PHONY: clownassembler
 
 # vasm does not support @ but only * it seems?

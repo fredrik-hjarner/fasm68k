@@ -16,6 +16,9 @@ iterate <instr,  instr_bits>, \
     iterate <dir,  dir_bit>, \
             r,            0b, \
             l,            1b
+
+        define instr#dir?
+
         iterate <size,  size_bits>, \
                 b,             00b, \
                 w,             01b, \

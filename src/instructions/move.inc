@@ -3,6 +3,8 @@
 ;; TODO: Could probably be refactored a bit.                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+define move?
+
 ; Syntax:
 ;     move.w     sr,   <ea>
 ;     move.w     <ea>, ccr
@@ -69,9 +71,9 @@ end iterate ; <size, dot_size>
 ; TODO: Comment
 ; For move_ea_to_ea specifically!
 define m68k.move_size_bits
-define m68k.move_size_bits.b 01b
-define m68k.move_size_bits.w 11b
-define m68k.move_size_bits.l 10b
+define m68k.move_size_bits.b? 01b
+define m68k.move_size_bits.w? 11b
+define m68k.move_size_bits.l? 10b
 
 ; Supposed to be call:ed.
 ; Assume that ea1 and ea2 has already been parsed with `parse_operand` and are

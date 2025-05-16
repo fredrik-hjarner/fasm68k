@@ -27,6 +27,9 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
         addi,    0000011000000000b,  0,                  0, \
         eori,    0000101000000000b,  0000101000111100b,  0000101001111100b, \
         cmpi,    0000110000000000b,  0,                  0
+
+    define instr?
+
     ; TODO: Can I remove the imm_bytes now and use the stuff from
     ; parse_operand instread?
     iterate <size,  dot_size,  size_str, size_bits,  imm_bytes>, \

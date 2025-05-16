@@ -7,9 +7,9 @@
 ; operande is an immediate.
 define m68k.instr_size_to_imm_size
 namespace m68k.instr_size_to_imm_size
-    define b 2
-    define w 2
-    define l 4
+    define b? 2
+    define w? 2
+    define l? 4
 end namespace
 
 ; Define variable/namespace where parse_operand will store its results,
@@ -194,7 +194,10 @@ iterate op, @op1,@op2
             ;; abs.w ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             check_if_abs_w:
                     match maybe_abs.=w, operand
+                    jyes has_w_suffix
+                    match maybe_abs.=W, operand
                     jno check_if_abs_l
+                has_w_suffix:
                     check maybe_abs relativeto 0
                     jno check_if_abs_l
                     compute type, 'abs.w'
@@ -215,7 +218,10 @@ iterate op, @op1,@op2
             ;; abs.l ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             check_if_abs_l:
                     match maybe_abs.=l, operand
+                    jyes has_l_suffix
+                    match maybe_abs.=L, operand
                     jno check_if_dn
+                has_l_suffix:
                     check maybe_abs relativeto 0
                     jno check_if_dn
                     compute type, 'abs.l'
@@ -273,11 +279,11 @@ iterate op, @op1,@op2
             ;         jump done
             ;; sr ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             sr:
-                    ; call m68k.is_one_token, operand
-                    ; jnope check_indirect_displacement
+                    call m68k.is_one_token, operand
+                    jnope check_indirect_displacement
                     ; TODO: Is it dumb to use relativeto here? equal better?
-                    ; check operand relativeto sr
-                    match =sr, operand
+                    check operand relativeto sr
+                    ; match =sr, operand
                     jno ccr
                     compute type, 'sr'
                     arrange type_token, =sr
@@ -287,8 +293,8 @@ iterate op, @op1,@op2
                     ; call m68k.is_one_token, operand
                     ; jnope usp
                     ; TODO: Is it dumb to use relativeto here? equal better?
-                    ; check operand relativeto ccr
-                    match =ccr, operand
+                    check operand relativeto ccr
+                    ; match =ccr, operand
                     jno usp
                     compute type, 'ccr'
                     arrange type_token, =ccr
@@ -298,7 +304,8 @@ iterate op, @op1,@op2
                     ; call m68k.is_one_token, operand
                     ; jnope check_indirect_displacement
                     ; TODO: Is it dumb to use relativeto here? equal better?
-                    match =usp, operand
+                    ; match =usp, operand
+                    check operand relativeto usp
                     jno check_indirect_displacement
                     compute type, 'usp'
                     arrange type_token, =usp
