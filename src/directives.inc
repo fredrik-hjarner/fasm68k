@@ -10,14 +10,19 @@
 ; rs address counter for "reserved" data.
 ; TODO: The implementation of rs.[bwl] and rsset is too simplistic.
 ;       Seems that `dcb` and `rs` are in separate address spaces
-;       where `org` sets the address for `dcb` and `rsset` sets the address for
+;       where `org` sets the address for `dc` and `rsset` sets the address for
 ;       `rs`.
-define m68k.rs
-m68k.rs = 0
+define rs? ; define the namespace that of rs.b, rs.w and rs.l
+__rs? = 0  ; the RS counter.
 ; I use this to save the org address counter when switching between address
 ; spaces.
 define m68k.old_org
 m68k.old_org = 0
+
+; rseven word-aligns the `__rs` counter.
+macro rseven?
+    __rs = __rs + (__rs mod 2)
+end macro
 
 define dc?
 calminstruction dc.b? line&
@@ -51,6 +56,7 @@ end calminstruction
 ; end macro
 
 calminstruction dc.w? line&
+        assert_word_aligned "Attempting to place a word on an odd address!"
         local head, tail, last_argument
         compute last_argument, 0
         arrange tail, line
@@ -75,6 +81,7 @@ end calminstruction
 ; end macro
 
 calminstruction dc.l? line&
+        assert_word_aligned "Attempting to place a longword on an odd address!"
         local head, tail, last_argument
         compute last_argument, 0
         arrange tail, line
@@ -115,11 +122,11 @@ calminstruction dc.q? tail&
         jyes next
 end calminstruction
 
-iterate <size, bytes>, \
-        b,     1, \
-        w,     2, \
-        l,     4, \
-        q,     8
+iterate <size, size_str,   bytes>, \
+        b,     'byte',     1, \
+        w,     'word',     2, \
+        l,     'longword', 4, \
+        q,     'quadword', 8
 
         ; dcb.b <exp>[,<fill>]
         ;     Insert <exp> zero or <fill> bytes into the current section.
@@ -139,19 +146,25 @@ iterate <size, bytes>, \
         ; label rs.[bwlq] n
         ;    Reserve n n times size bytes.
         ;    The address of the reserved space
+        ; TODO: Make into a calm instruction
         struc rs.size? n:1
+            if (`size <> 'b') & (__rs mod 2 <> 0)
+                local err_msg
+                err_msg = "Attempting to place a " bappend \
+                          size_str bappend " on an odd address"
+                err err_msg
+            end if
             ; Switch from `org` address space to `rs` address space
             m68k.old_org = $
-            org m68k.rs
+            org __rs
             .:
             ; Manually increment the `rs` counter
-            m68k.rs = m68k.rs + n * bytes
+            __rs = __rs + n * bytes
             ; Switch back to `org address space`
             org m68k.old_org
         end struc
 
 end iterate ; <size_suffix, size>
-
 
 ; TODO: This alias is mentioned in the vasm manual.
 ;       Does it exist in other assemblers?
@@ -164,5 +177,5 @@ end macro
 ;       where `org` sets the address for `dcb` and `rsset` sets the address for
 ;       `rs`.
 calminstruction rsset? addr*
-    compute m68k.rs, addr
+    compute __rs, addr
 end calminstruction

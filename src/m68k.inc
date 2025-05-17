@@ -42,13 +42,11 @@ macro calminstruction?.assert_max? value*, max*
     @ @done:
 end macro
 
-macro calminstruction?.assert_word_aligned?
-        new @done
+macro calminstruction.assert_word_aligned? err_msg:"Instruction placed on an odd address! Instructions are required to be word-aligned."
         check ($ mod 2) = 0
-        @ jyes @done
-        err "Instruction placed on an odd address!" bappend \
-                " Instructions are required to be word-aligned."
-    @ @done:
+        jyes done
+        display err_msg bappend 13 bappend 10
+    done:
 end macro
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

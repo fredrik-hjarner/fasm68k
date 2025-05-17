@@ -851,6 +851,17 @@ define moveq?
 ;       I assume 1111_1111b and -1d are should both be allowed?!
 calminstruction moveq.l? operands&
     xcall m68k.parse_and_validate_instruction, <moveq>, operands, <l>, <l>
+
+    ; TODO: Hm I think this is tricky because what the user can be different.
+    ;       They can enter bits like `1111_1111b` which is valid however
+    ;       converted into a positive number that will be +255. 255 (as a
+    ;       signed number) is in a way out of range. The signed range is
+    ;       -128 to 127. So how do I constrain the value here?
+    ;       It's almost as if I need to know if they uses binary, hex or
+    ;       decimal...
+    assert_min @op1.imm, -128 ; I think this is invalid under all circumstances.
+    assert_max @op1.imm, 255  ; Valid for unsigned but invalid for signed...
+
     emit 1, 01110000b or @op2.ea_reg_bits shl 1
     emit 1, @op1.imm
 end calminstruction

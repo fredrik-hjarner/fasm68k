@@ -90,6 +90,23 @@
 * I want to remove the aliases in the aliases.inc file. They hinder the
       `validate` function from knowing the size of the instruction. So
       bake the unsized instruction into the instructions itself.
+* Figure this out and why it did not work:
+      ```
+            ; rseven word-aligns the `__rs` counter.
+            ; calminstruction rseven?
+            ;     local rs_counter
+            ;     initsym rs_counter, __rs
+
+            ;     local rs_str
+            ;     loc_arr_str rs_str, __rs
+            ;     display 'rseven: __rs: ', rs_str, 13, 10
+
+            ;     arr_str rs_str, rs_counter
+            ;     display 'rseven: rs: ', rs_str, 13, 10
+
+            ;     compute __rs, __rs + (__rs mod 2)
+            ; end calminstruction
+      ```
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; things that cause unrecoverable errors in fasmg                            ;;

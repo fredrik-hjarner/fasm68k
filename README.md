@@ -1,9 +1,9 @@
 # fasm68k - Motorola 68000 instruction set for fasmg (flat assembler g)
 
-**Note**: Consider this to be in alpha stage. Currently supports all 68k
+> [!WARNING]
+> Consider this to be in alpha stage. Currently supports all 68k
 instructions that are validated with about [18,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
-but the code might still
-contain bugs. If you find bugs then don't hesitate reporting them, since the
+but the code might still contain bugs. If you find bugs then don't hesitate reporting them, since the
 hardest part is to find the bugs while it might be way easier to fix them.
 
 ## Description
@@ -15,7 +15,7 @@ Motorola 68000 cpu with Tomasz Grysztar's fasmg.
 you can see what was needed to adapt BigEvilCorporation's megadrive_samples for
 fasm68k.
 
-## Usage
+## Installation
 
 <details>
 
@@ -63,6 +63,25 @@ folder you cloned it into:
 TODO
 </blockquote>
 </details>
+
+## Directives and keywords
+
+Beyond the standard fasmg directives and keywords, fasm68k adds the following
+ones:
+
+| Directive/<br>keyword  | Description                               | Also present in<br>these assemblers |
+|------------------------|-------------------------------------------|----------------------|
+| `__rs`                 | Current value of RS counter               | asm68k               |
+| `rsset`                | Word-align `__rs` address.                | asm68k               |
+| `even`                 | Word-align the current address.           | asm68k, vasm         |
+| `rseven`               | Word-align the `__rs` address.            | asm68k, vasm         |
+| `rs.b`                 | Reserve a byte of space.                  | asm68k               |
+| `rs.w`                 | Reserve a word of space.                  | asm68k               |
+| `rs.l`                 | Reserve a longword of space.              | asm68k               |
+| `dc.b`                 | Define a byte.                            | asm68k, vasm         |
+| `dc.w`                 | Define a word.                            | asm68k, vasm         |
+| `dc.l`                 | Define a longword.                        | asm68k, vasm         |
+| `incbin`               | Include a binary file.                    | asm68k, vasm         |
 
 ## Differences from other m68k assemblers
 
