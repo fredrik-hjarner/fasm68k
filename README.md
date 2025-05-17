@@ -69,19 +69,19 @@ TODO
 Beyond the standard fasmg directives and keywords, fasm68k adds the following
 ones:
 
-| Directive/<br>keyword  | Description                               | Also present in<br>these assemblers |
-|------------------------|-------------------------------------------|----------------------|
-| `__rs`                 | Current value of RS counter               | asm68k               |
-| `rsset`                | Word-align `__rs` address.                | asm68k               |
-| `even`                 | Word-align the current address.           | asm68k, vasm         |
-| `rseven`               | Word-align the `__rs` address.            | asm68k, vasm         |
-| `rs.b`                 | Reserve a byte of space.                  | asm68k               |
-| `rs.w`                 | Reserve a word of space.                  | asm68k               |
-| `rs.l`                 | Reserve a longword of space.              | asm68k               |
-| `dc.b`                 | Define a byte.                            | asm68k, vasm         |
-| `dc.w`                 | Define a word.                            | asm68k, vasm         |
-| `dc.l`                 | Define a longword.                        | asm68k, vasm         |
-| `incbin`               | Include a binary file.                    | asm68k, vasm         |
+| Directive/<br>keyword  | Description                                   | Also present in<br>these assemblers |
+|------------------------|-----------------------------------------------|----------------------|
+| `__rs`                 | Current value of RS counter                   | asm68k               |
+| `rsset`                | Word-align `__rs` address.                    | asm68k               |
+| `even`                 | Word-align the current address.               | asm68k, vasm         |
+| `rseven`               | Word-align the `__rs` address.                |                      |
+| `rs.b`                 | Reserve a byte of space.                      | asm68k               |
+| `rs.w`                 | Reserve a word of space.                      | asm68k               |
+| `rs.l`                 | Reserve a longword of space.                  | asm68k               |
+| `dc.b`                 | Define a byte.                                | asm68k, vasm         |
+| `dc.w`                 | Define a word.                                | asm68k, vasm         |
+| `dc.l`                 | Define a longword.                            | asm68k, vasm         |
+| `incbin`               | Include a binary file.                        | asm68k, vasm         |
 
 ## Differences from other m68k assemblers
 

@@ -74,6 +74,7 @@ define m68k.move_size_bits
 define m68k.move_size_bits.b? 01b
 define m68k.move_size_bits.w? 11b
 define m68k.move_size_bits.l? 10b
+define m68k.move_size_bits._  11b
 
 ; Supposed to be call:ed.
 ; Assume that ea1 and ea2 has already been parsed with `parse_operand` and are
