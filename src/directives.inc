@@ -24,7 +24,7 @@ calminstruction dc.b? line&
         local head, tail, length, last_argument
         compute last_argument, 0
         arrange tail, line
-        replace_legacy_operators tail
+        massage_expression tail
     next:
         match head=,tail, tail
         jyes at_least_two_arguments
@@ -54,7 +54,7 @@ calminstruction dc.w? line&
         local head, tail, last_argument
         compute last_argument, 0
         arrange tail, line
-        replace_legacy_operators tail
+        massage_expression tail
     next:
         match head=,tail, tail
         jyes at_least_two_arguments
@@ -78,7 +78,7 @@ calminstruction dc.l? line&
         local head, tail, last_argument
         compute last_argument, 0
         arrange tail, line
-        replace_legacy_operators tail
+        massage_expression tail
     next:
         match head=,tail, tail
         jyes at_least_two_arguments
@@ -139,7 +139,7 @@ iterate <size, bytes>, \
         ; label rs.[bwlq] n
         ;    Reserve n n times size bytes.
         ;    The address of the reserved space
-        struc rs.size? n
+        struc rs.size? n:1
             ; Switch from `org` address space to `rs` address space
             m68k.old_org = $
             org m68k.rs

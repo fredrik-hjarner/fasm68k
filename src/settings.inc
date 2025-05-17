@@ -12,6 +12,9 @@ namespace m68k.settings?
     iterate <setting, default_value, description>, \
         \ ;; GENERAL SETTINGS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         \
+        \ ; TODO: Better comment.
+        \ ; Transforms << to shl and >> to shr etc.
+        compat_operators, 0, "", \
         \ ; TODO: Comment.
         \ ; TODO: Actually use this setting in code.
         compat_word_align_instructions, 0, "", \

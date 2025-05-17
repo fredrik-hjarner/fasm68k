@@ -37,17 +37,16 @@ Script must be executable:
 To assemble the examples run these commands and binary files should be created
 which you can run in a Mega Drive/Genesis emulator:
 
-`./fasm68k examples/megadrive_simple_demo/main.asm`
-
-`./fasm68k examples/megadrive_samples_fasm68k/1_hello_world/hello.asm`
-
-`./fasm68k examples/megadrive_samples_fasm68k/2_scroll_planes/scroll.asm`
-
-`./fasm68k examples/megadrive_samples_fasm68k/3_sprites/sprites.asm`
-
-`./fasm68k examples/megadrive_samples_fasm68k/4_gamepad/gamepad.asm`
-
-`./fasm68k examples/megadrive_samples_fasm68k/6_psg_tone/psg_tone.asm`
+```
+./fasm68k examples/megadrive_simple_demo/main.asm
+./fasm68k examples/megadrive_samples_fasm68k/1_hello_world/hello.asm
+./fasm68k examples/megadrive_samples_fasm68k/2_scroll_planes/scroll.asm
+./fasm68k examples/megadrive_samples_fasm68k/3_sprites/sprites.asm
+./fasm68k examples/megadrive_samples_fasm68k/4_gamepad/gamepad.asm
+./fasm68k examples/megadrive_samples_fasm68k/6_psg_tone/psg_tone.asm
+./fasm68k examples/RetailClerk89_fasm68k/src/RetailClerk89.X68
+./fasm68k examples/speedrun-tower_fasm68k/src/SpeedrunTower.X68
+```
 
 Add a new line at the bottom of your .bashrc file adding the fasm68k directory
 to the PATH so you can run fasm68k from anywhere and not only from the specific

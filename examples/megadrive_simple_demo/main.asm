@@ -1,3 +1,6 @@
+; TODO: Remove reliance on compat_operators
+m68k.enable compat_operators
+
 ; Set address where stuff allocated with `rs` will be.
 ; rs will be used to place stuff in RAM and RAM start at $FF0000.
 rsset $FF0000

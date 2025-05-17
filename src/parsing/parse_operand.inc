@@ -141,7 +141,7 @@ iterate op, @op1,@op2
                 ; hash_prefix:
                     ; fasmg uses shl instead of <<
                     ; TODO: There may be more of these cases that can be fixed!
-                    replace_legacy_operators maybe_number
+                    massage_expression maybe_number
 
                     check maybe_number eqtype 0
                     jyes skip_immediate_addressing_error

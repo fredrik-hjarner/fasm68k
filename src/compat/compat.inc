@@ -37,14 +37,22 @@ macro cnop offset,alignment
     fasm2.align alignment | offset
 end macro
 
+; TODO: Better comment.
+; Massages expression in weird and wonderful ways.
 ; Adds support for operators commonly used in m68k assemblers.
 ; For example << is shl in fasmg. 
 ; Example:
 ;     input:  (((l1)  &  $3FFF) <<  16) + (((l1)  &  $C000) >>  14)
 ;     output: (((l1) and $3FFF) shl 16) + (((l1) and $C000) shr 14)
 ; TODO: Is it too slow when it's a `macro calminstruction?.` construction?
-; TODO: Rename to something like `tranform_expression`
-macro calminstruction?.replace_legacy_operators? expr*
+macro calminstruction?.massage_expression? expr*
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; Transform operators                                                    ;;
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+        check m68k.settings.compat_operators = 1
+        jno skip_operators
+
     ;; Replace << with shl ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     next_shl:
         match a? =<=< b?, expr
@@ -76,8 +84,12 @@ macro calminstruction?.replace_legacy_operators? expr*
         arrange expr, a =or b
         jump next_or
     done_or:
+    skip_operators:
 
-    ;; Replace %0 with 0b ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; Replace %0 with 0b                                                    ;;
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
         check m68k.settings.compat_binary_percent_prefix = 1
         jno skip_binary_percent_prefix
         binary_percent_prefix expr
