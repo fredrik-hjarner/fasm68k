@@ -192,7 +192,7 @@ const examples: Record<OperandType, string[]> = {
     "#0",
     "#$FF",
     '#"X"',
-    // '#-1' // TODO: Currently encodes differently than clownassembler
+    '#-1'
   ],
   // s suffix means signed
   "imm8s": [

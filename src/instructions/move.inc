@@ -90,6 +90,16 @@ calminstruction move_ea_to_ea size:w
         ; emit_be 1st and 2nd byte in one go
         emit_be 2, size_bits shl 12 or @op2.ea_reg_bits shl 9 or @op2.ea_mode_bits shl 6 or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
+        ; I need a special case here. If 'imm' and size b then need to limit
+        ; it to max 255.
+        match =b, size
+        jno skip_imm_b_fix
+        match =imm, @op1.type_token
+        jno skip_imm_b_fix
+        ; fix
+        compute @op1.ext_bytes_bits, @op1.ext_bytes_bits and $FF
+    skip_imm_b_fix:
+
         ; op1 extension words
         call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
 

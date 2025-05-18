@@ -32,11 +32,11 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
 
     ; TODO: Can I remove the imm_bytes now and use the stuff from
     ; parse_operand instread?
-    iterate <size,  dot_size,  size_str, size_bits,  imm_bytes>, \
-            _,      ,          '',       0,          0, \
-            b,      .b,        'b',      00b,        2, \
-            w,      .w,        'w',      01b,        2, \
-            l,      .l,        'l',      10b,        4
+    iterate <size,  dot_size,  size_str, size_bits,  imm_bytes, max_1_byte>, \
+            _,      ,          '',       0,          0,         , \
+            b,      .b,        'b',      00b,        2,         and $FF, \
+            w,      .w,        'w',      01b,        2,         , \
+            l,      .l,        'l',      10b,        4,         
 
             calminstruction instr#dot_size? operands&
                         xcall m68k.parse_and_validate_instruction, <instr>, \
@@ -52,7 +52,7 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                         emit_be 2, ccr_variant
 
                         ; imm
-                        emit_be 2, @op1.imm
+                        emit_be 2, @op1.imm max_1_byte
                         exit
                 ;; CKECK SR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                 check_sr:
@@ -75,7 +75,7 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                                 @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
                         
                         ; immediate bytes
-                        emit_be imm_bytes, @op1.imm
+                        emit_be imm_bytes, @op1.imm max_1_byte
 
                         ; extension words
                         emit_be @op2.ext_bytes, @op2.ext_bytes_bits
