@@ -148,6 +148,7 @@ const examples: Record<OperandType, string[]> = {
   "abs.w": [
     "($FFFFFFFE).w",
     '$2',
+    '-2',
   ],
   "abs.l": [
     "($FFFFFFFE).l",
@@ -155,6 +156,7 @@ const examples: Record<OperandType, string[]> = {
     '$FFFFFFFE',
     '$FFFFFFFFFFFE',
     '$2',
+    '-2'
     // '(label_start)'
   ],
   // pc displacment
@@ -182,11 +184,16 @@ const examples: Record<OperandType, string[]> = {
     '#"WXYZ"',
     "#1+1",
     '#(3+4)',
-    // '#-1',
+    '#-2',
   ],
   "imm3": ["#1", "#7"],
   "imm4": ["#2"],
-  "imm8": ["#0", "#$FF", '#"X"'], // TODO: add negative examples too?
+  "imm8": [
+    "#0",
+    "#$FF",
+    '#"X"',
+    // '#-1' // TODO: Currently encodes differently than clownassembler
+  ],
   // s suffix means signed
   "imm8s": [
     "#0",
