@@ -100,8 +100,12 @@ iterate op, @op1,@op2
         ; could be used for dn, an etc too.
         ;
         ; The `instr_size` argument is needed to set `ext_bytes` to the correct
-        ; value for immediate values (when the official syntax specifies <ea>).
-        calminstruction m68k.parse_operand#op operand, instr_size
+        ;     value for immediate values (when the official syntax specifies
+        ;     <ea>).
+        ; TODO: I will probably need another size argument that I can use to
+        ;       check whether odd addresses should be allowed in `absolute
+        ;       adddressing`.
+        calminstruction m68k.parse_operand#op operand*, instr_size
                     local tmp
                     local opstr
                     local maybe_number
@@ -200,6 +204,8 @@ iterate op, @op1,@op2
                 has_w_suffix:
                     check maybe_abs relativeto 0
                     jno check_if_abs_l
+                    ; TODO:  also assert that the address is word-aligned
+                    ; call m68k.warn_if_abs_address_is_odd, maybe_abs, instr_size
                     compute type, 'abs.w'
                     arrange type_token, =abs_w
                     compute ea_mode_bits, 111b
@@ -210,8 +216,8 @@ iterate op, @op1,@op2
                     check maybe_abs > (1 shl 16 - 1)
                     jno skip_constrain_abs_w
                 ; too_large:
-                    display 'Warning: abs.w too large to fit in word.', 10
-                    compute maybe_abs, 1 shl 16 - 1
+                    warn 'abs.w too large to fit in word.'
+                    compute maybe_abs, maybe_abs and $FFFF
                 skip_constrain_abs_w:
                     compute ext_bytes_bits, maybe_abs
                     jump done
@@ -224,6 +230,8 @@ iterate op, @op1,@op2
                 has_l_suffix:
                     check maybe_abs relativeto 0
                     jno check_if_dn
+                    ; TODO: also assert that the address is word-aligned
+                    ; call m68k.warn_if_abs_address_is_odd, maybe_abs, instr_size
                     compute type, 'abs.l'
                     arrange type_token, =abs_l
                     compute ea_mode_bits, 111b
@@ -234,8 +242,8 @@ iterate op, @op1,@op2
                     check maybe_abs > (1 shl 32 - 1)
                     jno skip_constrain_abs_l
                 ; too_large:
-                    display 'Warning: abs.l too large to fit in longword.', 10
-                    compute maybe_abs, 1 shl 32 - 1
+                    warn 'abs.l too large to fit in longword.'
+                    compute maybe_abs, maybe_abs and $FFFFFFFF
                 skip_constrain_abs_l:
                     compute ext_bytes_bits, maybe_abs
                     jump done
@@ -419,6 +427,16 @@ iterate op, @op1,@op2
                     ;       for `$1`.
                     check operand relativeto 0
                     jno unknown
+                    ; Warn if maybe_abs is too large then truncate.
+                    ; TODO: actually, maybe I need to check if too negative too?
+                    check operand > (1 shl 32 - 1)
+                    jno skip_constrain_abs
+                ; too_large:
+                    warn 'abs.l too large to fit in longword.'
+                    compute operand, operand and $FFFFFFFF
+                skip_constrain_abs:
+                    ; TODO: also assert that the address is word-aligned
+                    ; call m68k.warn_if_abs_address_is_odd, operand, instr_size
                     compute type, 'abs.l'
                     arrange type_token, =abs_l
                     compute ea_mode_bits, 111b
@@ -604,7 +622,7 @@ calminstruction m68k.parse_and_validate_instruction? instr*, \
         ; TODO: Remove num_operands. Can just check if type is _ instead.
         compute m68k.split_operands_result.num_operands, 1
         call m68k.parse_operand@op1, operands, imm_size
-        call m68k.parse_operand@op2
+        arrange @op2.type_token, =_
         jump validate
     two_operands:
         ; TODO: Remove num_operands. Can just check if type is _ instead.
@@ -614,3 +632,20 @@ calminstruction m68k.parse_and_validate_instruction? instr*, \
     validate:
         xcall validate, instr, size_suffix, @op1.type_token, @op2.type_token
 end calminstruction
+
+; supposed to be called
+; TODO: Figure out how I am going to make this work.
+;       The problem is that odd address are not allowed "unless" .b is used
+;       for some or all instructions.
+; calminstruction m68k.warn_if_abs_address_is_odd? address*, size_suffix*
+;         match =b, size_suffix
+;         local s_str
+;         arrange s_str,  size_suffix
+;         stringify s_str
+;         display "s_str: " bappend s_str bappend 10
+;         jyes valid_address
+;         check address mod 2 = 1
+;         jno valid_address
+;         warn 'Address is odd but is required to be word-aligned.'
+;     valid_address:
+; end calminstruction

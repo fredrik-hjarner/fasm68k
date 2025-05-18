@@ -146,14 +146,15 @@ const examples: Record<OperandType, string[]> = {
     '(a1,d6)',
   ],
   "abs.w": [
-    "($FFFFFFFF).w",
-    '$1',
+    "($FFFFFFFE).w",
+    '$2',
   ],
   "abs.l": [
-    "($FFFFFFFF).l",
+    "($FFFFFFFE).l",
     'label_start.l',
-    '$FFFFFFFF',
-    '$1',
+    '$FFFFFFFE',
+    '$FFFFFFFFFFFE',
+    '$2',
     // '(label_start)'
   ],
   // pc displacment

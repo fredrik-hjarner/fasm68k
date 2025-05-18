@@ -53,8 +53,8 @@ if m68k.settings.compat_vasm_org = 1
             ; arrange diff_str, -diff
             ; stringify diff_str
             ; display 'diff: ' bappend diff_str bappend 10
-            display 'Warning: Attempting to remove bytes with ORG directive!' \
-                     bappend ' This usage of ORG will be ignored!' bappend 10
+            warn 'Attempting to remove bytes with ORG directive!' \
+                     bappend ' This usage of ORG will be ignored!'
     end calminstruction
 
 end if ; m68k.settings.compat_vasm_org = 1

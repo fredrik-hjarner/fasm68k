@@ -61,24 +61,27 @@ label_start:
 	ori.b	#"X",-(a2)
 	ori.b	#"X",-(a5)
 	ori.b	#"X",-(sp)
-	ori.b	#0,($FFFFFFFF).l
+	ori.b	#0,($FFFFFFFE).l
 	ori.b	#0,label_start.l
-	ori.b	#0,$FFFFFFFF
-	ori.b	#0,$1
-	ori.b	#$FF,($FFFFFFFF).l
+	ori.b	#0,$FFFFFFFE
+	ori.b	#0,$FFFFFFFFFFFE
+	ori.b	#0,$2
+	ori.b	#$FF,($FFFFFFFE).l
 	ori.b	#$FF,label_start.l
-	ori.b	#$FF,$FFFFFFFF
-	ori.b	#$FF,$1
-	ori.b	#"X",($FFFFFFFF).l
+	ori.b	#$FF,$FFFFFFFE
+	ori.b	#$FF,$FFFFFFFFFFFE
+	ori.b	#$FF,$2
+	ori.b	#"X",($FFFFFFFE).l
 	ori.b	#"X",label_start.l
-	ori.b	#"X",$FFFFFFFF
-	ori.b	#"X",$1
-	ori.b	#0,($FFFFFFFF).w
-	ori.b	#0,$1
-	ori.b	#$FF,($FFFFFFFF).w
-	ori.b	#$FF,$1
-	ori.b	#"X",($FFFFFFFF).w
-	ori.b	#"X",$1
+	ori.b	#"X",$FFFFFFFE
+	ori.b	#"X",$FFFFFFFFFFFE
+	ori.b	#"X",$2
+	ori.b	#0,($FFFFFFFE).w
+	ori.b	#0,$2
+	ori.b	#$FF,($FFFFFFFE).w
+	ori.b	#$FF,$2
+	ori.b	#"X",($FFFFFFFE).w
+	ori.b	#"X",$2
 	ori.b	#0,$7FFF(a2)
 	ori.b	#0,$7FFF(a5)
 	ori.b	#0,-2(sp)
@@ -164,48 +167,55 @@ label_start:
 	ori.w	#$FFFF,-(a2)
 	ori.w	#$FFFF,-(a5)
 	ori.w	#$FFFF,-(sp)
-	ori.w	#0,($FFFFFFFF).l
+	ori.w	#0,($FFFFFFFE).l
 	ori.w	#0,label_start.l
-	ori.w	#0,$FFFFFFFF
-	ori.w	#0,$1
-	ori.w	#4,($FFFFFFFF).l
+	ori.w	#0,$FFFFFFFE
+	ori.w	#0,$FFFFFFFFFFFE
+	ori.w	#0,$2
+	ori.w	#4,($FFFFFFFE).l
 	ori.w	#4,label_start.l
-	ori.w	#4,$FFFFFFFF
-	ori.w	#4,$1
-	ori.w	#$FF,($FFFFFFFF).l
+	ori.w	#4,$FFFFFFFE
+	ori.w	#4,$FFFFFFFFFFFE
+	ori.w	#4,$2
+	ori.w	#$FF,($FFFFFFFE).l
 	ori.w	#$FF,label_start.l
-	ori.w	#$FF,$FFFFFFFF
-	ori.w	#$FF,$1
-	ori.w	#"XY",($FFFFFFFF).l
+	ori.w	#$FF,$FFFFFFFE
+	ori.w	#$FF,$FFFFFFFFFFFE
+	ori.w	#$FF,$2
+	ori.w	#"XY",($FFFFFFFE).l
 	ori.w	#"XY",label_start.l
-	ori.w	#"XY",$FFFFFFFF
-	ori.w	#"XY",$1
-	ori.w	#$2700,($FFFFFFFF).l
+	ori.w	#"XY",$FFFFFFFE
+	ori.w	#"XY",$FFFFFFFFFFFE
+	ori.w	#"XY",$2
+	ori.w	#$2700,($FFFFFFFE).l
 	ori.w	#$2700,label_start.l
-	ori.w	#$2700,$FFFFFFFF
-	ori.w	#$2700,$1
-	ori.w	#$7FFF,($FFFFFFFF).l
+	ori.w	#$2700,$FFFFFFFE
+	ori.w	#$2700,$FFFFFFFFFFFE
+	ori.w	#$2700,$2
+	ori.w	#$7FFF,($FFFFFFFE).l
 	ori.w	#$7FFF,label_start.l
-	ori.w	#$7FFF,$FFFFFFFF
-	ori.w	#$7FFF,$1
-	ori.w	#$FFFF,($FFFFFFFF).l
+	ori.w	#$7FFF,$FFFFFFFE
+	ori.w	#$7FFF,$FFFFFFFFFFFE
+	ori.w	#$7FFF,$2
+	ori.w	#$FFFF,($FFFFFFFE).l
 	ori.w	#$FFFF,label_start.l
-	ori.w	#$FFFF,$FFFFFFFF
-	ori.w	#$FFFF,$1
-	ori.w	#0,($FFFFFFFF).w
-	ori.w	#0,$1
-	ori.w	#4,($FFFFFFFF).w
-	ori.w	#4,$1
-	ori.w	#$FF,($FFFFFFFF).w
-	ori.w	#$FF,$1
-	ori.w	#"XY",($FFFFFFFF).w
-	ori.w	#"XY",$1
-	ori.w	#$2700,($FFFFFFFF).w
-	ori.w	#$2700,$1
-	ori.w	#$7FFF,($FFFFFFFF).w
-	ori.w	#$7FFF,$1
-	ori.w	#$FFFF,($FFFFFFFF).w
-	ori.w	#$FFFF,$1
+	ori.w	#$FFFF,$FFFFFFFE
+	ori.w	#$FFFF,$FFFFFFFFFFFE
+	ori.w	#$FFFF,$2
+	ori.w	#0,($FFFFFFFE).w
+	ori.w	#0,$2
+	ori.w	#4,($FFFFFFFE).w
+	ori.w	#4,$2
+	ori.w	#$FF,($FFFFFFFE).w
+	ori.w	#$FF,$2
+	ori.w	#"XY",($FFFFFFFE).w
+	ori.w	#"XY",$2
+	ori.w	#$2700,($FFFFFFFE).w
+	ori.w	#$2700,$2
+	ori.w	#$7FFF,($FFFFFFFE).w
+	ori.w	#$7FFF,$2
+	ori.w	#$FFFF,($FFFFFFFE).w
+	ori.w	#$FFFF,$2
 	ori.w	#0,$7FFF(a2)
 	ori.w	#0,$7FFF(a5)
 	ori.w	#0,-2(sp)
@@ -374,78 +384,90 @@ label_start:
 	ori.l	#(3+4),-(a2)
 	ori.l	#(3+4),-(a5)
 	ori.l	#(3+4),-(sp)
-	ori.l	#equ_1,($FFFFFFFF).l
+	ori.l	#equ_1,($FFFFFFFE).l
 	ori.l	#equ_1,label_start.l
-	ori.l	#equ_1,$FFFFFFFF
-	ori.l	#equ_1,$1
-	ori.l	#equ_equ_1,($FFFFFFFF).l
+	ori.l	#equ_1,$FFFFFFFE
+	ori.l	#equ_1,$FFFFFFFFFFFE
+	ori.l	#equ_1,$2
+	ori.l	#equ_equ_1,($FFFFFFFE).l
 	ori.l	#equ_equ_1,label_start.l
-	ori.l	#equ_equ_1,$FFFFFFFF
-	ori.l	#equ_equ_1,$1
-	ori.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	ori.l	#equ_equ_1,$FFFFFFFE
+	ori.l	#equ_equ_1,$FFFFFFFFFFFE
+	ori.l	#equ_equ_1,$2
+	ori.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	ori.l	#equ_1_plus_equ_1,label_start.l
-	ori.l	#equ_1_plus_equ_1,$FFFFFFFF
-	ori.l	#equ_1_plus_equ_1,$1
-	ori.l	#0,($FFFFFFFF).l
+	ori.l	#equ_1_plus_equ_1,$FFFFFFFE
+	ori.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	ori.l	#equ_1_plus_equ_1,$2
+	ori.l	#0,($FFFFFFFE).l
 	ori.l	#0,label_start.l
-	ori.l	#0,$FFFFFFFF
-	ori.l	#0,$1
-	ori.l	#4,($FFFFFFFF).l
+	ori.l	#0,$FFFFFFFE
+	ori.l	#0,$FFFFFFFFFFFE
+	ori.l	#0,$2
+	ori.l	#4,($FFFFFFFE).l
 	ori.l	#4,label_start.l
-	ori.l	#4,$FFFFFFFF
-	ori.l	#4,$1
-	ori.l	#$FF,($FFFFFFFF).l
+	ori.l	#4,$FFFFFFFE
+	ori.l	#4,$FFFFFFFFFFFE
+	ori.l	#4,$2
+	ori.l	#$FF,($FFFFFFFE).l
 	ori.l	#$FF,label_start.l
-	ori.l	#$FF,$FFFFFFFF
-	ori.l	#$FF,$1
-	ori.l	#$7FFF,($FFFFFFFF).l
+	ori.l	#$FF,$FFFFFFFE
+	ori.l	#$FF,$FFFFFFFFFFFE
+	ori.l	#$FF,$2
+	ori.l	#$7FFF,($FFFFFFFE).l
 	ori.l	#$7FFF,label_start.l
-	ori.l	#$7FFF,$FFFFFFFF
-	ori.l	#$7FFF,$1
-	ori.l	#$FFFF,($FFFFFFFF).l
+	ori.l	#$7FFF,$FFFFFFFE
+	ori.l	#$7FFF,$FFFFFFFFFFFE
+	ori.l	#$7FFF,$2
+	ori.l	#$FFFF,($FFFFFFFE).l
 	ori.l	#$FFFF,label_start.l
-	ori.l	#$FFFF,$FFFFFFFF
-	ori.l	#$FFFF,$1
-	ori.l	#$FFFFFFFF,($FFFFFFFF).l
+	ori.l	#$FFFF,$FFFFFFFE
+	ori.l	#$FFFF,$FFFFFFFFFFFE
+	ori.l	#$FFFF,$2
+	ori.l	#$FFFFFFFF,($FFFFFFFE).l
 	ori.l	#$FFFFFFFF,label_start.l
-	ori.l	#$FFFFFFFF,$FFFFFFFF
-	ori.l	#$FFFFFFFF,$1
-	ori.l	#"WXYZ",($FFFFFFFF).l
+	ori.l	#$FFFFFFFF,$FFFFFFFE
+	ori.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	ori.l	#$FFFFFFFF,$2
+	ori.l	#"WXYZ",($FFFFFFFE).l
 	ori.l	#"WXYZ",label_start.l
-	ori.l	#"WXYZ",$FFFFFFFF
-	ori.l	#"WXYZ",$1
-	ori.l	#1+1,($FFFFFFFF).l
+	ori.l	#"WXYZ",$FFFFFFFE
+	ori.l	#"WXYZ",$FFFFFFFFFFFE
+	ori.l	#"WXYZ",$2
+	ori.l	#1+1,($FFFFFFFE).l
 	ori.l	#1+1,label_start.l
-	ori.l	#1+1,$FFFFFFFF
-	ori.l	#1+1,$1
-	ori.l	#(3+4),($FFFFFFFF).l
+	ori.l	#1+1,$FFFFFFFE
+	ori.l	#1+1,$FFFFFFFFFFFE
+	ori.l	#1+1,$2
+	ori.l	#(3+4),($FFFFFFFE).l
 	ori.l	#(3+4),label_start.l
-	ori.l	#(3+4),$FFFFFFFF
-	ori.l	#(3+4),$1
-	ori.l	#equ_1,($FFFFFFFF).w
-	ori.l	#equ_1,$1
-	ori.l	#equ_equ_1,($FFFFFFFF).w
-	ori.l	#equ_equ_1,$1
-	ori.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	ori.l	#equ_1_plus_equ_1,$1
-	ori.l	#0,($FFFFFFFF).w
-	ori.l	#0,$1
-	ori.l	#4,($FFFFFFFF).w
-	ori.l	#4,$1
-	ori.l	#$FF,($FFFFFFFF).w
-	ori.l	#$FF,$1
-	ori.l	#$7FFF,($FFFFFFFF).w
-	ori.l	#$7FFF,$1
-	ori.l	#$FFFF,($FFFFFFFF).w
-	ori.l	#$FFFF,$1
-	ori.l	#$FFFFFFFF,($FFFFFFFF).w
-	ori.l	#$FFFFFFFF,$1
-	ori.l	#"WXYZ",($FFFFFFFF).w
-	ori.l	#"WXYZ",$1
-	ori.l	#1+1,($FFFFFFFF).w
-	ori.l	#1+1,$1
-	ori.l	#(3+4),($FFFFFFFF).w
-	ori.l	#(3+4),$1
+	ori.l	#(3+4),$FFFFFFFE
+	ori.l	#(3+4),$FFFFFFFFFFFE
+	ori.l	#(3+4),$2
+	ori.l	#equ_1,($FFFFFFFE).w
+	ori.l	#equ_1,$2
+	ori.l	#equ_equ_1,($FFFFFFFE).w
+	ori.l	#equ_equ_1,$2
+	ori.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	ori.l	#equ_1_plus_equ_1,$2
+	ori.l	#0,($FFFFFFFE).w
+	ori.l	#0,$2
+	ori.l	#4,($FFFFFFFE).w
+	ori.l	#4,$2
+	ori.l	#$FF,($FFFFFFFE).w
+	ori.l	#$FF,$2
+	ori.l	#$7FFF,($FFFFFFFE).w
+	ori.l	#$7FFF,$2
+	ori.l	#$FFFF,($FFFFFFFE).w
+	ori.l	#$FFFF,$2
+	ori.l	#$FFFFFFFF,($FFFFFFFE).w
+	ori.l	#$FFFFFFFF,$2
+	ori.l	#"WXYZ",($FFFFFFFE).w
+	ori.l	#"WXYZ",$2
+	ori.l	#1+1,($FFFFFFFE).w
+	ori.l	#1+1,$2
+	ori.l	#(3+4),($FFFFFFFE).w
+	ori.l	#(3+4),$2
 	ori.l	#equ_1,$7FFF(a2)
 	ori.l	#equ_1,$7FFF(a5)
 	ori.l	#equ_1,-2(sp)
@@ -632,24 +654,27 @@ label_start:
 	andi.b	#"X",-(a2)
 	andi.b	#"X",-(a5)
 	andi.b	#"X",-(sp)
-	andi.b	#0,($FFFFFFFF).l
+	andi.b	#0,($FFFFFFFE).l
 	andi.b	#0,label_start.l
-	andi.b	#0,$FFFFFFFF
-	andi.b	#0,$1
-	andi.b	#$FF,($FFFFFFFF).l
+	andi.b	#0,$FFFFFFFE
+	andi.b	#0,$FFFFFFFFFFFE
+	andi.b	#0,$2
+	andi.b	#$FF,($FFFFFFFE).l
 	andi.b	#$FF,label_start.l
-	andi.b	#$FF,$FFFFFFFF
-	andi.b	#$FF,$1
-	andi.b	#"X",($FFFFFFFF).l
+	andi.b	#$FF,$FFFFFFFE
+	andi.b	#$FF,$FFFFFFFFFFFE
+	andi.b	#$FF,$2
+	andi.b	#"X",($FFFFFFFE).l
 	andi.b	#"X",label_start.l
-	andi.b	#"X",$FFFFFFFF
-	andi.b	#"X",$1
-	andi.b	#0,($FFFFFFFF).w
-	andi.b	#0,$1
-	andi.b	#$FF,($FFFFFFFF).w
-	andi.b	#$FF,$1
-	andi.b	#"X",($FFFFFFFF).w
-	andi.b	#"X",$1
+	andi.b	#"X",$FFFFFFFE
+	andi.b	#"X",$FFFFFFFFFFFE
+	andi.b	#"X",$2
+	andi.b	#0,($FFFFFFFE).w
+	andi.b	#0,$2
+	andi.b	#$FF,($FFFFFFFE).w
+	andi.b	#$FF,$2
+	andi.b	#"X",($FFFFFFFE).w
+	andi.b	#"X",$2
 	andi.b	#0,$7FFF(a2)
 	andi.b	#0,$7FFF(a5)
 	andi.b	#0,-2(sp)
@@ -735,48 +760,55 @@ label_start:
 	andi.w	#$FFFF,-(a2)
 	andi.w	#$FFFF,-(a5)
 	andi.w	#$FFFF,-(sp)
-	andi.w	#0,($FFFFFFFF).l
+	andi.w	#0,($FFFFFFFE).l
 	andi.w	#0,label_start.l
-	andi.w	#0,$FFFFFFFF
-	andi.w	#0,$1
-	andi.w	#4,($FFFFFFFF).l
+	andi.w	#0,$FFFFFFFE
+	andi.w	#0,$FFFFFFFFFFFE
+	andi.w	#0,$2
+	andi.w	#4,($FFFFFFFE).l
 	andi.w	#4,label_start.l
-	andi.w	#4,$FFFFFFFF
-	andi.w	#4,$1
-	andi.w	#$FF,($FFFFFFFF).l
+	andi.w	#4,$FFFFFFFE
+	andi.w	#4,$FFFFFFFFFFFE
+	andi.w	#4,$2
+	andi.w	#$FF,($FFFFFFFE).l
 	andi.w	#$FF,label_start.l
-	andi.w	#$FF,$FFFFFFFF
-	andi.w	#$FF,$1
-	andi.w	#"XY",($FFFFFFFF).l
+	andi.w	#$FF,$FFFFFFFE
+	andi.w	#$FF,$FFFFFFFFFFFE
+	andi.w	#$FF,$2
+	andi.w	#"XY",($FFFFFFFE).l
 	andi.w	#"XY",label_start.l
-	andi.w	#"XY",$FFFFFFFF
-	andi.w	#"XY",$1
-	andi.w	#$2700,($FFFFFFFF).l
+	andi.w	#"XY",$FFFFFFFE
+	andi.w	#"XY",$FFFFFFFFFFFE
+	andi.w	#"XY",$2
+	andi.w	#$2700,($FFFFFFFE).l
 	andi.w	#$2700,label_start.l
-	andi.w	#$2700,$FFFFFFFF
-	andi.w	#$2700,$1
-	andi.w	#$7FFF,($FFFFFFFF).l
+	andi.w	#$2700,$FFFFFFFE
+	andi.w	#$2700,$FFFFFFFFFFFE
+	andi.w	#$2700,$2
+	andi.w	#$7FFF,($FFFFFFFE).l
 	andi.w	#$7FFF,label_start.l
-	andi.w	#$7FFF,$FFFFFFFF
-	andi.w	#$7FFF,$1
-	andi.w	#$FFFF,($FFFFFFFF).l
+	andi.w	#$7FFF,$FFFFFFFE
+	andi.w	#$7FFF,$FFFFFFFFFFFE
+	andi.w	#$7FFF,$2
+	andi.w	#$FFFF,($FFFFFFFE).l
 	andi.w	#$FFFF,label_start.l
-	andi.w	#$FFFF,$FFFFFFFF
-	andi.w	#$FFFF,$1
-	andi.w	#0,($FFFFFFFF).w
-	andi.w	#0,$1
-	andi.w	#4,($FFFFFFFF).w
-	andi.w	#4,$1
-	andi.w	#$FF,($FFFFFFFF).w
-	andi.w	#$FF,$1
-	andi.w	#"XY",($FFFFFFFF).w
-	andi.w	#"XY",$1
-	andi.w	#$2700,($FFFFFFFF).w
-	andi.w	#$2700,$1
-	andi.w	#$7FFF,($FFFFFFFF).w
-	andi.w	#$7FFF,$1
-	andi.w	#$FFFF,($FFFFFFFF).w
-	andi.w	#$FFFF,$1
+	andi.w	#$FFFF,$FFFFFFFE
+	andi.w	#$FFFF,$FFFFFFFFFFFE
+	andi.w	#$FFFF,$2
+	andi.w	#0,($FFFFFFFE).w
+	andi.w	#0,$2
+	andi.w	#4,($FFFFFFFE).w
+	andi.w	#4,$2
+	andi.w	#$FF,($FFFFFFFE).w
+	andi.w	#$FF,$2
+	andi.w	#"XY",($FFFFFFFE).w
+	andi.w	#"XY",$2
+	andi.w	#$2700,($FFFFFFFE).w
+	andi.w	#$2700,$2
+	andi.w	#$7FFF,($FFFFFFFE).w
+	andi.w	#$7FFF,$2
+	andi.w	#$FFFF,($FFFFFFFE).w
+	andi.w	#$FFFF,$2
 	andi.w	#0,$7FFF(a2)
 	andi.w	#0,$7FFF(a5)
 	andi.w	#0,-2(sp)
@@ -945,78 +977,90 @@ label_start:
 	andi.l	#(3+4),-(a2)
 	andi.l	#(3+4),-(a5)
 	andi.l	#(3+4),-(sp)
-	andi.l	#equ_1,($FFFFFFFF).l
+	andi.l	#equ_1,($FFFFFFFE).l
 	andi.l	#equ_1,label_start.l
-	andi.l	#equ_1,$FFFFFFFF
-	andi.l	#equ_1,$1
-	andi.l	#equ_equ_1,($FFFFFFFF).l
+	andi.l	#equ_1,$FFFFFFFE
+	andi.l	#equ_1,$FFFFFFFFFFFE
+	andi.l	#equ_1,$2
+	andi.l	#equ_equ_1,($FFFFFFFE).l
 	andi.l	#equ_equ_1,label_start.l
-	andi.l	#equ_equ_1,$FFFFFFFF
-	andi.l	#equ_equ_1,$1
-	andi.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	andi.l	#equ_equ_1,$FFFFFFFE
+	andi.l	#equ_equ_1,$FFFFFFFFFFFE
+	andi.l	#equ_equ_1,$2
+	andi.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	andi.l	#equ_1_plus_equ_1,label_start.l
-	andi.l	#equ_1_plus_equ_1,$FFFFFFFF
-	andi.l	#equ_1_plus_equ_1,$1
-	andi.l	#0,($FFFFFFFF).l
+	andi.l	#equ_1_plus_equ_1,$FFFFFFFE
+	andi.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	andi.l	#equ_1_plus_equ_1,$2
+	andi.l	#0,($FFFFFFFE).l
 	andi.l	#0,label_start.l
-	andi.l	#0,$FFFFFFFF
-	andi.l	#0,$1
-	andi.l	#4,($FFFFFFFF).l
+	andi.l	#0,$FFFFFFFE
+	andi.l	#0,$FFFFFFFFFFFE
+	andi.l	#0,$2
+	andi.l	#4,($FFFFFFFE).l
 	andi.l	#4,label_start.l
-	andi.l	#4,$FFFFFFFF
-	andi.l	#4,$1
-	andi.l	#$FF,($FFFFFFFF).l
+	andi.l	#4,$FFFFFFFE
+	andi.l	#4,$FFFFFFFFFFFE
+	andi.l	#4,$2
+	andi.l	#$FF,($FFFFFFFE).l
 	andi.l	#$FF,label_start.l
-	andi.l	#$FF,$FFFFFFFF
-	andi.l	#$FF,$1
-	andi.l	#$7FFF,($FFFFFFFF).l
+	andi.l	#$FF,$FFFFFFFE
+	andi.l	#$FF,$FFFFFFFFFFFE
+	andi.l	#$FF,$2
+	andi.l	#$7FFF,($FFFFFFFE).l
 	andi.l	#$7FFF,label_start.l
-	andi.l	#$7FFF,$FFFFFFFF
-	andi.l	#$7FFF,$1
-	andi.l	#$FFFF,($FFFFFFFF).l
+	andi.l	#$7FFF,$FFFFFFFE
+	andi.l	#$7FFF,$FFFFFFFFFFFE
+	andi.l	#$7FFF,$2
+	andi.l	#$FFFF,($FFFFFFFE).l
 	andi.l	#$FFFF,label_start.l
-	andi.l	#$FFFF,$FFFFFFFF
-	andi.l	#$FFFF,$1
-	andi.l	#$FFFFFFFF,($FFFFFFFF).l
+	andi.l	#$FFFF,$FFFFFFFE
+	andi.l	#$FFFF,$FFFFFFFFFFFE
+	andi.l	#$FFFF,$2
+	andi.l	#$FFFFFFFF,($FFFFFFFE).l
 	andi.l	#$FFFFFFFF,label_start.l
-	andi.l	#$FFFFFFFF,$FFFFFFFF
-	andi.l	#$FFFFFFFF,$1
-	andi.l	#"WXYZ",($FFFFFFFF).l
+	andi.l	#$FFFFFFFF,$FFFFFFFE
+	andi.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	andi.l	#$FFFFFFFF,$2
+	andi.l	#"WXYZ",($FFFFFFFE).l
 	andi.l	#"WXYZ",label_start.l
-	andi.l	#"WXYZ",$FFFFFFFF
-	andi.l	#"WXYZ",$1
-	andi.l	#1+1,($FFFFFFFF).l
+	andi.l	#"WXYZ",$FFFFFFFE
+	andi.l	#"WXYZ",$FFFFFFFFFFFE
+	andi.l	#"WXYZ",$2
+	andi.l	#1+1,($FFFFFFFE).l
 	andi.l	#1+1,label_start.l
-	andi.l	#1+1,$FFFFFFFF
-	andi.l	#1+1,$1
-	andi.l	#(3+4),($FFFFFFFF).l
+	andi.l	#1+1,$FFFFFFFE
+	andi.l	#1+1,$FFFFFFFFFFFE
+	andi.l	#1+1,$2
+	andi.l	#(3+4),($FFFFFFFE).l
 	andi.l	#(3+4),label_start.l
-	andi.l	#(3+4),$FFFFFFFF
-	andi.l	#(3+4),$1
-	andi.l	#equ_1,($FFFFFFFF).w
-	andi.l	#equ_1,$1
-	andi.l	#equ_equ_1,($FFFFFFFF).w
-	andi.l	#equ_equ_1,$1
-	andi.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	andi.l	#equ_1_plus_equ_1,$1
-	andi.l	#0,($FFFFFFFF).w
-	andi.l	#0,$1
-	andi.l	#4,($FFFFFFFF).w
-	andi.l	#4,$1
-	andi.l	#$FF,($FFFFFFFF).w
-	andi.l	#$FF,$1
-	andi.l	#$7FFF,($FFFFFFFF).w
-	andi.l	#$7FFF,$1
-	andi.l	#$FFFF,($FFFFFFFF).w
-	andi.l	#$FFFF,$1
-	andi.l	#$FFFFFFFF,($FFFFFFFF).w
-	andi.l	#$FFFFFFFF,$1
-	andi.l	#"WXYZ",($FFFFFFFF).w
-	andi.l	#"WXYZ",$1
-	andi.l	#1+1,($FFFFFFFF).w
-	andi.l	#1+1,$1
-	andi.l	#(3+4),($FFFFFFFF).w
-	andi.l	#(3+4),$1
+	andi.l	#(3+4),$FFFFFFFE
+	andi.l	#(3+4),$FFFFFFFFFFFE
+	andi.l	#(3+4),$2
+	andi.l	#equ_1,($FFFFFFFE).w
+	andi.l	#equ_1,$2
+	andi.l	#equ_equ_1,($FFFFFFFE).w
+	andi.l	#equ_equ_1,$2
+	andi.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	andi.l	#equ_1_plus_equ_1,$2
+	andi.l	#0,($FFFFFFFE).w
+	andi.l	#0,$2
+	andi.l	#4,($FFFFFFFE).w
+	andi.l	#4,$2
+	andi.l	#$FF,($FFFFFFFE).w
+	andi.l	#$FF,$2
+	andi.l	#$7FFF,($FFFFFFFE).w
+	andi.l	#$7FFF,$2
+	andi.l	#$FFFF,($FFFFFFFE).w
+	andi.l	#$FFFF,$2
+	andi.l	#$FFFFFFFF,($FFFFFFFE).w
+	andi.l	#$FFFFFFFF,$2
+	andi.l	#"WXYZ",($FFFFFFFE).w
+	andi.l	#"WXYZ",$2
+	andi.l	#1+1,($FFFFFFFE).w
+	andi.l	#1+1,$2
+	andi.l	#(3+4),($FFFFFFFE).w
+	andi.l	#(3+4),$2
 	andi.l	#equ_1,$7FFF(a2)
 	andi.l	#equ_1,$7FFF(a5)
 	andi.l	#equ_1,-2(sp)
@@ -1203,24 +1247,27 @@ label_start:
 	eori.b	#"X",-(a2)
 	eori.b	#"X",-(a5)
 	eori.b	#"X",-(sp)
-	eori.b	#0,($FFFFFFFF).l
+	eori.b	#0,($FFFFFFFE).l
 	eori.b	#0,label_start.l
-	eori.b	#0,$FFFFFFFF
-	eori.b	#0,$1
-	eori.b	#$FF,($FFFFFFFF).l
+	eori.b	#0,$FFFFFFFE
+	eori.b	#0,$FFFFFFFFFFFE
+	eori.b	#0,$2
+	eori.b	#$FF,($FFFFFFFE).l
 	eori.b	#$FF,label_start.l
-	eori.b	#$FF,$FFFFFFFF
-	eori.b	#$FF,$1
-	eori.b	#"X",($FFFFFFFF).l
+	eori.b	#$FF,$FFFFFFFE
+	eori.b	#$FF,$FFFFFFFFFFFE
+	eori.b	#$FF,$2
+	eori.b	#"X",($FFFFFFFE).l
 	eori.b	#"X",label_start.l
-	eori.b	#"X",$FFFFFFFF
-	eori.b	#"X",$1
-	eori.b	#0,($FFFFFFFF).w
-	eori.b	#0,$1
-	eori.b	#$FF,($FFFFFFFF).w
-	eori.b	#$FF,$1
-	eori.b	#"X",($FFFFFFFF).w
-	eori.b	#"X",$1
+	eori.b	#"X",$FFFFFFFE
+	eori.b	#"X",$FFFFFFFFFFFE
+	eori.b	#"X",$2
+	eori.b	#0,($FFFFFFFE).w
+	eori.b	#0,$2
+	eori.b	#$FF,($FFFFFFFE).w
+	eori.b	#$FF,$2
+	eori.b	#"X",($FFFFFFFE).w
+	eori.b	#"X",$2
 	eori.b	#0,$7FFF(a2)
 	eori.b	#0,$7FFF(a5)
 	eori.b	#0,-2(sp)
@@ -1306,48 +1353,55 @@ label_start:
 	eori.w	#$FFFF,-(a2)
 	eori.w	#$FFFF,-(a5)
 	eori.w	#$FFFF,-(sp)
-	eori.w	#0,($FFFFFFFF).l
+	eori.w	#0,($FFFFFFFE).l
 	eori.w	#0,label_start.l
-	eori.w	#0,$FFFFFFFF
-	eori.w	#0,$1
-	eori.w	#4,($FFFFFFFF).l
+	eori.w	#0,$FFFFFFFE
+	eori.w	#0,$FFFFFFFFFFFE
+	eori.w	#0,$2
+	eori.w	#4,($FFFFFFFE).l
 	eori.w	#4,label_start.l
-	eori.w	#4,$FFFFFFFF
-	eori.w	#4,$1
-	eori.w	#$FF,($FFFFFFFF).l
+	eori.w	#4,$FFFFFFFE
+	eori.w	#4,$FFFFFFFFFFFE
+	eori.w	#4,$2
+	eori.w	#$FF,($FFFFFFFE).l
 	eori.w	#$FF,label_start.l
-	eori.w	#$FF,$FFFFFFFF
-	eori.w	#$FF,$1
-	eori.w	#"XY",($FFFFFFFF).l
+	eori.w	#$FF,$FFFFFFFE
+	eori.w	#$FF,$FFFFFFFFFFFE
+	eori.w	#$FF,$2
+	eori.w	#"XY",($FFFFFFFE).l
 	eori.w	#"XY",label_start.l
-	eori.w	#"XY",$FFFFFFFF
-	eori.w	#"XY",$1
-	eori.w	#$2700,($FFFFFFFF).l
+	eori.w	#"XY",$FFFFFFFE
+	eori.w	#"XY",$FFFFFFFFFFFE
+	eori.w	#"XY",$2
+	eori.w	#$2700,($FFFFFFFE).l
 	eori.w	#$2700,label_start.l
-	eori.w	#$2700,$FFFFFFFF
-	eori.w	#$2700,$1
-	eori.w	#$7FFF,($FFFFFFFF).l
+	eori.w	#$2700,$FFFFFFFE
+	eori.w	#$2700,$FFFFFFFFFFFE
+	eori.w	#$2700,$2
+	eori.w	#$7FFF,($FFFFFFFE).l
 	eori.w	#$7FFF,label_start.l
-	eori.w	#$7FFF,$FFFFFFFF
-	eori.w	#$7FFF,$1
-	eori.w	#$FFFF,($FFFFFFFF).l
+	eori.w	#$7FFF,$FFFFFFFE
+	eori.w	#$7FFF,$FFFFFFFFFFFE
+	eori.w	#$7FFF,$2
+	eori.w	#$FFFF,($FFFFFFFE).l
 	eori.w	#$FFFF,label_start.l
-	eori.w	#$FFFF,$FFFFFFFF
-	eori.w	#$FFFF,$1
-	eori.w	#0,($FFFFFFFF).w
-	eori.w	#0,$1
-	eori.w	#4,($FFFFFFFF).w
-	eori.w	#4,$1
-	eori.w	#$FF,($FFFFFFFF).w
-	eori.w	#$FF,$1
-	eori.w	#"XY",($FFFFFFFF).w
-	eori.w	#"XY",$1
-	eori.w	#$2700,($FFFFFFFF).w
-	eori.w	#$2700,$1
-	eori.w	#$7FFF,($FFFFFFFF).w
-	eori.w	#$7FFF,$1
-	eori.w	#$FFFF,($FFFFFFFF).w
-	eori.w	#$FFFF,$1
+	eori.w	#$FFFF,$FFFFFFFE
+	eori.w	#$FFFF,$FFFFFFFFFFFE
+	eori.w	#$FFFF,$2
+	eori.w	#0,($FFFFFFFE).w
+	eori.w	#0,$2
+	eori.w	#4,($FFFFFFFE).w
+	eori.w	#4,$2
+	eori.w	#$FF,($FFFFFFFE).w
+	eori.w	#$FF,$2
+	eori.w	#"XY",($FFFFFFFE).w
+	eori.w	#"XY",$2
+	eori.w	#$2700,($FFFFFFFE).w
+	eori.w	#$2700,$2
+	eori.w	#$7FFF,($FFFFFFFE).w
+	eori.w	#$7FFF,$2
+	eori.w	#$FFFF,($FFFFFFFE).w
+	eori.w	#$FFFF,$2
 	eori.w	#0,$7FFF(a2)
 	eori.w	#0,$7FFF(a5)
 	eori.w	#0,-2(sp)
@@ -1516,78 +1570,90 @@ label_start:
 	eori.l	#(3+4),-(a2)
 	eori.l	#(3+4),-(a5)
 	eori.l	#(3+4),-(sp)
-	eori.l	#equ_1,($FFFFFFFF).l
+	eori.l	#equ_1,($FFFFFFFE).l
 	eori.l	#equ_1,label_start.l
-	eori.l	#equ_1,$FFFFFFFF
-	eori.l	#equ_1,$1
-	eori.l	#equ_equ_1,($FFFFFFFF).l
+	eori.l	#equ_1,$FFFFFFFE
+	eori.l	#equ_1,$FFFFFFFFFFFE
+	eori.l	#equ_1,$2
+	eori.l	#equ_equ_1,($FFFFFFFE).l
 	eori.l	#equ_equ_1,label_start.l
-	eori.l	#equ_equ_1,$FFFFFFFF
-	eori.l	#equ_equ_1,$1
-	eori.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	eori.l	#equ_equ_1,$FFFFFFFE
+	eori.l	#equ_equ_1,$FFFFFFFFFFFE
+	eori.l	#equ_equ_1,$2
+	eori.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	eori.l	#equ_1_plus_equ_1,label_start.l
-	eori.l	#equ_1_plus_equ_1,$FFFFFFFF
-	eori.l	#equ_1_plus_equ_1,$1
-	eori.l	#0,($FFFFFFFF).l
+	eori.l	#equ_1_plus_equ_1,$FFFFFFFE
+	eori.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	eori.l	#equ_1_plus_equ_1,$2
+	eori.l	#0,($FFFFFFFE).l
 	eori.l	#0,label_start.l
-	eori.l	#0,$FFFFFFFF
-	eori.l	#0,$1
-	eori.l	#4,($FFFFFFFF).l
+	eori.l	#0,$FFFFFFFE
+	eori.l	#0,$FFFFFFFFFFFE
+	eori.l	#0,$2
+	eori.l	#4,($FFFFFFFE).l
 	eori.l	#4,label_start.l
-	eori.l	#4,$FFFFFFFF
-	eori.l	#4,$1
-	eori.l	#$FF,($FFFFFFFF).l
+	eori.l	#4,$FFFFFFFE
+	eori.l	#4,$FFFFFFFFFFFE
+	eori.l	#4,$2
+	eori.l	#$FF,($FFFFFFFE).l
 	eori.l	#$FF,label_start.l
-	eori.l	#$FF,$FFFFFFFF
-	eori.l	#$FF,$1
-	eori.l	#$7FFF,($FFFFFFFF).l
+	eori.l	#$FF,$FFFFFFFE
+	eori.l	#$FF,$FFFFFFFFFFFE
+	eori.l	#$FF,$2
+	eori.l	#$7FFF,($FFFFFFFE).l
 	eori.l	#$7FFF,label_start.l
-	eori.l	#$7FFF,$FFFFFFFF
-	eori.l	#$7FFF,$1
-	eori.l	#$FFFF,($FFFFFFFF).l
+	eori.l	#$7FFF,$FFFFFFFE
+	eori.l	#$7FFF,$FFFFFFFFFFFE
+	eori.l	#$7FFF,$2
+	eori.l	#$FFFF,($FFFFFFFE).l
 	eori.l	#$FFFF,label_start.l
-	eori.l	#$FFFF,$FFFFFFFF
-	eori.l	#$FFFF,$1
-	eori.l	#$FFFFFFFF,($FFFFFFFF).l
+	eori.l	#$FFFF,$FFFFFFFE
+	eori.l	#$FFFF,$FFFFFFFFFFFE
+	eori.l	#$FFFF,$2
+	eori.l	#$FFFFFFFF,($FFFFFFFE).l
 	eori.l	#$FFFFFFFF,label_start.l
-	eori.l	#$FFFFFFFF,$FFFFFFFF
-	eori.l	#$FFFFFFFF,$1
-	eori.l	#"WXYZ",($FFFFFFFF).l
+	eori.l	#$FFFFFFFF,$FFFFFFFE
+	eori.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	eori.l	#$FFFFFFFF,$2
+	eori.l	#"WXYZ",($FFFFFFFE).l
 	eori.l	#"WXYZ",label_start.l
-	eori.l	#"WXYZ",$FFFFFFFF
-	eori.l	#"WXYZ",$1
-	eori.l	#1+1,($FFFFFFFF).l
+	eori.l	#"WXYZ",$FFFFFFFE
+	eori.l	#"WXYZ",$FFFFFFFFFFFE
+	eori.l	#"WXYZ",$2
+	eori.l	#1+1,($FFFFFFFE).l
 	eori.l	#1+1,label_start.l
-	eori.l	#1+1,$FFFFFFFF
-	eori.l	#1+1,$1
-	eori.l	#(3+4),($FFFFFFFF).l
+	eori.l	#1+1,$FFFFFFFE
+	eori.l	#1+1,$FFFFFFFFFFFE
+	eori.l	#1+1,$2
+	eori.l	#(3+4),($FFFFFFFE).l
 	eori.l	#(3+4),label_start.l
-	eori.l	#(3+4),$FFFFFFFF
-	eori.l	#(3+4),$1
-	eori.l	#equ_1,($FFFFFFFF).w
-	eori.l	#equ_1,$1
-	eori.l	#equ_equ_1,($FFFFFFFF).w
-	eori.l	#equ_equ_1,$1
-	eori.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	eori.l	#equ_1_plus_equ_1,$1
-	eori.l	#0,($FFFFFFFF).w
-	eori.l	#0,$1
-	eori.l	#4,($FFFFFFFF).w
-	eori.l	#4,$1
-	eori.l	#$FF,($FFFFFFFF).w
-	eori.l	#$FF,$1
-	eori.l	#$7FFF,($FFFFFFFF).w
-	eori.l	#$7FFF,$1
-	eori.l	#$FFFF,($FFFFFFFF).w
-	eori.l	#$FFFF,$1
-	eori.l	#$FFFFFFFF,($FFFFFFFF).w
-	eori.l	#$FFFFFFFF,$1
-	eori.l	#"WXYZ",($FFFFFFFF).w
-	eori.l	#"WXYZ",$1
-	eori.l	#1+1,($FFFFFFFF).w
-	eori.l	#1+1,$1
-	eori.l	#(3+4),($FFFFFFFF).w
-	eori.l	#(3+4),$1
+	eori.l	#(3+4),$FFFFFFFE
+	eori.l	#(3+4),$FFFFFFFFFFFE
+	eori.l	#(3+4),$2
+	eori.l	#equ_1,($FFFFFFFE).w
+	eori.l	#equ_1,$2
+	eori.l	#equ_equ_1,($FFFFFFFE).w
+	eori.l	#equ_equ_1,$2
+	eori.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	eori.l	#equ_1_plus_equ_1,$2
+	eori.l	#0,($FFFFFFFE).w
+	eori.l	#0,$2
+	eori.l	#4,($FFFFFFFE).w
+	eori.l	#4,$2
+	eori.l	#$FF,($FFFFFFFE).w
+	eori.l	#$FF,$2
+	eori.l	#$7FFF,($FFFFFFFE).w
+	eori.l	#$7FFF,$2
+	eori.l	#$FFFF,($FFFFFFFE).w
+	eori.l	#$FFFF,$2
+	eori.l	#$FFFFFFFF,($FFFFFFFE).w
+	eori.l	#$FFFFFFFF,$2
+	eori.l	#"WXYZ",($FFFFFFFE).w
+	eori.l	#"WXYZ",$2
+	eori.l	#1+1,($FFFFFFFE).w
+	eori.l	#1+1,$2
+	eori.l	#(3+4),($FFFFFFFE).w
+	eori.l	#(3+4),$2
 	eori.l	#equ_1,$7FFF(a2)
 	eori.l	#equ_1,$7FFF(a5)
 	eori.l	#equ_1,-2(sp)
@@ -1754,24 +1820,27 @@ label_start:
 	subi.b	#"X",-(a2)
 	subi.b	#"X",-(a5)
 	subi.b	#"X",-(sp)
-	subi.b	#0,($FFFFFFFF).l
+	subi.b	#0,($FFFFFFFE).l
 	subi.b	#0,label_start.l
-	subi.b	#0,$FFFFFFFF
-	subi.b	#0,$1
-	subi.b	#$FF,($FFFFFFFF).l
+	subi.b	#0,$FFFFFFFE
+	subi.b	#0,$FFFFFFFFFFFE
+	subi.b	#0,$2
+	subi.b	#$FF,($FFFFFFFE).l
 	subi.b	#$FF,label_start.l
-	subi.b	#$FF,$FFFFFFFF
-	subi.b	#$FF,$1
-	subi.b	#"X",($FFFFFFFF).l
+	subi.b	#$FF,$FFFFFFFE
+	subi.b	#$FF,$FFFFFFFFFFFE
+	subi.b	#$FF,$2
+	subi.b	#"X",($FFFFFFFE).l
 	subi.b	#"X",label_start.l
-	subi.b	#"X",$FFFFFFFF
-	subi.b	#"X",$1
-	subi.b	#0,($FFFFFFFF).w
-	subi.b	#0,$1
-	subi.b	#$FF,($FFFFFFFF).w
-	subi.b	#$FF,$1
-	subi.b	#"X",($FFFFFFFF).w
-	subi.b	#"X",$1
+	subi.b	#"X",$FFFFFFFE
+	subi.b	#"X",$FFFFFFFFFFFE
+	subi.b	#"X",$2
+	subi.b	#0,($FFFFFFFE).w
+	subi.b	#0,$2
+	subi.b	#$FF,($FFFFFFFE).w
+	subi.b	#$FF,$2
+	subi.b	#"X",($FFFFFFFE).w
+	subi.b	#"X",$2
 	subi.b	#0,$7FFF(a2)
 	subi.b	#0,$7FFF(a5)
 	subi.b	#0,-2(sp)
@@ -1857,48 +1926,55 @@ label_start:
 	subi.w	#$FFFF,-(a2)
 	subi.w	#$FFFF,-(a5)
 	subi.w	#$FFFF,-(sp)
-	subi.w	#0,($FFFFFFFF).l
+	subi.w	#0,($FFFFFFFE).l
 	subi.w	#0,label_start.l
-	subi.w	#0,$FFFFFFFF
-	subi.w	#0,$1
-	subi.w	#4,($FFFFFFFF).l
+	subi.w	#0,$FFFFFFFE
+	subi.w	#0,$FFFFFFFFFFFE
+	subi.w	#0,$2
+	subi.w	#4,($FFFFFFFE).l
 	subi.w	#4,label_start.l
-	subi.w	#4,$FFFFFFFF
-	subi.w	#4,$1
-	subi.w	#$FF,($FFFFFFFF).l
+	subi.w	#4,$FFFFFFFE
+	subi.w	#4,$FFFFFFFFFFFE
+	subi.w	#4,$2
+	subi.w	#$FF,($FFFFFFFE).l
 	subi.w	#$FF,label_start.l
-	subi.w	#$FF,$FFFFFFFF
-	subi.w	#$FF,$1
-	subi.w	#"XY",($FFFFFFFF).l
+	subi.w	#$FF,$FFFFFFFE
+	subi.w	#$FF,$FFFFFFFFFFFE
+	subi.w	#$FF,$2
+	subi.w	#"XY",($FFFFFFFE).l
 	subi.w	#"XY",label_start.l
-	subi.w	#"XY",$FFFFFFFF
-	subi.w	#"XY",$1
-	subi.w	#$2700,($FFFFFFFF).l
+	subi.w	#"XY",$FFFFFFFE
+	subi.w	#"XY",$FFFFFFFFFFFE
+	subi.w	#"XY",$2
+	subi.w	#$2700,($FFFFFFFE).l
 	subi.w	#$2700,label_start.l
-	subi.w	#$2700,$FFFFFFFF
-	subi.w	#$2700,$1
-	subi.w	#$7FFF,($FFFFFFFF).l
+	subi.w	#$2700,$FFFFFFFE
+	subi.w	#$2700,$FFFFFFFFFFFE
+	subi.w	#$2700,$2
+	subi.w	#$7FFF,($FFFFFFFE).l
 	subi.w	#$7FFF,label_start.l
-	subi.w	#$7FFF,$FFFFFFFF
-	subi.w	#$7FFF,$1
-	subi.w	#$FFFF,($FFFFFFFF).l
+	subi.w	#$7FFF,$FFFFFFFE
+	subi.w	#$7FFF,$FFFFFFFFFFFE
+	subi.w	#$7FFF,$2
+	subi.w	#$FFFF,($FFFFFFFE).l
 	subi.w	#$FFFF,label_start.l
-	subi.w	#$FFFF,$FFFFFFFF
-	subi.w	#$FFFF,$1
-	subi.w	#0,($FFFFFFFF).w
-	subi.w	#0,$1
-	subi.w	#4,($FFFFFFFF).w
-	subi.w	#4,$1
-	subi.w	#$FF,($FFFFFFFF).w
-	subi.w	#$FF,$1
-	subi.w	#"XY",($FFFFFFFF).w
-	subi.w	#"XY",$1
-	subi.w	#$2700,($FFFFFFFF).w
-	subi.w	#$2700,$1
-	subi.w	#$7FFF,($FFFFFFFF).w
-	subi.w	#$7FFF,$1
-	subi.w	#$FFFF,($FFFFFFFF).w
-	subi.w	#$FFFF,$1
+	subi.w	#$FFFF,$FFFFFFFE
+	subi.w	#$FFFF,$FFFFFFFFFFFE
+	subi.w	#$FFFF,$2
+	subi.w	#0,($FFFFFFFE).w
+	subi.w	#0,$2
+	subi.w	#4,($FFFFFFFE).w
+	subi.w	#4,$2
+	subi.w	#$FF,($FFFFFFFE).w
+	subi.w	#$FF,$2
+	subi.w	#"XY",($FFFFFFFE).w
+	subi.w	#"XY",$2
+	subi.w	#$2700,($FFFFFFFE).w
+	subi.w	#$2700,$2
+	subi.w	#$7FFF,($FFFFFFFE).w
+	subi.w	#$7FFF,$2
+	subi.w	#$FFFF,($FFFFFFFE).w
+	subi.w	#$FFFF,$2
 	subi.w	#0,$7FFF(a2)
 	subi.w	#0,$7FFF(a5)
 	subi.w	#0,-2(sp)
@@ -2067,78 +2143,90 @@ label_start:
 	subi.l	#(3+4),-(a2)
 	subi.l	#(3+4),-(a5)
 	subi.l	#(3+4),-(sp)
-	subi.l	#equ_1,($FFFFFFFF).l
+	subi.l	#equ_1,($FFFFFFFE).l
 	subi.l	#equ_1,label_start.l
-	subi.l	#equ_1,$FFFFFFFF
-	subi.l	#equ_1,$1
-	subi.l	#equ_equ_1,($FFFFFFFF).l
+	subi.l	#equ_1,$FFFFFFFE
+	subi.l	#equ_1,$FFFFFFFFFFFE
+	subi.l	#equ_1,$2
+	subi.l	#equ_equ_1,($FFFFFFFE).l
 	subi.l	#equ_equ_1,label_start.l
-	subi.l	#equ_equ_1,$FFFFFFFF
-	subi.l	#equ_equ_1,$1
-	subi.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	subi.l	#equ_equ_1,$FFFFFFFE
+	subi.l	#equ_equ_1,$FFFFFFFFFFFE
+	subi.l	#equ_equ_1,$2
+	subi.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	subi.l	#equ_1_plus_equ_1,label_start.l
-	subi.l	#equ_1_plus_equ_1,$FFFFFFFF
-	subi.l	#equ_1_plus_equ_1,$1
-	subi.l	#0,($FFFFFFFF).l
+	subi.l	#equ_1_plus_equ_1,$FFFFFFFE
+	subi.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	subi.l	#equ_1_plus_equ_1,$2
+	subi.l	#0,($FFFFFFFE).l
 	subi.l	#0,label_start.l
-	subi.l	#0,$FFFFFFFF
-	subi.l	#0,$1
-	subi.l	#4,($FFFFFFFF).l
+	subi.l	#0,$FFFFFFFE
+	subi.l	#0,$FFFFFFFFFFFE
+	subi.l	#0,$2
+	subi.l	#4,($FFFFFFFE).l
 	subi.l	#4,label_start.l
-	subi.l	#4,$FFFFFFFF
-	subi.l	#4,$1
-	subi.l	#$FF,($FFFFFFFF).l
+	subi.l	#4,$FFFFFFFE
+	subi.l	#4,$FFFFFFFFFFFE
+	subi.l	#4,$2
+	subi.l	#$FF,($FFFFFFFE).l
 	subi.l	#$FF,label_start.l
-	subi.l	#$FF,$FFFFFFFF
-	subi.l	#$FF,$1
-	subi.l	#$7FFF,($FFFFFFFF).l
+	subi.l	#$FF,$FFFFFFFE
+	subi.l	#$FF,$FFFFFFFFFFFE
+	subi.l	#$FF,$2
+	subi.l	#$7FFF,($FFFFFFFE).l
 	subi.l	#$7FFF,label_start.l
-	subi.l	#$7FFF,$FFFFFFFF
-	subi.l	#$7FFF,$1
-	subi.l	#$FFFF,($FFFFFFFF).l
+	subi.l	#$7FFF,$FFFFFFFE
+	subi.l	#$7FFF,$FFFFFFFFFFFE
+	subi.l	#$7FFF,$2
+	subi.l	#$FFFF,($FFFFFFFE).l
 	subi.l	#$FFFF,label_start.l
-	subi.l	#$FFFF,$FFFFFFFF
-	subi.l	#$FFFF,$1
-	subi.l	#$FFFFFFFF,($FFFFFFFF).l
+	subi.l	#$FFFF,$FFFFFFFE
+	subi.l	#$FFFF,$FFFFFFFFFFFE
+	subi.l	#$FFFF,$2
+	subi.l	#$FFFFFFFF,($FFFFFFFE).l
 	subi.l	#$FFFFFFFF,label_start.l
-	subi.l	#$FFFFFFFF,$FFFFFFFF
-	subi.l	#$FFFFFFFF,$1
-	subi.l	#"WXYZ",($FFFFFFFF).l
+	subi.l	#$FFFFFFFF,$FFFFFFFE
+	subi.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	subi.l	#$FFFFFFFF,$2
+	subi.l	#"WXYZ",($FFFFFFFE).l
 	subi.l	#"WXYZ",label_start.l
-	subi.l	#"WXYZ",$FFFFFFFF
-	subi.l	#"WXYZ",$1
-	subi.l	#1+1,($FFFFFFFF).l
+	subi.l	#"WXYZ",$FFFFFFFE
+	subi.l	#"WXYZ",$FFFFFFFFFFFE
+	subi.l	#"WXYZ",$2
+	subi.l	#1+1,($FFFFFFFE).l
 	subi.l	#1+1,label_start.l
-	subi.l	#1+1,$FFFFFFFF
-	subi.l	#1+1,$1
-	subi.l	#(3+4),($FFFFFFFF).l
+	subi.l	#1+1,$FFFFFFFE
+	subi.l	#1+1,$FFFFFFFFFFFE
+	subi.l	#1+1,$2
+	subi.l	#(3+4),($FFFFFFFE).l
 	subi.l	#(3+4),label_start.l
-	subi.l	#(3+4),$FFFFFFFF
-	subi.l	#(3+4),$1
-	subi.l	#equ_1,($FFFFFFFF).w
-	subi.l	#equ_1,$1
-	subi.l	#equ_equ_1,($FFFFFFFF).w
-	subi.l	#equ_equ_1,$1
-	subi.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	subi.l	#equ_1_plus_equ_1,$1
-	subi.l	#0,($FFFFFFFF).w
-	subi.l	#0,$1
-	subi.l	#4,($FFFFFFFF).w
-	subi.l	#4,$1
-	subi.l	#$FF,($FFFFFFFF).w
-	subi.l	#$FF,$1
-	subi.l	#$7FFF,($FFFFFFFF).w
-	subi.l	#$7FFF,$1
-	subi.l	#$FFFF,($FFFFFFFF).w
-	subi.l	#$FFFF,$1
-	subi.l	#$FFFFFFFF,($FFFFFFFF).w
-	subi.l	#$FFFFFFFF,$1
-	subi.l	#"WXYZ",($FFFFFFFF).w
-	subi.l	#"WXYZ",$1
-	subi.l	#1+1,($FFFFFFFF).w
-	subi.l	#1+1,$1
-	subi.l	#(3+4),($FFFFFFFF).w
-	subi.l	#(3+4),$1
+	subi.l	#(3+4),$FFFFFFFE
+	subi.l	#(3+4),$FFFFFFFFFFFE
+	subi.l	#(3+4),$2
+	subi.l	#equ_1,($FFFFFFFE).w
+	subi.l	#equ_1,$2
+	subi.l	#equ_equ_1,($FFFFFFFE).w
+	subi.l	#equ_equ_1,$2
+	subi.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	subi.l	#equ_1_plus_equ_1,$2
+	subi.l	#0,($FFFFFFFE).w
+	subi.l	#0,$2
+	subi.l	#4,($FFFFFFFE).w
+	subi.l	#4,$2
+	subi.l	#$FF,($FFFFFFFE).w
+	subi.l	#$FF,$2
+	subi.l	#$7FFF,($FFFFFFFE).w
+	subi.l	#$7FFF,$2
+	subi.l	#$FFFF,($FFFFFFFE).w
+	subi.l	#$FFFF,$2
+	subi.l	#$FFFFFFFF,($FFFFFFFE).w
+	subi.l	#$FFFFFFFF,$2
+	subi.l	#"WXYZ",($FFFFFFFE).w
+	subi.l	#"WXYZ",$2
+	subi.l	#1+1,($FFFFFFFE).w
+	subi.l	#1+1,$2
+	subi.l	#(3+4),($FFFFFFFE).w
+	subi.l	#(3+4),$2
 	subi.l	#equ_1,$7FFF(a2)
 	subi.l	#equ_1,$7FFF(a5)
 	subi.l	#equ_1,-2(sp)
@@ -2305,24 +2393,27 @@ label_start:
 	addi.b	#"X",-(a2)
 	addi.b	#"X",-(a5)
 	addi.b	#"X",-(sp)
-	addi.b	#0,($FFFFFFFF).l
+	addi.b	#0,($FFFFFFFE).l
 	addi.b	#0,label_start.l
-	addi.b	#0,$FFFFFFFF
-	addi.b	#0,$1
-	addi.b	#$FF,($FFFFFFFF).l
+	addi.b	#0,$FFFFFFFE
+	addi.b	#0,$FFFFFFFFFFFE
+	addi.b	#0,$2
+	addi.b	#$FF,($FFFFFFFE).l
 	addi.b	#$FF,label_start.l
-	addi.b	#$FF,$FFFFFFFF
-	addi.b	#$FF,$1
-	addi.b	#"X",($FFFFFFFF).l
+	addi.b	#$FF,$FFFFFFFE
+	addi.b	#$FF,$FFFFFFFFFFFE
+	addi.b	#$FF,$2
+	addi.b	#"X",($FFFFFFFE).l
 	addi.b	#"X",label_start.l
-	addi.b	#"X",$FFFFFFFF
-	addi.b	#"X",$1
-	addi.b	#0,($FFFFFFFF).w
-	addi.b	#0,$1
-	addi.b	#$FF,($FFFFFFFF).w
-	addi.b	#$FF,$1
-	addi.b	#"X",($FFFFFFFF).w
-	addi.b	#"X",$1
+	addi.b	#"X",$FFFFFFFE
+	addi.b	#"X",$FFFFFFFFFFFE
+	addi.b	#"X",$2
+	addi.b	#0,($FFFFFFFE).w
+	addi.b	#0,$2
+	addi.b	#$FF,($FFFFFFFE).w
+	addi.b	#$FF,$2
+	addi.b	#"X",($FFFFFFFE).w
+	addi.b	#"X",$2
 	addi.b	#0,$7FFF(a2)
 	addi.b	#0,$7FFF(a5)
 	addi.b	#0,-2(sp)
@@ -2408,48 +2499,55 @@ label_start:
 	addi.w	#$FFFF,-(a2)
 	addi.w	#$FFFF,-(a5)
 	addi.w	#$FFFF,-(sp)
-	addi.w	#0,($FFFFFFFF).l
+	addi.w	#0,($FFFFFFFE).l
 	addi.w	#0,label_start.l
-	addi.w	#0,$FFFFFFFF
-	addi.w	#0,$1
-	addi.w	#4,($FFFFFFFF).l
+	addi.w	#0,$FFFFFFFE
+	addi.w	#0,$FFFFFFFFFFFE
+	addi.w	#0,$2
+	addi.w	#4,($FFFFFFFE).l
 	addi.w	#4,label_start.l
-	addi.w	#4,$FFFFFFFF
-	addi.w	#4,$1
-	addi.w	#$FF,($FFFFFFFF).l
+	addi.w	#4,$FFFFFFFE
+	addi.w	#4,$FFFFFFFFFFFE
+	addi.w	#4,$2
+	addi.w	#$FF,($FFFFFFFE).l
 	addi.w	#$FF,label_start.l
-	addi.w	#$FF,$FFFFFFFF
-	addi.w	#$FF,$1
-	addi.w	#"XY",($FFFFFFFF).l
+	addi.w	#$FF,$FFFFFFFE
+	addi.w	#$FF,$FFFFFFFFFFFE
+	addi.w	#$FF,$2
+	addi.w	#"XY",($FFFFFFFE).l
 	addi.w	#"XY",label_start.l
-	addi.w	#"XY",$FFFFFFFF
-	addi.w	#"XY",$1
-	addi.w	#$2700,($FFFFFFFF).l
+	addi.w	#"XY",$FFFFFFFE
+	addi.w	#"XY",$FFFFFFFFFFFE
+	addi.w	#"XY",$2
+	addi.w	#$2700,($FFFFFFFE).l
 	addi.w	#$2700,label_start.l
-	addi.w	#$2700,$FFFFFFFF
-	addi.w	#$2700,$1
-	addi.w	#$7FFF,($FFFFFFFF).l
+	addi.w	#$2700,$FFFFFFFE
+	addi.w	#$2700,$FFFFFFFFFFFE
+	addi.w	#$2700,$2
+	addi.w	#$7FFF,($FFFFFFFE).l
 	addi.w	#$7FFF,label_start.l
-	addi.w	#$7FFF,$FFFFFFFF
-	addi.w	#$7FFF,$1
-	addi.w	#$FFFF,($FFFFFFFF).l
+	addi.w	#$7FFF,$FFFFFFFE
+	addi.w	#$7FFF,$FFFFFFFFFFFE
+	addi.w	#$7FFF,$2
+	addi.w	#$FFFF,($FFFFFFFE).l
 	addi.w	#$FFFF,label_start.l
-	addi.w	#$FFFF,$FFFFFFFF
-	addi.w	#$FFFF,$1
-	addi.w	#0,($FFFFFFFF).w
-	addi.w	#0,$1
-	addi.w	#4,($FFFFFFFF).w
-	addi.w	#4,$1
-	addi.w	#$FF,($FFFFFFFF).w
-	addi.w	#$FF,$1
-	addi.w	#"XY",($FFFFFFFF).w
-	addi.w	#"XY",$1
-	addi.w	#$2700,($FFFFFFFF).w
-	addi.w	#$2700,$1
-	addi.w	#$7FFF,($FFFFFFFF).w
-	addi.w	#$7FFF,$1
-	addi.w	#$FFFF,($FFFFFFFF).w
-	addi.w	#$FFFF,$1
+	addi.w	#$FFFF,$FFFFFFFE
+	addi.w	#$FFFF,$FFFFFFFFFFFE
+	addi.w	#$FFFF,$2
+	addi.w	#0,($FFFFFFFE).w
+	addi.w	#0,$2
+	addi.w	#4,($FFFFFFFE).w
+	addi.w	#4,$2
+	addi.w	#$FF,($FFFFFFFE).w
+	addi.w	#$FF,$2
+	addi.w	#"XY",($FFFFFFFE).w
+	addi.w	#"XY",$2
+	addi.w	#$2700,($FFFFFFFE).w
+	addi.w	#$2700,$2
+	addi.w	#$7FFF,($FFFFFFFE).w
+	addi.w	#$7FFF,$2
+	addi.w	#$FFFF,($FFFFFFFE).w
+	addi.w	#$FFFF,$2
 	addi.w	#0,$7FFF(a2)
 	addi.w	#0,$7FFF(a5)
 	addi.w	#0,-2(sp)
@@ -2618,78 +2716,90 @@ label_start:
 	addi.l	#(3+4),-(a2)
 	addi.l	#(3+4),-(a5)
 	addi.l	#(3+4),-(sp)
-	addi.l	#equ_1,($FFFFFFFF).l
+	addi.l	#equ_1,($FFFFFFFE).l
 	addi.l	#equ_1,label_start.l
-	addi.l	#equ_1,$FFFFFFFF
-	addi.l	#equ_1,$1
-	addi.l	#equ_equ_1,($FFFFFFFF).l
+	addi.l	#equ_1,$FFFFFFFE
+	addi.l	#equ_1,$FFFFFFFFFFFE
+	addi.l	#equ_1,$2
+	addi.l	#equ_equ_1,($FFFFFFFE).l
 	addi.l	#equ_equ_1,label_start.l
-	addi.l	#equ_equ_1,$FFFFFFFF
-	addi.l	#equ_equ_1,$1
-	addi.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	addi.l	#equ_equ_1,$FFFFFFFE
+	addi.l	#equ_equ_1,$FFFFFFFFFFFE
+	addi.l	#equ_equ_1,$2
+	addi.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	addi.l	#equ_1_plus_equ_1,label_start.l
-	addi.l	#equ_1_plus_equ_1,$FFFFFFFF
-	addi.l	#equ_1_plus_equ_1,$1
-	addi.l	#0,($FFFFFFFF).l
+	addi.l	#equ_1_plus_equ_1,$FFFFFFFE
+	addi.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	addi.l	#equ_1_plus_equ_1,$2
+	addi.l	#0,($FFFFFFFE).l
 	addi.l	#0,label_start.l
-	addi.l	#0,$FFFFFFFF
-	addi.l	#0,$1
-	addi.l	#4,($FFFFFFFF).l
+	addi.l	#0,$FFFFFFFE
+	addi.l	#0,$FFFFFFFFFFFE
+	addi.l	#0,$2
+	addi.l	#4,($FFFFFFFE).l
 	addi.l	#4,label_start.l
-	addi.l	#4,$FFFFFFFF
-	addi.l	#4,$1
-	addi.l	#$FF,($FFFFFFFF).l
+	addi.l	#4,$FFFFFFFE
+	addi.l	#4,$FFFFFFFFFFFE
+	addi.l	#4,$2
+	addi.l	#$FF,($FFFFFFFE).l
 	addi.l	#$FF,label_start.l
-	addi.l	#$FF,$FFFFFFFF
-	addi.l	#$FF,$1
-	addi.l	#$7FFF,($FFFFFFFF).l
+	addi.l	#$FF,$FFFFFFFE
+	addi.l	#$FF,$FFFFFFFFFFFE
+	addi.l	#$FF,$2
+	addi.l	#$7FFF,($FFFFFFFE).l
 	addi.l	#$7FFF,label_start.l
-	addi.l	#$7FFF,$FFFFFFFF
-	addi.l	#$7FFF,$1
-	addi.l	#$FFFF,($FFFFFFFF).l
+	addi.l	#$7FFF,$FFFFFFFE
+	addi.l	#$7FFF,$FFFFFFFFFFFE
+	addi.l	#$7FFF,$2
+	addi.l	#$FFFF,($FFFFFFFE).l
 	addi.l	#$FFFF,label_start.l
-	addi.l	#$FFFF,$FFFFFFFF
-	addi.l	#$FFFF,$1
-	addi.l	#$FFFFFFFF,($FFFFFFFF).l
+	addi.l	#$FFFF,$FFFFFFFE
+	addi.l	#$FFFF,$FFFFFFFFFFFE
+	addi.l	#$FFFF,$2
+	addi.l	#$FFFFFFFF,($FFFFFFFE).l
 	addi.l	#$FFFFFFFF,label_start.l
-	addi.l	#$FFFFFFFF,$FFFFFFFF
-	addi.l	#$FFFFFFFF,$1
-	addi.l	#"WXYZ",($FFFFFFFF).l
+	addi.l	#$FFFFFFFF,$FFFFFFFE
+	addi.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	addi.l	#$FFFFFFFF,$2
+	addi.l	#"WXYZ",($FFFFFFFE).l
 	addi.l	#"WXYZ",label_start.l
-	addi.l	#"WXYZ",$FFFFFFFF
-	addi.l	#"WXYZ",$1
-	addi.l	#1+1,($FFFFFFFF).l
+	addi.l	#"WXYZ",$FFFFFFFE
+	addi.l	#"WXYZ",$FFFFFFFFFFFE
+	addi.l	#"WXYZ",$2
+	addi.l	#1+1,($FFFFFFFE).l
 	addi.l	#1+1,label_start.l
-	addi.l	#1+1,$FFFFFFFF
-	addi.l	#1+1,$1
-	addi.l	#(3+4),($FFFFFFFF).l
+	addi.l	#1+1,$FFFFFFFE
+	addi.l	#1+1,$FFFFFFFFFFFE
+	addi.l	#1+1,$2
+	addi.l	#(3+4),($FFFFFFFE).l
 	addi.l	#(3+4),label_start.l
-	addi.l	#(3+4),$FFFFFFFF
-	addi.l	#(3+4),$1
-	addi.l	#equ_1,($FFFFFFFF).w
-	addi.l	#equ_1,$1
-	addi.l	#equ_equ_1,($FFFFFFFF).w
-	addi.l	#equ_equ_1,$1
-	addi.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	addi.l	#equ_1_plus_equ_1,$1
-	addi.l	#0,($FFFFFFFF).w
-	addi.l	#0,$1
-	addi.l	#4,($FFFFFFFF).w
-	addi.l	#4,$1
-	addi.l	#$FF,($FFFFFFFF).w
-	addi.l	#$FF,$1
-	addi.l	#$7FFF,($FFFFFFFF).w
-	addi.l	#$7FFF,$1
-	addi.l	#$FFFF,($FFFFFFFF).w
-	addi.l	#$FFFF,$1
-	addi.l	#$FFFFFFFF,($FFFFFFFF).w
-	addi.l	#$FFFFFFFF,$1
-	addi.l	#"WXYZ",($FFFFFFFF).w
-	addi.l	#"WXYZ",$1
-	addi.l	#1+1,($FFFFFFFF).w
-	addi.l	#1+1,$1
-	addi.l	#(3+4),($FFFFFFFF).w
-	addi.l	#(3+4),$1
+	addi.l	#(3+4),$FFFFFFFE
+	addi.l	#(3+4),$FFFFFFFFFFFE
+	addi.l	#(3+4),$2
+	addi.l	#equ_1,($FFFFFFFE).w
+	addi.l	#equ_1,$2
+	addi.l	#equ_equ_1,($FFFFFFFE).w
+	addi.l	#equ_equ_1,$2
+	addi.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	addi.l	#equ_1_plus_equ_1,$2
+	addi.l	#0,($FFFFFFFE).w
+	addi.l	#0,$2
+	addi.l	#4,($FFFFFFFE).w
+	addi.l	#4,$2
+	addi.l	#$FF,($FFFFFFFE).w
+	addi.l	#$FF,$2
+	addi.l	#$7FFF,($FFFFFFFE).w
+	addi.l	#$7FFF,$2
+	addi.l	#$FFFF,($FFFFFFFE).w
+	addi.l	#$FFFF,$2
+	addi.l	#$FFFFFFFF,($FFFFFFFE).w
+	addi.l	#$FFFFFFFF,$2
+	addi.l	#"WXYZ",($FFFFFFFE).w
+	addi.l	#"WXYZ",$2
+	addi.l	#1+1,($FFFFFFFE).w
+	addi.l	#1+1,$2
+	addi.l	#(3+4),($FFFFFFFE).w
+	addi.l	#(3+4),$2
 	addi.l	#equ_1,$7FFF(a2)
 	addi.l	#equ_1,$7FFF(a5)
 	addi.l	#equ_1,-2(sp)
@@ -2856,24 +2966,27 @@ label_start:
 	cmpi.b	#"X",-(a2)
 	cmpi.b	#"X",-(a5)
 	cmpi.b	#"X",-(sp)
-	cmpi.b	#0,($FFFFFFFF).l
+	cmpi.b	#0,($FFFFFFFE).l
 	cmpi.b	#0,label_start.l
-	cmpi.b	#0,$FFFFFFFF
-	cmpi.b	#0,$1
-	cmpi.b	#$FF,($FFFFFFFF).l
+	cmpi.b	#0,$FFFFFFFE
+	cmpi.b	#0,$FFFFFFFFFFFE
+	cmpi.b	#0,$2
+	cmpi.b	#$FF,($FFFFFFFE).l
 	cmpi.b	#$FF,label_start.l
-	cmpi.b	#$FF,$FFFFFFFF
-	cmpi.b	#$FF,$1
-	cmpi.b	#"X",($FFFFFFFF).l
+	cmpi.b	#$FF,$FFFFFFFE
+	cmpi.b	#$FF,$FFFFFFFFFFFE
+	cmpi.b	#$FF,$2
+	cmpi.b	#"X",($FFFFFFFE).l
 	cmpi.b	#"X",label_start.l
-	cmpi.b	#"X",$FFFFFFFF
-	cmpi.b	#"X",$1
-	cmpi.b	#0,($FFFFFFFF).w
-	cmpi.b	#0,$1
-	cmpi.b	#$FF,($FFFFFFFF).w
-	cmpi.b	#$FF,$1
-	cmpi.b	#"X",($FFFFFFFF).w
-	cmpi.b	#"X",$1
+	cmpi.b	#"X",$FFFFFFFE
+	cmpi.b	#"X",$FFFFFFFFFFFE
+	cmpi.b	#"X",$2
+	cmpi.b	#0,($FFFFFFFE).w
+	cmpi.b	#0,$2
+	cmpi.b	#$FF,($FFFFFFFE).w
+	cmpi.b	#$FF,$2
+	cmpi.b	#"X",($FFFFFFFE).w
+	cmpi.b	#"X",$2
 	cmpi.b	#0,$7FFF(a2)
 	cmpi.b	#0,$7FFF(a5)
 	cmpi.b	#0,-2(sp)
@@ -2959,48 +3072,55 @@ label_start:
 	cmpi.w	#$FFFF,-(a2)
 	cmpi.w	#$FFFF,-(a5)
 	cmpi.w	#$FFFF,-(sp)
-	cmpi.w	#0,($FFFFFFFF).l
+	cmpi.w	#0,($FFFFFFFE).l
 	cmpi.w	#0,label_start.l
-	cmpi.w	#0,$FFFFFFFF
-	cmpi.w	#0,$1
-	cmpi.w	#4,($FFFFFFFF).l
+	cmpi.w	#0,$FFFFFFFE
+	cmpi.w	#0,$FFFFFFFFFFFE
+	cmpi.w	#0,$2
+	cmpi.w	#4,($FFFFFFFE).l
 	cmpi.w	#4,label_start.l
-	cmpi.w	#4,$FFFFFFFF
-	cmpi.w	#4,$1
-	cmpi.w	#$FF,($FFFFFFFF).l
+	cmpi.w	#4,$FFFFFFFE
+	cmpi.w	#4,$FFFFFFFFFFFE
+	cmpi.w	#4,$2
+	cmpi.w	#$FF,($FFFFFFFE).l
 	cmpi.w	#$FF,label_start.l
-	cmpi.w	#$FF,$FFFFFFFF
-	cmpi.w	#$FF,$1
-	cmpi.w	#"XY",($FFFFFFFF).l
+	cmpi.w	#$FF,$FFFFFFFE
+	cmpi.w	#$FF,$FFFFFFFFFFFE
+	cmpi.w	#$FF,$2
+	cmpi.w	#"XY",($FFFFFFFE).l
 	cmpi.w	#"XY",label_start.l
-	cmpi.w	#"XY",$FFFFFFFF
-	cmpi.w	#"XY",$1
-	cmpi.w	#$2700,($FFFFFFFF).l
+	cmpi.w	#"XY",$FFFFFFFE
+	cmpi.w	#"XY",$FFFFFFFFFFFE
+	cmpi.w	#"XY",$2
+	cmpi.w	#$2700,($FFFFFFFE).l
 	cmpi.w	#$2700,label_start.l
-	cmpi.w	#$2700,$FFFFFFFF
-	cmpi.w	#$2700,$1
-	cmpi.w	#$7FFF,($FFFFFFFF).l
+	cmpi.w	#$2700,$FFFFFFFE
+	cmpi.w	#$2700,$FFFFFFFFFFFE
+	cmpi.w	#$2700,$2
+	cmpi.w	#$7FFF,($FFFFFFFE).l
 	cmpi.w	#$7FFF,label_start.l
-	cmpi.w	#$7FFF,$FFFFFFFF
-	cmpi.w	#$7FFF,$1
-	cmpi.w	#$FFFF,($FFFFFFFF).l
+	cmpi.w	#$7FFF,$FFFFFFFE
+	cmpi.w	#$7FFF,$FFFFFFFFFFFE
+	cmpi.w	#$7FFF,$2
+	cmpi.w	#$FFFF,($FFFFFFFE).l
 	cmpi.w	#$FFFF,label_start.l
-	cmpi.w	#$FFFF,$FFFFFFFF
-	cmpi.w	#$FFFF,$1
-	cmpi.w	#0,($FFFFFFFF).w
-	cmpi.w	#0,$1
-	cmpi.w	#4,($FFFFFFFF).w
-	cmpi.w	#4,$1
-	cmpi.w	#$FF,($FFFFFFFF).w
-	cmpi.w	#$FF,$1
-	cmpi.w	#"XY",($FFFFFFFF).w
-	cmpi.w	#"XY",$1
-	cmpi.w	#$2700,($FFFFFFFF).w
-	cmpi.w	#$2700,$1
-	cmpi.w	#$7FFF,($FFFFFFFF).w
-	cmpi.w	#$7FFF,$1
-	cmpi.w	#$FFFF,($FFFFFFFF).w
-	cmpi.w	#$FFFF,$1
+	cmpi.w	#$FFFF,$FFFFFFFE
+	cmpi.w	#$FFFF,$FFFFFFFFFFFE
+	cmpi.w	#$FFFF,$2
+	cmpi.w	#0,($FFFFFFFE).w
+	cmpi.w	#0,$2
+	cmpi.w	#4,($FFFFFFFE).w
+	cmpi.w	#4,$2
+	cmpi.w	#$FF,($FFFFFFFE).w
+	cmpi.w	#$FF,$2
+	cmpi.w	#"XY",($FFFFFFFE).w
+	cmpi.w	#"XY",$2
+	cmpi.w	#$2700,($FFFFFFFE).w
+	cmpi.w	#$2700,$2
+	cmpi.w	#$7FFF,($FFFFFFFE).w
+	cmpi.w	#$7FFF,$2
+	cmpi.w	#$FFFF,($FFFFFFFE).w
+	cmpi.w	#$FFFF,$2
 	cmpi.w	#0,$7FFF(a2)
 	cmpi.w	#0,$7FFF(a5)
 	cmpi.w	#0,-2(sp)
@@ -3169,78 +3289,90 @@ label_start:
 	cmpi.l	#(3+4),-(a2)
 	cmpi.l	#(3+4),-(a5)
 	cmpi.l	#(3+4),-(sp)
-	cmpi.l	#equ_1,($FFFFFFFF).l
+	cmpi.l	#equ_1,($FFFFFFFE).l
 	cmpi.l	#equ_1,label_start.l
-	cmpi.l	#equ_1,$FFFFFFFF
-	cmpi.l	#equ_1,$1
-	cmpi.l	#equ_equ_1,($FFFFFFFF).l
+	cmpi.l	#equ_1,$FFFFFFFE
+	cmpi.l	#equ_1,$FFFFFFFFFFFE
+	cmpi.l	#equ_1,$2
+	cmpi.l	#equ_equ_1,($FFFFFFFE).l
 	cmpi.l	#equ_equ_1,label_start.l
-	cmpi.l	#equ_equ_1,$FFFFFFFF
-	cmpi.l	#equ_equ_1,$1
-	cmpi.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	cmpi.l	#equ_equ_1,$FFFFFFFE
+	cmpi.l	#equ_equ_1,$FFFFFFFFFFFE
+	cmpi.l	#equ_equ_1,$2
+	cmpi.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	cmpi.l	#equ_1_plus_equ_1,label_start.l
-	cmpi.l	#equ_1_plus_equ_1,$FFFFFFFF
-	cmpi.l	#equ_1_plus_equ_1,$1
-	cmpi.l	#0,($FFFFFFFF).l
+	cmpi.l	#equ_1_plus_equ_1,$FFFFFFFE
+	cmpi.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	cmpi.l	#equ_1_plus_equ_1,$2
+	cmpi.l	#0,($FFFFFFFE).l
 	cmpi.l	#0,label_start.l
-	cmpi.l	#0,$FFFFFFFF
-	cmpi.l	#0,$1
-	cmpi.l	#4,($FFFFFFFF).l
+	cmpi.l	#0,$FFFFFFFE
+	cmpi.l	#0,$FFFFFFFFFFFE
+	cmpi.l	#0,$2
+	cmpi.l	#4,($FFFFFFFE).l
 	cmpi.l	#4,label_start.l
-	cmpi.l	#4,$FFFFFFFF
-	cmpi.l	#4,$1
-	cmpi.l	#$FF,($FFFFFFFF).l
+	cmpi.l	#4,$FFFFFFFE
+	cmpi.l	#4,$FFFFFFFFFFFE
+	cmpi.l	#4,$2
+	cmpi.l	#$FF,($FFFFFFFE).l
 	cmpi.l	#$FF,label_start.l
-	cmpi.l	#$FF,$FFFFFFFF
-	cmpi.l	#$FF,$1
-	cmpi.l	#$7FFF,($FFFFFFFF).l
+	cmpi.l	#$FF,$FFFFFFFE
+	cmpi.l	#$FF,$FFFFFFFFFFFE
+	cmpi.l	#$FF,$2
+	cmpi.l	#$7FFF,($FFFFFFFE).l
 	cmpi.l	#$7FFF,label_start.l
-	cmpi.l	#$7FFF,$FFFFFFFF
-	cmpi.l	#$7FFF,$1
-	cmpi.l	#$FFFF,($FFFFFFFF).l
+	cmpi.l	#$7FFF,$FFFFFFFE
+	cmpi.l	#$7FFF,$FFFFFFFFFFFE
+	cmpi.l	#$7FFF,$2
+	cmpi.l	#$FFFF,($FFFFFFFE).l
 	cmpi.l	#$FFFF,label_start.l
-	cmpi.l	#$FFFF,$FFFFFFFF
-	cmpi.l	#$FFFF,$1
-	cmpi.l	#$FFFFFFFF,($FFFFFFFF).l
+	cmpi.l	#$FFFF,$FFFFFFFE
+	cmpi.l	#$FFFF,$FFFFFFFFFFFE
+	cmpi.l	#$FFFF,$2
+	cmpi.l	#$FFFFFFFF,($FFFFFFFE).l
 	cmpi.l	#$FFFFFFFF,label_start.l
-	cmpi.l	#$FFFFFFFF,$FFFFFFFF
-	cmpi.l	#$FFFFFFFF,$1
-	cmpi.l	#"WXYZ",($FFFFFFFF).l
+	cmpi.l	#$FFFFFFFF,$FFFFFFFE
+	cmpi.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	cmpi.l	#$FFFFFFFF,$2
+	cmpi.l	#"WXYZ",($FFFFFFFE).l
 	cmpi.l	#"WXYZ",label_start.l
-	cmpi.l	#"WXYZ",$FFFFFFFF
-	cmpi.l	#"WXYZ",$1
-	cmpi.l	#1+1,($FFFFFFFF).l
+	cmpi.l	#"WXYZ",$FFFFFFFE
+	cmpi.l	#"WXYZ",$FFFFFFFFFFFE
+	cmpi.l	#"WXYZ",$2
+	cmpi.l	#1+1,($FFFFFFFE).l
 	cmpi.l	#1+1,label_start.l
-	cmpi.l	#1+1,$FFFFFFFF
-	cmpi.l	#1+1,$1
-	cmpi.l	#(3+4),($FFFFFFFF).l
+	cmpi.l	#1+1,$FFFFFFFE
+	cmpi.l	#1+1,$FFFFFFFFFFFE
+	cmpi.l	#1+1,$2
+	cmpi.l	#(3+4),($FFFFFFFE).l
 	cmpi.l	#(3+4),label_start.l
-	cmpi.l	#(3+4),$FFFFFFFF
-	cmpi.l	#(3+4),$1
-	cmpi.l	#equ_1,($FFFFFFFF).w
-	cmpi.l	#equ_1,$1
-	cmpi.l	#equ_equ_1,($FFFFFFFF).w
-	cmpi.l	#equ_equ_1,$1
-	cmpi.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	cmpi.l	#equ_1_plus_equ_1,$1
-	cmpi.l	#0,($FFFFFFFF).w
-	cmpi.l	#0,$1
-	cmpi.l	#4,($FFFFFFFF).w
-	cmpi.l	#4,$1
-	cmpi.l	#$FF,($FFFFFFFF).w
-	cmpi.l	#$FF,$1
-	cmpi.l	#$7FFF,($FFFFFFFF).w
-	cmpi.l	#$7FFF,$1
-	cmpi.l	#$FFFF,($FFFFFFFF).w
-	cmpi.l	#$FFFF,$1
-	cmpi.l	#$FFFFFFFF,($FFFFFFFF).w
-	cmpi.l	#$FFFFFFFF,$1
-	cmpi.l	#"WXYZ",($FFFFFFFF).w
-	cmpi.l	#"WXYZ",$1
-	cmpi.l	#1+1,($FFFFFFFF).w
-	cmpi.l	#1+1,$1
-	cmpi.l	#(3+4),($FFFFFFFF).w
-	cmpi.l	#(3+4),$1
+	cmpi.l	#(3+4),$FFFFFFFE
+	cmpi.l	#(3+4),$FFFFFFFFFFFE
+	cmpi.l	#(3+4),$2
+	cmpi.l	#equ_1,($FFFFFFFE).w
+	cmpi.l	#equ_1,$2
+	cmpi.l	#equ_equ_1,($FFFFFFFE).w
+	cmpi.l	#equ_equ_1,$2
+	cmpi.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	cmpi.l	#equ_1_plus_equ_1,$2
+	cmpi.l	#0,($FFFFFFFE).w
+	cmpi.l	#0,$2
+	cmpi.l	#4,($FFFFFFFE).w
+	cmpi.l	#4,$2
+	cmpi.l	#$FF,($FFFFFFFE).w
+	cmpi.l	#$FF,$2
+	cmpi.l	#$7FFF,($FFFFFFFE).w
+	cmpi.l	#$7FFF,$2
+	cmpi.l	#$FFFF,($FFFFFFFE).w
+	cmpi.l	#$FFFF,$2
+	cmpi.l	#$FFFFFFFF,($FFFFFFFE).w
+	cmpi.l	#$FFFFFFFF,$2
+	cmpi.l	#"WXYZ",($FFFFFFFE).w
+	cmpi.l	#"WXYZ",$2
+	cmpi.l	#1+1,($FFFFFFFE).w
+	cmpi.l	#1+1,$2
+	cmpi.l	#(3+4),($FFFFFFFE).w
+	cmpi.l	#(3+4),$2
 	cmpi.l	#equ_1,$7FFF(a2)
 	cmpi.l	#equ_1,$7FFF(a5)
 	cmpi.l	#equ_1,-2(sp)
@@ -3420,18 +3552,20 @@ label_start:
 	btst.b	d5,-(a2)
 	btst.b	d5,-(a5)
 	btst.b	d5,-(sp)
-	btst.b	d2,($FFFFFFFF).l
+	btst.b	d2,($FFFFFFFE).l
 	btst.b	d2,label_start.l
-	btst.b	d2,$FFFFFFFF
-	btst.b	d2,$1
-	btst.b	d5,($FFFFFFFF).l
+	btst.b	d2,$FFFFFFFE
+	btst.b	d2,$FFFFFFFFFFFE
+	btst.b	d2,$2
+	btst.b	d5,($FFFFFFFE).l
 	btst.b	d5,label_start.l
-	btst.b	d5,$FFFFFFFF
-	btst.b	d5,$1
-	btst.b	d2,($FFFFFFFF).w
-	btst.b	d2,$1
-	btst.b	d5,($FFFFFFFF).w
-	btst.b	d5,$1
+	btst.b	d5,$FFFFFFFE
+	btst.b	d5,$FFFFFFFFFFFE
+	btst.b	d5,$2
+	btst.b	d2,($FFFFFFFE).w
+	btst.b	d2,$2
+	btst.b	d5,($FFFFFFFE).w
+	btst.b	d5,$2
 	btst.b	d2,$7FFF(a2)
 	btst.b	d2,$7FFF(a5)
 	btst.b	d2,-2(sp)
@@ -3482,18 +3616,20 @@ label_start:
 	btst	d5,-(a2)
 	btst	d5,-(a5)
 	btst	d5,-(sp)
-	btst	d2,($FFFFFFFF).l
+	btst	d2,($FFFFFFFE).l
 	btst	d2,label_start.l
-	btst	d2,$FFFFFFFF
-	btst	d2,$1
-	btst	d5,($FFFFFFFF).l
+	btst	d2,$FFFFFFFE
+	btst	d2,$FFFFFFFFFFFE
+	btst	d2,$2
+	btst	d5,($FFFFFFFE).l
 	btst	d5,label_start.l
-	btst	d5,$FFFFFFFF
-	btst	d5,$1
-	btst	d2,($FFFFFFFF).w
-	btst	d2,$1
-	btst	d5,($FFFFFFFF).w
-	btst	d5,$1
+	btst	d5,$FFFFFFFE
+	btst	d5,$FFFFFFFFFFFE
+	btst	d5,$2
+	btst	d2,($FFFFFFFE).w
+	btst	d2,$2
+	btst	d5,($FFFFFFFE).w
+	btst	d5,$2
 	btst	d2,$7FFF(a2)
 	btst	d2,$7FFF(a5)
 	btst	d2,-2(sp)
@@ -3551,24 +3687,27 @@ label_start:
 	btst.b	#"X",-(a2)
 	btst.b	#"X",-(a5)
 	btst.b	#"X",-(sp)
-	btst.b	#0,($FFFFFFFF).l
+	btst.b	#0,($FFFFFFFE).l
 	btst.b	#0,label_start.l
-	btst.b	#0,$FFFFFFFF
-	btst.b	#0,$1
-	btst.b	#$FF,($FFFFFFFF).l
+	btst.b	#0,$FFFFFFFE
+	btst.b	#0,$FFFFFFFFFFFE
+	btst.b	#0,$2
+	btst.b	#$FF,($FFFFFFFE).l
 	btst.b	#$FF,label_start.l
-	btst.b	#$FF,$FFFFFFFF
-	btst.b	#$FF,$1
-	btst.b	#"X",($FFFFFFFF).l
+	btst.b	#$FF,$FFFFFFFE
+	btst.b	#$FF,$FFFFFFFFFFFE
+	btst.b	#$FF,$2
+	btst.b	#"X",($FFFFFFFE).l
 	btst.b	#"X",label_start.l
-	btst.b	#"X",$FFFFFFFF
-	btst.b	#"X",$1
-	btst.b	#0,($FFFFFFFF).w
-	btst.b	#0,$1
-	btst.b	#$FF,($FFFFFFFF).w
-	btst.b	#$FF,$1
-	btst.b	#"X",($FFFFFFFF).w
-	btst.b	#"X",$1
+	btst.b	#"X",$FFFFFFFE
+	btst.b	#"X",$FFFFFFFFFFFE
+	btst.b	#"X",$2
+	btst.b	#0,($FFFFFFFE).w
+	btst.b	#0,$2
+	btst.b	#$FF,($FFFFFFFE).w
+	btst.b	#$FF,$2
+	btst.b	#"X",($FFFFFFFE).w
+	btst.b	#"X",$2
 	btst.b	#0,$7FFF(a2)
 	btst.b	#0,$7FFF(a5)
 	btst.b	#0,-2(sp)
@@ -3635,24 +3774,27 @@ label_start:
 	btst	#"X",-(a2)
 	btst	#"X",-(a5)
 	btst	#"X",-(sp)
-	btst	#0,($FFFFFFFF).l
+	btst	#0,($FFFFFFFE).l
 	btst	#0,label_start.l
-	btst	#0,$FFFFFFFF
-	btst	#0,$1
-	btst	#$FF,($FFFFFFFF).l
+	btst	#0,$FFFFFFFE
+	btst	#0,$FFFFFFFFFFFE
+	btst	#0,$2
+	btst	#$FF,($FFFFFFFE).l
 	btst	#$FF,label_start.l
-	btst	#$FF,$FFFFFFFF
-	btst	#$FF,$1
-	btst	#"X",($FFFFFFFF).l
+	btst	#$FF,$FFFFFFFE
+	btst	#$FF,$FFFFFFFFFFFE
+	btst	#$FF,$2
+	btst	#"X",($FFFFFFFE).l
 	btst	#"X",label_start.l
-	btst	#"X",$FFFFFFFF
-	btst	#"X",$1
-	btst	#0,($FFFFFFFF).w
-	btst	#0,$1
-	btst	#$FF,($FFFFFFFF).w
-	btst	#$FF,$1
-	btst	#"X",($FFFFFFFF).w
-	btst	#"X",$1
+	btst	#"X",$FFFFFFFE
+	btst	#"X",$FFFFFFFFFFFE
+	btst	#"X",$2
+	btst	#0,($FFFFFFFE).w
+	btst	#0,$2
+	btst	#$FF,($FFFFFFFE).w
+	btst	#$FF,$2
+	btst	#"X",($FFFFFFFE).w
+	btst	#"X",$2
 	btst	#0,$7FFF(a2)
 	btst	#0,$7FFF(a5)
 	btst	#0,-2(sp)
@@ -3721,18 +3863,20 @@ label_start:
 	bchg.b	d5,-(a2)
 	bchg.b	d5,-(a5)
 	bchg.b	d5,-(sp)
-	bchg.b	d2,($FFFFFFFF).l
+	bchg.b	d2,($FFFFFFFE).l
 	bchg.b	d2,label_start.l
-	bchg.b	d2,$FFFFFFFF
-	bchg.b	d2,$1
-	bchg.b	d5,($FFFFFFFF).l
+	bchg.b	d2,$FFFFFFFE
+	bchg.b	d2,$FFFFFFFFFFFE
+	bchg.b	d2,$2
+	bchg.b	d5,($FFFFFFFE).l
 	bchg.b	d5,label_start.l
-	bchg.b	d5,$FFFFFFFF
-	bchg.b	d5,$1
-	bchg.b	d2,($FFFFFFFF).w
-	bchg.b	d2,$1
-	bchg.b	d5,($FFFFFFFF).w
-	bchg.b	d5,$1
+	bchg.b	d5,$FFFFFFFE
+	bchg.b	d5,$FFFFFFFFFFFE
+	bchg.b	d5,$2
+	bchg.b	d2,($FFFFFFFE).w
+	bchg.b	d2,$2
+	bchg.b	d5,($FFFFFFFE).w
+	bchg.b	d5,$2
 	bchg.b	d2,$7FFF(a2)
 	bchg.b	d2,$7FFF(a5)
 	bchg.b	d2,-2(sp)
@@ -3767,18 +3911,20 @@ label_start:
 	bchg	d5,-(a2)
 	bchg	d5,-(a5)
 	bchg	d5,-(sp)
-	bchg	d2,($FFFFFFFF).l
+	bchg	d2,($FFFFFFFE).l
 	bchg	d2,label_start.l
-	bchg	d2,$FFFFFFFF
-	bchg	d2,$1
-	bchg	d5,($FFFFFFFF).l
+	bchg	d2,$FFFFFFFE
+	bchg	d2,$FFFFFFFFFFFE
+	bchg	d2,$2
+	bchg	d5,($FFFFFFFE).l
 	bchg	d5,label_start.l
-	bchg	d5,$FFFFFFFF
-	bchg	d5,$1
-	bchg	d2,($FFFFFFFF).w
-	bchg	d2,$1
-	bchg	d5,($FFFFFFFF).w
-	bchg	d5,$1
+	bchg	d5,$FFFFFFFE
+	bchg	d5,$FFFFFFFFFFFE
+	bchg	d5,$2
+	bchg	d2,($FFFFFFFE).w
+	bchg	d2,$2
+	bchg	d5,($FFFFFFFE).w
+	bchg	d5,$2
 	bchg	d2,$7FFF(a2)
 	bchg	d2,$7FFF(a5)
 	bchg	d2,-2(sp)
@@ -3832,24 +3978,27 @@ label_start:
 	bchg.b	#"X",-(a2)
 	bchg.b	#"X",-(a5)
 	bchg.b	#"X",-(sp)
-	bchg.b	#0,($FFFFFFFF).l
+	bchg.b	#0,($FFFFFFFE).l
 	bchg.b	#0,label_start.l
-	bchg.b	#0,$FFFFFFFF
-	bchg.b	#0,$1
-	bchg.b	#$FF,($FFFFFFFF).l
+	bchg.b	#0,$FFFFFFFE
+	bchg.b	#0,$FFFFFFFFFFFE
+	bchg.b	#0,$2
+	bchg.b	#$FF,($FFFFFFFE).l
 	bchg.b	#$FF,label_start.l
-	bchg.b	#$FF,$FFFFFFFF
-	bchg.b	#$FF,$1
-	bchg.b	#"X",($FFFFFFFF).l
+	bchg.b	#$FF,$FFFFFFFE
+	bchg.b	#$FF,$FFFFFFFFFFFE
+	bchg.b	#$FF,$2
+	bchg.b	#"X",($FFFFFFFE).l
 	bchg.b	#"X",label_start.l
-	bchg.b	#"X",$FFFFFFFF
-	bchg.b	#"X",$1
-	bchg.b	#0,($FFFFFFFF).w
-	bchg.b	#0,$1
-	bchg.b	#$FF,($FFFFFFFF).w
-	bchg.b	#$FF,$1
-	bchg.b	#"X",($FFFFFFFF).w
-	bchg.b	#"X",$1
+	bchg.b	#"X",$FFFFFFFE
+	bchg.b	#"X",$FFFFFFFFFFFE
+	bchg.b	#"X",$2
+	bchg.b	#0,($FFFFFFFE).w
+	bchg.b	#0,$2
+	bchg.b	#$FF,($FFFFFFFE).w
+	bchg.b	#$FF,$2
+	bchg.b	#"X",($FFFFFFFE).w
+	bchg.b	#"X",$2
 	bchg.b	#0,$7FFF(a2)
 	bchg.b	#0,$7FFF(a5)
 	bchg.b	#0,-2(sp)
@@ -3901,24 +4050,27 @@ label_start:
 	bchg	#"X",-(a2)
 	bchg	#"X",-(a5)
 	bchg	#"X",-(sp)
-	bchg	#0,($FFFFFFFF).l
+	bchg	#0,($FFFFFFFE).l
 	bchg	#0,label_start.l
-	bchg	#0,$FFFFFFFF
-	bchg	#0,$1
-	bchg	#$FF,($FFFFFFFF).l
+	bchg	#0,$FFFFFFFE
+	bchg	#0,$FFFFFFFFFFFE
+	bchg	#0,$2
+	bchg	#$FF,($FFFFFFFE).l
 	bchg	#$FF,label_start.l
-	bchg	#$FF,$FFFFFFFF
-	bchg	#$FF,$1
-	bchg	#"X",($FFFFFFFF).l
+	bchg	#$FF,$FFFFFFFE
+	bchg	#$FF,$FFFFFFFFFFFE
+	bchg	#$FF,$2
+	bchg	#"X",($FFFFFFFE).l
 	bchg	#"X",label_start.l
-	bchg	#"X",$FFFFFFFF
-	bchg	#"X",$1
-	bchg	#0,($FFFFFFFF).w
-	bchg	#0,$1
-	bchg	#$FF,($FFFFFFFF).w
-	bchg	#$FF,$1
-	bchg	#"X",($FFFFFFFF).w
-	bchg	#"X",$1
+	bchg	#"X",$FFFFFFFE
+	bchg	#"X",$FFFFFFFFFFFE
+	bchg	#"X",$2
+	bchg	#0,($FFFFFFFE).w
+	bchg	#0,$2
+	bchg	#$FF,($FFFFFFFE).w
+	bchg	#$FF,$2
+	bchg	#"X",($FFFFFFFE).w
+	bchg	#"X",$2
 	bchg	#0,$7FFF(a2)
 	bchg	#0,$7FFF(a5)
 	bchg	#0,-2(sp)
@@ -3972,18 +4124,20 @@ label_start:
 	bclr.b	d5,-(a2)
 	bclr.b	d5,-(a5)
 	bclr.b	d5,-(sp)
-	bclr.b	d2,($FFFFFFFF).l
+	bclr.b	d2,($FFFFFFFE).l
 	bclr.b	d2,label_start.l
-	bclr.b	d2,$FFFFFFFF
-	bclr.b	d2,$1
-	bclr.b	d5,($FFFFFFFF).l
+	bclr.b	d2,$FFFFFFFE
+	bclr.b	d2,$FFFFFFFFFFFE
+	bclr.b	d2,$2
+	bclr.b	d5,($FFFFFFFE).l
 	bclr.b	d5,label_start.l
-	bclr.b	d5,$FFFFFFFF
-	bclr.b	d5,$1
-	bclr.b	d2,($FFFFFFFF).w
-	bclr.b	d2,$1
-	bclr.b	d5,($FFFFFFFF).w
-	bclr.b	d5,$1
+	bclr.b	d5,$FFFFFFFE
+	bclr.b	d5,$FFFFFFFFFFFE
+	bclr.b	d5,$2
+	bclr.b	d2,($FFFFFFFE).w
+	bclr.b	d2,$2
+	bclr.b	d5,($FFFFFFFE).w
+	bclr.b	d5,$2
 	bclr.b	d2,$7FFF(a2)
 	bclr.b	d2,$7FFF(a5)
 	bclr.b	d2,-2(sp)
@@ -4018,18 +4172,20 @@ label_start:
 	bclr	d5,-(a2)
 	bclr	d5,-(a5)
 	bclr	d5,-(sp)
-	bclr	d2,($FFFFFFFF).l
+	bclr	d2,($FFFFFFFE).l
 	bclr	d2,label_start.l
-	bclr	d2,$FFFFFFFF
-	bclr	d2,$1
-	bclr	d5,($FFFFFFFF).l
+	bclr	d2,$FFFFFFFE
+	bclr	d2,$FFFFFFFFFFFE
+	bclr	d2,$2
+	bclr	d5,($FFFFFFFE).l
 	bclr	d5,label_start.l
-	bclr	d5,$FFFFFFFF
-	bclr	d5,$1
-	bclr	d2,($FFFFFFFF).w
-	bclr	d2,$1
-	bclr	d5,($FFFFFFFF).w
-	bclr	d5,$1
+	bclr	d5,$FFFFFFFE
+	bclr	d5,$FFFFFFFFFFFE
+	bclr	d5,$2
+	bclr	d2,($FFFFFFFE).w
+	bclr	d2,$2
+	bclr	d5,($FFFFFFFE).w
+	bclr	d5,$2
 	bclr	d2,$7FFF(a2)
 	bclr	d2,$7FFF(a5)
 	bclr	d2,-2(sp)
@@ -4083,24 +4239,27 @@ label_start:
 	bclr.b	#"X",-(a2)
 	bclr.b	#"X",-(a5)
 	bclr.b	#"X",-(sp)
-	bclr.b	#0,($FFFFFFFF).l
+	bclr.b	#0,($FFFFFFFE).l
 	bclr.b	#0,label_start.l
-	bclr.b	#0,$FFFFFFFF
-	bclr.b	#0,$1
-	bclr.b	#$FF,($FFFFFFFF).l
+	bclr.b	#0,$FFFFFFFE
+	bclr.b	#0,$FFFFFFFFFFFE
+	bclr.b	#0,$2
+	bclr.b	#$FF,($FFFFFFFE).l
 	bclr.b	#$FF,label_start.l
-	bclr.b	#$FF,$FFFFFFFF
-	bclr.b	#$FF,$1
-	bclr.b	#"X",($FFFFFFFF).l
+	bclr.b	#$FF,$FFFFFFFE
+	bclr.b	#$FF,$FFFFFFFFFFFE
+	bclr.b	#$FF,$2
+	bclr.b	#"X",($FFFFFFFE).l
 	bclr.b	#"X",label_start.l
-	bclr.b	#"X",$FFFFFFFF
-	bclr.b	#"X",$1
-	bclr.b	#0,($FFFFFFFF).w
-	bclr.b	#0,$1
-	bclr.b	#$FF,($FFFFFFFF).w
-	bclr.b	#$FF,$1
-	bclr.b	#"X",($FFFFFFFF).w
-	bclr.b	#"X",$1
+	bclr.b	#"X",$FFFFFFFE
+	bclr.b	#"X",$FFFFFFFFFFFE
+	bclr.b	#"X",$2
+	bclr.b	#0,($FFFFFFFE).w
+	bclr.b	#0,$2
+	bclr.b	#$FF,($FFFFFFFE).w
+	bclr.b	#$FF,$2
+	bclr.b	#"X",($FFFFFFFE).w
+	bclr.b	#"X",$2
 	bclr.b	#0,$7FFF(a2)
 	bclr.b	#0,$7FFF(a5)
 	bclr.b	#0,-2(sp)
@@ -4152,24 +4311,27 @@ label_start:
 	bclr	#"X",-(a2)
 	bclr	#"X",-(a5)
 	bclr	#"X",-(sp)
-	bclr	#0,($FFFFFFFF).l
+	bclr	#0,($FFFFFFFE).l
 	bclr	#0,label_start.l
-	bclr	#0,$FFFFFFFF
-	bclr	#0,$1
-	bclr	#$FF,($FFFFFFFF).l
+	bclr	#0,$FFFFFFFE
+	bclr	#0,$FFFFFFFFFFFE
+	bclr	#0,$2
+	bclr	#$FF,($FFFFFFFE).l
 	bclr	#$FF,label_start.l
-	bclr	#$FF,$FFFFFFFF
-	bclr	#$FF,$1
-	bclr	#"X",($FFFFFFFF).l
+	bclr	#$FF,$FFFFFFFE
+	bclr	#$FF,$FFFFFFFFFFFE
+	bclr	#$FF,$2
+	bclr	#"X",($FFFFFFFE).l
 	bclr	#"X",label_start.l
-	bclr	#"X",$FFFFFFFF
-	bclr	#"X",$1
-	bclr	#0,($FFFFFFFF).w
-	bclr	#0,$1
-	bclr	#$FF,($FFFFFFFF).w
-	bclr	#$FF,$1
-	bclr	#"X",($FFFFFFFF).w
-	bclr	#"X",$1
+	bclr	#"X",$FFFFFFFE
+	bclr	#"X",$FFFFFFFFFFFE
+	bclr	#"X",$2
+	bclr	#0,($FFFFFFFE).w
+	bclr	#0,$2
+	bclr	#$FF,($FFFFFFFE).w
+	bclr	#$FF,$2
+	bclr	#"X",($FFFFFFFE).w
+	bclr	#"X",$2
 	bclr	#0,$7FFF(a2)
 	bclr	#0,$7FFF(a5)
 	bclr	#0,-2(sp)
@@ -4223,18 +4385,20 @@ label_start:
 	bset.b	d5,-(a2)
 	bset.b	d5,-(a5)
 	bset.b	d5,-(sp)
-	bset.b	d2,($FFFFFFFF).l
+	bset.b	d2,($FFFFFFFE).l
 	bset.b	d2,label_start.l
-	bset.b	d2,$FFFFFFFF
-	bset.b	d2,$1
-	bset.b	d5,($FFFFFFFF).l
+	bset.b	d2,$FFFFFFFE
+	bset.b	d2,$FFFFFFFFFFFE
+	bset.b	d2,$2
+	bset.b	d5,($FFFFFFFE).l
 	bset.b	d5,label_start.l
-	bset.b	d5,$FFFFFFFF
-	bset.b	d5,$1
-	bset.b	d2,($FFFFFFFF).w
-	bset.b	d2,$1
-	bset.b	d5,($FFFFFFFF).w
-	bset.b	d5,$1
+	bset.b	d5,$FFFFFFFE
+	bset.b	d5,$FFFFFFFFFFFE
+	bset.b	d5,$2
+	bset.b	d2,($FFFFFFFE).w
+	bset.b	d2,$2
+	bset.b	d5,($FFFFFFFE).w
+	bset.b	d5,$2
 	bset.b	d2,$7FFF(a2)
 	bset.b	d2,$7FFF(a5)
 	bset.b	d2,-2(sp)
@@ -4269,18 +4433,20 @@ label_start:
 	bset	d5,-(a2)
 	bset	d5,-(a5)
 	bset	d5,-(sp)
-	bset	d2,($FFFFFFFF).l
+	bset	d2,($FFFFFFFE).l
 	bset	d2,label_start.l
-	bset	d2,$FFFFFFFF
-	bset	d2,$1
-	bset	d5,($FFFFFFFF).l
+	bset	d2,$FFFFFFFE
+	bset	d2,$FFFFFFFFFFFE
+	bset	d2,$2
+	bset	d5,($FFFFFFFE).l
 	bset	d5,label_start.l
-	bset	d5,$FFFFFFFF
-	bset	d5,$1
-	bset	d2,($FFFFFFFF).w
-	bset	d2,$1
-	bset	d5,($FFFFFFFF).w
-	bset	d5,$1
+	bset	d5,$FFFFFFFE
+	bset	d5,$FFFFFFFFFFFE
+	bset	d5,$2
+	bset	d2,($FFFFFFFE).w
+	bset	d2,$2
+	bset	d5,($FFFFFFFE).w
+	bset	d5,$2
 	bset	d2,$7FFF(a2)
 	bset	d2,$7FFF(a5)
 	bset	d2,-2(sp)
@@ -4334,24 +4500,27 @@ label_start:
 	bset.b	#"X",-(a2)
 	bset.b	#"X",-(a5)
 	bset.b	#"X",-(sp)
-	bset.b	#0,($FFFFFFFF).l
+	bset.b	#0,($FFFFFFFE).l
 	bset.b	#0,label_start.l
-	bset.b	#0,$FFFFFFFF
-	bset.b	#0,$1
-	bset.b	#$FF,($FFFFFFFF).l
+	bset.b	#0,$FFFFFFFE
+	bset.b	#0,$FFFFFFFFFFFE
+	bset.b	#0,$2
+	bset.b	#$FF,($FFFFFFFE).l
 	bset.b	#$FF,label_start.l
-	bset.b	#$FF,$FFFFFFFF
-	bset.b	#$FF,$1
-	bset.b	#"X",($FFFFFFFF).l
+	bset.b	#$FF,$FFFFFFFE
+	bset.b	#$FF,$FFFFFFFFFFFE
+	bset.b	#$FF,$2
+	bset.b	#"X",($FFFFFFFE).l
 	bset.b	#"X",label_start.l
-	bset.b	#"X",$FFFFFFFF
-	bset.b	#"X",$1
-	bset.b	#0,($FFFFFFFF).w
-	bset.b	#0,$1
-	bset.b	#$FF,($FFFFFFFF).w
-	bset.b	#$FF,$1
-	bset.b	#"X",($FFFFFFFF).w
-	bset.b	#"X",$1
+	bset.b	#"X",$FFFFFFFE
+	bset.b	#"X",$FFFFFFFFFFFE
+	bset.b	#"X",$2
+	bset.b	#0,($FFFFFFFE).w
+	bset.b	#0,$2
+	bset.b	#$FF,($FFFFFFFE).w
+	bset.b	#$FF,$2
+	bset.b	#"X",($FFFFFFFE).w
+	bset.b	#"X",$2
 	bset.b	#0,$7FFF(a2)
 	bset.b	#0,$7FFF(a5)
 	bset.b	#0,-2(sp)
@@ -4403,24 +4572,27 @@ label_start:
 	bset	#"X",-(a2)
 	bset	#"X",-(a5)
 	bset	#"X",-(sp)
-	bset	#0,($FFFFFFFF).l
+	bset	#0,($FFFFFFFE).l
 	bset	#0,label_start.l
-	bset	#0,$FFFFFFFF
-	bset	#0,$1
-	bset	#$FF,($FFFFFFFF).l
+	bset	#0,$FFFFFFFE
+	bset	#0,$FFFFFFFFFFFE
+	bset	#0,$2
+	bset	#$FF,($FFFFFFFE).l
 	bset	#$FF,label_start.l
-	bset	#$FF,$FFFFFFFF
-	bset	#$FF,$1
-	bset	#"X",($FFFFFFFF).l
+	bset	#$FF,$FFFFFFFE
+	bset	#$FF,$FFFFFFFFFFFE
+	bset	#$FF,$2
+	bset	#"X",($FFFFFFFE).l
 	bset	#"X",label_start.l
-	bset	#"X",$FFFFFFFF
-	bset	#"X",$1
-	bset	#0,($FFFFFFFF).w
-	bset	#0,$1
-	bset	#$FF,($FFFFFFFF).w
-	bset	#$FF,$1
-	bset	#"X",($FFFFFFFF).w
-	bset	#"X",$1
+	bset	#"X",$FFFFFFFE
+	bset	#"X",$FFFFFFFFFFFE
+	bset	#"X",$2
+	bset	#0,($FFFFFFFE).w
+	bset	#0,$2
+	bset	#$FF,($FFFFFFFE).w
+	bset	#$FF,$2
+	bset	#"X",($FFFFFFFE).w
+	bset	#"X",$2
 	bset	#0,$7FFF(a2)
 	bset	#0,$7FFF(a5)
 	bset	#0,-2(sp)
@@ -4459,12 +4631,13 @@ label_start:
 	st.b	-(a2)
 	st.b	-(a5)
 	st.b	-(sp)
-	st.b	($FFFFFFFF).l
+	st.b	($FFFFFFFE).l
 	st.b	label_start.l
-	st.b	$FFFFFFFF
-	st.b	$1
-	st.b	($FFFFFFFF).w
-	st.b	$1
+	st.b	$FFFFFFFE
+	st.b	$FFFFFFFFFFFE
+	st.b	$2
+	st.b	($FFFFFFFE).w
+	st.b	$2
 	st.b	$7FFF(a2)
 	st.b	$7FFF(a5)
 	st.b	-2(sp)
@@ -4484,12 +4657,13 @@ label_start:
 	st	-(a2)
 	st	-(a5)
 	st	-(sp)
-	st	($FFFFFFFF).l
+	st	($FFFFFFFE).l
 	st	label_start.l
-	st	$FFFFFFFF
-	st	$1
-	st	($FFFFFFFF).w
-	st	$1
+	st	$FFFFFFFE
+	st	$FFFFFFFFFFFE
+	st	$2
+	st	($FFFFFFFE).w
+	st	$2
 	st	$7FFF(a2)
 	st	$7FFF(a5)
 	st	-2(sp)
@@ -4510,12 +4684,13 @@ label_start:
 	sf.b	-(a2)
 	sf.b	-(a5)
 	sf.b	-(sp)
-	sf.b	($FFFFFFFF).l
+	sf.b	($FFFFFFFE).l
 	sf.b	label_start.l
-	sf.b	$FFFFFFFF
-	sf.b	$1
-	sf.b	($FFFFFFFF).w
-	sf.b	$1
+	sf.b	$FFFFFFFE
+	sf.b	$FFFFFFFFFFFE
+	sf.b	$2
+	sf.b	($FFFFFFFE).w
+	sf.b	$2
 	sf.b	$7FFF(a2)
 	sf.b	$7FFF(a5)
 	sf.b	-2(sp)
@@ -4535,12 +4710,13 @@ label_start:
 	sf	-(a2)
 	sf	-(a5)
 	sf	-(sp)
-	sf	($FFFFFFFF).l
+	sf	($FFFFFFFE).l
 	sf	label_start.l
-	sf	$FFFFFFFF
-	sf	$1
-	sf	($FFFFFFFF).w
-	sf	$1
+	sf	$FFFFFFFE
+	sf	$FFFFFFFFFFFE
+	sf	$2
+	sf	($FFFFFFFE).w
+	sf	$2
 	sf	$7FFF(a2)
 	sf	$7FFF(a5)
 	sf	-2(sp)
@@ -4561,12 +4737,13 @@ label_start:
 	shi.b	-(a2)
 	shi.b	-(a5)
 	shi.b	-(sp)
-	shi.b	($FFFFFFFF).l
+	shi.b	($FFFFFFFE).l
 	shi.b	label_start.l
-	shi.b	$FFFFFFFF
-	shi.b	$1
-	shi.b	($FFFFFFFF).w
-	shi.b	$1
+	shi.b	$FFFFFFFE
+	shi.b	$FFFFFFFFFFFE
+	shi.b	$2
+	shi.b	($FFFFFFFE).w
+	shi.b	$2
 	shi.b	$7FFF(a2)
 	shi.b	$7FFF(a5)
 	shi.b	-2(sp)
@@ -4586,12 +4763,13 @@ label_start:
 	shi	-(a2)
 	shi	-(a5)
 	shi	-(sp)
-	shi	($FFFFFFFF).l
+	shi	($FFFFFFFE).l
 	shi	label_start.l
-	shi	$FFFFFFFF
-	shi	$1
-	shi	($FFFFFFFF).w
-	shi	$1
+	shi	$FFFFFFFE
+	shi	$FFFFFFFFFFFE
+	shi	$2
+	shi	($FFFFFFFE).w
+	shi	$2
 	shi	$7FFF(a2)
 	shi	$7FFF(a5)
 	shi	-2(sp)
@@ -4612,12 +4790,13 @@ label_start:
 	sls.b	-(a2)
 	sls.b	-(a5)
 	sls.b	-(sp)
-	sls.b	($FFFFFFFF).l
+	sls.b	($FFFFFFFE).l
 	sls.b	label_start.l
-	sls.b	$FFFFFFFF
-	sls.b	$1
-	sls.b	($FFFFFFFF).w
-	sls.b	$1
+	sls.b	$FFFFFFFE
+	sls.b	$FFFFFFFFFFFE
+	sls.b	$2
+	sls.b	($FFFFFFFE).w
+	sls.b	$2
 	sls.b	$7FFF(a2)
 	sls.b	$7FFF(a5)
 	sls.b	-2(sp)
@@ -4637,12 +4816,13 @@ label_start:
 	sls	-(a2)
 	sls	-(a5)
 	sls	-(sp)
-	sls	($FFFFFFFF).l
+	sls	($FFFFFFFE).l
 	sls	label_start.l
-	sls	$FFFFFFFF
-	sls	$1
-	sls	($FFFFFFFF).w
-	sls	$1
+	sls	$FFFFFFFE
+	sls	$FFFFFFFFFFFE
+	sls	$2
+	sls	($FFFFFFFE).w
+	sls	$2
 	sls	$7FFF(a2)
 	sls	$7FFF(a5)
 	sls	-2(sp)
@@ -4663,12 +4843,13 @@ label_start:
 	scc.b	-(a2)
 	scc.b	-(a5)
 	scc.b	-(sp)
-	scc.b	($FFFFFFFF).l
+	scc.b	($FFFFFFFE).l
 	scc.b	label_start.l
-	scc.b	$FFFFFFFF
-	scc.b	$1
-	scc.b	($FFFFFFFF).w
-	scc.b	$1
+	scc.b	$FFFFFFFE
+	scc.b	$FFFFFFFFFFFE
+	scc.b	$2
+	scc.b	($FFFFFFFE).w
+	scc.b	$2
 	scc.b	$7FFF(a2)
 	scc.b	$7FFF(a5)
 	scc.b	-2(sp)
@@ -4688,12 +4869,13 @@ label_start:
 	scc	-(a2)
 	scc	-(a5)
 	scc	-(sp)
-	scc	($FFFFFFFF).l
+	scc	($FFFFFFFE).l
 	scc	label_start.l
-	scc	$FFFFFFFF
-	scc	$1
-	scc	($FFFFFFFF).w
-	scc	$1
+	scc	$FFFFFFFE
+	scc	$FFFFFFFFFFFE
+	scc	$2
+	scc	($FFFFFFFE).w
+	scc	$2
 	scc	$7FFF(a2)
 	scc	$7FFF(a5)
 	scc	-2(sp)
@@ -4714,12 +4896,13 @@ label_start:
 	scs.b	-(a2)
 	scs.b	-(a5)
 	scs.b	-(sp)
-	scs.b	($FFFFFFFF).l
+	scs.b	($FFFFFFFE).l
 	scs.b	label_start.l
-	scs.b	$FFFFFFFF
-	scs.b	$1
-	scs.b	($FFFFFFFF).w
-	scs.b	$1
+	scs.b	$FFFFFFFE
+	scs.b	$FFFFFFFFFFFE
+	scs.b	$2
+	scs.b	($FFFFFFFE).w
+	scs.b	$2
 	scs.b	$7FFF(a2)
 	scs.b	$7FFF(a5)
 	scs.b	-2(sp)
@@ -4739,12 +4922,13 @@ label_start:
 	scs	-(a2)
 	scs	-(a5)
 	scs	-(sp)
-	scs	($FFFFFFFF).l
+	scs	($FFFFFFFE).l
 	scs	label_start.l
-	scs	$FFFFFFFF
-	scs	$1
-	scs	($FFFFFFFF).w
-	scs	$1
+	scs	$FFFFFFFE
+	scs	$FFFFFFFFFFFE
+	scs	$2
+	scs	($FFFFFFFE).w
+	scs	$2
 	scs	$7FFF(a2)
 	scs	$7FFF(a5)
 	scs	-2(sp)
@@ -4765,12 +4949,13 @@ label_start:
 	sne.b	-(a2)
 	sne.b	-(a5)
 	sne.b	-(sp)
-	sne.b	($FFFFFFFF).l
+	sne.b	($FFFFFFFE).l
 	sne.b	label_start.l
-	sne.b	$FFFFFFFF
-	sne.b	$1
-	sne.b	($FFFFFFFF).w
-	sne.b	$1
+	sne.b	$FFFFFFFE
+	sne.b	$FFFFFFFFFFFE
+	sne.b	$2
+	sne.b	($FFFFFFFE).w
+	sne.b	$2
 	sne.b	$7FFF(a2)
 	sne.b	$7FFF(a5)
 	sne.b	-2(sp)
@@ -4790,12 +4975,13 @@ label_start:
 	sne	-(a2)
 	sne	-(a5)
 	sne	-(sp)
-	sne	($FFFFFFFF).l
+	sne	($FFFFFFFE).l
 	sne	label_start.l
-	sne	$FFFFFFFF
-	sne	$1
-	sne	($FFFFFFFF).w
-	sne	$1
+	sne	$FFFFFFFE
+	sne	$FFFFFFFFFFFE
+	sne	$2
+	sne	($FFFFFFFE).w
+	sne	$2
 	sne	$7FFF(a2)
 	sne	$7FFF(a5)
 	sne	-2(sp)
@@ -4816,12 +5002,13 @@ label_start:
 	seq.b	-(a2)
 	seq.b	-(a5)
 	seq.b	-(sp)
-	seq.b	($FFFFFFFF).l
+	seq.b	($FFFFFFFE).l
 	seq.b	label_start.l
-	seq.b	$FFFFFFFF
-	seq.b	$1
-	seq.b	($FFFFFFFF).w
-	seq.b	$1
+	seq.b	$FFFFFFFE
+	seq.b	$FFFFFFFFFFFE
+	seq.b	$2
+	seq.b	($FFFFFFFE).w
+	seq.b	$2
 	seq.b	$7FFF(a2)
 	seq.b	$7FFF(a5)
 	seq.b	-2(sp)
@@ -4841,12 +5028,13 @@ label_start:
 	seq	-(a2)
 	seq	-(a5)
 	seq	-(sp)
-	seq	($FFFFFFFF).l
+	seq	($FFFFFFFE).l
 	seq	label_start.l
-	seq	$FFFFFFFF
-	seq	$1
-	seq	($FFFFFFFF).w
-	seq	$1
+	seq	$FFFFFFFE
+	seq	$FFFFFFFFFFFE
+	seq	$2
+	seq	($FFFFFFFE).w
+	seq	$2
 	seq	$7FFF(a2)
 	seq	$7FFF(a5)
 	seq	-2(sp)
@@ -4867,12 +5055,13 @@ label_start:
 	svc.b	-(a2)
 	svc.b	-(a5)
 	svc.b	-(sp)
-	svc.b	($FFFFFFFF).l
+	svc.b	($FFFFFFFE).l
 	svc.b	label_start.l
-	svc.b	$FFFFFFFF
-	svc.b	$1
-	svc.b	($FFFFFFFF).w
-	svc.b	$1
+	svc.b	$FFFFFFFE
+	svc.b	$FFFFFFFFFFFE
+	svc.b	$2
+	svc.b	($FFFFFFFE).w
+	svc.b	$2
 	svc.b	$7FFF(a2)
 	svc.b	$7FFF(a5)
 	svc.b	-2(sp)
@@ -4892,12 +5081,13 @@ label_start:
 	svc	-(a2)
 	svc	-(a5)
 	svc	-(sp)
-	svc	($FFFFFFFF).l
+	svc	($FFFFFFFE).l
 	svc	label_start.l
-	svc	$FFFFFFFF
-	svc	$1
-	svc	($FFFFFFFF).w
-	svc	$1
+	svc	$FFFFFFFE
+	svc	$FFFFFFFFFFFE
+	svc	$2
+	svc	($FFFFFFFE).w
+	svc	$2
 	svc	$7FFF(a2)
 	svc	$7FFF(a5)
 	svc	-2(sp)
@@ -4918,12 +5108,13 @@ label_start:
 	svs.b	-(a2)
 	svs.b	-(a5)
 	svs.b	-(sp)
-	svs.b	($FFFFFFFF).l
+	svs.b	($FFFFFFFE).l
 	svs.b	label_start.l
-	svs.b	$FFFFFFFF
-	svs.b	$1
-	svs.b	($FFFFFFFF).w
-	svs.b	$1
+	svs.b	$FFFFFFFE
+	svs.b	$FFFFFFFFFFFE
+	svs.b	$2
+	svs.b	($FFFFFFFE).w
+	svs.b	$2
 	svs.b	$7FFF(a2)
 	svs.b	$7FFF(a5)
 	svs.b	-2(sp)
@@ -4943,12 +5134,13 @@ label_start:
 	svs	-(a2)
 	svs	-(a5)
 	svs	-(sp)
-	svs	($FFFFFFFF).l
+	svs	($FFFFFFFE).l
 	svs	label_start.l
-	svs	$FFFFFFFF
-	svs	$1
-	svs	($FFFFFFFF).w
-	svs	$1
+	svs	$FFFFFFFE
+	svs	$FFFFFFFFFFFE
+	svs	$2
+	svs	($FFFFFFFE).w
+	svs	$2
 	svs	$7FFF(a2)
 	svs	$7FFF(a5)
 	svs	-2(sp)
@@ -4969,12 +5161,13 @@ label_start:
 	spl.b	-(a2)
 	spl.b	-(a5)
 	spl.b	-(sp)
-	spl.b	($FFFFFFFF).l
+	spl.b	($FFFFFFFE).l
 	spl.b	label_start.l
-	spl.b	$FFFFFFFF
-	spl.b	$1
-	spl.b	($FFFFFFFF).w
-	spl.b	$1
+	spl.b	$FFFFFFFE
+	spl.b	$FFFFFFFFFFFE
+	spl.b	$2
+	spl.b	($FFFFFFFE).w
+	spl.b	$2
 	spl.b	$7FFF(a2)
 	spl.b	$7FFF(a5)
 	spl.b	-2(sp)
@@ -4994,12 +5187,13 @@ label_start:
 	spl	-(a2)
 	spl	-(a5)
 	spl	-(sp)
-	spl	($FFFFFFFF).l
+	spl	($FFFFFFFE).l
 	spl	label_start.l
-	spl	$FFFFFFFF
-	spl	$1
-	spl	($FFFFFFFF).w
-	spl	$1
+	spl	$FFFFFFFE
+	spl	$FFFFFFFFFFFE
+	spl	$2
+	spl	($FFFFFFFE).w
+	spl	$2
 	spl	$7FFF(a2)
 	spl	$7FFF(a5)
 	spl	-2(sp)
@@ -5020,12 +5214,13 @@ label_start:
 	smi.b	-(a2)
 	smi.b	-(a5)
 	smi.b	-(sp)
-	smi.b	($FFFFFFFF).l
+	smi.b	($FFFFFFFE).l
 	smi.b	label_start.l
-	smi.b	$FFFFFFFF
-	smi.b	$1
-	smi.b	($FFFFFFFF).w
-	smi.b	$1
+	smi.b	$FFFFFFFE
+	smi.b	$FFFFFFFFFFFE
+	smi.b	$2
+	smi.b	($FFFFFFFE).w
+	smi.b	$2
 	smi.b	$7FFF(a2)
 	smi.b	$7FFF(a5)
 	smi.b	-2(sp)
@@ -5045,12 +5240,13 @@ label_start:
 	smi	-(a2)
 	smi	-(a5)
 	smi	-(sp)
-	smi	($FFFFFFFF).l
+	smi	($FFFFFFFE).l
 	smi	label_start.l
-	smi	$FFFFFFFF
-	smi	$1
-	smi	($FFFFFFFF).w
-	smi	$1
+	smi	$FFFFFFFE
+	smi	$FFFFFFFFFFFE
+	smi	$2
+	smi	($FFFFFFFE).w
+	smi	$2
 	smi	$7FFF(a2)
 	smi	$7FFF(a5)
 	smi	-2(sp)
@@ -5071,12 +5267,13 @@ label_start:
 	sge.b	-(a2)
 	sge.b	-(a5)
 	sge.b	-(sp)
-	sge.b	($FFFFFFFF).l
+	sge.b	($FFFFFFFE).l
 	sge.b	label_start.l
-	sge.b	$FFFFFFFF
-	sge.b	$1
-	sge.b	($FFFFFFFF).w
-	sge.b	$1
+	sge.b	$FFFFFFFE
+	sge.b	$FFFFFFFFFFFE
+	sge.b	$2
+	sge.b	($FFFFFFFE).w
+	sge.b	$2
 	sge.b	$7FFF(a2)
 	sge.b	$7FFF(a5)
 	sge.b	-2(sp)
@@ -5096,12 +5293,13 @@ label_start:
 	sge	-(a2)
 	sge	-(a5)
 	sge	-(sp)
-	sge	($FFFFFFFF).l
+	sge	($FFFFFFFE).l
 	sge	label_start.l
-	sge	$FFFFFFFF
-	sge	$1
-	sge	($FFFFFFFF).w
-	sge	$1
+	sge	$FFFFFFFE
+	sge	$FFFFFFFFFFFE
+	sge	$2
+	sge	($FFFFFFFE).w
+	sge	$2
 	sge	$7FFF(a2)
 	sge	$7FFF(a5)
 	sge	-2(sp)
@@ -5122,12 +5320,13 @@ label_start:
 	slt.b	-(a2)
 	slt.b	-(a5)
 	slt.b	-(sp)
-	slt.b	($FFFFFFFF).l
+	slt.b	($FFFFFFFE).l
 	slt.b	label_start.l
-	slt.b	$FFFFFFFF
-	slt.b	$1
-	slt.b	($FFFFFFFF).w
-	slt.b	$1
+	slt.b	$FFFFFFFE
+	slt.b	$FFFFFFFFFFFE
+	slt.b	$2
+	slt.b	($FFFFFFFE).w
+	slt.b	$2
 	slt.b	$7FFF(a2)
 	slt.b	$7FFF(a5)
 	slt.b	-2(sp)
@@ -5147,12 +5346,13 @@ label_start:
 	slt	-(a2)
 	slt	-(a5)
 	slt	-(sp)
-	slt	($FFFFFFFF).l
+	slt	($FFFFFFFE).l
 	slt	label_start.l
-	slt	$FFFFFFFF
-	slt	$1
-	slt	($FFFFFFFF).w
-	slt	$1
+	slt	$FFFFFFFE
+	slt	$FFFFFFFFFFFE
+	slt	$2
+	slt	($FFFFFFFE).w
+	slt	$2
 	slt	$7FFF(a2)
 	slt	$7FFF(a5)
 	slt	-2(sp)
@@ -5173,12 +5373,13 @@ label_start:
 	sgt.b	-(a2)
 	sgt.b	-(a5)
 	sgt.b	-(sp)
-	sgt.b	($FFFFFFFF).l
+	sgt.b	($FFFFFFFE).l
 	sgt.b	label_start.l
-	sgt.b	$FFFFFFFF
-	sgt.b	$1
-	sgt.b	($FFFFFFFF).w
-	sgt.b	$1
+	sgt.b	$FFFFFFFE
+	sgt.b	$FFFFFFFFFFFE
+	sgt.b	$2
+	sgt.b	($FFFFFFFE).w
+	sgt.b	$2
 	sgt.b	$7FFF(a2)
 	sgt.b	$7FFF(a5)
 	sgt.b	-2(sp)
@@ -5198,12 +5399,13 @@ label_start:
 	sgt	-(a2)
 	sgt	-(a5)
 	sgt	-(sp)
-	sgt	($FFFFFFFF).l
+	sgt	($FFFFFFFE).l
 	sgt	label_start.l
-	sgt	$FFFFFFFF
-	sgt	$1
-	sgt	($FFFFFFFF).w
-	sgt	$1
+	sgt	$FFFFFFFE
+	sgt	$FFFFFFFFFFFE
+	sgt	$2
+	sgt	($FFFFFFFE).w
+	sgt	$2
 	sgt	$7FFF(a2)
 	sgt	$7FFF(a5)
 	sgt	-2(sp)
@@ -5224,12 +5426,13 @@ label_start:
 	sle.b	-(a2)
 	sle.b	-(a5)
 	sle.b	-(sp)
-	sle.b	($FFFFFFFF).l
+	sle.b	($FFFFFFFE).l
 	sle.b	label_start.l
-	sle.b	$FFFFFFFF
-	sle.b	$1
-	sle.b	($FFFFFFFF).w
-	sle.b	$1
+	sle.b	$FFFFFFFE
+	sle.b	$FFFFFFFFFFFE
+	sle.b	$2
+	sle.b	($FFFFFFFE).w
+	sle.b	$2
 	sle.b	$7FFF(a2)
 	sle.b	$7FFF(a5)
 	sle.b	-2(sp)
@@ -5249,12 +5452,13 @@ label_start:
 	sle	-(a2)
 	sle	-(a5)
 	sle	-(sp)
-	sle	($FFFFFFFF).l
+	sle	($FFFFFFFE).l
 	sle	label_start.l
-	sle	$FFFFFFFF
-	sle	$1
-	sle	($FFFFFFFF).w
-	sle	$1
+	sle	$FFFFFFFE
+	sle	$FFFFFFFFFFFE
+	sle	$2
+	sle	($FFFFFFFE).w
+	sle	$2
 	sle	$7FFF(a2)
 	sle	$7FFF(a5)
 	sle	-2(sp)
@@ -5275,12 +5479,13 @@ label_start:
 	shs.b	-(a2)
 	shs.b	-(a5)
 	shs.b	-(sp)
-	shs.b	($FFFFFFFF).l
+	shs.b	($FFFFFFFE).l
 	shs.b	label_start.l
-	shs.b	$FFFFFFFF
-	shs.b	$1
-	shs.b	($FFFFFFFF).w
-	shs.b	$1
+	shs.b	$FFFFFFFE
+	shs.b	$FFFFFFFFFFFE
+	shs.b	$2
+	shs.b	($FFFFFFFE).w
+	shs.b	$2
 	shs.b	$7FFF(a2)
 	shs.b	$7FFF(a5)
 	shs.b	-2(sp)
@@ -5300,12 +5505,13 @@ label_start:
 	shs	-(a2)
 	shs	-(a5)
 	shs	-(sp)
-	shs	($FFFFFFFF).l
+	shs	($FFFFFFFE).l
 	shs	label_start.l
-	shs	$FFFFFFFF
-	shs	$1
-	shs	($FFFFFFFF).w
-	shs	$1
+	shs	$FFFFFFFE
+	shs	$FFFFFFFFFFFE
+	shs	$2
+	shs	($FFFFFFFE).w
+	shs	$2
 	shs	$7FFF(a2)
 	shs	$7FFF(a5)
 	shs	-2(sp)
@@ -5326,12 +5532,13 @@ label_start:
 	slo.b	-(a2)
 	slo.b	-(a5)
 	slo.b	-(sp)
-	slo.b	($FFFFFFFF).l
+	slo.b	($FFFFFFFE).l
 	slo.b	label_start.l
-	slo.b	$FFFFFFFF
-	slo.b	$1
-	slo.b	($FFFFFFFF).w
-	slo.b	$1
+	slo.b	$FFFFFFFE
+	slo.b	$FFFFFFFFFFFE
+	slo.b	$2
+	slo.b	($FFFFFFFE).w
+	slo.b	$2
 	slo.b	$7FFF(a2)
 	slo.b	$7FFF(a5)
 	slo.b	-2(sp)
@@ -5351,12 +5558,13 @@ label_start:
 	slo	-(a2)
 	slo	-(a5)
 	slo	-(sp)
-	slo	($FFFFFFFF).l
+	slo	($FFFFFFFE).l
 	slo	label_start.l
-	slo	$FFFFFFFF
-	slo	$1
-	slo	($FFFFFFFF).w
-	slo	$1
+	slo	$FFFFFFFE
+	slo	$FFFFFFFFFFFE
+	slo	$2
+	slo	($FFFFFFFE).w
+	slo	$2
 	slo	$7FFF(a2)
 	slo	$7FFF(a5)
 	slo	-2(sp)
@@ -5749,24 +5957,27 @@ label_start:
 	movea.w	-(sp),a2
 	movea.w	-(sp),a7
 	movea.w	-(sp),sp
-	movea.w	($FFFFFFFF).l,a2
-	movea.w	($FFFFFFFF).l,a7
-	movea.w	($FFFFFFFF).l,sp
+	movea.w	($FFFFFFFE).l,a2
+	movea.w	($FFFFFFFE).l,a7
+	movea.w	($FFFFFFFE).l,sp
 	movea.w	label_start.l,a2
 	movea.w	label_start.l,a7
 	movea.w	label_start.l,sp
-	movea.w	$FFFFFFFF,a2
-	movea.w	$FFFFFFFF,a7
-	movea.w	$FFFFFFFF,sp
-	movea.w	$1,a2
-	movea.w	$1,a7
-	movea.w	$1,sp
-	movea.w	($FFFFFFFF).w,a2
-	movea.w	($FFFFFFFF).w,a7
-	movea.w	($FFFFFFFF).w,sp
-	movea.w	$1,a2
-	movea.w	$1,a7
-	movea.w	$1,sp
+	movea.w	$FFFFFFFE,a2
+	movea.w	$FFFFFFFE,a7
+	movea.w	$FFFFFFFE,sp
+	movea.w	$FFFFFFFFFFFE,a2
+	movea.w	$FFFFFFFFFFFE,a7
+	movea.w	$FFFFFFFFFFFE,sp
+	movea.w	$2,a2
+	movea.w	$2,a7
+	movea.w	$2,sp
+	movea.w	($FFFFFFFE).w,a2
+	movea.w	($FFFFFFFE).w,a7
+	movea.w	($FFFFFFFE).w,sp
+	movea.w	$2,a2
+	movea.w	$2,a7
+	movea.w	$2,sp
 	movea.w	a2,a2
 	movea.w	a2,a7
 	movea.w	a2,sp
@@ -5869,24 +6080,27 @@ label_start:
 	movea.l	-(sp),a2
 	movea.l	-(sp),a7
 	movea.l	-(sp),sp
-	movea.l	($FFFFFFFF).l,a2
-	movea.l	($FFFFFFFF).l,a7
-	movea.l	($FFFFFFFF).l,sp
+	movea.l	($FFFFFFFE).l,a2
+	movea.l	($FFFFFFFE).l,a7
+	movea.l	($FFFFFFFE).l,sp
 	movea.l	label_start.l,a2
 	movea.l	label_start.l,a7
 	movea.l	label_start.l,sp
-	movea.l	$FFFFFFFF,a2
-	movea.l	$FFFFFFFF,a7
-	movea.l	$FFFFFFFF,sp
-	movea.l	$1,a2
-	movea.l	$1,a7
-	movea.l	$1,sp
-	movea.l	($FFFFFFFF).w,a2
-	movea.l	($FFFFFFFF).w,a7
-	movea.l	($FFFFFFFF).w,sp
-	movea.l	$1,a2
-	movea.l	$1,a7
-	movea.l	$1,sp
+	movea.l	$FFFFFFFE,a2
+	movea.l	$FFFFFFFE,a7
+	movea.l	$FFFFFFFE,sp
+	movea.l	$FFFFFFFFFFFE,a2
+	movea.l	$FFFFFFFFFFFE,a7
+	movea.l	$FFFFFFFFFFFE,sp
+	movea.l	$2,a2
+	movea.l	$2,a7
+	movea.l	$2,sp
+	movea.l	($FFFFFFFE).w,a2
+	movea.l	($FFFFFFFE).w,a7
+	movea.l	($FFFFFFFE).w,sp
+	movea.l	$2,a2
+	movea.l	$2,a7
+	movea.l	$2,sp
 	movea.l	a2,a2
 	movea.l	a2,a7
 	movea.l	a2,sp
@@ -5998,18 +6212,20 @@ label_start:
 	move.b	(a5),-(a2)
 	move.b	(a5),-(a5)
 	move.b	(a5),-(sp)
-	move.b	(a2),($FFFFFFFF).l
+	move.b	(a2),($FFFFFFFE).l
 	move.b	(a2),label_start.l
-	move.b	(a2),$FFFFFFFF
-	move.b	(a2),$1
-	move.b	(a5),($FFFFFFFF).l
+	move.b	(a2),$FFFFFFFE
+	move.b	(a2),$FFFFFFFFFFFE
+	move.b	(a2),$2
+	move.b	(a5),($FFFFFFFE).l
 	move.b	(a5),label_start.l
-	move.b	(a5),$FFFFFFFF
-	move.b	(a5),$1
-	move.b	(a2),($FFFFFFFF).w
-	move.b	(a2),$1
-	move.b	(a5),($FFFFFFFF).w
-	move.b	(a5),$1
+	move.b	(a5),$FFFFFFFE
+	move.b	(a5),$FFFFFFFFFFFE
+	move.b	(a5),$2
+	move.b	(a2),($FFFFFFFE).w
+	move.b	(a2),$2
+	move.b	(a5),($FFFFFFFE).w
+	move.b	(a5),$2
 	move.b	(a2),$7FFF(a2)
 	move.b	(a2),$7FFF(a5)
 	move.b	(a2),-2(sp)
@@ -6048,18 +6264,20 @@ label_start:
 	move.b	(a5)+,-(a2)
 	move.b	(a5)+,-(a5)
 	move.b	(a5)+,-(sp)
-	move.b	(a1)+,($FFFFFFFF).l
+	move.b	(a1)+,($FFFFFFFE).l
 	move.b	(a1)+,label_start.l
-	move.b	(a1)+,$FFFFFFFF
-	move.b	(a1)+,$1
-	move.b	(a5)+,($FFFFFFFF).l
+	move.b	(a1)+,$FFFFFFFE
+	move.b	(a1)+,$FFFFFFFFFFFE
+	move.b	(a1)+,$2
+	move.b	(a5)+,($FFFFFFFE).l
 	move.b	(a5)+,label_start.l
-	move.b	(a5)+,$FFFFFFFF
-	move.b	(a5)+,$1
-	move.b	(a1)+,($FFFFFFFF).w
-	move.b	(a1)+,$1
-	move.b	(a5)+,($FFFFFFFF).w
-	move.b	(a5)+,$1
+	move.b	(a5)+,$FFFFFFFE
+	move.b	(a5)+,$FFFFFFFFFFFE
+	move.b	(a5)+,$2
+	move.b	(a1)+,($FFFFFFFE).w
+	move.b	(a1)+,$2
+	move.b	(a5)+,($FFFFFFFE).w
+	move.b	(a5)+,$2
 	move.b	(a1)+,$7FFF(a2)
 	move.b	(a1)+,$7FFF(a5)
 	move.b	(a1)+,-2(sp)
@@ -6105,24 +6323,27 @@ label_start:
 	move.b	-(sp),-(a2)
 	move.b	-(sp),-(a5)
 	move.b	-(sp),-(sp)
-	move.b	-(a2),($FFFFFFFF).l
+	move.b	-(a2),($FFFFFFFE).l
 	move.b	-(a2),label_start.l
-	move.b	-(a2),$FFFFFFFF
-	move.b	-(a2),$1
-	move.b	-(a5),($FFFFFFFF).l
+	move.b	-(a2),$FFFFFFFE
+	move.b	-(a2),$FFFFFFFFFFFE
+	move.b	-(a2),$2
+	move.b	-(a5),($FFFFFFFE).l
 	move.b	-(a5),label_start.l
-	move.b	-(a5),$FFFFFFFF
-	move.b	-(a5),$1
-	move.b	-(sp),($FFFFFFFF).l
+	move.b	-(a5),$FFFFFFFE
+	move.b	-(a5),$FFFFFFFFFFFE
+	move.b	-(a5),$2
+	move.b	-(sp),($FFFFFFFE).l
 	move.b	-(sp),label_start.l
-	move.b	-(sp),$FFFFFFFF
-	move.b	-(sp),$1
-	move.b	-(a2),($FFFFFFFF).w
-	move.b	-(a2),$1
-	move.b	-(a5),($FFFFFFFF).w
-	move.b	-(a5),$1
-	move.b	-(sp),($FFFFFFFF).w
-	move.b	-(sp),$1
+	move.b	-(sp),$FFFFFFFE
+	move.b	-(sp),$FFFFFFFFFFFE
+	move.b	-(sp),$2
+	move.b	-(a2),($FFFFFFFE).w
+	move.b	-(a2),$2
+	move.b	-(a5),($FFFFFFFE).w
+	move.b	-(a5),$2
+	move.b	-(sp),($FFFFFFFE).w
+	move.b	-(sp),$2
 	move.b	-(a2),$7FFF(a2)
 	move.b	-(a2),$7FFF(a5)
 	move.b	-(a2),-2(sp)
@@ -6159,77 +6380,98 @@ label_start:
 	move.b	-(a5),d5
 	move.b	-(sp),d2
 	move.b	-(sp),d5
-	move.b	($FFFFFFFF).l,(a2)
-	move.b	($FFFFFFFF).l,(a5)
+	move.b	($FFFFFFFE).l,(a2)
+	move.b	($FFFFFFFE).l,(a5)
 	move.b	label_start.l,(a2)
 	move.b	label_start.l,(a5)
-	move.b	$FFFFFFFF,(a2)
-	move.b	$FFFFFFFF,(a5)
-	move.b	$1,(a2)
-	move.b	$1,(a5)
-	move.b	($FFFFFFFF).l,(a1)+
-	move.b	($FFFFFFFF).l,(a5)+
+	move.b	$FFFFFFFE,(a2)
+	move.b	$FFFFFFFE,(a5)
+	move.b	$FFFFFFFFFFFE,(a2)
+	move.b	$FFFFFFFFFFFE,(a5)
+	move.b	$2,(a2)
+	move.b	$2,(a5)
+	move.b	($FFFFFFFE).l,(a1)+
+	move.b	($FFFFFFFE).l,(a5)+
 	move.b	label_start.l,(a1)+
 	move.b	label_start.l,(a5)+
-	move.b	$FFFFFFFF,(a1)+
-	move.b	$FFFFFFFF,(a5)+
-	move.b	$1,(a1)+
-	move.b	$1,(a5)+
-	move.b	($FFFFFFFF).l,-(a2)
-	move.b	($FFFFFFFF).l,-(a5)
-	move.b	($FFFFFFFF).l,-(sp)
+	move.b	$FFFFFFFE,(a1)+
+	move.b	$FFFFFFFE,(a5)+
+	move.b	$FFFFFFFFFFFE,(a1)+
+	move.b	$FFFFFFFFFFFE,(a5)+
+	move.b	$2,(a1)+
+	move.b	$2,(a5)+
+	move.b	($FFFFFFFE).l,-(a2)
+	move.b	($FFFFFFFE).l,-(a5)
+	move.b	($FFFFFFFE).l,-(sp)
 	move.b	label_start.l,-(a2)
 	move.b	label_start.l,-(a5)
 	move.b	label_start.l,-(sp)
-	move.b	$FFFFFFFF,-(a2)
-	move.b	$FFFFFFFF,-(a5)
-	move.b	$FFFFFFFF,-(sp)
-	move.b	$1,-(a2)
-	move.b	$1,-(a5)
-	move.b	$1,-(sp)
-	move.b	($FFFFFFFF).l,($FFFFFFFF).l
-	move.b	($FFFFFFFF).l,label_start.l
-	move.b	($FFFFFFFF).l,$FFFFFFFF
-	move.b	($FFFFFFFF).l,$1
-	move.b	label_start.l,($FFFFFFFF).l
+	move.b	$FFFFFFFE,-(a2)
+	move.b	$FFFFFFFE,-(a5)
+	move.b	$FFFFFFFE,-(sp)
+	move.b	$FFFFFFFFFFFE,-(a2)
+	move.b	$FFFFFFFFFFFE,-(a5)
+	move.b	$FFFFFFFFFFFE,-(sp)
+	move.b	$2,-(a2)
+	move.b	$2,-(a5)
+	move.b	$2,-(sp)
+	move.b	($FFFFFFFE).l,($FFFFFFFE).l
+	move.b	($FFFFFFFE).l,label_start.l
+	move.b	($FFFFFFFE).l,$FFFFFFFE
+	move.b	($FFFFFFFE).l,$FFFFFFFFFFFE
+	move.b	($FFFFFFFE).l,$2
+	move.b	label_start.l,($FFFFFFFE).l
 	move.b	label_start.l,label_start.l
-	move.b	label_start.l,$FFFFFFFF
-	move.b	label_start.l,$1
-	move.b	$FFFFFFFF,($FFFFFFFF).l
-	move.b	$FFFFFFFF,label_start.l
-	move.b	$FFFFFFFF,$FFFFFFFF
-	move.b	$FFFFFFFF,$1
-	move.b	$1,($FFFFFFFF).l
-	move.b	$1,label_start.l
-	move.b	$1,$FFFFFFFF
-	move.b	$1,$1
-	move.b	($FFFFFFFF).l,($FFFFFFFF).w
-	move.b	($FFFFFFFF).l,$1
-	move.b	label_start.l,($FFFFFFFF).w
-	move.b	label_start.l,$1
-	move.b	$FFFFFFFF,($FFFFFFFF).w
-	move.b	$FFFFFFFF,$1
-	move.b	$1,($FFFFFFFF).w
-	move.b	$1,$1
-	move.b	($FFFFFFFF).l,$7FFF(a2)
-	move.b	($FFFFFFFF).l,$7FFF(a5)
-	move.b	($FFFFFFFF).l,-2(sp)
+	move.b	label_start.l,$FFFFFFFE
+	move.b	label_start.l,$FFFFFFFFFFFE
+	move.b	label_start.l,$2
+	move.b	$FFFFFFFE,($FFFFFFFE).l
+	move.b	$FFFFFFFE,label_start.l
+	move.b	$FFFFFFFE,$FFFFFFFE
+	move.b	$FFFFFFFE,$FFFFFFFFFFFE
+	move.b	$FFFFFFFE,$2
+	move.b	$FFFFFFFFFFFE,($FFFFFFFE).l
+	move.b	$FFFFFFFFFFFE,label_start.l
+	move.b	$FFFFFFFFFFFE,$FFFFFFFE
+	move.b	$FFFFFFFFFFFE,$FFFFFFFFFFFE
+	move.b	$FFFFFFFFFFFE,$2
+	move.b	$2,($FFFFFFFE).l
+	move.b	$2,label_start.l
+	move.b	$2,$FFFFFFFE
+	move.b	$2,$FFFFFFFFFFFE
+	move.b	$2,$2
+	move.b	($FFFFFFFE).l,($FFFFFFFE).w
+	move.b	($FFFFFFFE).l,$2
+	move.b	label_start.l,($FFFFFFFE).w
+	move.b	label_start.l,$2
+	move.b	$FFFFFFFE,($FFFFFFFE).w
+	move.b	$FFFFFFFE,$2
+	move.b	$FFFFFFFFFFFE,($FFFFFFFE).w
+	move.b	$FFFFFFFFFFFE,$2
+	move.b	$2,($FFFFFFFE).w
+	move.b	$2,$2
+	move.b	($FFFFFFFE).l,$7FFF(a2)
+	move.b	($FFFFFFFE).l,$7FFF(a5)
+	move.b	($FFFFFFFE).l,-2(sp)
 	move.b	label_start.l,$7FFF(a2)
 	move.b	label_start.l,$7FFF(a5)
 	move.b	label_start.l,-2(sp)
-	move.b	$FFFFFFFF,$7FFF(a2)
-	move.b	$FFFFFFFF,$7FFF(a5)
-	move.b	$FFFFFFFF,-2(sp)
-	move.b	$1,$7FFF(a2)
-	move.b	$1,$7FFF(a5)
-	move.b	$1,-2(sp)
-	move.b	($FFFFFFFF).l,$7F(a2,d5.w)
-	move.b	($FFFFFFFF).l,$7F(a5,d2.w)
-	move.b	($FFFFFFFF).l,$0F(a5,d2.l)
-	move.b	($FFFFFFFF).l,$1+1(a5,d2.l)
-	move.b	($FFFFFFFF).l,-2(a5,d2.l)
-	move.b	($FFFFFFFF).l,(a0,d1.w)
-	move.b	($FFFFFFFF).l,(a1,d6)
+	move.b	$FFFFFFFE,$7FFF(a2)
+	move.b	$FFFFFFFE,$7FFF(a5)
+	move.b	$FFFFFFFE,-2(sp)
+	move.b	$FFFFFFFFFFFE,$7FFF(a2)
+	move.b	$FFFFFFFFFFFE,$7FFF(a5)
+	move.b	$FFFFFFFFFFFE,-2(sp)
+	move.b	$2,$7FFF(a2)
+	move.b	$2,$7FFF(a5)
+	move.b	$2,-2(sp)
+	move.b	($FFFFFFFE).l,$7F(a2,d5.w)
+	move.b	($FFFFFFFE).l,$7F(a5,d2.w)
+	move.b	($FFFFFFFE).l,$0F(a5,d2.l)
+	move.b	($FFFFFFFE).l,$1+1(a5,d2.l)
+	move.b	($FFFFFFFE).l,-2(a5,d2.l)
+	move.b	($FFFFFFFE).l,(a0,d1.w)
+	move.b	($FFFFFFFE).l,(a1,d6)
 	move.b	label_start.l,$7F(a2,d5.w)
 	move.b	label_start.l,$7F(a5,d2.w)
 	move.b	label_start.l,$0F(a5,d2.l)
@@ -6237,78 +6479,89 @@ label_start:
 	move.b	label_start.l,-2(a5,d2.l)
 	move.b	label_start.l,(a0,d1.w)
 	move.b	label_start.l,(a1,d6)
-	move.b	$FFFFFFFF,$7F(a2,d5.w)
-	move.b	$FFFFFFFF,$7F(a5,d2.w)
-	move.b	$FFFFFFFF,$0F(a5,d2.l)
-	move.b	$FFFFFFFF,$1+1(a5,d2.l)
-	move.b	$FFFFFFFF,-2(a5,d2.l)
-	move.b	$FFFFFFFF,(a0,d1.w)
-	move.b	$FFFFFFFF,(a1,d6)
-	move.b	$1,$7F(a2,d5.w)
-	move.b	$1,$7F(a5,d2.w)
-	move.b	$1,$0F(a5,d2.l)
-	move.b	$1,$1+1(a5,d2.l)
-	move.b	$1,-2(a5,d2.l)
-	move.b	$1,(a0,d1.w)
-	move.b	$1,(a1,d6)
-	move.b	($FFFFFFFF).l,d2
-	move.b	($FFFFFFFF).l,d5
+	move.b	$FFFFFFFE,$7F(a2,d5.w)
+	move.b	$FFFFFFFE,$7F(a5,d2.w)
+	move.b	$FFFFFFFE,$0F(a5,d2.l)
+	move.b	$FFFFFFFE,$1+1(a5,d2.l)
+	move.b	$FFFFFFFE,-2(a5,d2.l)
+	move.b	$FFFFFFFE,(a0,d1.w)
+	move.b	$FFFFFFFE,(a1,d6)
+	move.b	$FFFFFFFFFFFE,$7F(a2,d5.w)
+	move.b	$FFFFFFFFFFFE,$7F(a5,d2.w)
+	move.b	$FFFFFFFFFFFE,$0F(a5,d2.l)
+	move.b	$FFFFFFFFFFFE,$1+1(a5,d2.l)
+	move.b	$FFFFFFFFFFFE,-2(a5,d2.l)
+	move.b	$FFFFFFFFFFFE,(a0,d1.w)
+	move.b	$FFFFFFFFFFFE,(a1,d6)
+	move.b	$2,$7F(a2,d5.w)
+	move.b	$2,$7F(a5,d2.w)
+	move.b	$2,$0F(a5,d2.l)
+	move.b	$2,$1+1(a5,d2.l)
+	move.b	$2,-2(a5,d2.l)
+	move.b	$2,(a0,d1.w)
+	move.b	$2,(a1,d6)
+	move.b	($FFFFFFFE).l,d2
+	move.b	($FFFFFFFE).l,d5
 	move.b	label_start.l,d2
 	move.b	label_start.l,d5
-	move.b	$FFFFFFFF,d2
-	move.b	$FFFFFFFF,d5
-	move.b	$1,d2
-	move.b	$1,d5
-	move.b	($FFFFFFFF).w,(a2)
-	move.b	($FFFFFFFF).w,(a5)
-	move.b	$1,(a2)
-	move.b	$1,(a5)
-	move.b	($FFFFFFFF).w,(a1)+
-	move.b	($FFFFFFFF).w,(a5)+
-	move.b	$1,(a1)+
-	move.b	$1,(a5)+
-	move.b	($FFFFFFFF).w,-(a2)
-	move.b	($FFFFFFFF).w,-(a5)
-	move.b	($FFFFFFFF).w,-(sp)
-	move.b	$1,-(a2)
-	move.b	$1,-(a5)
-	move.b	$1,-(sp)
-	move.b	($FFFFFFFF).w,($FFFFFFFF).l
-	move.b	($FFFFFFFF).w,label_start.l
-	move.b	($FFFFFFFF).w,$FFFFFFFF
-	move.b	($FFFFFFFF).w,$1
-	move.b	$1,($FFFFFFFF).l
-	move.b	$1,label_start.l
-	move.b	$1,$FFFFFFFF
-	move.b	$1,$1
-	move.b	($FFFFFFFF).w,($FFFFFFFF).w
-	move.b	($FFFFFFFF).w,$1
-	move.b	$1,($FFFFFFFF).w
-	move.b	$1,$1
-	move.b	($FFFFFFFF).w,$7FFF(a2)
-	move.b	($FFFFFFFF).w,$7FFF(a5)
-	move.b	($FFFFFFFF).w,-2(sp)
-	move.b	$1,$7FFF(a2)
-	move.b	$1,$7FFF(a5)
-	move.b	$1,-2(sp)
-	move.b	($FFFFFFFF).w,$7F(a2,d5.w)
-	move.b	($FFFFFFFF).w,$7F(a5,d2.w)
-	move.b	($FFFFFFFF).w,$0F(a5,d2.l)
-	move.b	($FFFFFFFF).w,$1+1(a5,d2.l)
-	move.b	($FFFFFFFF).w,-2(a5,d2.l)
-	move.b	($FFFFFFFF).w,(a0,d1.w)
-	move.b	($FFFFFFFF).w,(a1,d6)
-	move.b	$1,$7F(a2,d5.w)
-	move.b	$1,$7F(a5,d2.w)
-	move.b	$1,$0F(a5,d2.l)
-	move.b	$1,$1+1(a5,d2.l)
-	move.b	$1,-2(a5,d2.l)
-	move.b	$1,(a0,d1.w)
-	move.b	$1,(a1,d6)
-	move.b	($FFFFFFFF).w,d2
-	move.b	($FFFFFFFF).w,d5
-	move.b	$1,d2
-	move.b	$1,d5
+	move.b	$FFFFFFFE,d2
+	move.b	$FFFFFFFE,d5
+	move.b	$FFFFFFFFFFFE,d2
+	move.b	$FFFFFFFFFFFE,d5
+	move.b	$2,d2
+	move.b	$2,d5
+	move.b	($FFFFFFFE).w,(a2)
+	move.b	($FFFFFFFE).w,(a5)
+	move.b	$2,(a2)
+	move.b	$2,(a5)
+	move.b	($FFFFFFFE).w,(a1)+
+	move.b	($FFFFFFFE).w,(a5)+
+	move.b	$2,(a1)+
+	move.b	$2,(a5)+
+	move.b	($FFFFFFFE).w,-(a2)
+	move.b	($FFFFFFFE).w,-(a5)
+	move.b	($FFFFFFFE).w,-(sp)
+	move.b	$2,-(a2)
+	move.b	$2,-(a5)
+	move.b	$2,-(sp)
+	move.b	($FFFFFFFE).w,($FFFFFFFE).l
+	move.b	($FFFFFFFE).w,label_start.l
+	move.b	($FFFFFFFE).w,$FFFFFFFE
+	move.b	($FFFFFFFE).w,$FFFFFFFFFFFE
+	move.b	($FFFFFFFE).w,$2
+	move.b	$2,($FFFFFFFE).l
+	move.b	$2,label_start.l
+	move.b	$2,$FFFFFFFE
+	move.b	$2,$FFFFFFFFFFFE
+	move.b	$2,$2
+	move.b	($FFFFFFFE).w,($FFFFFFFE).w
+	move.b	($FFFFFFFE).w,$2
+	move.b	$2,($FFFFFFFE).w
+	move.b	$2,$2
+	move.b	($FFFFFFFE).w,$7FFF(a2)
+	move.b	($FFFFFFFE).w,$7FFF(a5)
+	move.b	($FFFFFFFE).w,-2(sp)
+	move.b	$2,$7FFF(a2)
+	move.b	$2,$7FFF(a5)
+	move.b	$2,-2(sp)
+	move.b	($FFFFFFFE).w,$7F(a2,d5.w)
+	move.b	($FFFFFFFE).w,$7F(a5,d2.w)
+	move.b	($FFFFFFFE).w,$0F(a5,d2.l)
+	move.b	($FFFFFFFE).w,$1+1(a5,d2.l)
+	move.b	($FFFFFFFE).w,-2(a5,d2.l)
+	move.b	($FFFFFFFE).w,(a0,d1.w)
+	move.b	($FFFFFFFE).w,(a1,d6)
+	move.b	$2,$7F(a2,d5.w)
+	move.b	$2,$7F(a5,d2.w)
+	move.b	$2,$0F(a5,d2.l)
+	move.b	$2,$1+1(a5,d2.l)
+	move.b	$2,-2(a5,d2.l)
+	move.b	$2,(a0,d1.w)
+	move.b	$2,(a1,d6)
+	move.b	($FFFFFFFE).w,d2
+	move.b	($FFFFFFFE).w,d5
+	move.b	$2,d2
+	move.b	$2,d5
 	move.b	$7FFF(a2),(a2)
 	move.b	$7FFF(a2),(a5)
 	move.b	$7FFF(a5),(a2)
@@ -6330,24 +6583,27 @@ label_start:
 	move.b	-2(sp),-(a2)
 	move.b	-2(sp),-(a5)
 	move.b	-2(sp),-(sp)
-	move.b	$7FFF(a2),($FFFFFFFF).l
+	move.b	$7FFF(a2),($FFFFFFFE).l
 	move.b	$7FFF(a2),label_start.l
-	move.b	$7FFF(a2),$FFFFFFFF
-	move.b	$7FFF(a2),$1
-	move.b	$7FFF(a5),($FFFFFFFF).l
+	move.b	$7FFF(a2),$FFFFFFFE
+	move.b	$7FFF(a2),$FFFFFFFFFFFE
+	move.b	$7FFF(a2),$2
+	move.b	$7FFF(a5),($FFFFFFFE).l
 	move.b	$7FFF(a5),label_start.l
-	move.b	$7FFF(a5),$FFFFFFFF
-	move.b	$7FFF(a5),$1
-	move.b	-2(sp),($FFFFFFFF).l
+	move.b	$7FFF(a5),$FFFFFFFE
+	move.b	$7FFF(a5),$FFFFFFFFFFFE
+	move.b	$7FFF(a5),$2
+	move.b	-2(sp),($FFFFFFFE).l
 	move.b	-2(sp),label_start.l
-	move.b	-2(sp),$FFFFFFFF
-	move.b	-2(sp),$1
-	move.b	$7FFF(a2),($FFFFFFFF).w
-	move.b	$7FFF(a2),$1
-	move.b	$7FFF(a5),($FFFFFFFF).w
-	move.b	$7FFF(a5),$1
-	move.b	-2(sp),($FFFFFFFF).w
-	move.b	-2(sp),$1
+	move.b	-2(sp),$FFFFFFFE
+	move.b	-2(sp),$FFFFFFFFFFFE
+	move.b	-2(sp),$2
+	move.b	$7FFF(a2),($FFFFFFFE).w
+	move.b	$7FFF(a2),$2
+	move.b	$7FFF(a5),($FFFFFFFE).w
+	move.b	$7FFF(a5),$2
+	move.b	-2(sp),($FFFFFFFE).w
+	move.b	-2(sp),$2
 	move.b	$7FFF(a2),$7FFF(a2)
 	move.b	$7FFF(a2),$7FFF(a5)
 	move.b	$7FFF(a2),-2(sp)
@@ -6433,48 +6689,55 @@ label_start:
 	move.b	(a1,d6),-(a2)
 	move.b	(a1,d6),-(a5)
 	move.b	(a1,d6),-(sp)
-	move.b	$7F(a2,d5.w),($FFFFFFFF).l
+	move.b	$7F(a2,d5.w),($FFFFFFFE).l
 	move.b	$7F(a2,d5.w),label_start.l
-	move.b	$7F(a2,d5.w),$FFFFFFFF
-	move.b	$7F(a2,d5.w),$1
-	move.b	$7F(a5,d2.w),($FFFFFFFF).l
+	move.b	$7F(a2,d5.w),$FFFFFFFE
+	move.b	$7F(a2,d5.w),$FFFFFFFFFFFE
+	move.b	$7F(a2,d5.w),$2
+	move.b	$7F(a5,d2.w),($FFFFFFFE).l
 	move.b	$7F(a5,d2.w),label_start.l
-	move.b	$7F(a5,d2.w),$FFFFFFFF
-	move.b	$7F(a5,d2.w),$1
-	move.b	$0F(a5,d2.l),($FFFFFFFF).l
+	move.b	$7F(a5,d2.w),$FFFFFFFE
+	move.b	$7F(a5,d2.w),$FFFFFFFFFFFE
+	move.b	$7F(a5,d2.w),$2
+	move.b	$0F(a5,d2.l),($FFFFFFFE).l
 	move.b	$0F(a5,d2.l),label_start.l
-	move.b	$0F(a5,d2.l),$FFFFFFFF
-	move.b	$0F(a5,d2.l),$1
-	move.b	$1+1(a5,d2.l),($FFFFFFFF).l
+	move.b	$0F(a5,d2.l),$FFFFFFFE
+	move.b	$0F(a5,d2.l),$FFFFFFFFFFFE
+	move.b	$0F(a5,d2.l),$2
+	move.b	$1+1(a5,d2.l),($FFFFFFFE).l
 	move.b	$1+1(a5,d2.l),label_start.l
-	move.b	$1+1(a5,d2.l),$FFFFFFFF
-	move.b	$1+1(a5,d2.l),$1
-	move.b	-2(a5,d2.l),($FFFFFFFF).l
+	move.b	$1+1(a5,d2.l),$FFFFFFFE
+	move.b	$1+1(a5,d2.l),$FFFFFFFFFFFE
+	move.b	$1+1(a5,d2.l),$2
+	move.b	-2(a5,d2.l),($FFFFFFFE).l
 	move.b	-2(a5,d2.l),label_start.l
-	move.b	-2(a5,d2.l),$FFFFFFFF
-	move.b	-2(a5,d2.l),$1
-	move.b	(a0,d1.w),($FFFFFFFF).l
+	move.b	-2(a5,d2.l),$FFFFFFFE
+	move.b	-2(a5,d2.l),$FFFFFFFFFFFE
+	move.b	-2(a5,d2.l),$2
+	move.b	(a0,d1.w),($FFFFFFFE).l
 	move.b	(a0,d1.w),label_start.l
-	move.b	(a0,d1.w),$FFFFFFFF
-	move.b	(a0,d1.w),$1
-	move.b	(a1,d6),($FFFFFFFF).l
+	move.b	(a0,d1.w),$FFFFFFFE
+	move.b	(a0,d1.w),$FFFFFFFFFFFE
+	move.b	(a0,d1.w),$2
+	move.b	(a1,d6),($FFFFFFFE).l
 	move.b	(a1,d6),label_start.l
-	move.b	(a1,d6),$FFFFFFFF
-	move.b	(a1,d6),$1
-	move.b	$7F(a2,d5.w),($FFFFFFFF).w
-	move.b	$7F(a2,d5.w),$1
-	move.b	$7F(a5,d2.w),($FFFFFFFF).w
-	move.b	$7F(a5,d2.w),$1
-	move.b	$0F(a5,d2.l),($FFFFFFFF).w
-	move.b	$0F(a5,d2.l),$1
-	move.b	$1+1(a5,d2.l),($FFFFFFFF).w
-	move.b	$1+1(a5,d2.l),$1
-	move.b	-2(a5,d2.l),($FFFFFFFF).w
-	move.b	-2(a5,d2.l),$1
-	move.b	(a0,d1.w),($FFFFFFFF).w
-	move.b	(a0,d1.w),$1
-	move.b	(a1,d6),($FFFFFFFF).w
-	move.b	(a1,d6),$1
+	move.b	(a1,d6),$FFFFFFFE
+	move.b	(a1,d6),$FFFFFFFFFFFE
+	move.b	(a1,d6),$2
+	move.b	$7F(a2,d5.w),($FFFFFFFE).w
+	move.b	$7F(a2,d5.w),$2
+	move.b	$7F(a5,d2.w),($FFFFFFFE).w
+	move.b	$7F(a5,d2.w),$2
+	move.b	$0F(a5,d2.l),($FFFFFFFE).w
+	move.b	$0F(a5,d2.l),$2
+	move.b	$1+1(a5,d2.l),($FFFFFFFE).w
+	move.b	$1+1(a5,d2.l),$2
+	move.b	-2(a5,d2.l),($FFFFFFFE).w
+	move.b	-2(a5,d2.l),$2
+	move.b	(a0,d1.w),($FFFFFFFE).w
+	move.b	(a0,d1.w),$2
+	move.b	(a1,d6),($FFFFFFFE).w
+	move.b	(a1,d6),$2
 	move.b	$7F(a2,d5.w),$7FFF(a2)
 	move.b	$7F(a2,d5.w),$7FFF(a5)
 	move.b	$7F(a2,d5.w),-2(sp)
@@ -6573,18 +6836,20 @@ label_start:
 	move.b	@-2(pc),-(a2)
 	move.b	@-2(pc),-(a5)
 	move.b	@-2(pc),-(sp)
-	move.b	@(pc),($FFFFFFFF).l
+	move.b	@(pc),($FFFFFFFE).l
 	move.b	@(pc),label_start.l
-	move.b	@(pc),$FFFFFFFF
-	move.b	@(pc),$1
-	move.b	@-2(pc),($FFFFFFFF).l
+	move.b	@(pc),$FFFFFFFE
+	move.b	@(pc),$FFFFFFFFFFFE
+	move.b	@(pc),$2
+	move.b	@-2(pc),($FFFFFFFE).l
 	move.b	@-2(pc),label_start.l
-	move.b	@-2(pc),$FFFFFFFF
-	move.b	@-2(pc),$1
-	move.b	@(pc),($FFFFFFFF).w
-	move.b	@(pc),$1
-	move.b	@-2(pc),($FFFFFFFF).w
-	move.b	@-2(pc),$1
+	move.b	@-2(pc),$FFFFFFFE
+	move.b	@-2(pc),$FFFFFFFFFFFE
+	move.b	@-2(pc),$2
+	move.b	@(pc),($FFFFFFFE).w
+	move.b	@(pc),$2
+	move.b	@-2(pc),($FFFFFFFE).w
+	move.b	@-2(pc),$2
 	move.b	@(pc),$7FFF(a2)
 	move.b	@(pc),$7FFF(a5)
 	move.b	@(pc),-2(sp)
@@ -6630,24 +6895,27 @@ label_start:
 	move.b	@-2(pc,d1.l),-(a2)
 	move.b	@-2(pc,d1.l),-(a5)
 	move.b	@-2(pc,d1.l),-(sp)
-	move.b	@(pc,d5.w),($FFFFFFFF).l
+	move.b	@(pc,d5.w),($FFFFFFFE).l
 	move.b	@(pc,d5.w),label_start.l
-	move.b	@(pc,d5.w),$FFFFFFFF
-	move.b	@(pc,d5.w),$1
-	move.b	@-2(pc,d5.w),($FFFFFFFF).l
+	move.b	@(pc,d5.w),$FFFFFFFE
+	move.b	@(pc,d5.w),$FFFFFFFFFFFE
+	move.b	@(pc,d5.w),$2
+	move.b	@-2(pc,d5.w),($FFFFFFFE).l
 	move.b	@-2(pc,d5.w),label_start.l
-	move.b	@-2(pc,d5.w),$FFFFFFFF
-	move.b	@-2(pc,d5.w),$1
-	move.b	@-2(pc,d1.l),($FFFFFFFF).l
+	move.b	@-2(pc,d5.w),$FFFFFFFE
+	move.b	@-2(pc,d5.w),$FFFFFFFFFFFE
+	move.b	@-2(pc,d5.w),$2
+	move.b	@-2(pc,d1.l),($FFFFFFFE).l
 	move.b	@-2(pc,d1.l),label_start.l
-	move.b	@-2(pc,d1.l),$FFFFFFFF
-	move.b	@-2(pc,d1.l),$1
-	move.b	@(pc,d5.w),($FFFFFFFF).w
-	move.b	@(pc,d5.w),$1
-	move.b	@-2(pc,d5.w),($FFFFFFFF).w
-	move.b	@-2(pc,d5.w),$1
-	move.b	@-2(pc,d1.l),($FFFFFFFF).w
-	move.b	@-2(pc,d1.l),$1
+	move.b	@-2(pc,d1.l),$FFFFFFFE
+	move.b	@-2(pc,d1.l),$FFFFFFFFFFFE
+	move.b	@-2(pc,d1.l),$2
+	move.b	@(pc,d5.w),($FFFFFFFE).w
+	move.b	@(pc,d5.w),$2
+	move.b	@-2(pc,d5.w),($FFFFFFFE).w
+	move.b	@-2(pc,d5.w),$2
+	move.b	@-2(pc,d1.l),($FFFFFFFE).w
+	move.b	@-2(pc,d1.l),$2
 	move.b	@(pc,d5.w),$7FFF(a2)
 	move.b	@(pc,d5.w),$7FFF(a5)
 	move.b	@(pc,d5.w),-2(sp)
@@ -6698,18 +6966,20 @@ label_start:
 	move.b	d5,-(a2)
 	move.b	d5,-(a5)
 	move.b	d5,-(sp)
-	move.b	d2,($FFFFFFFF).l
+	move.b	d2,($FFFFFFFE).l
 	move.b	d2,label_start.l
-	move.b	d2,$FFFFFFFF
-	move.b	d2,$1
-	move.b	d5,($FFFFFFFF).l
+	move.b	d2,$FFFFFFFE
+	move.b	d2,$FFFFFFFFFFFE
+	move.b	d2,$2
+	move.b	d5,($FFFFFFFE).l
 	move.b	d5,label_start.l
-	move.b	d5,$FFFFFFFF
-	move.b	d5,$1
-	move.b	d2,($FFFFFFFF).w
-	move.b	d2,$1
-	move.b	d5,($FFFFFFFF).w
-	move.b	d5,$1
+	move.b	d5,$FFFFFFFE
+	move.b	d5,$FFFFFFFFFFFE
+	move.b	d5,$2
+	move.b	d2,($FFFFFFFE).w
+	move.b	d2,$2
+	move.b	d5,($FFFFFFFE).w
+	move.b	d5,$2
 	move.b	d2,$7FFF(a2)
 	move.b	d2,$7FFF(a5)
 	move.b	d2,-2(sp)
@@ -6755,24 +7025,27 @@ label_start:
 	move.b	#"X",-(a2)
 	move.b	#"X",-(a5)
 	move.b	#"X",-(sp)
-	move.b	#0,($FFFFFFFF).l
+	move.b	#0,($FFFFFFFE).l
 	move.b	#0,label_start.l
-	move.b	#0,$FFFFFFFF
-	move.b	#0,$1
-	move.b	#$FF,($FFFFFFFF).l
+	move.b	#0,$FFFFFFFE
+	move.b	#0,$FFFFFFFFFFFE
+	move.b	#0,$2
+	move.b	#$FF,($FFFFFFFE).l
 	move.b	#$FF,label_start.l
-	move.b	#$FF,$FFFFFFFF
-	move.b	#$FF,$1
-	move.b	#"X",($FFFFFFFF).l
+	move.b	#$FF,$FFFFFFFE
+	move.b	#$FF,$FFFFFFFFFFFE
+	move.b	#$FF,$2
+	move.b	#"X",($FFFFFFFE).l
 	move.b	#"X",label_start.l
-	move.b	#"X",$FFFFFFFF
-	move.b	#"X",$1
-	move.b	#0,($FFFFFFFF).w
-	move.b	#0,$1
-	move.b	#$FF,($FFFFFFFF).w
-	move.b	#$FF,$1
-	move.b	#"X",($FFFFFFFF).w
-	move.b	#"X",$1
+	move.b	#"X",$FFFFFFFE
+	move.b	#"X",$FFFFFFFFFFFE
+	move.b	#"X",$2
+	move.b	#0,($FFFFFFFE).w
+	move.b	#0,$2
+	move.b	#$FF,($FFFFFFFE).w
+	move.b	#$FF,$2
+	move.b	#"X",($FFFFFFFE).w
+	move.b	#"X",$2
 	move.b	#0,$7FFF(a2)
 	move.b	#0,$7FFF(a5)
 	move.b	#0,-2(sp)
@@ -6823,18 +7096,20 @@ label_start:
 	move.w	(a5),-(a2)
 	move.w	(a5),-(a5)
 	move.w	(a5),-(sp)
-	move.w	(a2),($FFFFFFFF).l
+	move.w	(a2),($FFFFFFFE).l
 	move.w	(a2),label_start.l
-	move.w	(a2),$FFFFFFFF
-	move.w	(a2),$1
-	move.w	(a5),($FFFFFFFF).l
+	move.w	(a2),$FFFFFFFE
+	move.w	(a2),$FFFFFFFFFFFE
+	move.w	(a2),$2
+	move.w	(a5),($FFFFFFFE).l
 	move.w	(a5),label_start.l
-	move.w	(a5),$FFFFFFFF
-	move.w	(a5),$1
-	move.w	(a2),($FFFFFFFF).w
-	move.w	(a2),$1
-	move.w	(a5),($FFFFFFFF).w
-	move.w	(a5),$1
+	move.w	(a5),$FFFFFFFE
+	move.w	(a5),$FFFFFFFFFFFE
+	move.w	(a5),$2
+	move.w	(a2),($FFFFFFFE).w
+	move.w	(a2),$2
+	move.w	(a5),($FFFFFFFE).w
+	move.w	(a5),$2
 	move.w	(a2),$7FFF(a2)
 	move.w	(a2),$7FFF(a5)
 	move.w	(a2),-2(sp)
@@ -6873,18 +7148,20 @@ label_start:
 	move.w	(a5)+,-(a2)
 	move.w	(a5)+,-(a5)
 	move.w	(a5)+,-(sp)
-	move.w	(a1)+,($FFFFFFFF).l
+	move.w	(a1)+,($FFFFFFFE).l
 	move.w	(a1)+,label_start.l
-	move.w	(a1)+,$FFFFFFFF
-	move.w	(a1)+,$1
-	move.w	(a5)+,($FFFFFFFF).l
+	move.w	(a1)+,$FFFFFFFE
+	move.w	(a1)+,$FFFFFFFFFFFE
+	move.w	(a1)+,$2
+	move.w	(a5)+,($FFFFFFFE).l
 	move.w	(a5)+,label_start.l
-	move.w	(a5)+,$FFFFFFFF
-	move.w	(a5)+,$1
-	move.w	(a1)+,($FFFFFFFF).w
-	move.w	(a1)+,$1
-	move.w	(a5)+,($FFFFFFFF).w
-	move.w	(a5)+,$1
+	move.w	(a5)+,$FFFFFFFE
+	move.w	(a5)+,$FFFFFFFFFFFE
+	move.w	(a5)+,$2
+	move.w	(a1)+,($FFFFFFFE).w
+	move.w	(a1)+,$2
+	move.w	(a5)+,($FFFFFFFE).w
+	move.w	(a5)+,$2
 	move.w	(a1)+,$7FFF(a2)
 	move.w	(a1)+,$7FFF(a5)
 	move.w	(a1)+,-2(sp)
@@ -6930,24 +7207,27 @@ label_start:
 	move.w	-(sp),-(a2)
 	move.w	-(sp),-(a5)
 	move.w	-(sp),-(sp)
-	move.w	-(a2),($FFFFFFFF).l
+	move.w	-(a2),($FFFFFFFE).l
 	move.w	-(a2),label_start.l
-	move.w	-(a2),$FFFFFFFF
-	move.w	-(a2),$1
-	move.w	-(a5),($FFFFFFFF).l
+	move.w	-(a2),$FFFFFFFE
+	move.w	-(a2),$FFFFFFFFFFFE
+	move.w	-(a2),$2
+	move.w	-(a5),($FFFFFFFE).l
 	move.w	-(a5),label_start.l
-	move.w	-(a5),$FFFFFFFF
-	move.w	-(a5),$1
-	move.w	-(sp),($FFFFFFFF).l
+	move.w	-(a5),$FFFFFFFE
+	move.w	-(a5),$FFFFFFFFFFFE
+	move.w	-(a5),$2
+	move.w	-(sp),($FFFFFFFE).l
 	move.w	-(sp),label_start.l
-	move.w	-(sp),$FFFFFFFF
-	move.w	-(sp),$1
-	move.w	-(a2),($FFFFFFFF).w
-	move.w	-(a2),$1
-	move.w	-(a5),($FFFFFFFF).w
-	move.w	-(a5),$1
-	move.w	-(sp),($FFFFFFFF).w
-	move.w	-(sp),$1
+	move.w	-(sp),$FFFFFFFE
+	move.w	-(sp),$FFFFFFFFFFFE
+	move.w	-(sp),$2
+	move.w	-(a2),($FFFFFFFE).w
+	move.w	-(a2),$2
+	move.w	-(a5),($FFFFFFFE).w
+	move.w	-(a5),$2
+	move.w	-(sp),($FFFFFFFE).w
+	move.w	-(sp),$2
 	move.w	-(a2),$7FFF(a2)
 	move.w	-(a2),$7FFF(a5)
 	move.w	-(a2),-2(sp)
@@ -6984,77 +7264,98 @@ label_start:
 	move.w	-(a5),d5
 	move.w	-(sp),d2
 	move.w	-(sp),d5
-	move.w	($FFFFFFFF).l,(a2)
-	move.w	($FFFFFFFF).l,(a5)
+	move.w	($FFFFFFFE).l,(a2)
+	move.w	($FFFFFFFE).l,(a5)
 	move.w	label_start.l,(a2)
 	move.w	label_start.l,(a5)
-	move.w	$FFFFFFFF,(a2)
-	move.w	$FFFFFFFF,(a5)
-	move.w	$1,(a2)
-	move.w	$1,(a5)
-	move.w	($FFFFFFFF).l,(a1)+
-	move.w	($FFFFFFFF).l,(a5)+
+	move.w	$FFFFFFFE,(a2)
+	move.w	$FFFFFFFE,(a5)
+	move.w	$FFFFFFFFFFFE,(a2)
+	move.w	$FFFFFFFFFFFE,(a5)
+	move.w	$2,(a2)
+	move.w	$2,(a5)
+	move.w	($FFFFFFFE).l,(a1)+
+	move.w	($FFFFFFFE).l,(a5)+
 	move.w	label_start.l,(a1)+
 	move.w	label_start.l,(a5)+
-	move.w	$FFFFFFFF,(a1)+
-	move.w	$FFFFFFFF,(a5)+
-	move.w	$1,(a1)+
-	move.w	$1,(a5)+
-	move.w	($FFFFFFFF).l,-(a2)
-	move.w	($FFFFFFFF).l,-(a5)
-	move.w	($FFFFFFFF).l,-(sp)
+	move.w	$FFFFFFFE,(a1)+
+	move.w	$FFFFFFFE,(a5)+
+	move.w	$FFFFFFFFFFFE,(a1)+
+	move.w	$FFFFFFFFFFFE,(a5)+
+	move.w	$2,(a1)+
+	move.w	$2,(a5)+
+	move.w	($FFFFFFFE).l,-(a2)
+	move.w	($FFFFFFFE).l,-(a5)
+	move.w	($FFFFFFFE).l,-(sp)
 	move.w	label_start.l,-(a2)
 	move.w	label_start.l,-(a5)
 	move.w	label_start.l,-(sp)
-	move.w	$FFFFFFFF,-(a2)
-	move.w	$FFFFFFFF,-(a5)
-	move.w	$FFFFFFFF,-(sp)
-	move.w	$1,-(a2)
-	move.w	$1,-(a5)
-	move.w	$1,-(sp)
-	move.w	($FFFFFFFF).l,($FFFFFFFF).l
-	move.w	($FFFFFFFF).l,label_start.l
-	move.w	($FFFFFFFF).l,$FFFFFFFF
-	move.w	($FFFFFFFF).l,$1
-	move.w	label_start.l,($FFFFFFFF).l
+	move.w	$FFFFFFFE,-(a2)
+	move.w	$FFFFFFFE,-(a5)
+	move.w	$FFFFFFFE,-(sp)
+	move.w	$FFFFFFFFFFFE,-(a2)
+	move.w	$FFFFFFFFFFFE,-(a5)
+	move.w	$FFFFFFFFFFFE,-(sp)
+	move.w	$2,-(a2)
+	move.w	$2,-(a5)
+	move.w	$2,-(sp)
+	move.w	($FFFFFFFE).l,($FFFFFFFE).l
+	move.w	($FFFFFFFE).l,label_start.l
+	move.w	($FFFFFFFE).l,$FFFFFFFE
+	move.w	($FFFFFFFE).l,$FFFFFFFFFFFE
+	move.w	($FFFFFFFE).l,$2
+	move.w	label_start.l,($FFFFFFFE).l
 	move.w	label_start.l,label_start.l
-	move.w	label_start.l,$FFFFFFFF
-	move.w	label_start.l,$1
-	move.w	$FFFFFFFF,($FFFFFFFF).l
-	move.w	$FFFFFFFF,label_start.l
-	move.w	$FFFFFFFF,$FFFFFFFF
-	move.w	$FFFFFFFF,$1
-	move.w	$1,($FFFFFFFF).l
-	move.w	$1,label_start.l
-	move.w	$1,$FFFFFFFF
-	move.w	$1,$1
-	move.w	($FFFFFFFF).l,($FFFFFFFF).w
-	move.w	($FFFFFFFF).l,$1
-	move.w	label_start.l,($FFFFFFFF).w
-	move.w	label_start.l,$1
-	move.w	$FFFFFFFF,($FFFFFFFF).w
-	move.w	$FFFFFFFF,$1
-	move.w	$1,($FFFFFFFF).w
-	move.w	$1,$1
-	move.w	($FFFFFFFF).l,$7FFF(a2)
-	move.w	($FFFFFFFF).l,$7FFF(a5)
-	move.w	($FFFFFFFF).l,-2(sp)
+	move.w	label_start.l,$FFFFFFFE
+	move.w	label_start.l,$FFFFFFFFFFFE
+	move.w	label_start.l,$2
+	move.w	$FFFFFFFE,($FFFFFFFE).l
+	move.w	$FFFFFFFE,label_start.l
+	move.w	$FFFFFFFE,$FFFFFFFE
+	move.w	$FFFFFFFE,$FFFFFFFFFFFE
+	move.w	$FFFFFFFE,$2
+	move.w	$FFFFFFFFFFFE,($FFFFFFFE).l
+	move.w	$FFFFFFFFFFFE,label_start.l
+	move.w	$FFFFFFFFFFFE,$FFFFFFFE
+	move.w	$FFFFFFFFFFFE,$FFFFFFFFFFFE
+	move.w	$FFFFFFFFFFFE,$2
+	move.w	$2,($FFFFFFFE).l
+	move.w	$2,label_start.l
+	move.w	$2,$FFFFFFFE
+	move.w	$2,$FFFFFFFFFFFE
+	move.w	$2,$2
+	move.w	($FFFFFFFE).l,($FFFFFFFE).w
+	move.w	($FFFFFFFE).l,$2
+	move.w	label_start.l,($FFFFFFFE).w
+	move.w	label_start.l,$2
+	move.w	$FFFFFFFE,($FFFFFFFE).w
+	move.w	$FFFFFFFE,$2
+	move.w	$FFFFFFFFFFFE,($FFFFFFFE).w
+	move.w	$FFFFFFFFFFFE,$2
+	move.w	$2,($FFFFFFFE).w
+	move.w	$2,$2
+	move.w	($FFFFFFFE).l,$7FFF(a2)
+	move.w	($FFFFFFFE).l,$7FFF(a5)
+	move.w	($FFFFFFFE).l,-2(sp)
 	move.w	label_start.l,$7FFF(a2)
 	move.w	label_start.l,$7FFF(a5)
 	move.w	label_start.l,-2(sp)
-	move.w	$FFFFFFFF,$7FFF(a2)
-	move.w	$FFFFFFFF,$7FFF(a5)
-	move.w	$FFFFFFFF,-2(sp)
-	move.w	$1,$7FFF(a2)
-	move.w	$1,$7FFF(a5)
-	move.w	$1,-2(sp)
-	move.w	($FFFFFFFF).l,$7F(a2,d5.w)
-	move.w	($FFFFFFFF).l,$7F(a5,d2.w)
-	move.w	($FFFFFFFF).l,$0F(a5,d2.l)
-	move.w	($FFFFFFFF).l,$1+1(a5,d2.l)
-	move.w	($FFFFFFFF).l,-2(a5,d2.l)
-	move.w	($FFFFFFFF).l,(a0,d1.w)
-	move.w	($FFFFFFFF).l,(a1,d6)
+	move.w	$FFFFFFFE,$7FFF(a2)
+	move.w	$FFFFFFFE,$7FFF(a5)
+	move.w	$FFFFFFFE,-2(sp)
+	move.w	$FFFFFFFFFFFE,$7FFF(a2)
+	move.w	$FFFFFFFFFFFE,$7FFF(a5)
+	move.w	$FFFFFFFFFFFE,-2(sp)
+	move.w	$2,$7FFF(a2)
+	move.w	$2,$7FFF(a5)
+	move.w	$2,-2(sp)
+	move.w	($FFFFFFFE).l,$7F(a2,d5.w)
+	move.w	($FFFFFFFE).l,$7F(a5,d2.w)
+	move.w	($FFFFFFFE).l,$0F(a5,d2.l)
+	move.w	($FFFFFFFE).l,$1+1(a5,d2.l)
+	move.w	($FFFFFFFE).l,-2(a5,d2.l)
+	move.w	($FFFFFFFE).l,(a0,d1.w)
+	move.w	($FFFFFFFE).l,(a1,d6)
 	move.w	label_start.l,$7F(a2,d5.w)
 	move.w	label_start.l,$7F(a5,d2.w)
 	move.w	label_start.l,$0F(a5,d2.l)
@@ -7062,78 +7363,89 @@ label_start:
 	move.w	label_start.l,-2(a5,d2.l)
 	move.w	label_start.l,(a0,d1.w)
 	move.w	label_start.l,(a1,d6)
-	move.w	$FFFFFFFF,$7F(a2,d5.w)
-	move.w	$FFFFFFFF,$7F(a5,d2.w)
-	move.w	$FFFFFFFF,$0F(a5,d2.l)
-	move.w	$FFFFFFFF,$1+1(a5,d2.l)
-	move.w	$FFFFFFFF,-2(a5,d2.l)
-	move.w	$FFFFFFFF,(a0,d1.w)
-	move.w	$FFFFFFFF,(a1,d6)
-	move.w	$1,$7F(a2,d5.w)
-	move.w	$1,$7F(a5,d2.w)
-	move.w	$1,$0F(a5,d2.l)
-	move.w	$1,$1+1(a5,d2.l)
-	move.w	$1,-2(a5,d2.l)
-	move.w	$1,(a0,d1.w)
-	move.w	$1,(a1,d6)
-	move.w	($FFFFFFFF).l,d2
-	move.w	($FFFFFFFF).l,d5
+	move.w	$FFFFFFFE,$7F(a2,d5.w)
+	move.w	$FFFFFFFE,$7F(a5,d2.w)
+	move.w	$FFFFFFFE,$0F(a5,d2.l)
+	move.w	$FFFFFFFE,$1+1(a5,d2.l)
+	move.w	$FFFFFFFE,-2(a5,d2.l)
+	move.w	$FFFFFFFE,(a0,d1.w)
+	move.w	$FFFFFFFE,(a1,d6)
+	move.w	$FFFFFFFFFFFE,$7F(a2,d5.w)
+	move.w	$FFFFFFFFFFFE,$7F(a5,d2.w)
+	move.w	$FFFFFFFFFFFE,$0F(a5,d2.l)
+	move.w	$FFFFFFFFFFFE,$1+1(a5,d2.l)
+	move.w	$FFFFFFFFFFFE,-2(a5,d2.l)
+	move.w	$FFFFFFFFFFFE,(a0,d1.w)
+	move.w	$FFFFFFFFFFFE,(a1,d6)
+	move.w	$2,$7F(a2,d5.w)
+	move.w	$2,$7F(a5,d2.w)
+	move.w	$2,$0F(a5,d2.l)
+	move.w	$2,$1+1(a5,d2.l)
+	move.w	$2,-2(a5,d2.l)
+	move.w	$2,(a0,d1.w)
+	move.w	$2,(a1,d6)
+	move.w	($FFFFFFFE).l,d2
+	move.w	($FFFFFFFE).l,d5
 	move.w	label_start.l,d2
 	move.w	label_start.l,d5
-	move.w	$FFFFFFFF,d2
-	move.w	$FFFFFFFF,d5
-	move.w	$1,d2
-	move.w	$1,d5
-	move.w	($FFFFFFFF).w,(a2)
-	move.w	($FFFFFFFF).w,(a5)
-	move.w	$1,(a2)
-	move.w	$1,(a5)
-	move.w	($FFFFFFFF).w,(a1)+
-	move.w	($FFFFFFFF).w,(a5)+
-	move.w	$1,(a1)+
-	move.w	$1,(a5)+
-	move.w	($FFFFFFFF).w,-(a2)
-	move.w	($FFFFFFFF).w,-(a5)
-	move.w	($FFFFFFFF).w,-(sp)
-	move.w	$1,-(a2)
-	move.w	$1,-(a5)
-	move.w	$1,-(sp)
-	move.w	($FFFFFFFF).w,($FFFFFFFF).l
-	move.w	($FFFFFFFF).w,label_start.l
-	move.w	($FFFFFFFF).w,$FFFFFFFF
-	move.w	($FFFFFFFF).w,$1
-	move.w	$1,($FFFFFFFF).l
-	move.w	$1,label_start.l
-	move.w	$1,$FFFFFFFF
-	move.w	$1,$1
-	move.w	($FFFFFFFF).w,($FFFFFFFF).w
-	move.w	($FFFFFFFF).w,$1
-	move.w	$1,($FFFFFFFF).w
-	move.w	$1,$1
-	move.w	($FFFFFFFF).w,$7FFF(a2)
-	move.w	($FFFFFFFF).w,$7FFF(a5)
-	move.w	($FFFFFFFF).w,-2(sp)
-	move.w	$1,$7FFF(a2)
-	move.w	$1,$7FFF(a5)
-	move.w	$1,-2(sp)
-	move.w	($FFFFFFFF).w,$7F(a2,d5.w)
-	move.w	($FFFFFFFF).w,$7F(a5,d2.w)
-	move.w	($FFFFFFFF).w,$0F(a5,d2.l)
-	move.w	($FFFFFFFF).w,$1+1(a5,d2.l)
-	move.w	($FFFFFFFF).w,-2(a5,d2.l)
-	move.w	($FFFFFFFF).w,(a0,d1.w)
-	move.w	($FFFFFFFF).w,(a1,d6)
-	move.w	$1,$7F(a2,d5.w)
-	move.w	$1,$7F(a5,d2.w)
-	move.w	$1,$0F(a5,d2.l)
-	move.w	$1,$1+1(a5,d2.l)
-	move.w	$1,-2(a5,d2.l)
-	move.w	$1,(a0,d1.w)
-	move.w	$1,(a1,d6)
-	move.w	($FFFFFFFF).w,d2
-	move.w	($FFFFFFFF).w,d5
-	move.w	$1,d2
-	move.w	$1,d5
+	move.w	$FFFFFFFE,d2
+	move.w	$FFFFFFFE,d5
+	move.w	$FFFFFFFFFFFE,d2
+	move.w	$FFFFFFFFFFFE,d5
+	move.w	$2,d2
+	move.w	$2,d5
+	move.w	($FFFFFFFE).w,(a2)
+	move.w	($FFFFFFFE).w,(a5)
+	move.w	$2,(a2)
+	move.w	$2,(a5)
+	move.w	($FFFFFFFE).w,(a1)+
+	move.w	($FFFFFFFE).w,(a5)+
+	move.w	$2,(a1)+
+	move.w	$2,(a5)+
+	move.w	($FFFFFFFE).w,-(a2)
+	move.w	($FFFFFFFE).w,-(a5)
+	move.w	($FFFFFFFE).w,-(sp)
+	move.w	$2,-(a2)
+	move.w	$2,-(a5)
+	move.w	$2,-(sp)
+	move.w	($FFFFFFFE).w,($FFFFFFFE).l
+	move.w	($FFFFFFFE).w,label_start.l
+	move.w	($FFFFFFFE).w,$FFFFFFFE
+	move.w	($FFFFFFFE).w,$FFFFFFFFFFFE
+	move.w	($FFFFFFFE).w,$2
+	move.w	$2,($FFFFFFFE).l
+	move.w	$2,label_start.l
+	move.w	$2,$FFFFFFFE
+	move.w	$2,$FFFFFFFFFFFE
+	move.w	$2,$2
+	move.w	($FFFFFFFE).w,($FFFFFFFE).w
+	move.w	($FFFFFFFE).w,$2
+	move.w	$2,($FFFFFFFE).w
+	move.w	$2,$2
+	move.w	($FFFFFFFE).w,$7FFF(a2)
+	move.w	($FFFFFFFE).w,$7FFF(a5)
+	move.w	($FFFFFFFE).w,-2(sp)
+	move.w	$2,$7FFF(a2)
+	move.w	$2,$7FFF(a5)
+	move.w	$2,-2(sp)
+	move.w	($FFFFFFFE).w,$7F(a2,d5.w)
+	move.w	($FFFFFFFE).w,$7F(a5,d2.w)
+	move.w	($FFFFFFFE).w,$0F(a5,d2.l)
+	move.w	($FFFFFFFE).w,$1+1(a5,d2.l)
+	move.w	($FFFFFFFE).w,-2(a5,d2.l)
+	move.w	($FFFFFFFE).w,(a0,d1.w)
+	move.w	($FFFFFFFE).w,(a1,d6)
+	move.w	$2,$7F(a2,d5.w)
+	move.w	$2,$7F(a5,d2.w)
+	move.w	$2,$0F(a5,d2.l)
+	move.w	$2,$1+1(a5,d2.l)
+	move.w	$2,-2(a5,d2.l)
+	move.w	$2,(a0,d1.w)
+	move.w	$2,(a1,d6)
+	move.w	($FFFFFFFE).w,d2
+	move.w	($FFFFFFFE).w,d5
+	move.w	$2,d2
+	move.w	$2,d5
 	move.w	$7FFF(a2),(a2)
 	move.w	$7FFF(a2),(a5)
 	move.w	$7FFF(a5),(a2)
@@ -7155,24 +7467,27 @@ label_start:
 	move.w	-2(sp),-(a2)
 	move.w	-2(sp),-(a5)
 	move.w	-2(sp),-(sp)
-	move.w	$7FFF(a2),($FFFFFFFF).l
+	move.w	$7FFF(a2),($FFFFFFFE).l
 	move.w	$7FFF(a2),label_start.l
-	move.w	$7FFF(a2),$FFFFFFFF
-	move.w	$7FFF(a2),$1
-	move.w	$7FFF(a5),($FFFFFFFF).l
+	move.w	$7FFF(a2),$FFFFFFFE
+	move.w	$7FFF(a2),$FFFFFFFFFFFE
+	move.w	$7FFF(a2),$2
+	move.w	$7FFF(a5),($FFFFFFFE).l
 	move.w	$7FFF(a5),label_start.l
-	move.w	$7FFF(a5),$FFFFFFFF
-	move.w	$7FFF(a5),$1
-	move.w	-2(sp),($FFFFFFFF).l
+	move.w	$7FFF(a5),$FFFFFFFE
+	move.w	$7FFF(a5),$FFFFFFFFFFFE
+	move.w	$7FFF(a5),$2
+	move.w	-2(sp),($FFFFFFFE).l
 	move.w	-2(sp),label_start.l
-	move.w	-2(sp),$FFFFFFFF
-	move.w	-2(sp),$1
-	move.w	$7FFF(a2),($FFFFFFFF).w
-	move.w	$7FFF(a2),$1
-	move.w	$7FFF(a5),($FFFFFFFF).w
-	move.w	$7FFF(a5),$1
-	move.w	-2(sp),($FFFFFFFF).w
-	move.w	-2(sp),$1
+	move.w	-2(sp),$FFFFFFFE
+	move.w	-2(sp),$FFFFFFFFFFFE
+	move.w	-2(sp),$2
+	move.w	$7FFF(a2),($FFFFFFFE).w
+	move.w	$7FFF(a2),$2
+	move.w	$7FFF(a5),($FFFFFFFE).w
+	move.w	$7FFF(a5),$2
+	move.w	-2(sp),($FFFFFFFE).w
+	move.w	-2(sp),$2
 	move.w	$7FFF(a2),$7FFF(a2)
 	move.w	$7FFF(a2),$7FFF(a5)
 	move.w	$7FFF(a2),-2(sp)
@@ -7258,48 +7573,55 @@ label_start:
 	move.w	(a1,d6),-(a2)
 	move.w	(a1,d6),-(a5)
 	move.w	(a1,d6),-(sp)
-	move.w	$7F(a2,d5.w),($FFFFFFFF).l
+	move.w	$7F(a2,d5.w),($FFFFFFFE).l
 	move.w	$7F(a2,d5.w),label_start.l
-	move.w	$7F(a2,d5.w),$FFFFFFFF
-	move.w	$7F(a2,d5.w),$1
-	move.w	$7F(a5,d2.w),($FFFFFFFF).l
+	move.w	$7F(a2,d5.w),$FFFFFFFE
+	move.w	$7F(a2,d5.w),$FFFFFFFFFFFE
+	move.w	$7F(a2,d5.w),$2
+	move.w	$7F(a5,d2.w),($FFFFFFFE).l
 	move.w	$7F(a5,d2.w),label_start.l
-	move.w	$7F(a5,d2.w),$FFFFFFFF
-	move.w	$7F(a5,d2.w),$1
-	move.w	$0F(a5,d2.l),($FFFFFFFF).l
+	move.w	$7F(a5,d2.w),$FFFFFFFE
+	move.w	$7F(a5,d2.w),$FFFFFFFFFFFE
+	move.w	$7F(a5,d2.w),$2
+	move.w	$0F(a5,d2.l),($FFFFFFFE).l
 	move.w	$0F(a5,d2.l),label_start.l
-	move.w	$0F(a5,d2.l),$FFFFFFFF
-	move.w	$0F(a5,d2.l),$1
-	move.w	$1+1(a5,d2.l),($FFFFFFFF).l
+	move.w	$0F(a5,d2.l),$FFFFFFFE
+	move.w	$0F(a5,d2.l),$FFFFFFFFFFFE
+	move.w	$0F(a5,d2.l),$2
+	move.w	$1+1(a5,d2.l),($FFFFFFFE).l
 	move.w	$1+1(a5,d2.l),label_start.l
-	move.w	$1+1(a5,d2.l),$FFFFFFFF
-	move.w	$1+1(a5,d2.l),$1
-	move.w	-2(a5,d2.l),($FFFFFFFF).l
+	move.w	$1+1(a5,d2.l),$FFFFFFFE
+	move.w	$1+1(a5,d2.l),$FFFFFFFFFFFE
+	move.w	$1+1(a5,d2.l),$2
+	move.w	-2(a5,d2.l),($FFFFFFFE).l
 	move.w	-2(a5,d2.l),label_start.l
-	move.w	-2(a5,d2.l),$FFFFFFFF
-	move.w	-2(a5,d2.l),$1
-	move.w	(a0,d1.w),($FFFFFFFF).l
+	move.w	-2(a5,d2.l),$FFFFFFFE
+	move.w	-2(a5,d2.l),$FFFFFFFFFFFE
+	move.w	-2(a5,d2.l),$2
+	move.w	(a0,d1.w),($FFFFFFFE).l
 	move.w	(a0,d1.w),label_start.l
-	move.w	(a0,d1.w),$FFFFFFFF
-	move.w	(a0,d1.w),$1
-	move.w	(a1,d6),($FFFFFFFF).l
+	move.w	(a0,d1.w),$FFFFFFFE
+	move.w	(a0,d1.w),$FFFFFFFFFFFE
+	move.w	(a0,d1.w),$2
+	move.w	(a1,d6),($FFFFFFFE).l
 	move.w	(a1,d6),label_start.l
-	move.w	(a1,d6),$FFFFFFFF
-	move.w	(a1,d6),$1
-	move.w	$7F(a2,d5.w),($FFFFFFFF).w
-	move.w	$7F(a2,d5.w),$1
-	move.w	$7F(a5,d2.w),($FFFFFFFF).w
-	move.w	$7F(a5,d2.w),$1
-	move.w	$0F(a5,d2.l),($FFFFFFFF).w
-	move.w	$0F(a5,d2.l),$1
-	move.w	$1+1(a5,d2.l),($FFFFFFFF).w
-	move.w	$1+1(a5,d2.l),$1
-	move.w	-2(a5,d2.l),($FFFFFFFF).w
-	move.w	-2(a5,d2.l),$1
-	move.w	(a0,d1.w),($FFFFFFFF).w
-	move.w	(a0,d1.w),$1
-	move.w	(a1,d6),($FFFFFFFF).w
-	move.w	(a1,d6),$1
+	move.w	(a1,d6),$FFFFFFFE
+	move.w	(a1,d6),$FFFFFFFFFFFE
+	move.w	(a1,d6),$2
+	move.w	$7F(a2,d5.w),($FFFFFFFE).w
+	move.w	$7F(a2,d5.w),$2
+	move.w	$7F(a5,d2.w),($FFFFFFFE).w
+	move.w	$7F(a5,d2.w),$2
+	move.w	$0F(a5,d2.l),($FFFFFFFE).w
+	move.w	$0F(a5,d2.l),$2
+	move.w	$1+1(a5,d2.l),($FFFFFFFE).w
+	move.w	$1+1(a5,d2.l),$2
+	move.w	-2(a5,d2.l),($FFFFFFFE).w
+	move.w	-2(a5,d2.l),$2
+	move.w	(a0,d1.w),($FFFFFFFE).w
+	move.w	(a0,d1.w),$2
+	move.w	(a1,d6),($FFFFFFFE).w
+	move.w	(a1,d6),$2
 	move.w	$7F(a2,d5.w),$7FFF(a2)
 	move.w	$7F(a2,d5.w),$7FFF(a5)
 	move.w	$7F(a2,d5.w),-2(sp)
@@ -7398,18 +7720,20 @@ label_start:
 	move.w	@-2(pc),-(a2)
 	move.w	@-2(pc),-(a5)
 	move.w	@-2(pc),-(sp)
-	move.w	@(pc),($FFFFFFFF).l
+	move.w	@(pc),($FFFFFFFE).l
 	move.w	@(pc),label_start.l
-	move.w	@(pc),$FFFFFFFF
-	move.w	@(pc),$1
-	move.w	@-2(pc),($FFFFFFFF).l
+	move.w	@(pc),$FFFFFFFE
+	move.w	@(pc),$FFFFFFFFFFFE
+	move.w	@(pc),$2
+	move.w	@-2(pc),($FFFFFFFE).l
 	move.w	@-2(pc),label_start.l
-	move.w	@-2(pc),$FFFFFFFF
-	move.w	@-2(pc),$1
-	move.w	@(pc),($FFFFFFFF).w
-	move.w	@(pc),$1
-	move.w	@-2(pc),($FFFFFFFF).w
-	move.w	@-2(pc),$1
+	move.w	@-2(pc),$FFFFFFFE
+	move.w	@-2(pc),$FFFFFFFFFFFE
+	move.w	@-2(pc),$2
+	move.w	@(pc),($FFFFFFFE).w
+	move.w	@(pc),$2
+	move.w	@-2(pc),($FFFFFFFE).w
+	move.w	@-2(pc),$2
 	move.w	@(pc),$7FFF(a2)
 	move.w	@(pc),$7FFF(a5)
 	move.w	@(pc),-2(sp)
@@ -7455,24 +7779,27 @@ label_start:
 	move.w	@-2(pc,d1.l),-(a2)
 	move.w	@-2(pc,d1.l),-(a5)
 	move.w	@-2(pc,d1.l),-(sp)
-	move.w	@(pc,d5.w),($FFFFFFFF).l
+	move.w	@(pc,d5.w),($FFFFFFFE).l
 	move.w	@(pc,d5.w),label_start.l
-	move.w	@(pc,d5.w),$FFFFFFFF
-	move.w	@(pc,d5.w),$1
-	move.w	@-2(pc,d5.w),($FFFFFFFF).l
+	move.w	@(pc,d5.w),$FFFFFFFE
+	move.w	@(pc,d5.w),$FFFFFFFFFFFE
+	move.w	@(pc,d5.w),$2
+	move.w	@-2(pc,d5.w),($FFFFFFFE).l
 	move.w	@-2(pc,d5.w),label_start.l
-	move.w	@-2(pc,d5.w),$FFFFFFFF
-	move.w	@-2(pc,d5.w),$1
-	move.w	@-2(pc,d1.l),($FFFFFFFF).l
+	move.w	@-2(pc,d5.w),$FFFFFFFE
+	move.w	@-2(pc,d5.w),$FFFFFFFFFFFE
+	move.w	@-2(pc,d5.w),$2
+	move.w	@-2(pc,d1.l),($FFFFFFFE).l
 	move.w	@-2(pc,d1.l),label_start.l
-	move.w	@-2(pc,d1.l),$FFFFFFFF
-	move.w	@-2(pc,d1.l),$1
-	move.w	@(pc,d5.w),($FFFFFFFF).w
-	move.w	@(pc,d5.w),$1
-	move.w	@-2(pc,d5.w),($FFFFFFFF).w
-	move.w	@-2(pc,d5.w),$1
-	move.w	@-2(pc,d1.l),($FFFFFFFF).w
-	move.w	@-2(pc,d1.l),$1
+	move.w	@-2(pc,d1.l),$FFFFFFFE
+	move.w	@-2(pc,d1.l),$FFFFFFFFFFFE
+	move.w	@-2(pc,d1.l),$2
+	move.w	@(pc,d5.w),($FFFFFFFE).w
+	move.w	@(pc,d5.w),$2
+	move.w	@-2(pc,d5.w),($FFFFFFFE).w
+	move.w	@-2(pc,d5.w),$2
+	move.w	@-2(pc,d1.l),($FFFFFFFE).w
+	move.w	@-2(pc,d1.l),$2
 	move.w	@(pc,d5.w),$7FFF(a2)
 	move.w	@(pc,d5.w),$7FFF(a5)
 	move.w	@(pc,d5.w),-2(sp)
@@ -7523,18 +7850,20 @@ label_start:
 	move.w	d5,-(a2)
 	move.w	d5,-(a5)
 	move.w	d5,-(sp)
-	move.w	d2,($FFFFFFFF).l
+	move.w	d2,($FFFFFFFE).l
 	move.w	d2,label_start.l
-	move.w	d2,$FFFFFFFF
-	move.w	d2,$1
-	move.w	d5,($FFFFFFFF).l
+	move.w	d2,$FFFFFFFE
+	move.w	d2,$FFFFFFFFFFFE
+	move.w	d2,$2
+	move.w	d5,($FFFFFFFE).l
 	move.w	d5,label_start.l
-	move.w	d5,$FFFFFFFF
-	move.w	d5,$1
-	move.w	d2,($FFFFFFFF).w
-	move.w	d2,$1
-	move.w	d5,($FFFFFFFF).w
-	move.w	d5,$1
+	move.w	d5,$FFFFFFFE
+	move.w	d5,$FFFFFFFFFFFE
+	move.w	d5,$2
+	move.w	d2,($FFFFFFFE).w
+	move.w	d2,$2
+	move.w	d5,($FFFFFFFE).w
+	move.w	d5,$2
 	move.w	d2,$7FFF(a2)
 	move.w	d2,$7FFF(a5)
 	move.w	d2,-2(sp)
@@ -7608,48 +7937,55 @@ label_start:
 	move.w	#$FFFF,-(a2)
 	move.w	#$FFFF,-(a5)
 	move.w	#$FFFF,-(sp)
-	move.w	#0,($FFFFFFFF).l
+	move.w	#0,($FFFFFFFE).l
 	move.w	#0,label_start.l
-	move.w	#0,$FFFFFFFF
-	move.w	#0,$1
-	move.w	#4,($FFFFFFFF).l
+	move.w	#0,$FFFFFFFE
+	move.w	#0,$FFFFFFFFFFFE
+	move.w	#0,$2
+	move.w	#4,($FFFFFFFE).l
 	move.w	#4,label_start.l
-	move.w	#4,$FFFFFFFF
-	move.w	#4,$1
-	move.w	#$FF,($FFFFFFFF).l
+	move.w	#4,$FFFFFFFE
+	move.w	#4,$FFFFFFFFFFFE
+	move.w	#4,$2
+	move.w	#$FF,($FFFFFFFE).l
 	move.w	#$FF,label_start.l
-	move.w	#$FF,$FFFFFFFF
-	move.w	#$FF,$1
-	move.w	#"XY",($FFFFFFFF).l
+	move.w	#$FF,$FFFFFFFE
+	move.w	#$FF,$FFFFFFFFFFFE
+	move.w	#$FF,$2
+	move.w	#"XY",($FFFFFFFE).l
 	move.w	#"XY",label_start.l
-	move.w	#"XY",$FFFFFFFF
-	move.w	#"XY",$1
-	move.w	#$2700,($FFFFFFFF).l
+	move.w	#"XY",$FFFFFFFE
+	move.w	#"XY",$FFFFFFFFFFFE
+	move.w	#"XY",$2
+	move.w	#$2700,($FFFFFFFE).l
 	move.w	#$2700,label_start.l
-	move.w	#$2700,$FFFFFFFF
-	move.w	#$2700,$1
-	move.w	#$7FFF,($FFFFFFFF).l
+	move.w	#$2700,$FFFFFFFE
+	move.w	#$2700,$FFFFFFFFFFFE
+	move.w	#$2700,$2
+	move.w	#$7FFF,($FFFFFFFE).l
 	move.w	#$7FFF,label_start.l
-	move.w	#$7FFF,$FFFFFFFF
-	move.w	#$7FFF,$1
-	move.w	#$FFFF,($FFFFFFFF).l
+	move.w	#$7FFF,$FFFFFFFE
+	move.w	#$7FFF,$FFFFFFFFFFFE
+	move.w	#$7FFF,$2
+	move.w	#$FFFF,($FFFFFFFE).l
 	move.w	#$FFFF,label_start.l
-	move.w	#$FFFF,$FFFFFFFF
-	move.w	#$FFFF,$1
-	move.w	#0,($FFFFFFFF).w
-	move.w	#0,$1
-	move.w	#4,($FFFFFFFF).w
-	move.w	#4,$1
-	move.w	#$FF,($FFFFFFFF).w
-	move.w	#$FF,$1
-	move.w	#"XY",($FFFFFFFF).w
-	move.w	#"XY",$1
-	move.w	#$2700,($FFFFFFFF).w
-	move.w	#$2700,$1
-	move.w	#$7FFF,($FFFFFFFF).w
-	move.w	#$7FFF,$1
-	move.w	#$FFFF,($FFFFFFFF).w
-	move.w	#$FFFF,$1
+	move.w	#$FFFF,$FFFFFFFE
+	move.w	#$FFFF,$FFFFFFFFFFFE
+	move.w	#$FFFF,$2
+	move.w	#0,($FFFFFFFE).w
+	move.w	#0,$2
+	move.w	#4,($FFFFFFFE).w
+	move.w	#4,$2
+	move.w	#$FF,($FFFFFFFE).w
+	move.w	#$FF,$2
+	move.w	#"XY",($FFFFFFFE).w
+	move.w	#"XY",$2
+	move.w	#$2700,($FFFFFFFE).w
+	move.w	#$2700,$2
+	move.w	#$7FFF,($FFFFFFFE).w
+	move.w	#$7FFF,$2
+	move.w	#$FFFF,($FFFFFFFE).w
+	move.w	#$FFFF,$2
 	move.w	#0,$7FFF(a2)
 	move.w	#0,$7FFF(a5)
 	move.w	#0,-2(sp)
@@ -7748,18 +8084,20 @@ label_start:
 	move.l	(a5),-(a2)
 	move.l	(a5),-(a5)
 	move.l	(a5),-(sp)
-	move.l	(a2),($FFFFFFFF).l
+	move.l	(a2),($FFFFFFFE).l
 	move.l	(a2),label_start.l
-	move.l	(a2),$FFFFFFFF
-	move.l	(a2),$1
-	move.l	(a5),($FFFFFFFF).l
+	move.l	(a2),$FFFFFFFE
+	move.l	(a2),$FFFFFFFFFFFE
+	move.l	(a2),$2
+	move.l	(a5),($FFFFFFFE).l
 	move.l	(a5),label_start.l
-	move.l	(a5),$FFFFFFFF
-	move.l	(a5),$1
-	move.l	(a2),($FFFFFFFF).w
-	move.l	(a2),$1
-	move.l	(a5),($FFFFFFFF).w
-	move.l	(a5),$1
+	move.l	(a5),$FFFFFFFE
+	move.l	(a5),$FFFFFFFFFFFE
+	move.l	(a5),$2
+	move.l	(a2),($FFFFFFFE).w
+	move.l	(a2),$2
+	move.l	(a5),($FFFFFFFE).w
+	move.l	(a5),$2
 	move.l	(a2),$7FFF(a2)
 	move.l	(a2),$7FFF(a5)
 	move.l	(a2),-2(sp)
@@ -7798,18 +8136,20 @@ label_start:
 	move.l	(a5)+,-(a2)
 	move.l	(a5)+,-(a5)
 	move.l	(a5)+,-(sp)
-	move.l	(a1)+,($FFFFFFFF).l
+	move.l	(a1)+,($FFFFFFFE).l
 	move.l	(a1)+,label_start.l
-	move.l	(a1)+,$FFFFFFFF
-	move.l	(a1)+,$1
-	move.l	(a5)+,($FFFFFFFF).l
+	move.l	(a1)+,$FFFFFFFE
+	move.l	(a1)+,$FFFFFFFFFFFE
+	move.l	(a1)+,$2
+	move.l	(a5)+,($FFFFFFFE).l
 	move.l	(a5)+,label_start.l
-	move.l	(a5)+,$FFFFFFFF
-	move.l	(a5)+,$1
-	move.l	(a1)+,($FFFFFFFF).w
-	move.l	(a1)+,$1
-	move.l	(a5)+,($FFFFFFFF).w
-	move.l	(a5)+,$1
+	move.l	(a5)+,$FFFFFFFE
+	move.l	(a5)+,$FFFFFFFFFFFE
+	move.l	(a5)+,$2
+	move.l	(a1)+,($FFFFFFFE).w
+	move.l	(a1)+,$2
+	move.l	(a5)+,($FFFFFFFE).w
+	move.l	(a5)+,$2
 	move.l	(a1)+,$7FFF(a2)
 	move.l	(a1)+,$7FFF(a5)
 	move.l	(a1)+,-2(sp)
@@ -7855,24 +8195,27 @@ label_start:
 	move.l	-(sp),-(a2)
 	move.l	-(sp),-(a5)
 	move.l	-(sp),-(sp)
-	move.l	-(a2),($FFFFFFFF).l
+	move.l	-(a2),($FFFFFFFE).l
 	move.l	-(a2),label_start.l
-	move.l	-(a2),$FFFFFFFF
-	move.l	-(a2),$1
-	move.l	-(a5),($FFFFFFFF).l
+	move.l	-(a2),$FFFFFFFE
+	move.l	-(a2),$FFFFFFFFFFFE
+	move.l	-(a2),$2
+	move.l	-(a5),($FFFFFFFE).l
 	move.l	-(a5),label_start.l
-	move.l	-(a5),$FFFFFFFF
-	move.l	-(a5),$1
-	move.l	-(sp),($FFFFFFFF).l
+	move.l	-(a5),$FFFFFFFE
+	move.l	-(a5),$FFFFFFFFFFFE
+	move.l	-(a5),$2
+	move.l	-(sp),($FFFFFFFE).l
 	move.l	-(sp),label_start.l
-	move.l	-(sp),$FFFFFFFF
-	move.l	-(sp),$1
-	move.l	-(a2),($FFFFFFFF).w
-	move.l	-(a2),$1
-	move.l	-(a5),($FFFFFFFF).w
-	move.l	-(a5),$1
-	move.l	-(sp),($FFFFFFFF).w
-	move.l	-(sp),$1
+	move.l	-(sp),$FFFFFFFE
+	move.l	-(sp),$FFFFFFFFFFFE
+	move.l	-(sp),$2
+	move.l	-(a2),($FFFFFFFE).w
+	move.l	-(a2),$2
+	move.l	-(a5),($FFFFFFFE).w
+	move.l	-(a5),$2
+	move.l	-(sp),($FFFFFFFE).w
+	move.l	-(sp),$2
 	move.l	-(a2),$7FFF(a2)
 	move.l	-(a2),$7FFF(a5)
 	move.l	-(a2),-2(sp)
@@ -7909,77 +8252,98 @@ label_start:
 	move.l	-(a5),d5
 	move.l	-(sp),d2
 	move.l	-(sp),d5
-	move.l	($FFFFFFFF).l,(a2)
-	move.l	($FFFFFFFF).l,(a5)
+	move.l	($FFFFFFFE).l,(a2)
+	move.l	($FFFFFFFE).l,(a5)
 	move.l	label_start.l,(a2)
 	move.l	label_start.l,(a5)
-	move.l	$FFFFFFFF,(a2)
-	move.l	$FFFFFFFF,(a5)
-	move.l	$1,(a2)
-	move.l	$1,(a5)
-	move.l	($FFFFFFFF).l,(a1)+
-	move.l	($FFFFFFFF).l,(a5)+
+	move.l	$FFFFFFFE,(a2)
+	move.l	$FFFFFFFE,(a5)
+	move.l	$FFFFFFFFFFFE,(a2)
+	move.l	$FFFFFFFFFFFE,(a5)
+	move.l	$2,(a2)
+	move.l	$2,(a5)
+	move.l	($FFFFFFFE).l,(a1)+
+	move.l	($FFFFFFFE).l,(a5)+
 	move.l	label_start.l,(a1)+
 	move.l	label_start.l,(a5)+
-	move.l	$FFFFFFFF,(a1)+
-	move.l	$FFFFFFFF,(a5)+
-	move.l	$1,(a1)+
-	move.l	$1,(a5)+
-	move.l	($FFFFFFFF).l,-(a2)
-	move.l	($FFFFFFFF).l,-(a5)
-	move.l	($FFFFFFFF).l,-(sp)
+	move.l	$FFFFFFFE,(a1)+
+	move.l	$FFFFFFFE,(a5)+
+	move.l	$FFFFFFFFFFFE,(a1)+
+	move.l	$FFFFFFFFFFFE,(a5)+
+	move.l	$2,(a1)+
+	move.l	$2,(a5)+
+	move.l	($FFFFFFFE).l,-(a2)
+	move.l	($FFFFFFFE).l,-(a5)
+	move.l	($FFFFFFFE).l,-(sp)
 	move.l	label_start.l,-(a2)
 	move.l	label_start.l,-(a5)
 	move.l	label_start.l,-(sp)
-	move.l	$FFFFFFFF,-(a2)
-	move.l	$FFFFFFFF,-(a5)
-	move.l	$FFFFFFFF,-(sp)
-	move.l	$1,-(a2)
-	move.l	$1,-(a5)
-	move.l	$1,-(sp)
-	move.l	($FFFFFFFF).l,($FFFFFFFF).l
-	move.l	($FFFFFFFF).l,label_start.l
-	move.l	($FFFFFFFF).l,$FFFFFFFF
-	move.l	($FFFFFFFF).l,$1
-	move.l	label_start.l,($FFFFFFFF).l
+	move.l	$FFFFFFFE,-(a2)
+	move.l	$FFFFFFFE,-(a5)
+	move.l	$FFFFFFFE,-(sp)
+	move.l	$FFFFFFFFFFFE,-(a2)
+	move.l	$FFFFFFFFFFFE,-(a5)
+	move.l	$FFFFFFFFFFFE,-(sp)
+	move.l	$2,-(a2)
+	move.l	$2,-(a5)
+	move.l	$2,-(sp)
+	move.l	($FFFFFFFE).l,($FFFFFFFE).l
+	move.l	($FFFFFFFE).l,label_start.l
+	move.l	($FFFFFFFE).l,$FFFFFFFE
+	move.l	($FFFFFFFE).l,$FFFFFFFFFFFE
+	move.l	($FFFFFFFE).l,$2
+	move.l	label_start.l,($FFFFFFFE).l
 	move.l	label_start.l,label_start.l
-	move.l	label_start.l,$FFFFFFFF
-	move.l	label_start.l,$1
-	move.l	$FFFFFFFF,($FFFFFFFF).l
-	move.l	$FFFFFFFF,label_start.l
-	move.l	$FFFFFFFF,$FFFFFFFF
-	move.l	$FFFFFFFF,$1
-	move.l	$1,($FFFFFFFF).l
-	move.l	$1,label_start.l
-	move.l	$1,$FFFFFFFF
-	move.l	$1,$1
-	move.l	($FFFFFFFF).l,($FFFFFFFF).w
-	move.l	($FFFFFFFF).l,$1
-	move.l	label_start.l,($FFFFFFFF).w
-	move.l	label_start.l,$1
-	move.l	$FFFFFFFF,($FFFFFFFF).w
-	move.l	$FFFFFFFF,$1
-	move.l	$1,($FFFFFFFF).w
-	move.l	$1,$1
-	move.l	($FFFFFFFF).l,$7FFF(a2)
-	move.l	($FFFFFFFF).l,$7FFF(a5)
-	move.l	($FFFFFFFF).l,-2(sp)
+	move.l	label_start.l,$FFFFFFFE
+	move.l	label_start.l,$FFFFFFFFFFFE
+	move.l	label_start.l,$2
+	move.l	$FFFFFFFE,($FFFFFFFE).l
+	move.l	$FFFFFFFE,label_start.l
+	move.l	$FFFFFFFE,$FFFFFFFE
+	move.l	$FFFFFFFE,$FFFFFFFFFFFE
+	move.l	$FFFFFFFE,$2
+	move.l	$FFFFFFFFFFFE,($FFFFFFFE).l
+	move.l	$FFFFFFFFFFFE,label_start.l
+	move.l	$FFFFFFFFFFFE,$FFFFFFFE
+	move.l	$FFFFFFFFFFFE,$FFFFFFFFFFFE
+	move.l	$FFFFFFFFFFFE,$2
+	move.l	$2,($FFFFFFFE).l
+	move.l	$2,label_start.l
+	move.l	$2,$FFFFFFFE
+	move.l	$2,$FFFFFFFFFFFE
+	move.l	$2,$2
+	move.l	($FFFFFFFE).l,($FFFFFFFE).w
+	move.l	($FFFFFFFE).l,$2
+	move.l	label_start.l,($FFFFFFFE).w
+	move.l	label_start.l,$2
+	move.l	$FFFFFFFE,($FFFFFFFE).w
+	move.l	$FFFFFFFE,$2
+	move.l	$FFFFFFFFFFFE,($FFFFFFFE).w
+	move.l	$FFFFFFFFFFFE,$2
+	move.l	$2,($FFFFFFFE).w
+	move.l	$2,$2
+	move.l	($FFFFFFFE).l,$7FFF(a2)
+	move.l	($FFFFFFFE).l,$7FFF(a5)
+	move.l	($FFFFFFFE).l,-2(sp)
 	move.l	label_start.l,$7FFF(a2)
 	move.l	label_start.l,$7FFF(a5)
 	move.l	label_start.l,-2(sp)
-	move.l	$FFFFFFFF,$7FFF(a2)
-	move.l	$FFFFFFFF,$7FFF(a5)
-	move.l	$FFFFFFFF,-2(sp)
-	move.l	$1,$7FFF(a2)
-	move.l	$1,$7FFF(a5)
-	move.l	$1,-2(sp)
-	move.l	($FFFFFFFF).l,$7F(a2,d5.w)
-	move.l	($FFFFFFFF).l,$7F(a5,d2.w)
-	move.l	($FFFFFFFF).l,$0F(a5,d2.l)
-	move.l	($FFFFFFFF).l,$1+1(a5,d2.l)
-	move.l	($FFFFFFFF).l,-2(a5,d2.l)
-	move.l	($FFFFFFFF).l,(a0,d1.w)
-	move.l	($FFFFFFFF).l,(a1,d6)
+	move.l	$FFFFFFFE,$7FFF(a2)
+	move.l	$FFFFFFFE,$7FFF(a5)
+	move.l	$FFFFFFFE,-2(sp)
+	move.l	$FFFFFFFFFFFE,$7FFF(a2)
+	move.l	$FFFFFFFFFFFE,$7FFF(a5)
+	move.l	$FFFFFFFFFFFE,-2(sp)
+	move.l	$2,$7FFF(a2)
+	move.l	$2,$7FFF(a5)
+	move.l	$2,-2(sp)
+	move.l	($FFFFFFFE).l,$7F(a2,d5.w)
+	move.l	($FFFFFFFE).l,$7F(a5,d2.w)
+	move.l	($FFFFFFFE).l,$0F(a5,d2.l)
+	move.l	($FFFFFFFE).l,$1+1(a5,d2.l)
+	move.l	($FFFFFFFE).l,-2(a5,d2.l)
+	move.l	($FFFFFFFE).l,(a0,d1.w)
+	move.l	($FFFFFFFE).l,(a1,d6)
 	move.l	label_start.l,$7F(a2,d5.w)
 	move.l	label_start.l,$7F(a5,d2.w)
 	move.l	label_start.l,$0F(a5,d2.l)
@@ -7987,78 +8351,89 @@ label_start:
 	move.l	label_start.l,-2(a5,d2.l)
 	move.l	label_start.l,(a0,d1.w)
 	move.l	label_start.l,(a1,d6)
-	move.l	$FFFFFFFF,$7F(a2,d5.w)
-	move.l	$FFFFFFFF,$7F(a5,d2.w)
-	move.l	$FFFFFFFF,$0F(a5,d2.l)
-	move.l	$FFFFFFFF,$1+1(a5,d2.l)
-	move.l	$FFFFFFFF,-2(a5,d2.l)
-	move.l	$FFFFFFFF,(a0,d1.w)
-	move.l	$FFFFFFFF,(a1,d6)
-	move.l	$1,$7F(a2,d5.w)
-	move.l	$1,$7F(a5,d2.w)
-	move.l	$1,$0F(a5,d2.l)
-	move.l	$1,$1+1(a5,d2.l)
-	move.l	$1,-2(a5,d2.l)
-	move.l	$1,(a0,d1.w)
-	move.l	$1,(a1,d6)
-	move.l	($FFFFFFFF).l,d2
-	move.l	($FFFFFFFF).l,d5
+	move.l	$FFFFFFFE,$7F(a2,d5.w)
+	move.l	$FFFFFFFE,$7F(a5,d2.w)
+	move.l	$FFFFFFFE,$0F(a5,d2.l)
+	move.l	$FFFFFFFE,$1+1(a5,d2.l)
+	move.l	$FFFFFFFE,-2(a5,d2.l)
+	move.l	$FFFFFFFE,(a0,d1.w)
+	move.l	$FFFFFFFE,(a1,d6)
+	move.l	$FFFFFFFFFFFE,$7F(a2,d5.w)
+	move.l	$FFFFFFFFFFFE,$7F(a5,d2.w)
+	move.l	$FFFFFFFFFFFE,$0F(a5,d2.l)
+	move.l	$FFFFFFFFFFFE,$1+1(a5,d2.l)
+	move.l	$FFFFFFFFFFFE,-2(a5,d2.l)
+	move.l	$FFFFFFFFFFFE,(a0,d1.w)
+	move.l	$FFFFFFFFFFFE,(a1,d6)
+	move.l	$2,$7F(a2,d5.w)
+	move.l	$2,$7F(a5,d2.w)
+	move.l	$2,$0F(a5,d2.l)
+	move.l	$2,$1+1(a5,d2.l)
+	move.l	$2,-2(a5,d2.l)
+	move.l	$2,(a0,d1.w)
+	move.l	$2,(a1,d6)
+	move.l	($FFFFFFFE).l,d2
+	move.l	($FFFFFFFE).l,d5
 	move.l	label_start.l,d2
 	move.l	label_start.l,d5
-	move.l	$FFFFFFFF,d2
-	move.l	$FFFFFFFF,d5
-	move.l	$1,d2
-	move.l	$1,d5
-	move.l	($FFFFFFFF).w,(a2)
-	move.l	($FFFFFFFF).w,(a5)
-	move.l	$1,(a2)
-	move.l	$1,(a5)
-	move.l	($FFFFFFFF).w,(a1)+
-	move.l	($FFFFFFFF).w,(a5)+
-	move.l	$1,(a1)+
-	move.l	$1,(a5)+
-	move.l	($FFFFFFFF).w,-(a2)
-	move.l	($FFFFFFFF).w,-(a5)
-	move.l	($FFFFFFFF).w,-(sp)
-	move.l	$1,-(a2)
-	move.l	$1,-(a5)
-	move.l	$1,-(sp)
-	move.l	($FFFFFFFF).w,($FFFFFFFF).l
-	move.l	($FFFFFFFF).w,label_start.l
-	move.l	($FFFFFFFF).w,$FFFFFFFF
-	move.l	($FFFFFFFF).w,$1
-	move.l	$1,($FFFFFFFF).l
-	move.l	$1,label_start.l
-	move.l	$1,$FFFFFFFF
-	move.l	$1,$1
-	move.l	($FFFFFFFF).w,($FFFFFFFF).w
-	move.l	($FFFFFFFF).w,$1
-	move.l	$1,($FFFFFFFF).w
-	move.l	$1,$1
-	move.l	($FFFFFFFF).w,$7FFF(a2)
-	move.l	($FFFFFFFF).w,$7FFF(a5)
-	move.l	($FFFFFFFF).w,-2(sp)
-	move.l	$1,$7FFF(a2)
-	move.l	$1,$7FFF(a5)
-	move.l	$1,-2(sp)
-	move.l	($FFFFFFFF).w,$7F(a2,d5.w)
-	move.l	($FFFFFFFF).w,$7F(a5,d2.w)
-	move.l	($FFFFFFFF).w,$0F(a5,d2.l)
-	move.l	($FFFFFFFF).w,$1+1(a5,d2.l)
-	move.l	($FFFFFFFF).w,-2(a5,d2.l)
-	move.l	($FFFFFFFF).w,(a0,d1.w)
-	move.l	($FFFFFFFF).w,(a1,d6)
-	move.l	$1,$7F(a2,d5.w)
-	move.l	$1,$7F(a5,d2.w)
-	move.l	$1,$0F(a5,d2.l)
-	move.l	$1,$1+1(a5,d2.l)
-	move.l	$1,-2(a5,d2.l)
-	move.l	$1,(a0,d1.w)
-	move.l	$1,(a1,d6)
-	move.l	($FFFFFFFF).w,d2
-	move.l	($FFFFFFFF).w,d5
-	move.l	$1,d2
-	move.l	$1,d5
+	move.l	$FFFFFFFE,d2
+	move.l	$FFFFFFFE,d5
+	move.l	$FFFFFFFFFFFE,d2
+	move.l	$FFFFFFFFFFFE,d5
+	move.l	$2,d2
+	move.l	$2,d5
+	move.l	($FFFFFFFE).w,(a2)
+	move.l	($FFFFFFFE).w,(a5)
+	move.l	$2,(a2)
+	move.l	$2,(a5)
+	move.l	($FFFFFFFE).w,(a1)+
+	move.l	($FFFFFFFE).w,(a5)+
+	move.l	$2,(a1)+
+	move.l	$2,(a5)+
+	move.l	($FFFFFFFE).w,-(a2)
+	move.l	($FFFFFFFE).w,-(a5)
+	move.l	($FFFFFFFE).w,-(sp)
+	move.l	$2,-(a2)
+	move.l	$2,-(a5)
+	move.l	$2,-(sp)
+	move.l	($FFFFFFFE).w,($FFFFFFFE).l
+	move.l	($FFFFFFFE).w,label_start.l
+	move.l	($FFFFFFFE).w,$FFFFFFFE
+	move.l	($FFFFFFFE).w,$FFFFFFFFFFFE
+	move.l	($FFFFFFFE).w,$2
+	move.l	$2,($FFFFFFFE).l
+	move.l	$2,label_start.l
+	move.l	$2,$FFFFFFFE
+	move.l	$2,$FFFFFFFFFFFE
+	move.l	$2,$2
+	move.l	($FFFFFFFE).w,($FFFFFFFE).w
+	move.l	($FFFFFFFE).w,$2
+	move.l	$2,($FFFFFFFE).w
+	move.l	$2,$2
+	move.l	($FFFFFFFE).w,$7FFF(a2)
+	move.l	($FFFFFFFE).w,$7FFF(a5)
+	move.l	($FFFFFFFE).w,-2(sp)
+	move.l	$2,$7FFF(a2)
+	move.l	$2,$7FFF(a5)
+	move.l	$2,-2(sp)
+	move.l	($FFFFFFFE).w,$7F(a2,d5.w)
+	move.l	($FFFFFFFE).w,$7F(a5,d2.w)
+	move.l	($FFFFFFFE).w,$0F(a5,d2.l)
+	move.l	($FFFFFFFE).w,$1+1(a5,d2.l)
+	move.l	($FFFFFFFE).w,-2(a5,d2.l)
+	move.l	($FFFFFFFE).w,(a0,d1.w)
+	move.l	($FFFFFFFE).w,(a1,d6)
+	move.l	$2,$7F(a2,d5.w)
+	move.l	$2,$7F(a5,d2.w)
+	move.l	$2,$0F(a5,d2.l)
+	move.l	$2,$1+1(a5,d2.l)
+	move.l	$2,-2(a5,d2.l)
+	move.l	$2,(a0,d1.w)
+	move.l	$2,(a1,d6)
+	move.l	($FFFFFFFE).w,d2
+	move.l	($FFFFFFFE).w,d5
+	move.l	$2,d2
+	move.l	$2,d5
 	move.l	$7FFF(a2),(a2)
 	move.l	$7FFF(a2),(a5)
 	move.l	$7FFF(a5),(a2)
@@ -8080,24 +8455,27 @@ label_start:
 	move.l	-2(sp),-(a2)
 	move.l	-2(sp),-(a5)
 	move.l	-2(sp),-(sp)
-	move.l	$7FFF(a2),($FFFFFFFF).l
+	move.l	$7FFF(a2),($FFFFFFFE).l
 	move.l	$7FFF(a2),label_start.l
-	move.l	$7FFF(a2),$FFFFFFFF
-	move.l	$7FFF(a2),$1
-	move.l	$7FFF(a5),($FFFFFFFF).l
+	move.l	$7FFF(a2),$FFFFFFFE
+	move.l	$7FFF(a2),$FFFFFFFFFFFE
+	move.l	$7FFF(a2),$2
+	move.l	$7FFF(a5),($FFFFFFFE).l
 	move.l	$7FFF(a5),label_start.l
-	move.l	$7FFF(a5),$FFFFFFFF
-	move.l	$7FFF(a5),$1
-	move.l	-2(sp),($FFFFFFFF).l
+	move.l	$7FFF(a5),$FFFFFFFE
+	move.l	$7FFF(a5),$FFFFFFFFFFFE
+	move.l	$7FFF(a5),$2
+	move.l	-2(sp),($FFFFFFFE).l
 	move.l	-2(sp),label_start.l
-	move.l	-2(sp),$FFFFFFFF
-	move.l	-2(sp),$1
-	move.l	$7FFF(a2),($FFFFFFFF).w
-	move.l	$7FFF(a2),$1
-	move.l	$7FFF(a5),($FFFFFFFF).w
-	move.l	$7FFF(a5),$1
-	move.l	-2(sp),($FFFFFFFF).w
-	move.l	-2(sp),$1
+	move.l	-2(sp),$FFFFFFFE
+	move.l	-2(sp),$FFFFFFFFFFFE
+	move.l	-2(sp),$2
+	move.l	$7FFF(a2),($FFFFFFFE).w
+	move.l	$7FFF(a2),$2
+	move.l	$7FFF(a5),($FFFFFFFE).w
+	move.l	$7FFF(a5),$2
+	move.l	-2(sp),($FFFFFFFE).w
+	move.l	-2(sp),$2
 	move.l	$7FFF(a2),$7FFF(a2)
 	move.l	$7FFF(a2),$7FFF(a5)
 	move.l	$7FFF(a2),-2(sp)
@@ -8183,48 +8561,55 @@ label_start:
 	move.l	(a1,d6),-(a2)
 	move.l	(a1,d6),-(a5)
 	move.l	(a1,d6),-(sp)
-	move.l	$7F(a2,d5.w),($FFFFFFFF).l
+	move.l	$7F(a2,d5.w),($FFFFFFFE).l
 	move.l	$7F(a2,d5.w),label_start.l
-	move.l	$7F(a2,d5.w),$FFFFFFFF
-	move.l	$7F(a2,d5.w),$1
-	move.l	$7F(a5,d2.w),($FFFFFFFF).l
+	move.l	$7F(a2,d5.w),$FFFFFFFE
+	move.l	$7F(a2,d5.w),$FFFFFFFFFFFE
+	move.l	$7F(a2,d5.w),$2
+	move.l	$7F(a5,d2.w),($FFFFFFFE).l
 	move.l	$7F(a5,d2.w),label_start.l
-	move.l	$7F(a5,d2.w),$FFFFFFFF
-	move.l	$7F(a5,d2.w),$1
-	move.l	$0F(a5,d2.l),($FFFFFFFF).l
+	move.l	$7F(a5,d2.w),$FFFFFFFE
+	move.l	$7F(a5,d2.w),$FFFFFFFFFFFE
+	move.l	$7F(a5,d2.w),$2
+	move.l	$0F(a5,d2.l),($FFFFFFFE).l
 	move.l	$0F(a5,d2.l),label_start.l
-	move.l	$0F(a5,d2.l),$FFFFFFFF
-	move.l	$0F(a5,d2.l),$1
-	move.l	$1+1(a5,d2.l),($FFFFFFFF).l
+	move.l	$0F(a5,d2.l),$FFFFFFFE
+	move.l	$0F(a5,d2.l),$FFFFFFFFFFFE
+	move.l	$0F(a5,d2.l),$2
+	move.l	$1+1(a5,d2.l),($FFFFFFFE).l
 	move.l	$1+1(a5,d2.l),label_start.l
-	move.l	$1+1(a5,d2.l),$FFFFFFFF
-	move.l	$1+1(a5,d2.l),$1
-	move.l	-2(a5,d2.l),($FFFFFFFF).l
+	move.l	$1+1(a5,d2.l),$FFFFFFFE
+	move.l	$1+1(a5,d2.l),$FFFFFFFFFFFE
+	move.l	$1+1(a5,d2.l),$2
+	move.l	-2(a5,d2.l),($FFFFFFFE).l
 	move.l	-2(a5,d2.l),label_start.l
-	move.l	-2(a5,d2.l),$FFFFFFFF
-	move.l	-2(a5,d2.l),$1
-	move.l	(a0,d1.w),($FFFFFFFF).l
+	move.l	-2(a5,d2.l),$FFFFFFFE
+	move.l	-2(a5,d2.l),$FFFFFFFFFFFE
+	move.l	-2(a5,d2.l),$2
+	move.l	(a0,d1.w),($FFFFFFFE).l
 	move.l	(a0,d1.w),label_start.l
-	move.l	(a0,d1.w),$FFFFFFFF
-	move.l	(a0,d1.w),$1
-	move.l	(a1,d6),($FFFFFFFF).l
+	move.l	(a0,d1.w),$FFFFFFFE
+	move.l	(a0,d1.w),$FFFFFFFFFFFE
+	move.l	(a0,d1.w),$2
+	move.l	(a1,d6),($FFFFFFFE).l
 	move.l	(a1,d6),label_start.l
-	move.l	(a1,d6),$FFFFFFFF
-	move.l	(a1,d6),$1
-	move.l	$7F(a2,d5.w),($FFFFFFFF).w
-	move.l	$7F(a2,d5.w),$1
-	move.l	$7F(a5,d2.w),($FFFFFFFF).w
-	move.l	$7F(a5,d2.w),$1
-	move.l	$0F(a5,d2.l),($FFFFFFFF).w
-	move.l	$0F(a5,d2.l),$1
-	move.l	$1+1(a5,d2.l),($FFFFFFFF).w
-	move.l	$1+1(a5,d2.l),$1
-	move.l	-2(a5,d2.l),($FFFFFFFF).w
-	move.l	-2(a5,d2.l),$1
-	move.l	(a0,d1.w),($FFFFFFFF).w
-	move.l	(a0,d1.w),$1
-	move.l	(a1,d6),($FFFFFFFF).w
-	move.l	(a1,d6),$1
+	move.l	(a1,d6),$FFFFFFFE
+	move.l	(a1,d6),$FFFFFFFFFFFE
+	move.l	(a1,d6),$2
+	move.l	$7F(a2,d5.w),($FFFFFFFE).w
+	move.l	$7F(a2,d5.w),$2
+	move.l	$7F(a5,d2.w),($FFFFFFFE).w
+	move.l	$7F(a5,d2.w),$2
+	move.l	$0F(a5,d2.l),($FFFFFFFE).w
+	move.l	$0F(a5,d2.l),$2
+	move.l	$1+1(a5,d2.l),($FFFFFFFE).w
+	move.l	$1+1(a5,d2.l),$2
+	move.l	-2(a5,d2.l),($FFFFFFFE).w
+	move.l	-2(a5,d2.l),$2
+	move.l	(a0,d1.w),($FFFFFFFE).w
+	move.l	(a0,d1.w),$2
+	move.l	(a1,d6),($FFFFFFFE).w
+	move.l	(a1,d6),$2
 	move.l	$7F(a2,d5.w),$7FFF(a2)
 	move.l	$7F(a2,d5.w),$7FFF(a5)
 	move.l	$7F(a2,d5.w),-2(sp)
@@ -8323,18 +8708,20 @@ label_start:
 	move.l	@-2(pc),-(a2)
 	move.l	@-2(pc),-(a5)
 	move.l	@-2(pc),-(sp)
-	move.l	@(pc),($FFFFFFFF).l
+	move.l	@(pc),($FFFFFFFE).l
 	move.l	@(pc),label_start.l
-	move.l	@(pc),$FFFFFFFF
-	move.l	@(pc),$1
-	move.l	@-2(pc),($FFFFFFFF).l
+	move.l	@(pc),$FFFFFFFE
+	move.l	@(pc),$FFFFFFFFFFFE
+	move.l	@(pc),$2
+	move.l	@-2(pc),($FFFFFFFE).l
 	move.l	@-2(pc),label_start.l
-	move.l	@-2(pc),$FFFFFFFF
-	move.l	@-2(pc),$1
-	move.l	@(pc),($FFFFFFFF).w
-	move.l	@(pc),$1
-	move.l	@-2(pc),($FFFFFFFF).w
-	move.l	@-2(pc),$1
+	move.l	@-2(pc),$FFFFFFFE
+	move.l	@-2(pc),$FFFFFFFFFFFE
+	move.l	@-2(pc),$2
+	move.l	@(pc),($FFFFFFFE).w
+	move.l	@(pc),$2
+	move.l	@-2(pc),($FFFFFFFE).w
+	move.l	@-2(pc),$2
 	move.l	@(pc),$7FFF(a2)
 	move.l	@(pc),$7FFF(a5)
 	move.l	@(pc),-2(sp)
@@ -8380,24 +8767,27 @@ label_start:
 	move.l	@-2(pc,d1.l),-(a2)
 	move.l	@-2(pc,d1.l),-(a5)
 	move.l	@-2(pc,d1.l),-(sp)
-	move.l	@(pc,d5.w),($FFFFFFFF).l
+	move.l	@(pc,d5.w),($FFFFFFFE).l
 	move.l	@(pc,d5.w),label_start.l
-	move.l	@(pc,d5.w),$FFFFFFFF
-	move.l	@(pc,d5.w),$1
-	move.l	@-2(pc,d5.w),($FFFFFFFF).l
+	move.l	@(pc,d5.w),$FFFFFFFE
+	move.l	@(pc,d5.w),$FFFFFFFFFFFE
+	move.l	@(pc,d5.w),$2
+	move.l	@-2(pc,d5.w),($FFFFFFFE).l
 	move.l	@-2(pc,d5.w),label_start.l
-	move.l	@-2(pc,d5.w),$FFFFFFFF
-	move.l	@-2(pc,d5.w),$1
-	move.l	@-2(pc,d1.l),($FFFFFFFF).l
+	move.l	@-2(pc,d5.w),$FFFFFFFE
+	move.l	@-2(pc,d5.w),$FFFFFFFFFFFE
+	move.l	@-2(pc,d5.w),$2
+	move.l	@-2(pc,d1.l),($FFFFFFFE).l
 	move.l	@-2(pc,d1.l),label_start.l
-	move.l	@-2(pc,d1.l),$FFFFFFFF
-	move.l	@-2(pc,d1.l),$1
-	move.l	@(pc,d5.w),($FFFFFFFF).w
-	move.l	@(pc,d5.w),$1
-	move.l	@-2(pc,d5.w),($FFFFFFFF).w
-	move.l	@-2(pc,d5.w),$1
-	move.l	@-2(pc,d1.l),($FFFFFFFF).w
-	move.l	@-2(pc,d1.l),$1
+	move.l	@-2(pc,d1.l),$FFFFFFFE
+	move.l	@-2(pc,d1.l),$FFFFFFFFFFFE
+	move.l	@-2(pc,d1.l),$2
+	move.l	@(pc,d5.w),($FFFFFFFE).w
+	move.l	@(pc,d5.w),$2
+	move.l	@-2(pc,d5.w),($FFFFFFFE).w
+	move.l	@-2(pc,d5.w),$2
+	move.l	@-2(pc,d1.l),($FFFFFFFE).w
+	move.l	@-2(pc,d1.l),$2
 	move.l	@(pc,d5.w),$7FFF(a2)
 	move.l	@(pc,d5.w),$7FFF(a5)
 	move.l	@(pc,d5.w),-2(sp)
@@ -8448,18 +8838,20 @@ label_start:
 	move.l	d5,-(a2)
 	move.l	d5,-(a5)
 	move.l	d5,-(sp)
-	move.l	d2,($FFFFFFFF).l
+	move.l	d2,($FFFFFFFE).l
 	move.l	d2,label_start.l
-	move.l	d2,$FFFFFFFF
-	move.l	d2,$1
-	move.l	d5,($FFFFFFFF).l
+	move.l	d2,$FFFFFFFE
+	move.l	d2,$FFFFFFFFFFFE
+	move.l	d2,$2
+	move.l	d5,($FFFFFFFE).l
 	move.l	d5,label_start.l
-	move.l	d5,$FFFFFFFF
-	move.l	d5,$1
-	move.l	d2,($FFFFFFFF).w
-	move.l	d2,$1
-	move.l	d5,($FFFFFFFF).w
-	move.l	d5,$1
+	move.l	d5,$FFFFFFFE
+	move.l	d5,$FFFFFFFFFFFE
+	move.l	d5,$2
+	move.l	d2,($FFFFFFFE).w
+	move.l	d2,$2
+	move.l	d5,($FFFFFFFE).w
+	move.l	d5,$2
 	move.l	d2,$7FFF(a2)
 	move.l	d2,$7FFF(a5)
 	move.l	d2,-2(sp)
@@ -8568,78 +8960,90 @@ label_start:
 	move.l	#(3+4),-(a2)
 	move.l	#(3+4),-(a5)
 	move.l	#(3+4),-(sp)
-	move.l	#equ_1,($FFFFFFFF).l
+	move.l	#equ_1,($FFFFFFFE).l
 	move.l	#equ_1,label_start.l
-	move.l	#equ_1,$FFFFFFFF
-	move.l	#equ_1,$1
-	move.l	#equ_equ_1,($FFFFFFFF).l
+	move.l	#equ_1,$FFFFFFFE
+	move.l	#equ_1,$FFFFFFFFFFFE
+	move.l	#equ_1,$2
+	move.l	#equ_equ_1,($FFFFFFFE).l
 	move.l	#equ_equ_1,label_start.l
-	move.l	#equ_equ_1,$FFFFFFFF
-	move.l	#equ_equ_1,$1
-	move.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	move.l	#equ_equ_1,$FFFFFFFE
+	move.l	#equ_equ_1,$FFFFFFFFFFFE
+	move.l	#equ_equ_1,$2
+	move.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	move.l	#equ_1_plus_equ_1,label_start.l
-	move.l	#equ_1_plus_equ_1,$FFFFFFFF
-	move.l	#equ_1_plus_equ_1,$1
-	move.l	#0,($FFFFFFFF).l
+	move.l	#equ_1_plus_equ_1,$FFFFFFFE
+	move.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	move.l	#equ_1_plus_equ_1,$2
+	move.l	#0,($FFFFFFFE).l
 	move.l	#0,label_start.l
-	move.l	#0,$FFFFFFFF
-	move.l	#0,$1
-	move.l	#4,($FFFFFFFF).l
+	move.l	#0,$FFFFFFFE
+	move.l	#0,$FFFFFFFFFFFE
+	move.l	#0,$2
+	move.l	#4,($FFFFFFFE).l
 	move.l	#4,label_start.l
-	move.l	#4,$FFFFFFFF
-	move.l	#4,$1
-	move.l	#$FF,($FFFFFFFF).l
+	move.l	#4,$FFFFFFFE
+	move.l	#4,$FFFFFFFFFFFE
+	move.l	#4,$2
+	move.l	#$FF,($FFFFFFFE).l
 	move.l	#$FF,label_start.l
-	move.l	#$FF,$FFFFFFFF
-	move.l	#$FF,$1
-	move.l	#$7FFF,($FFFFFFFF).l
+	move.l	#$FF,$FFFFFFFE
+	move.l	#$FF,$FFFFFFFFFFFE
+	move.l	#$FF,$2
+	move.l	#$7FFF,($FFFFFFFE).l
 	move.l	#$7FFF,label_start.l
-	move.l	#$7FFF,$FFFFFFFF
-	move.l	#$7FFF,$1
-	move.l	#$FFFF,($FFFFFFFF).l
+	move.l	#$7FFF,$FFFFFFFE
+	move.l	#$7FFF,$FFFFFFFFFFFE
+	move.l	#$7FFF,$2
+	move.l	#$FFFF,($FFFFFFFE).l
 	move.l	#$FFFF,label_start.l
-	move.l	#$FFFF,$FFFFFFFF
-	move.l	#$FFFF,$1
-	move.l	#$FFFFFFFF,($FFFFFFFF).l
+	move.l	#$FFFF,$FFFFFFFE
+	move.l	#$FFFF,$FFFFFFFFFFFE
+	move.l	#$FFFF,$2
+	move.l	#$FFFFFFFF,($FFFFFFFE).l
 	move.l	#$FFFFFFFF,label_start.l
-	move.l	#$FFFFFFFF,$FFFFFFFF
-	move.l	#$FFFFFFFF,$1
-	move.l	#"WXYZ",($FFFFFFFF).l
+	move.l	#$FFFFFFFF,$FFFFFFFE
+	move.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	move.l	#$FFFFFFFF,$2
+	move.l	#"WXYZ",($FFFFFFFE).l
 	move.l	#"WXYZ",label_start.l
-	move.l	#"WXYZ",$FFFFFFFF
-	move.l	#"WXYZ",$1
-	move.l	#1+1,($FFFFFFFF).l
+	move.l	#"WXYZ",$FFFFFFFE
+	move.l	#"WXYZ",$FFFFFFFFFFFE
+	move.l	#"WXYZ",$2
+	move.l	#1+1,($FFFFFFFE).l
 	move.l	#1+1,label_start.l
-	move.l	#1+1,$FFFFFFFF
-	move.l	#1+1,$1
-	move.l	#(3+4),($FFFFFFFF).l
+	move.l	#1+1,$FFFFFFFE
+	move.l	#1+1,$FFFFFFFFFFFE
+	move.l	#1+1,$2
+	move.l	#(3+4),($FFFFFFFE).l
 	move.l	#(3+4),label_start.l
-	move.l	#(3+4),$FFFFFFFF
-	move.l	#(3+4),$1
-	move.l	#equ_1,($FFFFFFFF).w
-	move.l	#equ_1,$1
-	move.l	#equ_equ_1,($FFFFFFFF).w
-	move.l	#equ_equ_1,$1
-	move.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	move.l	#equ_1_plus_equ_1,$1
-	move.l	#0,($FFFFFFFF).w
-	move.l	#0,$1
-	move.l	#4,($FFFFFFFF).w
-	move.l	#4,$1
-	move.l	#$FF,($FFFFFFFF).w
-	move.l	#$FF,$1
-	move.l	#$7FFF,($FFFFFFFF).w
-	move.l	#$7FFF,$1
-	move.l	#$FFFF,($FFFFFFFF).w
-	move.l	#$FFFF,$1
-	move.l	#$FFFFFFFF,($FFFFFFFF).w
-	move.l	#$FFFFFFFF,$1
-	move.l	#"WXYZ",($FFFFFFFF).w
-	move.l	#"WXYZ",$1
-	move.l	#1+1,($FFFFFFFF).w
-	move.l	#1+1,$1
-	move.l	#(3+4),($FFFFFFFF).w
-	move.l	#(3+4),$1
+	move.l	#(3+4),$FFFFFFFE
+	move.l	#(3+4),$FFFFFFFFFFFE
+	move.l	#(3+4),$2
+	move.l	#equ_1,($FFFFFFFE).w
+	move.l	#equ_1,$2
+	move.l	#equ_equ_1,($FFFFFFFE).w
+	move.l	#equ_equ_1,$2
+	move.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	move.l	#equ_1_plus_equ_1,$2
+	move.l	#0,($FFFFFFFE).w
+	move.l	#0,$2
+	move.l	#4,($FFFFFFFE).w
+	move.l	#4,$2
+	move.l	#$FF,($FFFFFFFE).w
+	move.l	#$FF,$2
+	move.l	#$7FFF,($FFFFFFFE).w
+	move.l	#$7FFF,$2
+	move.l	#$FFFF,($FFFFFFFE).w
+	move.l	#$FFFF,$2
+	move.l	#$FFFFFFFF,($FFFFFFFE).w
+	move.l	#$FFFFFFFF,$2
+	move.l	#"WXYZ",($FFFFFFFE).w
+	move.l	#"WXYZ",$2
+	move.l	#1+1,($FFFFFFFE).w
+	move.l	#1+1,$2
+	move.l	#(3+4),($FFFFFFFE).w
+	move.l	#(3+4),$2
 	move.l	#equ_1,$7FFF(a2)
 	move.l	#equ_1,$7FFF(a5)
 	move.l	#equ_1,-2(sp)
@@ -8805,24 +9209,27 @@ label_start:
 	move.w	-(sp),a2
 	move.w	-(sp),a7
 	move.w	-(sp),sp
-	move.w	($FFFFFFFF).l,a2
-	move.w	($FFFFFFFF).l,a7
-	move.w	($FFFFFFFF).l,sp
+	move.w	($FFFFFFFE).l,a2
+	move.w	($FFFFFFFE).l,a7
+	move.w	($FFFFFFFE).l,sp
 	move.w	label_start.l,a2
 	move.w	label_start.l,a7
 	move.w	label_start.l,sp
-	move.w	$FFFFFFFF,a2
-	move.w	$FFFFFFFF,a7
-	move.w	$FFFFFFFF,sp
-	move.w	$1,a2
-	move.w	$1,a7
-	move.w	$1,sp
-	move.w	($FFFFFFFF).w,a2
-	move.w	($FFFFFFFF).w,a7
-	move.w	($FFFFFFFF).w,sp
-	move.w	$1,a2
-	move.w	$1,a7
-	move.w	$1,sp
+	move.w	$FFFFFFFE,a2
+	move.w	$FFFFFFFE,a7
+	move.w	$FFFFFFFE,sp
+	move.w	$FFFFFFFFFFFE,a2
+	move.w	$FFFFFFFFFFFE,a7
+	move.w	$FFFFFFFFFFFE,sp
+	move.w	$2,a2
+	move.w	$2,a7
+	move.w	$2,sp
+	move.w	($FFFFFFFE).w,a2
+	move.w	($FFFFFFFE).w,a7
+	move.w	($FFFFFFFE).w,sp
+	move.w	$2,a2
+	move.w	$2,a7
+	move.w	$2,sp
 	move.w	a2,a2
 	move.w	a2,a7
 	move.w	a2,sp
@@ -8925,24 +9332,27 @@ label_start:
 	move.l	-(sp),a2
 	move.l	-(sp),a7
 	move.l	-(sp),sp
-	move.l	($FFFFFFFF).l,a2
-	move.l	($FFFFFFFF).l,a7
-	move.l	($FFFFFFFF).l,sp
+	move.l	($FFFFFFFE).l,a2
+	move.l	($FFFFFFFE).l,a7
+	move.l	($FFFFFFFE).l,sp
 	move.l	label_start.l,a2
 	move.l	label_start.l,a7
 	move.l	label_start.l,sp
-	move.l	$FFFFFFFF,a2
-	move.l	$FFFFFFFF,a7
-	move.l	$FFFFFFFF,sp
-	move.l	$1,a2
-	move.l	$1,a7
-	move.l	$1,sp
-	move.l	($FFFFFFFF).w,a2
-	move.l	($FFFFFFFF).w,a7
-	move.l	($FFFFFFFF).w,sp
-	move.l	$1,a2
-	move.l	$1,a7
-	move.l	$1,sp
+	move.l	$FFFFFFFE,a2
+	move.l	$FFFFFFFE,a7
+	move.l	$FFFFFFFE,sp
+	move.l	$FFFFFFFFFFFE,a2
+	move.l	$FFFFFFFFFFFE,a7
+	move.l	$FFFFFFFFFFFE,sp
+	move.l	$2,a2
+	move.l	$2,a7
+	move.l	$2,sp
+	move.l	($FFFFFFFE).w,a2
+	move.l	($FFFFFFFE).w,a7
+	move.l	($FFFFFFFE).w,sp
+	move.l	$2,a2
+	move.l	$2,a7
+	move.l	$2,sp
 	move.l	a2,a2
 	move.l	a2,a7
 	move.l	a2,sp
@@ -9060,24 +9470,27 @@ label_start:
 	move.w	sp,-(a2)
 	move.w	sp,-(a5)
 	move.w	sp,-(sp)
-	move.w	a2,($FFFFFFFF).l
+	move.w	a2,($FFFFFFFE).l
 	move.w	a2,label_start.l
-	move.w	a2,$FFFFFFFF
-	move.w	a2,$1
-	move.w	a7,($FFFFFFFF).l
+	move.w	a2,$FFFFFFFE
+	move.w	a2,$FFFFFFFFFFFE
+	move.w	a2,$2
+	move.w	a7,($FFFFFFFE).l
 	move.w	a7,label_start.l
-	move.w	a7,$FFFFFFFF
-	move.w	a7,$1
-	move.w	sp,($FFFFFFFF).l
+	move.w	a7,$FFFFFFFE
+	move.w	a7,$FFFFFFFFFFFE
+	move.w	a7,$2
+	move.w	sp,($FFFFFFFE).l
 	move.w	sp,label_start.l
-	move.w	sp,$FFFFFFFF
-	move.w	sp,$1
-	move.w	a2,($FFFFFFFF).w
-	move.w	a2,$1
-	move.w	a7,($FFFFFFFF).w
-	move.w	a7,$1
-	move.w	sp,($FFFFFFFF).w
-	move.w	sp,$1
+	move.w	sp,$FFFFFFFE
+	move.w	sp,$FFFFFFFFFFFE
+	move.w	sp,$2
+	move.w	a2,($FFFFFFFE).w
+	move.w	a2,$2
+	move.w	a7,($FFFFFFFE).w
+	move.w	a7,$2
+	move.w	sp,($FFFFFFFE).w
+	move.w	sp,$2
 	move.w	a2,$7FFF(a2)
 	move.w	a2,$7FFF(a5)
 	move.w	a2,-2(sp)
@@ -9135,24 +9548,27 @@ label_start:
 	move.l	sp,-(a2)
 	move.l	sp,-(a5)
 	move.l	sp,-(sp)
-	move.l	a2,($FFFFFFFF).l
+	move.l	a2,($FFFFFFFE).l
 	move.l	a2,label_start.l
-	move.l	a2,$FFFFFFFF
-	move.l	a2,$1
-	move.l	a7,($FFFFFFFF).l
+	move.l	a2,$FFFFFFFE
+	move.l	a2,$FFFFFFFFFFFE
+	move.l	a2,$2
+	move.l	a7,($FFFFFFFE).l
 	move.l	a7,label_start.l
-	move.l	a7,$FFFFFFFF
-	move.l	a7,$1
-	move.l	sp,($FFFFFFFF).l
+	move.l	a7,$FFFFFFFE
+	move.l	a7,$FFFFFFFFFFFE
+	move.l	a7,$2
+	move.l	sp,($FFFFFFFE).l
 	move.l	sp,label_start.l
-	move.l	sp,$FFFFFFFF
-	move.l	sp,$1
-	move.l	a2,($FFFFFFFF).w
-	move.l	a2,$1
-	move.l	a7,($FFFFFFFF).w
-	move.l	a7,$1
-	move.l	sp,($FFFFFFFF).w
-	move.l	sp,$1
+	move.l	sp,$FFFFFFFE
+	move.l	sp,$FFFFFFFFFFFE
+	move.l	sp,$2
+	move.l	a2,($FFFFFFFE).w
+	move.l	a2,$2
+	move.l	a7,($FFFFFFFE).w
+	move.l	a7,$2
+	move.l	sp,($FFFFFFFE).w
+	move.l	sp,$2
 	move.l	a2,$7FFF(a2)
 	move.l	a2,$7FFF(a5)
 	move.l	a2,-2(sp)
@@ -9196,12 +9612,13 @@ label_start:
 	move	sr,-(a2)
 	move	sr,-(a5)
 	move	sr,-(sp)
-	move	sr,($FFFFFFFF).l
+	move	sr,($FFFFFFFE).l
 	move	sr,label_start.l
-	move	sr,$FFFFFFFF
-	move	sr,$1
-	move	sr,($FFFFFFFF).w
-	move	sr,$1
+	move	sr,$FFFFFFFE
+	move	sr,$FFFFFFFFFFFE
+	move	sr,$2
+	move	sr,($FFFFFFFE).w
+	move	sr,$2
 	move	sr,$7FFF(a2)
 	move	sr,$7FFF(a5)
 	move	sr,-2(sp)
@@ -9221,12 +9638,13 @@ label_start:
 	move.w	sr,-(a2)
 	move.w	sr,-(a5)
 	move.w	sr,-(sp)
-	move.w	sr,($FFFFFFFF).l
+	move.w	sr,($FFFFFFFE).l
 	move.w	sr,label_start.l
-	move.w	sr,$FFFFFFFF
-	move.w	sr,$1
-	move.w	sr,($FFFFFFFF).w
-	move.w	sr,$1
+	move.w	sr,$FFFFFFFE
+	move.w	sr,$FFFFFFFFFFFE
+	move.w	sr,$2
+	move.w	sr,($FFFFFFFE).w
+	move.w	sr,$2
 	move.w	sr,$7FFF(a2)
 	move.w	sr,$7FFF(a5)
 	move.w	sr,-2(sp)
@@ -9246,12 +9664,13 @@ label_start:
 	move.w	-(a2),ccr
 	move.w	-(a5),ccr
 	move.w	-(sp),ccr
-	move.w	($FFFFFFFF).l,ccr
+	move.w	($FFFFFFFE).l,ccr
 	move.w	label_start.l,ccr
-	move.w	$FFFFFFFF,ccr
-	move.w	$1,ccr
-	move.w	($FFFFFFFF).w,ccr
-	move.w	$1,ccr
+	move.w	$FFFFFFFE,ccr
+	move.w	$FFFFFFFFFFFE,ccr
+	move.w	$2,ccr
+	move.w	($FFFFFFFE).w,ccr
+	move.w	$2,ccr
 	move.w	$7FFF(a2),ccr
 	move.w	$7FFF(a5),ccr
 	move.w	-2(sp),ccr
@@ -9283,12 +9702,13 @@ label_start:
 	move.w	-(a2),sr
 	move.w	-(a5),sr
 	move.w	-(sp),sr
-	move.w	($FFFFFFFF).l,sr
+	move.w	($FFFFFFFE).l,sr
 	move.w	label_start.l,sr
-	move.w	$FFFFFFFF,sr
-	move.w	$1,sr
-	move.w	($FFFFFFFF).w,sr
-	move.w	$1,sr
+	move.w	$FFFFFFFE,sr
+	move.w	$FFFFFFFFFFFE,sr
+	move.w	$2,sr
+	move.w	($FFFFFFFE).w,sr
+	move.w	$2,sr
 	move.w	$7FFF(a2),sr
 	move.w	$7FFF(a5),sr
 	move.w	-2(sp),sr
@@ -9333,12 +9753,13 @@ label_start:
 	negx.b	-(a2)
 	negx.b	-(a5)
 	negx.b	-(sp)
-	negx.b	($FFFFFFFF).l
+	negx.b	($FFFFFFFE).l
 	negx.b	label_start.l
-	negx.b	$FFFFFFFF
-	negx.b	$1
-	negx.b	($FFFFFFFF).w
-	negx.b	$1
+	negx.b	$FFFFFFFE
+	negx.b	$FFFFFFFFFFFE
+	negx.b	$2
+	negx.b	($FFFFFFFE).w
+	negx.b	$2
 	negx.b	$7FFF(a2)
 	negx.b	$7FFF(a5)
 	negx.b	-2(sp)
@@ -9358,12 +9779,13 @@ label_start:
 	negx.w	-(a2)
 	negx.w	-(a5)
 	negx.w	-(sp)
-	negx.w	($FFFFFFFF).l
+	negx.w	($FFFFFFFE).l
 	negx.w	label_start.l
-	negx.w	$FFFFFFFF
-	negx.w	$1
-	negx.w	($FFFFFFFF).w
-	negx.w	$1
+	negx.w	$FFFFFFFE
+	negx.w	$FFFFFFFFFFFE
+	negx.w	$2
+	negx.w	($FFFFFFFE).w
+	negx.w	$2
 	negx.w	$7FFF(a2)
 	negx.w	$7FFF(a5)
 	negx.w	-2(sp)
@@ -9383,12 +9805,13 @@ label_start:
 	negx.l	-(a2)
 	negx.l	-(a5)
 	negx.l	-(sp)
-	negx.l	($FFFFFFFF).l
+	negx.l	($FFFFFFFE).l
 	negx.l	label_start.l
-	negx.l	$FFFFFFFF
-	negx.l	$1
-	negx.l	($FFFFFFFF).w
-	negx.l	$1
+	negx.l	$FFFFFFFE
+	negx.l	$FFFFFFFFFFFE
+	negx.l	$2
+	negx.l	($FFFFFFFE).w
+	negx.l	$2
 	negx.l	$7FFF(a2)
 	negx.l	$7FFF(a5)
 	negx.l	-2(sp)
@@ -9409,12 +9832,13 @@ label_start:
 	clr.b	-(a2)
 	clr.b	-(a5)
 	clr.b	-(sp)
-	clr.b	($FFFFFFFF).l
+	clr.b	($FFFFFFFE).l
 	clr.b	label_start.l
-	clr.b	$FFFFFFFF
-	clr.b	$1
-	clr.b	($FFFFFFFF).w
-	clr.b	$1
+	clr.b	$FFFFFFFE
+	clr.b	$FFFFFFFFFFFE
+	clr.b	$2
+	clr.b	($FFFFFFFE).w
+	clr.b	$2
 	clr.b	$7FFF(a2)
 	clr.b	$7FFF(a5)
 	clr.b	-2(sp)
@@ -9434,12 +9858,13 @@ label_start:
 	clr.w	-(a2)
 	clr.w	-(a5)
 	clr.w	-(sp)
-	clr.w	($FFFFFFFF).l
+	clr.w	($FFFFFFFE).l
 	clr.w	label_start.l
-	clr.w	$FFFFFFFF
-	clr.w	$1
-	clr.w	($FFFFFFFF).w
-	clr.w	$1
+	clr.w	$FFFFFFFE
+	clr.w	$FFFFFFFFFFFE
+	clr.w	$2
+	clr.w	($FFFFFFFE).w
+	clr.w	$2
 	clr.w	$7FFF(a2)
 	clr.w	$7FFF(a5)
 	clr.w	-2(sp)
@@ -9459,12 +9884,13 @@ label_start:
 	clr.l	-(a2)
 	clr.l	-(a5)
 	clr.l	-(sp)
-	clr.l	($FFFFFFFF).l
+	clr.l	($FFFFFFFE).l
 	clr.l	label_start.l
-	clr.l	$FFFFFFFF
-	clr.l	$1
-	clr.l	($FFFFFFFF).w
-	clr.l	$1
+	clr.l	$FFFFFFFE
+	clr.l	$FFFFFFFFFFFE
+	clr.l	$2
+	clr.l	($FFFFFFFE).w
+	clr.l	$2
 	clr.l	$7FFF(a2)
 	clr.l	$7FFF(a5)
 	clr.l	-2(sp)
@@ -9485,12 +9911,13 @@ label_start:
 	neg.b	-(a2)
 	neg.b	-(a5)
 	neg.b	-(sp)
-	neg.b	($FFFFFFFF).l
+	neg.b	($FFFFFFFE).l
 	neg.b	label_start.l
-	neg.b	$FFFFFFFF
-	neg.b	$1
-	neg.b	($FFFFFFFF).w
-	neg.b	$1
+	neg.b	$FFFFFFFE
+	neg.b	$FFFFFFFFFFFE
+	neg.b	$2
+	neg.b	($FFFFFFFE).w
+	neg.b	$2
 	neg.b	$7FFF(a2)
 	neg.b	$7FFF(a5)
 	neg.b	-2(sp)
@@ -9510,12 +9937,13 @@ label_start:
 	neg.w	-(a2)
 	neg.w	-(a5)
 	neg.w	-(sp)
-	neg.w	($FFFFFFFF).l
+	neg.w	($FFFFFFFE).l
 	neg.w	label_start.l
-	neg.w	$FFFFFFFF
-	neg.w	$1
-	neg.w	($FFFFFFFF).w
-	neg.w	$1
+	neg.w	$FFFFFFFE
+	neg.w	$FFFFFFFFFFFE
+	neg.w	$2
+	neg.w	($FFFFFFFE).w
+	neg.w	$2
 	neg.w	$7FFF(a2)
 	neg.w	$7FFF(a5)
 	neg.w	-2(sp)
@@ -9535,12 +9963,13 @@ label_start:
 	neg.l	-(a2)
 	neg.l	-(a5)
 	neg.l	-(sp)
-	neg.l	($FFFFFFFF).l
+	neg.l	($FFFFFFFE).l
 	neg.l	label_start.l
-	neg.l	$FFFFFFFF
-	neg.l	$1
-	neg.l	($FFFFFFFF).w
-	neg.l	$1
+	neg.l	$FFFFFFFE
+	neg.l	$FFFFFFFFFFFE
+	neg.l	$2
+	neg.l	($FFFFFFFE).w
+	neg.l	$2
 	neg.l	$7FFF(a2)
 	neg.l	$7FFF(a5)
 	neg.l	-2(sp)
@@ -9561,12 +9990,13 @@ label_start:
 	not.b	-(a2)
 	not.b	-(a5)
 	not.b	-(sp)
-	not.b	($FFFFFFFF).l
+	not.b	($FFFFFFFE).l
 	not.b	label_start.l
-	not.b	$FFFFFFFF
-	not.b	$1
-	not.b	($FFFFFFFF).w
-	not.b	$1
+	not.b	$FFFFFFFE
+	not.b	$FFFFFFFFFFFE
+	not.b	$2
+	not.b	($FFFFFFFE).w
+	not.b	$2
 	not.b	$7FFF(a2)
 	not.b	$7FFF(a5)
 	not.b	-2(sp)
@@ -9586,12 +10016,13 @@ label_start:
 	not.w	-(a2)
 	not.w	-(a5)
 	not.w	-(sp)
-	not.w	($FFFFFFFF).l
+	not.w	($FFFFFFFE).l
 	not.w	label_start.l
-	not.w	$FFFFFFFF
-	not.w	$1
-	not.w	($FFFFFFFF).w
-	not.w	$1
+	not.w	$FFFFFFFE
+	not.w	$FFFFFFFFFFFE
+	not.w	$2
+	not.w	($FFFFFFFE).w
+	not.w	$2
 	not.w	$7FFF(a2)
 	not.w	$7FFF(a5)
 	not.w	-2(sp)
@@ -9611,12 +10042,13 @@ label_start:
 	not.l	-(a2)
 	not.l	-(a5)
 	not.l	-(sp)
-	not.l	($FFFFFFFF).l
+	not.l	($FFFFFFFE).l
 	not.l	label_start.l
-	not.l	$FFFFFFFF
-	not.l	$1
-	not.l	($FFFFFFFF).w
-	not.l	$1
+	not.l	$FFFFFFFE
+	not.l	$FFFFFFFFFFFE
+	not.l	$2
+	not.l	($FFFFFFFE).w
+	not.l	$2
 	not.l	$7FFF(a2)
 	not.l	$7FFF(a5)
 	not.l	-2(sp)
@@ -9637,12 +10069,13 @@ label_start:
 	tas.b	-(a2)
 	tas.b	-(a5)
 	tas.b	-(sp)
-	tas.b	($FFFFFFFF).l
+	tas.b	($FFFFFFFE).l
 	tas.b	label_start.l
-	tas.b	$FFFFFFFF
-	tas.b	$1
-	tas.b	($FFFFFFFF).w
-	tas.b	$1
+	tas.b	$FFFFFFFE
+	tas.b	$FFFFFFFFFFFE
+	tas.b	$2
+	tas.b	($FFFFFFFE).w
+	tas.b	$2
 	tas.b	$7FFF(a2)
 	tas.b	$7FFF(a5)
 	tas.b	-2(sp)
@@ -9662,12 +10095,13 @@ label_start:
 	tas	-(a2)
 	tas	-(a5)
 	tas	-(sp)
-	tas	($FFFFFFFF).l
+	tas	($FFFFFFFE).l
 	tas	label_start.l
-	tas	$FFFFFFFF
-	tas	$1
-	tas	($FFFFFFFF).w
-	tas	$1
+	tas	$FFFFFFFE
+	tas	$FFFFFFFFFFFE
+	tas	$2
+	tas	($FFFFFFFE).w
+	tas	$2
 	tas	$7FFF(a2)
 	tas	$7FFF(a5)
 	tas	-2(sp)
@@ -9698,12 +10132,13 @@ label_start:
 	nbcd.b	-(a2)
 	nbcd.b	-(a5)
 	nbcd.b	-(sp)
-	nbcd.b	($FFFFFFFF).l
+	nbcd.b	($FFFFFFFE).l
 	nbcd.b	label_start.l
-	nbcd.b	$FFFFFFFF
-	nbcd.b	$1
-	nbcd.b	($FFFFFFFF).w
-	nbcd.b	$1
+	nbcd.b	$FFFFFFFE
+	nbcd.b	$FFFFFFFFFFFE
+	nbcd.b	$2
+	nbcd.b	($FFFFFFFE).w
+	nbcd.b	$2
 	nbcd.b	$7FFF(a2)
 	nbcd.b	$7FFF(a5)
 	nbcd.b	-2(sp)
@@ -9723,12 +10158,13 @@ label_start:
 	nbcd	-(a2)
 	nbcd	-(a5)
 	nbcd	-(sp)
-	nbcd	($FFFFFFFF).l
+	nbcd	($FFFFFFFE).l
 	nbcd	label_start.l
-	nbcd	$FFFFFFFF
-	nbcd	$1
-	nbcd	($FFFFFFFF).w
-	nbcd	$1
+	nbcd	$FFFFFFFE
+	nbcd	$FFFFFFFFFFFE
+	nbcd	$2
+	nbcd	($FFFFFFFE).w
+	nbcd	$2
 	nbcd	$7FFF(a2)
 	nbcd	$7FFF(a5)
 	nbcd	-2(sp)
@@ -9744,12 +10180,13 @@ label_start:
 
 	pea.l	(a2)
 	pea.l	(a5)
-	pea.l	($FFFFFFFF).l
+	pea.l	($FFFFFFFE).l
 	pea.l	label_start.l
-	pea.l	$FFFFFFFF
-	pea.l	$1
-	pea.l	($FFFFFFFF).w
-	pea.l	$1
+	pea.l	$FFFFFFFE
+	pea.l	$FFFFFFFFFFFE
+	pea.l	$2
+	pea.l	($FFFFFFFE).w
+	pea.l	$2
 	pea.l	$7FFF(a2)
 	pea.l	$7FFF(a5)
 	pea.l	-2(sp)
@@ -9767,12 +10204,13 @@ label_start:
 	pea.l	@-2(pc,d1.l)
 	pea	(a2)
 	pea	(a5)
-	pea	($FFFFFFFF).l
+	pea	($FFFFFFFE).l
 	pea	label_start.l
-	pea	$FFFFFFFF
-	pea	$1
-	pea	($FFFFFFFF).w
-	pea	$1
+	pea	$FFFFFFFE
+	pea	$FFFFFFFFFFFE
+	pea	$2
+	pea	($FFFFFFFE).w
+	pea	$2
 	pea	$7FFF(a2)
 	pea	$7FFF(a5)
 	pea	-2(sp)
@@ -9810,12 +10248,13 @@ label_start:
 	tst.b	-(a2)
 	tst.b	-(a5)
 	tst.b	-(sp)
-	tst.b	($FFFFFFFF).l
+	tst.b	($FFFFFFFE).l
 	tst.b	label_start.l
-	tst.b	$FFFFFFFF
-	tst.b	$1
-	tst.b	($FFFFFFFF).w
-	tst.b	$1
+	tst.b	$FFFFFFFE
+	tst.b	$FFFFFFFFFFFE
+	tst.b	$2
+	tst.b	($FFFFFFFE).w
+	tst.b	$2
 	tst.b	$7FFF(a2)
 	tst.b	$7FFF(a5)
 	tst.b	-2(sp)
@@ -9835,12 +10274,13 @@ label_start:
 	tst.w	-(a2)
 	tst.w	-(a5)
 	tst.w	-(sp)
-	tst.w	($FFFFFFFF).l
+	tst.w	($FFFFFFFE).l
 	tst.w	label_start.l
-	tst.w	$FFFFFFFF
-	tst.w	$1
-	tst.w	($FFFFFFFF).w
-	tst.w	$1
+	tst.w	$FFFFFFFE
+	tst.w	$FFFFFFFFFFFE
+	tst.w	$2
+	tst.w	($FFFFFFFE).w
+	tst.w	$2
 	tst.w	$7FFF(a2)
 	tst.w	$7FFF(a5)
 	tst.w	-2(sp)
@@ -9860,12 +10300,13 @@ label_start:
 	tst.l	-(a2)
 	tst.l	-(a5)
 	tst.l	-(sp)
-	tst.l	($FFFFFFFF).l
+	tst.l	($FFFFFFFE).l
 	tst.l	label_start.l
-	tst.l	$FFFFFFFF
-	tst.l	$1
-	tst.l	($FFFFFFFF).w
-	tst.l	$1
+	tst.l	$FFFFFFFE
+	tst.l	$FFFFFFFFFFFE
+	tst.l	$2
+	tst.l	($FFFFFFFE).w
+	tst.l	$2
 	tst.l	$7FFF(a2)
 	tst.l	$7FFF(a5)
 	tst.l	-2(sp)
@@ -9932,12 +10373,13 @@ label_start:
 
 	jsr	(a2)
 	jsr	(a5)
-	jsr	($FFFFFFFF).l
+	jsr	($FFFFFFFE).l
 	jsr	label_start.l
-	jsr	$FFFFFFFF
-	jsr	$1
-	jsr	($FFFFFFFF).w
-	jsr	$1
+	jsr	$FFFFFFFE
+	jsr	$FFFFFFFFFFFE
+	jsr	$2
+	jsr	($FFFFFFFE).w
+	jsr	$2
 	jsr	$7FFF(a2)
 	jsr	$7FFF(a5)
 	jsr	-2(sp)
@@ -9956,12 +10398,13 @@ label_start:
 
 	jmp	(a2)
 	jmp	(a5)
-	jmp	($FFFFFFFF).l
+	jmp	($FFFFFFFE).l
 	jmp	label_start.l
-	jmp	$FFFFFFFF
-	jmp	$1
-	jmp	($FFFFFFFF).w
-	jmp	$1
+	jmp	$FFFFFFFE
+	jmp	$FFFFFFFFFFFE
+	jmp	$2
+	jmp	($FFFFFFFE).w
+	jmp	$2
 	jmp	$7FFF(a2)
 	jmp	$7FFF(a5)
 	jmp	-2(sp)
@@ -10003,36 +10446,41 @@ label_start:
 	movem.w	d0/d1/d2/d3-d4,-(a2)
 	movem.w	d0/d1/d2/d3-d4,-(a5)
 	movem.w	d0/d1/d2/d3-d4,-(sp)
-	movem.w	d2,($FFFFFFFF).l
+	movem.w	d2,($FFFFFFFE).l
 	movem.w	d2,label_start.l
-	movem.w	d2,$FFFFFFFF
-	movem.w	d2,$1
-	movem.w	d5-a7,($FFFFFFFF).l
+	movem.w	d2,$FFFFFFFE
+	movem.w	d2,$FFFFFFFFFFFE
+	movem.w	d2,$2
+	movem.w	d5-a7,($FFFFFFFE).l
 	movem.w	d5-a7,label_start.l
-	movem.w	d5-a7,$FFFFFFFF
-	movem.w	d5-a7,$1
-	movem.w	d0-d7/a0-a7,($FFFFFFFF).l
+	movem.w	d5-a7,$FFFFFFFE
+	movem.w	d5-a7,$FFFFFFFFFFFE
+	movem.w	d5-a7,$2
+	movem.w	d0-d7/a0-a7,($FFFFFFFE).l
 	movem.w	d0-d7/a0-a7,label_start.l
-	movem.w	d0-d7/a0-a7,$FFFFFFFF
-	movem.w	d0-d7/a0-a7,$1
-	movem.w	d0-d1/a0-a1,($FFFFFFFF).l
+	movem.w	d0-d7/a0-a7,$FFFFFFFE
+	movem.w	d0-d7/a0-a7,$FFFFFFFFFFFE
+	movem.w	d0-d7/a0-a7,$2
+	movem.w	d0-d1/a0-a1,($FFFFFFFE).l
 	movem.w	d0-d1/a0-a1,label_start.l
-	movem.w	d0-d1/a0-a1,$FFFFFFFF
-	movem.w	d0-d1/a0-a1,$1
-	movem.w	d0/d1/d2/d3-d4,($FFFFFFFF).l
+	movem.w	d0-d1/a0-a1,$FFFFFFFE
+	movem.w	d0-d1/a0-a1,$FFFFFFFFFFFE
+	movem.w	d0-d1/a0-a1,$2
+	movem.w	d0/d1/d2/d3-d4,($FFFFFFFE).l
 	movem.w	d0/d1/d2/d3-d4,label_start.l
-	movem.w	d0/d1/d2/d3-d4,$FFFFFFFF
-	movem.w	d0/d1/d2/d3-d4,$1
-	movem.w	d2,($FFFFFFFF).w
-	movem.w	d2,$1
-	movem.w	d5-a7,($FFFFFFFF).w
-	movem.w	d5-a7,$1
-	movem.w	d0-d7/a0-a7,($FFFFFFFF).w
-	movem.w	d0-d7/a0-a7,$1
-	movem.w	d0-d1/a0-a1,($FFFFFFFF).w
-	movem.w	d0-d1/a0-a1,$1
-	movem.w	d0/d1/d2/d3-d4,($FFFFFFFF).w
-	movem.w	d0/d1/d2/d3-d4,$1
+	movem.w	d0/d1/d2/d3-d4,$FFFFFFFE
+	movem.w	d0/d1/d2/d3-d4,$FFFFFFFFFFFE
+	movem.w	d0/d1/d2/d3-d4,$2
+	movem.w	d2,($FFFFFFFE).w
+	movem.w	d2,$2
+	movem.w	d5-a7,($FFFFFFFE).w
+	movem.w	d5-a7,$2
+	movem.w	d0-d7/a0-a7,($FFFFFFFE).w
+	movem.w	d0-d7/a0-a7,$2
+	movem.w	d0-d1/a0-a1,($FFFFFFFE).w
+	movem.w	d0-d1/a0-a1,$2
+	movem.w	d0/d1/d2/d3-d4,($FFFFFFFE).w
+	movem.w	d0/d1/d2/d3-d4,$2
 	movem.w	d2,$7FFF(a2)
 	movem.w	d2,$7FFF(a5)
 	movem.w	d2,-2(sp)
@@ -10108,36 +10556,41 @@ label_start:
 	movem.l	d0/d1/d2/d3-d4,-(a2)
 	movem.l	d0/d1/d2/d3-d4,-(a5)
 	movem.l	d0/d1/d2/d3-d4,-(sp)
-	movem.l	d2,($FFFFFFFF).l
+	movem.l	d2,($FFFFFFFE).l
 	movem.l	d2,label_start.l
-	movem.l	d2,$FFFFFFFF
-	movem.l	d2,$1
-	movem.l	d5-a7,($FFFFFFFF).l
+	movem.l	d2,$FFFFFFFE
+	movem.l	d2,$FFFFFFFFFFFE
+	movem.l	d2,$2
+	movem.l	d5-a7,($FFFFFFFE).l
 	movem.l	d5-a7,label_start.l
-	movem.l	d5-a7,$FFFFFFFF
-	movem.l	d5-a7,$1
-	movem.l	d0-d7/a0-a7,($FFFFFFFF).l
+	movem.l	d5-a7,$FFFFFFFE
+	movem.l	d5-a7,$FFFFFFFFFFFE
+	movem.l	d5-a7,$2
+	movem.l	d0-d7/a0-a7,($FFFFFFFE).l
 	movem.l	d0-d7/a0-a7,label_start.l
-	movem.l	d0-d7/a0-a7,$FFFFFFFF
-	movem.l	d0-d7/a0-a7,$1
-	movem.l	d0-d1/a0-a1,($FFFFFFFF).l
+	movem.l	d0-d7/a0-a7,$FFFFFFFE
+	movem.l	d0-d7/a0-a7,$FFFFFFFFFFFE
+	movem.l	d0-d7/a0-a7,$2
+	movem.l	d0-d1/a0-a1,($FFFFFFFE).l
 	movem.l	d0-d1/a0-a1,label_start.l
-	movem.l	d0-d1/a0-a1,$FFFFFFFF
-	movem.l	d0-d1/a0-a1,$1
-	movem.l	d0/d1/d2/d3-d4,($FFFFFFFF).l
+	movem.l	d0-d1/a0-a1,$FFFFFFFE
+	movem.l	d0-d1/a0-a1,$FFFFFFFFFFFE
+	movem.l	d0-d1/a0-a1,$2
+	movem.l	d0/d1/d2/d3-d4,($FFFFFFFE).l
 	movem.l	d0/d1/d2/d3-d4,label_start.l
-	movem.l	d0/d1/d2/d3-d4,$FFFFFFFF
-	movem.l	d0/d1/d2/d3-d4,$1
-	movem.l	d2,($FFFFFFFF).w
-	movem.l	d2,$1
-	movem.l	d5-a7,($FFFFFFFF).w
-	movem.l	d5-a7,$1
-	movem.l	d0-d7/a0-a7,($FFFFFFFF).w
-	movem.l	d0-d7/a0-a7,$1
-	movem.l	d0-d1/a0-a1,($FFFFFFFF).w
-	movem.l	d0-d1/a0-a1,$1
-	movem.l	d0/d1/d2/d3-d4,($FFFFFFFF).w
-	movem.l	d0/d1/d2/d3-d4,$1
+	movem.l	d0/d1/d2/d3-d4,$FFFFFFFE
+	movem.l	d0/d1/d2/d3-d4,$FFFFFFFFFFFE
+	movem.l	d0/d1/d2/d3-d4,$2
+	movem.l	d2,($FFFFFFFE).w
+	movem.l	d2,$2
+	movem.l	d5-a7,($FFFFFFFE).w
+	movem.l	d5-a7,$2
+	movem.l	d0-d7/a0-a7,($FFFFFFFE).w
+	movem.l	d0-d7/a0-a7,$2
+	movem.l	d0-d1/a0-a1,($FFFFFFFE).w
+	movem.l	d0-d1/a0-a1,$2
+	movem.l	d0/d1/d2/d3-d4,($FFFFFFFE).w
+	movem.l	d0/d1/d2/d3-d4,$2
 	movem.l	d2,$7FFF(a2)
 	movem.l	d2,$7FFF(a5)
 	movem.l	d2,-2(sp)
@@ -10208,36 +10661,41 @@ label_start:
 	movem.w	(a5)+,d0-d7/a0-a7
 	movem.w	(a5)+,d0-d1/a0-a1
 	movem.w	(a5)+,d0/d1/d2/d3-d4
-	movem.w	($FFFFFFFF).l,d2
-	movem.w	($FFFFFFFF).l,d5-a7
-	movem.w	($FFFFFFFF).l,d0-d7/a0-a7
-	movem.w	($FFFFFFFF).l,d0-d1/a0-a1
-	movem.w	($FFFFFFFF).l,d0/d1/d2/d3-d4
+	movem.w	($FFFFFFFE).l,d2
+	movem.w	($FFFFFFFE).l,d5-a7
+	movem.w	($FFFFFFFE).l,d0-d7/a0-a7
+	movem.w	($FFFFFFFE).l,d0-d1/a0-a1
+	movem.w	($FFFFFFFE).l,d0/d1/d2/d3-d4
 	movem.w	label_start.l,d2
 	movem.w	label_start.l,d5-a7
 	movem.w	label_start.l,d0-d7/a0-a7
 	movem.w	label_start.l,d0-d1/a0-a1
 	movem.w	label_start.l,d0/d1/d2/d3-d4
-	movem.w	$FFFFFFFF,d2
-	movem.w	$FFFFFFFF,d5-a7
-	movem.w	$FFFFFFFF,d0-d7/a0-a7
-	movem.w	$FFFFFFFF,d0-d1/a0-a1
-	movem.w	$FFFFFFFF,d0/d1/d2/d3-d4
-	movem.w	$1,d2
-	movem.w	$1,d5-a7
-	movem.w	$1,d0-d7/a0-a7
-	movem.w	$1,d0-d1/a0-a1
-	movem.w	$1,d0/d1/d2/d3-d4
-	movem.w	($FFFFFFFF).w,d2
-	movem.w	($FFFFFFFF).w,d5-a7
-	movem.w	($FFFFFFFF).w,d0-d7/a0-a7
-	movem.w	($FFFFFFFF).w,d0-d1/a0-a1
-	movem.w	($FFFFFFFF).w,d0/d1/d2/d3-d4
-	movem.w	$1,d2
-	movem.w	$1,d5-a7
-	movem.w	$1,d0-d7/a0-a7
-	movem.w	$1,d0-d1/a0-a1
-	movem.w	$1,d0/d1/d2/d3-d4
+	movem.w	$FFFFFFFE,d2
+	movem.w	$FFFFFFFE,d5-a7
+	movem.w	$FFFFFFFE,d0-d7/a0-a7
+	movem.w	$FFFFFFFE,d0-d1/a0-a1
+	movem.w	$FFFFFFFE,d0/d1/d2/d3-d4
+	movem.w	$FFFFFFFFFFFE,d2
+	movem.w	$FFFFFFFFFFFE,d5-a7
+	movem.w	$FFFFFFFFFFFE,d0-d7/a0-a7
+	movem.w	$FFFFFFFFFFFE,d0-d1/a0-a1
+	movem.w	$FFFFFFFFFFFE,d0/d1/d2/d3-d4
+	movem.w	$2,d2
+	movem.w	$2,d5-a7
+	movem.w	$2,d0-d7/a0-a7
+	movem.w	$2,d0-d1/a0-a1
+	movem.w	$2,d0/d1/d2/d3-d4
+	movem.w	($FFFFFFFE).w,d2
+	movem.w	($FFFFFFFE).w,d5-a7
+	movem.w	($FFFFFFFE).w,d0-d7/a0-a7
+	movem.w	($FFFFFFFE).w,d0-d1/a0-a1
+	movem.w	($FFFFFFFE).w,d0/d1/d2/d3-d4
+	movem.w	$2,d2
+	movem.w	$2,d5-a7
+	movem.w	$2,d0-d7/a0-a7
+	movem.w	$2,d0-d1/a0-a1
+	movem.w	$2,d0/d1/d2/d3-d4
 	movem.w	$7FFF(a2),d2
 	movem.w	$7FFF(a2),d5-a7
 	movem.w	$7FFF(a2),d0-d7/a0-a7
@@ -10333,36 +10791,41 @@ label_start:
 	movem.l	(a5)+,d0-d7/a0-a7
 	movem.l	(a5)+,d0-d1/a0-a1
 	movem.l	(a5)+,d0/d1/d2/d3-d4
-	movem.l	($FFFFFFFF).l,d2
-	movem.l	($FFFFFFFF).l,d5-a7
-	movem.l	($FFFFFFFF).l,d0-d7/a0-a7
-	movem.l	($FFFFFFFF).l,d0-d1/a0-a1
-	movem.l	($FFFFFFFF).l,d0/d1/d2/d3-d4
+	movem.l	($FFFFFFFE).l,d2
+	movem.l	($FFFFFFFE).l,d5-a7
+	movem.l	($FFFFFFFE).l,d0-d7/a0-a7
+	movem.l	($FFFFFFFE).l,d0-d1/a0-a1
+	movem.l	($FFFFFFFE).l,d0/d1/d2/d3-d4
 	movem.l	label_start.l,d2
 	movem.l	label_start.l,d5-a7
 	movem.l	label_start.l,d0-d7/a0-a7
 	movem.l	label_start.l,d0-d1/a0-a1
 	movem.l	label_start.l,d0/d1/d2/d3-d4
-	movem.l	$FFFFFFFF,d2
-	movem.l	$FFFFFFFF,d5-a7
-	movem.l	$FFFFFFFF,d0-d7/a0-a7
-	movem.l	$FFFFFFFF,d0-d1/a0-a1
-	movem.l	$FFFFFFFF,d0/d1/d2/d3-d4
-	movem.l	$1,d2
-	movem.l	$1,d5-a7
-	movem.l	$1,d0-d7/a0-a7
-	movem.l	$1,d0-d1/a0-a1
-	movem.l	$1,d0/d1/d2/d3-d4
-	movem.l	($FFFFFFFF).w,d2
-	movem.l	($FFFFFFFF).w,d5-a7
-	movem.l	($FFFFFFFF).w,d0-d7/a0-a7
-	movem.l	($FFFFFFFF).w,d0-d1/a0-a1
-	movem.l	($FFFFFFFF).w,d0/d1/d2/d3-d4
-	movem.l	$1,d2
-	movem.l	$1,d5-a7
-	movem.l	$1,d0-d7/a0-a7
-	movem.l	$1,d0-d1/a0-a1
-	movem.l	$1,d0/d1/d2/d3-d4
+	movem.l	$FFFFFFFE,d2
+	movem.l	$FFFFFFFE,d5-a7
+	movem.l	$FFFFFFFE,d0-d7/a0-a7
+	movem.l	$FFFFFFFE,d0-d1/a0-a1
+	movem.l	$FFFFFFFE,d0/d1/d2/d3-d4
+	movem.l	$FFFFFFFFFFFE,d2
+	movem.l	$FFFFFFFFFFFE,d5-a7
+	movem.l	$FFFFFFFFFFFE,d0-d7/a0-a7
+	movem.l	$FFFFFFFFFFFE,d0-d1/a0-a1
+	movem.l	$FFFFFFFFFFFE,d0/d1/d2/d3-d4
+	movem.l	$2,d2
+	movem.l	$2,d5-a7
+	movem.l	$2,d0-d7/a0-a7
+	movem.l	$2,d0-d1/a0-a1
+	movem.l	$2,d0/d1/d2/d3-d4
+	movem.l	($FFFFFFFE).w,d2
+	movem.l	($FFFFFFFE).w,d5-a7
+	movem.l	($FFFFFFFE).w,d0-d7/a0-a7
+	movem.l	($FFFFFFFE).w,d0-d1/a0-a1
+	movem.l	($FFFFFFFE).w,d0/d1/d2/d3-d4
+	movem.l	$2,d2
+	movem.l	$2,d5-a7
+	movem.l	$2,d0-d7/a0-a7
+	movem.l	$2,d0-d1/a0-a1
+	movem.l	$2,d0/d1/d2/d3-d4
 	movem.l	$7FFF(a2),d2
 	movem.l	$7FFF(a2),d5-a7
 	movem.l	$7FFF(a2),d0-d7/a0-a7
@@ -10445,24 +10908,27 @@ label_start:
 	lea.l	(a5),a2
 	lea.l	(a5),a7
 	lea.l	(a5),sp
-	lea.l	($FFFFFFFF).l,a2
-	lea.l	($FFFFFFFF).l,a7
-	lea.l	($FFFFFFFF).l,sp
+	lea.l	($FFFFFFFE).l,a2
+	lea.l	($FFFFFFFE).l,a7
+	lea.l	($FFFFFFFE).l,sp
 	lea.l	label_start.l,a2
 	lea.l	label_start.l,a7
 	lea.l	label_start.l,sp
-	lea.l	$FFFFFFFF,a2
-	lea.l	$FFFFFFFF,a7
-	lea.l	$FFFFFFFF,sp
-	lea.l	$1,a2
-	lea.l	$1,a7
-	lea.l	$1,sp
-	lea.l	($FFFFFFFF).w,a2
-	lea.l	($FFFFFFFF).w,a7
-	lea.l	($FFFFFFFF).w,sp
-	lea.l	$1,a2
-	lea.l	$1,a7
-	lea.l	$1,sp
+	lea.l	$FFFFFFFE,a2
+	lea.l	$FFFFFFFE,a7
+	lea.l	$FFFFFFFE,sp
+	lea.l	$FFFFFFFFFFFE,a2
+	lea.l	$FFFFFFFFFFFE,a7
+	lea.l	$FFFFFFFFFFFE,sp
+	lea.l	$2,a2
+	lea.l	$2,a7
+	lea.l	$2,sp
+	lea.l	($FFFFFFFE).w,a2
+	lea.l	($FFFFFFFE).w,a7
+	lea.l	($FFFFFFFE).w,sp
+	lea.l	$2,a2
+	lea.l	$2,a7
+	lea.l	$2,sp
 	lea.l	$7FFF(a2),a2
 	lea.l	$7FFF(a2),a7
 	lea.l	$7FFF(a2),sp
@@ -10514,24 +10980,27 @@ label_start:
 	lea	(a5),a2
 	lea	(a5),a7
 	lea	(a5),sp
-	lea	($FFFFFFFF).l,a2
-	lea	($FFFFFFFF).l,a7
-	lea	($FFFFFFFF).l,sp
+	lea	($FFFFFFFE).l,a2
+	lea	($FFFFFFFE).l,a7
+	lea	($FFFFFFFE).l,sp
 	lea	label_start.l,a2
 	lea	label_start.l,a7
 	lea	label_start.l,sp
-	lea	$FFFFFFFF,a2
-	lea	$FFFFFFFF,a7
-	lea	$FFFFFFFF,sp
-	lea	$1,a2
-	lea	$1,a7
-	lea	$1,sp
-	lea	($FFFFFFFF).w,a2
-	lea	($FFFFFFFF).w,a7
-	lea	($FFFFFFFF).w,sp
-	lea	$1,a2
-	lea	$1,a7
-	lea	$1,sp
+	lea	$FFFFFFFE,a2
+	lea	$FFFFFFFE,a7
+	lea	$FFFFFFFE,sp
+	lea	$FFFFFFFFFFFE,a2
+	lea	$FFFFFFFFFFFE,a7
+	lea	$FFFFFFFFFFFE,sp
+	lea	$2,a2
+	lea	$2,a7
+	lea	$2,sp
+	lea	($FFFFFFFE).w,a2
+	lea	($FFFFFFFE).w,a7
+	lea	($FFFFFFFE).w,sp
+	lea	$2,a2
+	lea	$2,a7
+	lea	$2,sp
 	lea	$7FFF(a2),a2
 	lea	$7FFF(a2),a7
 	lea	$7FFF(a2),sp
@@ -10592,18 +11061,20 @@ label_start:
 	chk.w	-(a5),d5
 	chk.w	-(sp),d2
 	chk.w	-(sp),d5
-	chk.w	($FFFFFFFF).l,d2
-	chk.w	($FFFFFFFF).l,d5
+	chk.w	($FFFFFFFE).l,d2
+	chk.w	($FFFFFFFE).l,d5
 	chk.w	label_start.l,d2
 	chk.w	label_start.l,d5
-	chk.w	$FFFFFFFF,d2
-	chk.w	$FFFFFFFF,d5
-	chk.w	$1,d2
-	chk.w	$1,d5
-	chk.w	($FFFFFFFF).w,d2
-	chk.w	($FFFFFFFF).w,d5
-	chk.w	$1,d2
-	chk.w	$1,d5
+	chk.w	$FFFFFFFE,d2
+	chk.w	$FFFFFFFE,d5
+	chk.w	$FFFFFFFFFFFE,d2
+	chk.w	$FFFFFFFFFFFE,d5
+	chk.w	$2,d2
+	chk.w	$2,d5
+	chk.w	($FFFFFFFE).w,d2
+	chk.w	($FFFFFFFE).w,d5
+	chk.w	$2,d2
+	chk.w	$2,d5
 	chk.w	$7FFF(a2),d2
 	chk.w	$7FFF(a2),d5
 	chk.w	$7FFF(a5),d2
@@ -10666,18 +11137,20 @@ label_start:
 	chk	-(a5),d5
 	chk	-(sp),d2
 	chk	-(sp),d5
-	chk	($FFFFFFFF).l,d2
-	chk	($FFFFFFFF).l,d5
+	chk	($FFFFFFFE).l,d2
+	chk	($FFFFFFFE).l,d5
 	chk	label_start.l,d2
 	chk	label_start.l,d5
-	chk	$FFFFFFFF,d2
-	chk	$FFFFFFFF,d5
-	chk	$1,d2
-	chk	$1,d5
-	chk	($FFFFFFFF).w,d2
-	chk	($FFFFFFFF).w,d5
-	chk	$1,d2
-	chk	$1,d5
+	chk	$FFFFFFFE,d2
+	chk	$FFFFFFFE,d5
+	chk	$FFFFFFFFFFFE,d2
+	chk	$FFFFFFFFFFFE,d5
+	chk	$2,d2
+	chk	$2,d5
+	chk	($FFFFFFFE).w,d2
+	chk	($FFFFFFFE).w,d5
+	chk	$2,d2
+	chk	$2,d5
 	chk	$7FFF(a2),d2
 	chk	$7FFF(a2),d5
 	chk	$7FFF(a5),d2
@@ -10741,18 +11214,20 @@ label_start:
 	addq.b	#7,-(a2)
 	addq.b	#7,-(a5)
 	addq.b	#7,-(sp)
-	addq.b	#1,($FFFFFFFF).l
+	addq.b	#1,($FFFFFFFE).l
 	addq.b	#1,label_start.l
-	addq.b	#1,$FFFFFFFF
-	addq.b	#1,$1
-	addq.b	#7,($FFFFFFFF).l
+	addq.b	#1,$FFFFFFFE
+	addq.b	#1,$FFFFFFFFFFFE
+	addq.b	#1,$2
+	addq.b	#7,($FFFFFFFE).l
 	addq.b	#7,label_start.l
-	addq.b	#7,$FFFFFFFF
-	addq.b	#7,$1
-	addq.b	#1,($FFFFFFFF).w
-	addq.b	#1,$1
-	addq.b	#7,($FFFFFFFF).w
-	addq.b	#7,$1
+	addq.b	#7,$FFFFFFFE
+	addq.b	#7,$FFFFFFFFFFFE
+	addq.b	#7,$2
+	addq.b	#1,($FFFFFFFE).w
+	addq.b	#1,$2
+	addq.b	#7,($FFFFFFFE).w
+	addq.b	#7,$2
 	addq.b	#1,$7FFF(a2)
 	addq.b	#1,$7FFF(a5)
 	addq.b	#1,-2(sp)
@@ -10791,18 +11266,20 @@ label_start:
 	addq.w	#7,-(a2)
 	addq.w	#7,-(a5)
 	addq.w	#7,-(sp)
-	addq.w	#1,($FFFFFFFF).l
+	addq.w	#1,($FFFFFFFE).l
 	addq.w	#1,label_start.l
-	addq.w	#1,$FFFFFFFF
-	addq.w	#1,$1
-	addq.w	#7,($FFFFFFFF).l
+	addq.w	#1,$FFFFFFFE
+	addq.w	#1,$FFFFFFFFFFFE
+	addq.w	#1,$2
+	addq.w	#7,($FFFFFFFE).l
 	addq.w	#7,label_start.l
-	addq.w	#7,$FFFFFFFF
-	addq.w	#7,$1
-	addq.w	#1,($FFFFFFFF).w
-	addq.w	#1,$1
-	addq.w	#7,($FFFFFFFF).w
-	addq.w	#7,$1
+	addq.w	#7,$FFFFFFFE
+	addq.w	#7,$FFFFFFFFFFFE
+	addq.w	#7,$2
+	addq.w	#1,($FFFFFFFE).w
+	addq.w	#1,$2
+	addq.w	#7,($FFFFFFFE).w
+	addq.w	#7,$2
 	addq.w	#1,$7FFF(a2)
 	addq.w	#1,$7FFF(a5)
 	addq.w	#1,-2(sp)
@@ -10841,18 +11318,20 @@ label_start:
 	addq.l	#7,-(a2)
 	addq.l	#7,-(a5)
 	addq.l	#7,-(sp)
-	addq.l	#1,($FFFFFFFF).l
+	addq.l	#1,($FFFFFFFE).l
 	addq.l	#1,label_start.l
-	addq.l	#1,$FFFFFFFF
-	addq.l	#1,$1
-	addq.l	#7,($FFFFFFFF).l
+	addq.l	#1,$FFFFFFFE
+	addq.l	#1,$FFFFFFFFFFFE
+	addq.l	#1,$2
+	addq.l	#7,($FFFFFFFE).l
 	addq.l	#7,label_start.l
-	addq.l	#7,$FFFFFFFF
-	addq.l	#7,$1
-	addq.l	#1,($FFFFFFFF).w
-	addq.l	#1,$1
-	addq.l	#7,($FFFFFFFF).w
-	addq.l	#7,$1
+	addq.l	#7,$FFFFFFFE
+	addq.l	#7,$FFFFFFFFFFFE
+	addq.l	#7,$2
+	addq.l	#1,($FFFFFFFE).w
+	addq.l	#1,$2
+	addq.l	#7,($FFFFFFFE).w
+	addq.l	#7,$2
 	addq.l	#1,$7FFF(a2)
 	addq.l	#1,$7FFF(a5)
 	addq.l	#1,-2(sp)
@@ -10904,18 +11383,20 @@ label_start:
 	subq.b	#7,-(a2)
 	subq.b	#7,-(a5)
 	subq.b	#7,-(sp)
-	subq.b	#1,($FFFFFFFF).l
+	subq.b	#1,($FFFFFFFE).l
 	subq.b	#1,label_start.l
-	subq.b	#1,$FFFFFFFF
-	subq.b	#1,$1
-	subq.b	#7,($FFFFFFFF).l
+	subq.b	#1,$FFFFFFFE
+	subq.b	#1,$FFFFFFFFFFFE
+	subq.b	#1,$2
+	subq.b	#7,($FFFFFFFE).l
 	subq.b	#7,label_start.l
-	subq.b	#7,$FFFFFFFF
-	subq.b	#7,$1
-	subq.b	#1,($FFFFFFFF).w
-	subq.b	#1,$1
-	subq.b	#7,($FFFFFFFF).w
-	subq.b	#7,$1
+	subq.b	#7,$FFFFFFFE
+	subq.b	#7,$FFFFFFFFFFFE
+	subq.b	#7,$2
+	subq.b	#1,($FFFFFFFE).w
+	subq.b	#1,$2
+	subq.b	#7,($FFFFFFFE).w
+	subq.b	#7,$2
 	subq.b	#1,$7FFF(a2)
 	subq.b	#1,$7FFF(a5)
 	subq.b	#1,-2(sp)
@@ -10954,18 +11435,20 @@ label_start:
 	subq.w	#7,-(a2)
 	subq.w	#7,-(a5)
 	subq.w	#7,-(sp)
-	subq.w	#1,($FFFFFFFF).l
+	subq.w	#1,($FFFFFFFE).l
 	subq.w	#1,label_start.l
-	subq.w	#1,$FFFFFFFF
-	subq.w	#1,$1
-	subq.w	#7,($FFFFFFFF).l
+	subq.w	#1,$FFFFFFFE
+	subq.w	#1,$FFFFFFFFFFFE
+	subq.w	#1,$2
+	subq.w	#7,($FFFFFFFE).l
 	subq.w	#7,label_start.l
-	subq.w	#7,$FFFFFFFF
-	subq.w	#7,$1
-	subq.w	#1,($FFFFFFFF).w
-	subq.w	#1,$1
-	subq.w	#7,($FFFFFFFF).w
-	subq.w	#7,$1
+	subq.w	#7,$FFFFFFFE
+	subq.w	#7,$FFFFFFFFFFFE
+	subq.w	#7,$2
+	subq.w	#1,($FFFFFFFE).w
+	subq.w	#1,$2
+	subq.w	#7,($FFFFFFFE).w
+	subq.w	#7,$2
 	subq.w	#1,$7FFF(a2)
 	subq.w	#1,$7FFF(a5)
 	subq.w	#1,-2(sp)
@@ -11004,18 +11487,20 @@ label_start:
 	subq.l	#7,-(a2)
 	subq.l	#7,-(a5)
 	subq.l	#7,-(sp)
-	subq.l	#1,($FFFFFFFF).l
+	subq.l	#1,($FFFFFFFE).l
 	subq.l	#1,label_start.l
-	subq.l	#1,$FFFFFFFF
-	subq.l	#1,$1
-	subq.l	#7,($FFFFFFFF).l
+	subq.l	#1,$FFFFFFFE
+	subq.l	#1,$FFFFFFFFFFFE
+	subq.l	#1,$2
+	subq.l	#7,($FFFFFFFE).l
 	subq.l	#7,label_start.l
-	subq.l	#7,$FFFFFFFF
-	subq.l	#7,$1
-	subq.l	#1,($FFFFFFFF).w
-	subq.l	#1,$1
-	subq.l	#7,($FFFFFFFF).w
-	subq.l	#7,$1
+	subq.l	#7,$FFFFFFFE
+	subq.l	#7,$FFFFFFFFFFFE
+	subq.l	#7,$2
+	subq.l	#1,($FFFFFFFE).w
+	subq.l	#1,$2
+	subq.l	#7,($FFFFFFFE).w
+	subq.l	#7,$2
 	subq.l	#1,$7FFF(a2)
 	subq.l	#1,$7FFF(a5)
 	subq.l	#1,-2(sp)
@@ -11080,18 +11565,20 @@ label_start:
 	divu.w	-(a5),d5
 	divu.w	-(sp),d2
 	divu.w	-(sp),d5
-	divu.w	($FFFFFFFF).l,d2
-	divu.w	($FFFFFFFF).l,d5
+	divu.w	($FFFFFFFE).l,d2
+	divu.w	($FFFFFFFE).l,d5
 	divu.w	label_start.l,d2
 	divu.w	label_start.l,d5
-	divu.w	$FFFFFFFF,d2
-	divu.w	$FFFFFFFF,d5
-	divu.w	$1,d2
-	divu.w	$1,d5
-	divu.w	($FFFFFFFF).w,d2
-	divu.w	($FFFFFFFF).w,d5
-	divu.w	$1,d2
-	divu.w	$1,d5
+	divu.w	$FFFFFFFE,d2
+	divu.w	$FFFFFFFE,d5
+	divu.w	$FFFFFFFFFFFE,d2
+	divu.w	$FFFFFFFFFFFE,d5
+	divu.w	$2,d2
+	divu.w	$2,d5
+	divu.w	($FFFFFFFE).w,d2
+	divu.w	($FFFFFFFE).w,d5
+	divu.w	$2,d2
+	divu.w	$2,d5
 	divu.w	$7FFF(a2),d2
 	divu.w	$7FFF(a2),d5
 	divu.w	$7FFF(a5),d2
@@ -11154,18 +11641,20 @@ label_start:
 	divu	-(a5),d5
 	divu	-(sp),d2
 	divu	-(sp),d5
-	divu	($FFFFFFFF).l,d2
-	divu	($FFFFFFFF).l,d5
+	divu	($FFFFFFFE).l,d2
+	divu	($FFFFFFFE).l,d5
 	divu	label_start.l,d2
 	divu	label_start.l,d5
-	divu	$FFFFFFFF,d2
-	divu	$FFFFFFFF,d5
-	divu	$1,d2
-	divu	$1,d5
-	divu	($FFFFFFFF).w,d2
-	divu	($FFFFFFFF).w,d5
-	divu	$1,d2
-	divu	$1,d5
+	divu	$FFFFFFFE,d2
+	divu	$FFFFFFFE,d5
+	divu	$FFFFFFFFFFFE,d2
+	divu	$FFFFFFFFFFFE,d5
+	divu	$2,d2
+	divu	$2,d5
+	divu	($FFFFFFFE).w,d2
+	divu	($FFFFFFFE).w,d5
+	divu	$2,d2
+	divu	$2,d5
 	divu	$7FFF(a2),d2
 	divu	$7FFF(a2),d5
 	divu	$7FFF(a5),d2
@@ -11229,18 +11718,20 @@ label_start:
 	divs.w	-(a5),d5
 	divs.w	-(sp),d2
 	divs.w	-(sp),d5
-	divs.w	($FFFFFFFF).l,d2
-	divs.w	($FFFFFFFF).l,d5
+	divs.w	($FFFFFFFE).l,d2
+	divs.w	($FFFFFFFE).l,d5
 	divs.w	label_start.l,d2
 	divs.w	label_start.l,d5
-	divs.w	$FFFFFFFF,d2
-	divs.w	$FFFFFFFF,d5
-	divs.w	$1,d2
-	divs.w	$1,d5
-	divs.w	($FFFFFFFF).w,d2
-	divs.w	($FFFFFFFF).w,d5
-	divs.w	$1,d2
-	divs.w	$1,d5
+	divs.w	$FFFFFFFE,d2
+	divs.w	$FFFFFFFE,d5
+	divs.w	$FFFFFFFFFFFE,d2
+	divs.w	$FFFFFFFFFFFE,d5
+	divs.w	$2,d2
+	divs.w	$2,d5
+	divs.w	($FFFFFFFE).w,d2
+	divs.w	($FFFFFFFE).w,d5
+	divs.w	$2,d2
+	divs.w	$2,d5
 	divs.w	$7FFF(a2),d2
 	divs.w	$7FFF(a2),d5
 	divs.w	$7FFF(a5),d2
@@ -11303,18 +11794,20 @@ label_start:
 	divs	-(a5),d5
 	divs	-(sp),d2
 	divs	-(sp),d5
-	divs	($FFFFFFFF).l,d2
-	divs	($FFFFFFFF).l,d5
+	divs	($FFFFFFFE).l,d2
+	divs	($FFFFFFFE).l,d5
 	divs	label_start.l,d2
 	divs	label_start.l,d5
-	divs	$FFFFFFFF,d2
-	divs	$FFFFFFFF,d5
-	divs	$1,d2
-	divs	$1,d5
-	divs	($FFFFFFFF).w,d2
-	divs	($FFFFFFFF).w,d5
-	divs	$1,d2
-	divs	$1,d5
+	divs	$FFFFFFFE,d2
+	divs	$FFFFFFFE,d5
+	divs	$FFFFFFFFFFFE,d2
+	divs	$FFFFFFFFFFFE,d5
+	divs	$2,d2
+	divs	$2,d5
+	divs	($FFFFFFFE).w,d2
+	divs	($FFFFFFFE).w,d5
+	divs	$2,d2
+	divs	$2,d5
 	divs	$7FFF(a2),d2
 	divs	$7FFF(a2),d5
 	divs	$7FFF(a5),d2
@@ -11432,18 +11925,20 @@ label_start:
 	or.b	-(a5),d5
 	or.b	-(sp),d2
 	or.b	-(sp),d5
-	or.b	($FFFFFFFF).l,d2
-	or.b	($FFFFFFFF).l,d5
+	or.b	($FFFFFFFE).l,d2
+	or.b	($FFFFFFFE).l,d5
 	or.b	label_start.l,d2
 	or.b	label_start.l,d5
-	or.b	$FFFFFFFF,d2
-	or.b	$FFFFFFFF,d5
-	or.b	$1,d2
-	or.b	$1,d5
-	or.b	($FFFFFFFF).w,d2
-	or.b	($FFFFFFFF).w,d5
-	or.b	$1,d2
-	or.b	$1,d5
+	or.b	$FFFFFFFE,d2
+	or.b	$FFFFFFFE,d5
+	or.b	$FFFFFFFFFFFE,d2
+	or.b	$FFFFFFFFFFFE,d5
+	or.b	$2,d2
+	or.b	$2,d5
+	or.b	($FFFFFFFE).w,d2
+	or.b	($FFFFFFFE).w,d5
+	or.b	$2,d2
+	or.b	$2,d5
 	or.b	$7FFF(a2),d2
 	or.b	$7FFF(a2),d5
 	or.b	$7FFF(a5),d2
@@ -11492,18 +11987,20 @@ label_start:
 	or.w	-(a5),d5
 	or.w	-(sp),d2
 	or.w	-(sp),d5
-	or.w	($FFFFFFFF).l,d2
-	or.w	($FFFFFFFF).l,d5
+	or.w	($FFFFFFFE).l,d2
+	or.w	($FFFFFFFE).l,d5
 	or.w	label_start.l,d2
 	or.w	label_start.l,d5
-	or.w	$FFFFFFFF,d2
-	or.w	$FFFFFFFF,d5
-	or.w	$1,d2
-	or.w	$1,d5
-	or.w	($FFFFFFFF).w,d2
-	or.w	($FFFFFFFF).w,d5
-	or.w	$1,d2
-	or.w	$1,d5
+	or.w	$FFFFFFFE,d2
+	or.w	$FFFFFFFE,d5
+	or.w	$FFFFFFFFFFFE,d2
+	or.w	$FFFFFFFFFFFE,d5
+	or.w	$2,d2
+	or.w	$2,d5
+	or.w	($FFFFFFFE).w,d2
+	or.w	($FFFFFFFE).w,d5
+	or.w	$2,d2
+	or.w	$2,d5
 	or.w	$7FFF(a2),d2
 	or.w	$7FFF(a2),d5
 	or.w	$7FFF(a5),d2
@@ -11552,18 +12049,20 @@ label_start:
 	or.l	-(a5),d5
 	or.l	-(sp),d2
 	or.l	-(sp),d5
-	or.l	($FFFFFFFF).l,d2
-	or.l	($FFFFFFFF).l,d5
+	or.l	($FFFFFFFE).l,d2
+	or.l	($FFFFFFFE).l,d5
 	or.l	label_start.l,d2
 	or.l	label_start.l,d5
-	or.l	$FFFFFFFF,d2
-	or.l	$FFFFFFFF,d5
-	or.l	$1,d2
-	or.l	$1,d5
-	or.l	($FFFFFFFF).w,d2
-	or.l	($FFFFFFFF).w,d5
-	or.l	$1,d2
-	or.l	$1,d5
+	or.l	$FFFFFFFE,d2
+	or.l	$FFFFFFFE,d5
+	or.l	$FFFFFFFFFFFE,d2
+	or.l	$FFFFFFFFFFFE,d5
+	or.l	$2,d2
+	or.l	$2,d5
+	or.l	($FFFFFFFE).w,d2
+	or.l	($FFFFFFFE).w,d5
+	or.l	$2,d2
+	or.l	$2,d5
 	or.l	$7FFF(a2),d2
 	or.l	$7FFF(a2),d5
 	or.l	$7FFF(a5),d2
@@ -11612,18 +12111,20 @@ label_start:
 	or.b	d5,-(a2)
 	or.b	d5,-(a5)
 	or.b	d5,-(sp)
-	or.b	d2,($FFFFFFFF).l
+	or.b	d2,($FFFFFFFE).l
 	or.b	d2,label_start.l
-	or.b	d2,$FFFFFFFF
-	or.b	d2,$1
-	or.b	d5,($FFFFFFFF).l
+	or.b	d2,$FFFFFFFE
+	or.b	d2,$FFFFFFFFFFFE
+	or.b	d2,$2
+	or.b	d5,($FFFFFFFE).l
 	or.b	d5,label_start.l
-	or.b	d5,$FFFFFFFF
-	or.b	d5,$1
-	or.b	d2,($FFFFFFFF).w
-	or.b	d2,$1
-	or.b	d5,($FFFFFFFF).w
-	or.b	d5,$1
+	or.b	d5,$FFFFFFFE
+	or.b	d5,$FFFFFFFFFFFE
+	or.b	d5,$2
+	or.b	d2,($FFFFFFFE).w
+	or.b	d2,$2
+	or.b	d5,($FFFFFFFE).w
+	or.b	d5,$2
 	or.b	d2,$7FFF(a2)
 	or.b	d2,$7FFF(a5)
 	or.b	d2,-2(sp)
@@ -11658,18 +12159,20 @@ label_start:
 	or.w	d5,-(a2)
 	or.w	d5,-(a5)
 	or.w	d5,-(sp)
-	or.w	d2,($FFFFFFFF).l
+	or.w	d2,($FFFFFFFE).l
 	or.w	d2,label_start.l
-	or.w	d2,$FFFFFFFF
-	or.w	d2,$1
-	or.w	d5,($FFFFFFFF).l
+	or.w	d2,$FFFFFFFE
+	or.w	d2,$FFFFFFFFFFFE
+	or.w	d2,$2
+	or.w	d5,($FFFFFFFE).l
 	or.w	d5,label_start.l
-	or.w	d5,$FFFFFFFF
-	or.w	d5,$1
-	or.w	d2,($FFFFFFFF).w
-	or.w	d2,$1
-	or.w	d5,($FFFFFFFF).w
-	or.w	d5,$1
+	or.w	d5,$FFFFFFFE
+	or.w	d5,$FFFFFFFFFFFE
+	or.w	d5,$2
+	or.w	d2,($FFFFFFFE).w
+	or.w	d2,$2
+	or.w	d5,($FFFFFFFE).w
+	or.w	d5,$2
 	or.w	d2,$7FFF(a2)
 	or.w	d2,$7FFF(a5)
 	or.w	d2,-2(sp)
@@ -11704,18 +12207,20 @@ label_start:
 	or.l	d5,-(a2)
 	or.l	d5,-(a5)
 	or.l	d5,-(sp)
-	or.l	d2,($FFFFFFFF).l
+	or.l	d2,($FFFFFFFE).l
 	or.l	d2,label_start.l
-	or.l	d2,$FFFFFFFF
-	or.l	d2,$1
-	or.l	d5,($FFFFFFFF).l
+	or.l	d2,$FFFFFFFE
+	or.l	d2,$FFFFFFFFFFFE
+	or.l	d2,$2
+	or.l	d5,($FFFFFFFE).l
 	or.l	d5,label_start.l
-	or.l	d5,$FFFFFFFF
-	or.l	d5,$1
-	or.l	d2,($FFFFFFFF).w
-	or.l	d2,$1
-	or.l	d5,($FFFFFFFF).w
-	or.l	d5,$1
+	or.l	d5,$FFFFFFFE
+	or.l	d5,$FFFFFFFFFFFE
+	or.l	d5,$2
+	or.l	d2,($FFFFFFFE).w
+	or.l	d2,$2
+	or.l	d5,($FFFFFFFE).w
+	or.l	d5,$2
 	or.l	d2,$7FFF(a2)
 	or.l	d2,$7FFF(a5)
 	or.l	d2,-2(sp)
@@ -11757,24 +12262,27 @@ label_start:
 	or.b	#"X",-(a2)
 	or.b	#"X",-(a5)
 	or.b	#"X",-(sp)
-	or.b	#0,($FFFFFFFF).l
+	or.b	#0,($FFFFFFFE).l
 	or.b	#0,label_start.l
-	or.b	#0,$FFFFFFFF
-	or.b	#0,$1
-	or.b	#$FF,($FFFFFFFF).l
+	or.b	#0,$FFFFFFFE
+	or.b	#0,$FFFFFFFFFFFE
+	or.b	#0,$2
+	or.b	#$FF,($FFFFFFFE).l
 	or.b	#$FF,label_start.l
-	or.b	#$FF,$FFFFFFFF
-	or.b	#$FF,$1
-	or.b	#"X",($FFFFFFFF).l
+	or.b	#$FF,$FFFFFFFE
+	or.b	#$FF,$FFFFFFFFFFFE
+	or.b	#$FF,$2
+	or.b	#"X",($FFFFFFFE).l
 	or.b	#"X",label_start.l
-	or.b	#"X",$FFFFFFFF
-	or.b	#"X",$1
-	or.b	#0,($FFFFFFFF).w
-	or.b	#0,$1
-	or.b	#$FF,($FFFFFFFF).w
-	or.b	#$FF,$1
-	or.b	#"X",($FFFFFFFF).w
-	or.b	#"X",$1
+	or.b	#"X",$FFFFFFFE
+	or.b	#"X",$FFFFFFFFFFFE
+	or.b	#"X",$2
+	or.b	#0,($FFFFFFFE).w
+	or.b	#0,$2
+	or.b	#$FF,($FFFFFFFE).w
+	or.b	#$FF,$2
+	or.b	#"X",($FFFFFFFE).w
+	or.b	#"X",$2
 	or.b	#0,$7FFF(a2)
 	or.b	#0,$7FFF(a5)
 	or.b	#0,-2(sp)
@@ -11860,48 +12368,55 @@ label_start:
 	or.w	#$FFFF,-(a2)
 	or.w	#$FFFF,-(a5)
 	or.w	#$FFFF,-(sp)
-	or.w	#0,($FFFFFFFF).l
+	or.w	#0,($FFFFFFFE).l
 	or.w	#0,label_start.l
-	or.w	#0,$FFFFFFFF
-	or.w	#0,$1
-	or.w	#4,($FFFFFFFF).l
+	or.w	#0,$FFFFFFFE
+	or.w	#0,$FFFFFFFFFFFE
+	or.w	#0,$2
+	or.w	#4,($FFFFFFFE).l
 	or.w	#4,label_start.l
-	or.w	#4,$FFFFFFFF
-	or.w	#4,$1
-	or.w	#$FF,($FFFFFFFF).l
+	or.w	#4,$FFFFFFFE
+	or.w	#4,$FFFFFFFFFFFE
+	or.w	#4,$2
+	or.w	#$FF,($FFFFFFFE).l
 	or.w	#$FF,label_start.l
-	or.w	#$FF,$FFFFFFFF
-	or.w	#$FF,$1
-	or.w	#"XY",($FFFFFFFF).l
+	or.w	#$FF,$FFFFFFFE
+	or.w	#$FF,$FFFFFFFFFFFE
+	or.w	#$FF,$2
+	or.w	#"XY",($FFFFFFFE).l
 	or.w	#"XY",label_start.l
-	or.w	#"XY",$FFFFFFFF
-	or.w	#"XY",$1
-	or.w	#$2700,($FFFFFFFF).l
+	or.w	#"XY",$FFFFFFFE
+	or.w	#"XY",$FFFFFFFFFFFE
+	or.w	#"XY",$2
+	or.w	#$2700,($FFFFFFFE).l
 	or.w	#$2700,label_start.l
-	or.w	#$2700,$FFFFFFFF
-	or.w	#$2700,$1
-	or.w	#$7FFF,($FFFFFFFF).l
+	or.w	#$2700,$FFFFFFFE
+	or.w	#$2700,$FFFFFFFFFFFE
+	or.w	#$2700,$2
+	or.w	#$7FFF,($FFFFFFFE).l
 	or.w	#$7FFF,label_start.l
-	or.w	#$7FFF,$FFFFFFFF
-	or.w	#$7FFF,$1
-	or.w	#$FFFF,($FFFFFFFF).l
+	or.w	#$7FFF,$FFFFFFFE
+	or.w	#$7FFF,$FFFFFFFFFFFE
+	or.w	#$7FFF,$2
+	or.w	#$FFFF,($FFFFFFFE).l
 	or.w	#$FFFF,label_start.l
-	or.w	#$FFFF,$FFFFFFFF
-	or.w	#$FFFF,$1
-	or.w	#0,($FFFFFFFF).w
-	or.w	#0,$1
-	or.w	#4,($FFFFFFFF).w
-	or.w	#4,$1
-	or.w	#$FF,($FFFFFFFF).w
-	or.w	#$FF,$1
-	or.w	#"XY",($FFFFFFFF).w
-	or.w	#"XY",$1
-	or.w	#$2700,($FFFFFFFF).w
-	or.w	#$2700,$1
-	or.w	#$7FFF,($FFFFFFFF).w
-	or.w	#$7FFF,$1
-	or.w	#$FFFF,($FFFFFFFF).w
-	or.w	#$FFFF,$1
+	or.w	#$FFFF,$FFFFFFFE
+	or.w	#$FFFF,$FFFFFFFFFFFE
+	or.w	#$FFFF,$2
+	or.w	#0,($FFFFFFFE).w
+	or.w	#0,$2
+	or.w	#4,($FFFFFFFE).w
+	or.w	#4,$2
+	or.w	#$FF,($FFFFFFFE).w
+	or.w	#$FF,$2
+	or.w	#"XY",($FFFFFFFE).w
+	or.w	#"XY",$2
+	or.w	#$2700,($FFFFFFFE).w
+	or.w	#$2700,$2
+	or.w	#$7FFF,($FFFFFFFE).w
+	or.w	#$7FFF,$2
+	or.w	#$FFFF,($FFFFFFFE).w
+	or.w	#$FFFF,$2
 	or.w	#0,$7FFF(a2)
 	or.w	#0,$7FFF(a5)
 	or.w	#0,-2(sp)
@@ -12070,78 +12585,90 @@ label_start:
 	or.l	#(3+4),-(a2)
 	or.l	#(3+4),-(a5)
 	or.l	#(3+4),-(sp)
-	or.l	#equ_1,($FFFFFFFF).l
+	or.l	#equ_1,($FFFFFFFE).l
 	or.l	#equ_1,label_start.l
-	or.l	#equ_1,$FFFFFFFF
-	or.l	#equ_1,$1
-	or.l	#equ_equ_1,($FFFFFFFF).l
+	or.l	#equ_1,$FFFFFFFE
+	or.l	#equ_1,$FFFFFFFFFFFE
+	or.l	#equ_1,$2
+	or.l	#equ_equ_1,($FFFFFFFE).l
 	or.l	#equ_equ_1,label_start.l
-	or.l	#equ_equ_1,$FFFFFFFF
-	or.l	#equ_equ_1,$1
-	or.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	or.l	#equ_equ_1,$FFFFFFFE
+	or.l	#equ_equ_1,$FFFFFFFFFFFE
+	or.l	#equ_equ_1,$2
+	or.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	or.l	#equ_1_plus_equ_1,label_start.l
-	or.l	#equ_1_plus_equ_1,$FFFFFFFF
-	or.l	#equ_1_plus_equ_1,$1
-	or.l	#0,($FFFFFFFF).l
+	or.l	#equ_1_plus_equ_1,$FFFFFFFE
+	or.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	or.l	#equ_1_plus_equ_1,$2
+	or.l	#0,($FFFFFFFE).l
 	or.l	#0,label_start.l
-	or.l	#0,$FFFFFFFF
-	or.l	#0,$1
-	or.l	#4,($FFFFFFFF).l
+	or.l	#0,$FFFFFFFE
+	or.l	#0,$FFFFFFFFFFFE
+	or.l	#0,$2
+	or.l	#4,($FFFFFFFE).l
 	or.l	#4,label_start.l
-	or.l	#4,$FFFFFFFF
-	or.l	#4,$1
-	or.l	#$FF,($FFFFFFFF).l
+	or.l	#4,$FFFFFFFE
+	or.l	#4,$FFFFFFFFFFFE
+	or.l	#4,$2
+	or.l	#$FF,($FFFFFFFE).l
 	or.l	#$FF,label_start.l
-	or.l	#$FF,$FFFFFFFF
-	or.l	#$FF,$1
-	or.l	#$7FFF,($FFFFFFFF).l
+	or.l	#$FF,$FFFFFFFE
+	or.l	#$FF,$FFFFFFFFFFFE
+	or.l	#$FF,$2
+	or.l	#$7FFF,($FFFFFFFE).l
 	or.l	#$7FFF,label_start.l
-	or.l	#$7FFF,$FFFFFFFF
-	or.l	#$7FFF,$1
-	or.l	#$FFFF,($FFFFFFFF).l
+	or.l	#$7FFF,$FFFFFFFE
+	or.l	#$7FFF,$FFFFFFFFFFFE
+	or.l	#$7FFF,$2
+	or.l	#$FFFF,($FFFFFFFE).l
 	or.l	#$FFFF,label_start.l
-	or.l	#$FFFF,$FFFFFFFF
-	or.l	#$FFFF,$1
-	or.l	#$FFFFFFFF,($FFFFFFFF).l
+	or.l	#$FFFF,$FFFFFFFE
+	or.l	#$FFFF,$FFFFFFFFFFFE
+	or.l	#$FFFF,$2
+	or.l	#$FFFFFFFF,($FFFFFFFE).l
 	or.l	#$FFFFFFFF,label_start.l
-	or.l	#$FFFFFFFF,$FFFFFFFF
-	or.l	#$FFFFFFFF,$1
-	or.l	#"WXYZ",($FFFFFFFF).l
+	or.l	#$FFFFFFFF,$FFFFFFFE
+	or.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	or.l	#$FFFFFFFF,$2
+	or.l	#"WXYZ",($FFFFFFFE).l
 	or.l	#"WXYZ",label_start.l
-	or.l	#"WXYZ",$FFFFFFFF
-	or.l	#"WXYZ",$1
-	or.l	#1+1,($FFFFFFFF).l
+	or.l	#"WXYZ",$FFFFFFFE
+	or.l	#"WXYZ",$FFFFFFFFFFFE
+	or.l	#"WXYZ",$2
+	or.l	#1+1,($FFFFFFFE).l
 	or.l	#1+1,label_start.l
-	or.l	#1+1,$FFFFFFFF
-	or.l	#1+1,$1
-	or.l	#(3+4),($FFFFFFFF).l
+	or.l	#1+1,$FFFFFFFE
+	or.l	#1+1,$FFFFFFFFFFFE
+	or.l	#1+1,$2
+	or.l	#(3+4),($FFFFFFFE).l
 	or.l	#(3+4),label_start.l
-	or.l	#(3+4),$FFFFFFFF
-	or.l	#(3+4),$1
-	or.l	#equ_1,($FFFFFFFF).w
-	or.l	#equ_1,$1
-	or.l	#equ_equ_1,($FFFFFFFF).w
-	or.l	#equ_equ_1,$1
-	or.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	or.l	#equ_1_plus_equ_1,$1
-	or.l	#0,($FFFFFFFF).w
-	or.l	#0,$1
-	or.l	#4,($FFFFFFFF).w
-	or.l	#4,$1
-	or.l	#$FF,($FFFFFFFF).w
-	or.l	#$FF,$1
-	or.l	#$7FFF,($FFFFFFFF).w
-	or.l	#$7FFF,$1
-	or.l	#$FFFF,($FFFFFFFF).w
-	or.l	#$FFFF,$1
-	or.l	#$FFFFFFFF,($FFFFFFFF).w
-	or.l	#$FFFFFFFF,$1
-	or.l	#"WXYZ",($FFFFFFFF).w
-	or.l	#"WXYZ",$1
-	or.l	#1+1,($FFFFFFFF).w
-	or.l	#1+1,$1
-	or.l	#(3+4),($FFFFFFFF).w
-	or.l	#(3+4),$1
+	or.l	#(3+4),$FFFFFFFE
+	or.l	#(3+4),$FFFFFFFFFFFE
+	or.l	#(3+4),$2
+	or.l	#equ_1,($FFFFFFFE).w
+	or.l	#equ_1,$2
+	or.l	#equ_equ_1,($FFFFFFFE).w
+	or.l	#equ_equ_1,$2
+	or.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	or.l	#equ_1_plus_equ_1,$2
+	or.l	#0,($FFFFFFFE).w
+	or.l	#0,$2
+	or.l	#4,($FFFFFFFE).w
+	or.l	#4,$2
+	or.l	#$FF,($FFFFFFFE).w
+	or.l	#$FF,$2
+	or.l	#$7FFF,($FFFFFFFE).w
+	or.l	#$7FFF,$2
+	or.l	#$FFFF,($FFFFFFFE).w
+	or.l	#$FFFF,$2
+	or.l	#$FFFFFFFF,($FFFFFFFE).w
+	or.l	#$FFFFFFFF,$2
+	or.l	#"WXYZ",($FFFFFFFE).w
+	or.l	#"WXYZ",$2
+	or.l	#1+1,($FFFFFFFE).w
+	or.l	#1+1,$2
+	or.l	#(3+4),($FFFFFFFE).w
+	or.l	#(3+4),$2
 	or.l	#equ_1,$7FFF(a2)
 	or.l	#equ_1,$7FFF(a5)
 	or.l	#equ_1,-2(sp)
@@ -12301,18 +12828,20 @@ label_start:
 	and.b	-(a5),d5
 	and.b	-(sp),d2
 	and.b	-(sp),d5
-	and.b	($FFFFFFFF).l,d2
-	and.b	($FFFFFFFF).l,d5
+	and.b	($FFFFFFFE).l,d2
+	and.b	($FFFFFFFE).l,d5
 	and.b	label_start.l,d2
 	and.b	label_start.l,d5
-	and.b	$FFFFFFFF,d2
-	and.b	$FFFFFFFF,d5
-	and.b	$1,d2
-	and.b	$1,d5
-	and.b	($FFFFFFFF).w,d2
-	and.b	($FFFFFFFF).w,d5
-	and.b	$1,d2
-	and.b	$1,d5
+	and.b	$FFFFFFFE,d2
+	and.b	$FFFFFFFE,d5
+	and.b	$FFFFFFFFFFFE,d2
+	and.b	$FFFFFFFFFFFE,d5
+	and.b	$2,d2
+	and.b	$2,d5
+	and.b	($FFFFFFFE).w,d2
+	and.b	($FFFFFFFE).w,d5
+	and.b	$2,d2
+	and.b	$2,d5
 	and.b	$7FFF(a2),d2
 	and.b	$7FFF(a2),d5
 	and.b	$7FFF(a5),d2
@@ -12361,18 +12890,20 @@ label_start:
 	and.w	-(a5),d5
 	and.w	-(sp),d2
 	and.w	-(sp),d5
-	and.w	($FFFFFFFF).l,d2
-	and.w	($FFFFFFFF).l,d5
+	and.w	($FFFFFFFE).l,d2
+	and.w	($FFFFFFFE).l,d5
 	and.w	label_start.l,d2
 	and.w	label_start.l,d5
-	and.w	$FFFFFFFF,d2
-	and.w	$FFFFFFFF,d5
-	and.w	$1,d2
-	and.w	$1,d5
-	and.w	($FFFFFFFF).w,d2
-	and.w	($FFFFFFFF).w,d5
-	and.w	$1,d2
-	and.w	$1,d5
+	and.w	$FFFFFFFE,d2
+	and.w	$FFFFFFFE,d5
+	and.w	$FFFFFFFFFFFE,d2
+	and.w	$FFFFFFFFFFFE,d5
+	and.w	$2,d2
+	and.w	$2,d5
+	and.w	($FFFFFFFE).w,d2
+	and.w	($FFFFFFFE).w,d5
+	and.w	$2,d2
+	and.w	$2,d5
 	and.w	$7FFF(a2),d2
 	and.w	$7FFF(a2),d5
 	and.w	$7FFF(a5),d2
@@ -12421,18 +12952,20 @@ label_start:
 	and.l	-(a5),d5
 	and.l	-(sp),d2
 	and.l	-(sp),d5
-	and.l	($FFFFFFFF).l,d2
-	and.l	($FFFFFFFF).l,d5
+	and.l	($FFFFFFFE).l,d2
+	and.l	($FFFFFFFE).l,d5
 	and.l	label_start.l,d2
 	and.l	label_start.l,d5
-	and.l	$FFFFFFFF,d2
-	and.l	$FFFFFFFF,d5
-	and.l	$1,d2
-	and.l	$1,d5
-	and.l	($FFFFFFFF).w,d2
-	and.l	($FFFFFFFF).w,d5
-	and.l	$1,d2
-	and.l	$1,d5
+	and.l	$FFFFFFFE,d2
+	and.l	$FFFFFFFE,d5
+	and.l	$FFFFFFFFFFFE,d2
+	and.l	$FFFFFFFFFFFE,d5
+	and.l	$2,d2
+	and.l	$2,d5
+	and.l	($FFFFFFFE).w,d2
+	and.l	($FFFFFFFE).w,d5
+	and.l	$2,d2
+	and.l	$2,d5
 	and.l	$7FFF(a2),d2
 	and.l	$7FFF(a2),d5
 	and.l	$7FFF(a5),d2
@@ -12481,18 +13014,20 @@ label_start:
 	and.b	d5,-(a2)
 	and.b	d5,-(a5)
 	and.b	d5,-(sp)
-	and.b	d2,($FFFFFFFF).l
+	and.b	d2,($FFFFFFFE).l
 	and.b	d2,label_start.l
-	and.b	d2,$FFFFFFFF
-	and.b	d2,$1
-	and.b	d5,($FFFFFFFF).l
+	and.b	d2,$FFFFFFFE
+	and.b	d2,$FFFFFFFFFFFE
+	and.b	d2,$2
+	and.b	d5,($FFFFFFFE).l
 	and.b	d5,label_start.l
-	and.b	d5,$FFFFFFFF
-	and.b	d5,$1
-	and.b	d2,($FFFFFFFF).w
-	and.b	d2,$1
-	and.b	d5,($FFFFFFFF).w
-	and.b	d5,$1
+	and.b	d5,$FFFFFFFE
+	and.b	d5,$FFFFFFFFFFFE
+	and.b	d5,$2
+	and.b	d2,($FFFFFFFE).w
+	and.b	d2,$2
+	and.b	d5,($FFFFFFFE).w
+	and.b	d5,$2
 	and.b	d2,$7FFF(a2)
 	and.b	d2,$7FFF(a5)
 	and.b	d2,-2(sp)
@@ -12527,18 +13062,20 @@ label_start:
 	and.w	d5,-(a2)
 	and.w	d5,-(a5)
 	and.w	d5,-(sp)
-	and.w	d2,($FFFFFFFF).l
+	and.w	d2,($FFFFFFFE).l
 	and.w	d2,label_start.l
-	and.w	d2,$FFFFFFFF
-	and.w	d2,$1
-	and.w	d5,($FFFFFFFF).l
+	and.w	d2,$FFFFFFFE
+	and.w	d2,$FFFFFFFFFFFE
+	and.w	d2,$2
+	and.w	d5,($FFFFFFFE).l
 	and.w	d5,label_start.l
-	and.w	d5,$FFFFFFFF
-	and.w	d5,$1
-	and.w	d2,($FFFFFFFF).w
-	and.w	d2,$1
-	and.w	d5,($FFFFFFFF).w
-	and.w	d5,$1
+	and.w	d5,$FFFFFFFE
+	and.w	d5,$FFFFFFFFFFFE
+	and.w	d5,$2
+	and.w	d2,($FFFFFFFE).w
+	and.w	d2,$2
+	and.w	d5,($FFFFFFFE).w
+	and.w	d5,$2
 	and.w	d2,$7FFF(a2)
 	and.w	d2,$7FFF(a5)
 	and.w	d2,-2(sp)
@@ -12573,18 +13110,20 @@ label_start:
 	and.l	d5,-(a2)
 	and.l	d5,-(a5)
 	and.l	d5,-(sp)
-	and.l	d2,($FFFFFFFF).l
+	and.l	d2,($FFFFFFFE).l
 	and.l	d2,label_start.l
-	and.l	d2,$FFFFFFFF
-	and.l	d2,$1
-	and.l	d5,($FFFFFFFF).l
+	and.l	d2,$FFFFFFFE
+	and.l	d2,$FFFFFFFFFFFE
+	and.l	d2,$2
+	and.l	d5,($FFFFFFFE).l
 	and.l	d5,label_start.l
-	and.l	d5,$FFFFFFFF
-	and.l	d5,$1
-	and.l	d2,($FFFFFFFF).w
-	and.l	d2,$1
-	and.l	d5,($FFFFFFFF).w
-	and.l	d5,$1
+	and.l	d5,$FFFFFFFE
+	and.l	d5,$FFFFFFFFFFFE
+	and.l	d5,$2
+	and.l	d2,($FFFFFFFE).w
+	and.l	d2,$2
+	and.l	d5,($FFFFFFFE).w
+	and.l	d5,$2
 	and.l	d2,$7FFF(a2)
 	and.l	d2,$7FFF(a5)
 	and.l	d2,-2(sp)
@@ -12626,24 +13165,27 @@ label_start:
 	and.b	#"X",-(a2)
 	and.b	#"X",-(a5)
 	and.b	#"X",-(sp)
-	and.b	#0,($FFFFFFFF).l
+	and.b	#0,($FFFFFFFE).l
 	and.b	#0,label_start.l
-	and.b	#0,$FFFFFFFF
-	and.b	#0,$1
-	and.b	#$FF,($FFFFFFFF).l
+	and.b	#0,$FFFFFFFE
+	and.b	#0,$FFFFFFFFFFFE
+	and.b	#0,$2
+	and.b	#$FF,($FFFFFFFE).l
 	and.b	#$FF,label_start.l
-	and.b	#$FF,$FFFFFFFF
-	and.b	#$FF,$1
-	and.b	#"X",($FFFFFFFF).l
+	and.b	#$FF,$FFFFFFFE
+	and.b	#$FF,$FFFFFFFFFFFE
+	and.b	#$FF,$2
+	and.b	#"X",($FFFFFFFE).l
 	and.b	#"X",label_start.l
-	and.b	#"X",$FFFFFFFF
-	and.b	#"X",$1
-	and.b	#0,($FFFFFFFF).w
-	and.b	#0,$1
-	and.b	#$FF,($FFFFFFFF).w
-	and.b	#$FF,$1
-	and.b	#"X",($FFFFFFFF).w
-	and.b	#"X",$1
+	and.b	#"X",$FFFFFFFE
+	and.b	#"X",$FFFFFFFFFFFE
+	and.b	#"X",$2
+	and.b	#0,($FFFFFFFE).w
+	and.b	#0,$2
+	and.b	#$FF,($FFFFFFFE).w
+	and.b	#$FF,$2
+	and.b	#"X",($FFFFFFFE).w
+	and.b	#"X",$2
 	and.b	#0,$7FFF(a2)
 	and.b	#0,$7FFF(a5)
 	and.b	#0,-2(sp)
@@ -12729,48 +13271,55 @@ label_start:
 	and.w	#$FFFF,-(a2)
 	and.w	#$FFFF,-(a5)
 	and.w	#$FFFF,-(sp)
-	and.w	#0,($FFFFFFFF).l
+	and.w	#0,($FFFFFFFE).l
 	and.w	#0,label_start.l
-	and.w	#0,$FFFFFFFF
-	and.w	#0,$1
-	and.w	#4,($FFFFFFFF).l
+	and.w	#0,$FFFFFFFE
+	and.w	#0,$FFFFFFFFFFFE
+	and.w	#0,$2
+	and.w	#4,($FFFFFFFE).l
 	and.w	#4,label_start.l
-	and.w	#4,$FFFFFFFF
-	and.w	#4,$1
-	and.w	#$FF,($FFFFFFFF).l
+	and.w	#4,$FFFFFFFE
+	and.w	#4,$FFFFFFFFFFFE
+	and.w	#4,$2
+	and.w	#$FF,($FFFFFFFE).l
 	and.w	#$FF,label_start.l
-	and.w	#$FF,$FFFFFFFF
-	and.w	#$FF,$1
-	and.w	#"XY",($FFFFFFFF).l
+	and.w	#$FF,$FFFFFFFE
+	and.w	#$FF,$FFFFFFFFFFFE
+	and.w	#$FF,$2
+	and.w	#"XY",($FFFFFFFE).l
 	and.w	#"XY",label_start.l
-	and.w	#"XY",$FFFFFFFF
-	and.w	#"XY",$1
-	and.w	#$2700,($FFFFFFFF).l
+	and.w	#"XY",$FFFFFFFE
+	and.w	#"XY",$FFFFFFFFFFFE
+	and.w	#"XY",$2
+	and.w	#$2700,($FFFFFFFE).l
 	and.w	#$2700,label_start.l
-	and.w	#$2700,$FFFFFFFF
-	and.w	#$2700,$1
-	and.w	#$7FFF,($FFFFFFFF).l
+	and.w	#$2700,$FFFFFFFE
+	and.w	#$2700,$FFFFFFFFFFFE
+	and.w	#$2700,$2
+	and.w	#$7FFF,($FFFFFFFE).l
 	and.w	#$7FFF,label_start.l
-	and.w	#$7FFF,$FFFFFFFF
-	and.w	#$7FFF,$1
-	and.w	#$FFFF,($FFFFFFFF).l
+	and.w	#$7FFF,$FFFFFFFE
+	and.w	#$7FFF,$FFFFFFFFFFFE
+	and.w	#$7FFF,$2
+	and.w	#$FFFF,($FFFFFFFE).l
 	and.w	#$FFFF,label_start.l
-	and.w	#$FFFF,$FFFFFFFF
-	and.w	#$FFFF,$1
-	and.w	#0,($FFFFFFFF).w
-	and.w	#0,$1
-	and.w	#4,($FFFFFFFF).w
-	and.w	#4,$1
-	and.w	#$FF,($FFFFFFFF).w
-	and.w	#$FF,$1
-	and.w	#"XY",($FFFFFFFF).w
-	and.w	#"XY",$1
-	and.w	#$2700,($FFFFFFFF).w
-	and.w	#$2700,$1
-	and.w	#$7FFF,($FFFFFFFF).w
-	and.w	#$7FFF,$1
-	and.w	#$FFFF,($FFFFFFFF).w
-	and.w	#$FFFF,$1
+	and.w	#$FFFF,$FFFFFFFE
+	and.w	#$FFFF,$FFFFFFFFFFFE
+	and.w	#$FFFF,$2
+	and.w	#0,($FFFFFFFE).w
+	and.w	#0,$2
+	and.w	#4,($FFFFFFFE).w
+	and.w	#4,$2
+	and.w	#$FF,($FFFFFFFE).w
+	and.w	#$FF,$2
+	and.w	#"XY",($FFFFFFFE).w
+	and.w	#"XY",$2
+	and.w	#$2700,($FFFFFFFE).w
+	and.w	#$2700,$2
+	and.w	#$7FFF,($FFFFFFFE).w
+	and.w	#$7FFF,$2
+	and.w	#$FFFF,($FFFFFFFE).w
+	and.w	#$FFFF,$2
 	and.w	#0,$7FFF(a2)
 	and.w	#0,$7FFF(a5)
 	and.w	#0,-2(sp)
@@ -12939,78 +13488,90 @@ label_start:
 	and.l	#(3+4),-(a2)
 	and.l	#(3+4),-(a5)
 	and.l	#(3+4),-(sp)
-	and.l	#equ_1,($FFFFFFFF).l
+	and.l	#equ_1,($FFFFFFFE).l
 	and.l	#equ_1,label_start.l
-	and.l	#equ_1,$FFFFFFFF
-	and.l	#equ_1,$1
-	and.l	#equ_equ_1,($FFFFFFFF).l
+	and.l	#equ_1,$FFFFFFFE
+	and.l	#equ_1,$FFFFFFFFFFFE
+	and.l	#equ_1,$2
+	and.l	#equ_equ_1,($FFFFFFFE).l
 	and.l	#equ_equ_1,label_start.l
-	and.l	#equ_equ_1,$FFFFFFFF
-	and.l	#equ_equ_1,$1
-	and.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	and.l	#equ_equ_1,$FFFFFFFE
+	and.l	#equ_equ_1,$FFFFFFFFFFFE
+	and.l	#equ_equ_1,$2
+	and.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	and.l	#equ_1_plus_equ_1,label_start.l
-	and.l	#equ_1_plus_equ_1,$FFFFFFFF
-	and.l	#equ_1_plus_equ_1,$1
-	and.l	#0,($FFFFFFFF).l
+	and.l	#equ_1_plus_equ_1,$FFFFFFFE
+	and.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	and.l	#equ_1_plus_equ_1,$2
+	and.l	#0,($FFFFFFFE).l
 	and.l	#0,label_start.l
-	and.l	#0,$FFFFFFFF
-	and.l	#0,$1
-	and.l	#4,($FFFFFFFF).l
+	and.l	#0,$FFFFFFFE
+	and.l	#0,$FFFFFFFFFFFE
+	and.l	#0,$2
+	and.l	#4,($FFFFFFFE).l
 	and.l	#4,label_start.l
-	and.l	#4,$FFFFFFFF
-	and.l	#4,$1
-	and.l	#$FF,($FFFFFFFF).l
+	and.l	#4,$FFFFFFFE
+	and.l	#4,$FFFFFFFFFFFE
+	and.l	#4,$2
+	and.l	#$FF,($FFFFFFFE).l
 	and.l	#$FF,label_start.l
-	and.l	#$FF,$FFFFFFFF
-	and.l	#$FF,$1
-	and.l	#$7FFF,($FFFFFFFF).l
+	and.l	#$FF,$FFFFFFFE
+	and.l	#$FF,$FFFFFFFFFFFE
+	and.l	#$FF,$2
+	and.l	#$7FFF,($FFFFFFFE).l
 	and.l	#$7FFF,label_start.l
-	and.l	#$7FFF,$FFFFFFFF
-	and.l	#$7FFF,$1
-	and.l	#$FFFF,($FFFFFFFF).l
+	and.l	#$7FFF,$FFFFFFFE
+	and.l	#$7FFF,$FFFFFFFFFFFE
+	and.l	#$7FFF,$2
+	and.l	#$FFFF,($FFFFFFFE).l
 	and.l	#$FFFF,label_start.l
-	and.l	#$FFFF,$FFFFFFFF
-	and.l	#$FFFF,$1
-	and.l	#$FFFFFFFF,($FFFFFFFF).l
+	and.l	#$FFFF,$FFFFFFFE
+	and.l	#$FFFF,$FFFFFFFFFFFE
+	and.l	#$FFFF,$2
+	and.l	#$FFFFFFFF,($FFFFFFFE).l
 	and.l	#$FFFFFFFF,label_start.l
-	and.l	#$FFFFFFFF,$FFFFFFFF
-	and.l	#$FFFFFFFF,$1
-	and.l	#"WXYZ",($FFFFFFFF).l
+	and.l	#$FFFFFFFF,$FFFFFFFE
+	and.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	and.l	#$FFFFFFFF,$2
+	and.l	#"WXYZ",($FFFFFFFE).l
 	and.l	#"WXYZ",label_start.l
-	and.l	#"WXYZ",$FFFFFFFF
-	and.l	#"WXYZ",$1
-	and.l	#1+1,($FFFFFFFF).l
+	and.l	#"WXYZ",$FFFFFFFE
+	and.l	#"WXYZ",$FFFFFFFFFFFE
+	and.l	#"WXYZ",$2
+	and.l	#1+1,($FFFFFFFE).l
 	and.l	#1+1,label_start.l
-	and.l	#1+1,$FFFFFFFF
-	and.l	#1+1,$1
-	and.l	#(3+4),($FFFFFFFF).l
+	and.l	#1+1,$FFFFFFFE
+	and.l	#1+1,$FFFFFFFFFFFE
+	and.l	#1+1,$2
+	and.l	#(3+4),($FFFFFFFE).l
 	and.l	#(3+4),label_start.l
-	and.l	#(3+4),$FFFFFFFF
-	and.l	#(3+4),$1
-	and.l	#equ_1,($FFFFFFFF).w
-	and.l	#equ_1,$1
-	and.l	#equ_equ_1,($FFFFFFFF).w
-	and.l	#equ_equ_1,$1
-	and.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	and.l	#equ_1_plus_equ_1,$1
-	and.l	#0,($FFFFFFFF).w
-	and.l	#0,$1
-	and.l	#4,($FFFFFFFF).w
-	and.l	#4,$1
-	and.l	#$FF,($FFFFFFFF).w
-	and.l	#$FF,$1
-	and.l	#$7FFF,($FFFFFFFF).w
-	and.l	#$7FFF,$1
-	and.l	#$FFFF,($FFFFFFFF).w
-	and.l	#$FFFF,$1
-	and.l	#$FFFFFFFF,($FFFFFFFF).w
-	and.l	#$FFFFFFFF,$1
-	and.l	#"WXYZ",($FFFFFFFF).w
-	and.l	#"WXYZ",$1
-	and.l	#1+1,($FFFFFFFF).w
-	and.l	#1+1,$1
-	and.l	#(3+4),($FFFFFFFF).w
-	and.l	#(3+4),$1
+	and.l	#(3+4),$FFFFFFFE
+	and.l	#(3+4),$FFFFFFFFFFFE
+	and.l	#(3+4),$2
+	and.l	#equ_1,($FFFFFFFE).w
+	and.l	#equ_1,$2
+	and.l	#equ_equ_1,($FFFFFFFE).w
+	and.l	#equ_equ_1,$2
+	and.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	and.l	#equ_1_plus_equ_1,$2
+	and.l	#0,($FFFFFFFE).w
+	and.l	#0,$2
+	and.l	#4,($FFFFFFFE).w
+	and.l	#4,$2
+	and.l	#$FF,($FFFFFFFE).w
+	and.l	#$FF,$2
+	and.l	#$7FFF,($FFFFFFFE).w
+	and.l	#$7FFF,$2
+	and.l	#$FFFF,($FFFFFFFE).w
+	and.l	#$FFFF,$2
+	and.l	#$FFFFFFFF,($FFFFFFFE).w
+	and.l	#$FFFFFFFF,$2
+	and.l	#"WXYZ",($FFFFFFFE).w
+	and.l	#"WXYZ",$2
+	and.l	#1+1,($FFFFFFFE).w
+	and.l	#1+1,$2
+	and.l	#(3+4),($FFFFFFFE).w
+	and.l	#(3+4),$2
 	and.l	#equ_1,$7FFF(a2)
 	and.l	#equ_1,$7FFF(a5)
 	and.l	#equ_1,-2(sp)
@@ -13170,18 +13731,20 @@ label_start:
 	sub.b	-(a5),d5
 	sub.b	-(sp),d2
 	sub.b	-(sp),d5
-	sub.b	($FFFFFFFF).l,d2
-	sub.b	($FFFFFFFF).l,d5
+	sub.b	($FFFFFFFE).l,d2
+	sub.b	($FFFFFFFE).l,d5
 	sub.b	label_start.l,d2
 	sub.b	label_start.l,d5
-	sub.b	$FFFFFFFF,d2
-	sub.b	$FFFFFFFF,d5
-	sub.b	$1,d2
-	sub.b	$1,d5
-	sub.b	($FFFFFFFF).w,d2
-	sub.b	($FFFFFFFF).w,d5
-	sub.b	$1,d2
-	sub.b	$1,d5
+	sub.b	$FFFFFFFE,d2
+	sub.b	$FFFFFFFE,d5
+	sub.b	$FFFFFFFFFFFE,d2
+	sub.b	$FFFFFFFFFFFE,d5
+	sub.b	$2,d2
+	sub.b	$2,d5
+	sub.b	($FFFFFFFE).w,d2
+	sub.b	($FFFFFFFE).w,d5
+	sub.b	$2,d2
+	sub.b	$2,d5
 	sub.b	$7FFF(a2),d2
 	sub.b	$7FFF(a2),d5
 	sub.b	$7FFF(a5),d2
@@ -13230,18 +13793,20 @@ label_start:
 	sub.w	-(a5),d5
 	sub.w	-(sp),d2
 	sub.w	-(sp),d5
-	sub.w	($FFFFFFFF).l,d2
-	sub.w	($FFFFFFFF).l,d5
+	sub.w	($FFFFFFFE).l,d2
+	sub.w	($FFFFFFFE).l,d5
 	sub.w	label_start.l,d2
 	sub.w	label_start.l,d5
-	sub.w	$FFFFFFFF,d2
-	sub.w	$FFFFFFFF,d5
-	sub.w	$1,d2
-	sub.w	$1,d5
-	sub.w	($FFFFFFFF).w,d2
-	sub.w	($FFFFFFFF).w,d5
-	sub.w	$1,d2
-	sub.w	$1,d5
+	sub.w	$FFFFFFFE,d2
+	sub.w	$FFFFFFFE,d5
+	sub.w	$FFFFFFFFFFFE,d2
+	sub.w	$FFFFFFFFFFFE,d5
+	sub.w	$2,d2
+	sub.w	$2,d5
+	sub.w	($FFFFFFFE).w,d2
+	sub.w	($FFFFFFFE).w,d5
+	sub.w	$2,d2
+	sub.w	$2,d5
 	sub.w	$7FFF(a2),d2
 	sub.w	$7FFF(a2),d5
 	sub.w	$7FFF(a5),d2
@@ -13290,18 +13855,20 @@ label_start:
 	sub.l	-(a5),d5
 	sub.l	-(sp),d2
 	sub.l	-(sp),d5
-	sub.l	($FFFFFFFF).l,d2
-	sub.l	($FFFFFFFF).l,d5
+	sub.l	($FFFFFFFE).l,d2
+	sub.l	($FFFFFFFE).l,d5
 	sub.l	label_start.l,d2
 	sub.l	label_start.l,d5
-	sub.l	$FFFFFFFF,d2
-	sub.l	$FFFFFFFF,d5
-	sub.l	$1,d2
-	sub.l	$1,d5
-	sub.l	($FFFFFFFF).w,d2
-	sub.l	($FFFFFFFF).w,d5
-	sub.l	$1,d2
-	sub.l	$1,d5
+	sub.l	$FFFFFFFE,d2
+	sub.l	$FFFFFFFE,d5
+	sub.l	$FFFFFFFFFFFE,d2
+	sub.l	$FFFFFFFFFFFE,d5
+	sub.l	$2,d2
+	sub.l	$2,d5
+	sub.l	($FFFFFFFE).w,d2
+	sub.l	($FFFFFFFE).w,d5
+	sub.l	$2,d2
+	sub.l	$2,d5
 	sub.l	$7FFF(a2),d2
 	sub.l	$7FFF(a2),d5
 	sub.l	$7FFF(a5),d2
@@ -13369,24 +13936,27 @@ label_start:
 	sub.w	-(sp),a2
 	sub.w	-(sp),a7
 	sub.w	-(sp),sp
-	sub.w	($FFFFFFFF).l,a2
-	sub.w	($FFFFFFFF).l,a7
-	sub.w	($FFFFFFFF).l,sp
+	sub.w	($FFFFFFFE).l,a2
+	sub.w	($FFFFFFFE).l,a7
+	sub.w	($FFFFFFFE).l,sp
 	sub.w	label_start.l,a2
 	sub.w	label_start.l,a7
 	sub.w	label_start.l,sp
-	sub.w	$FFFFFFFF,a2
-	sub.w	$FFFFFFFF,a7
-	sub.w	$FFFFFFFF,sp
-	sub.w	$1,a2
-	sub.w	$1,a7
-	sub.w	$1,sp
-	sub.w	($FFFFFFFF).w,a2
-	sub.w	($FFFFFFFF).w,a7
-	sub.w	($FFFFFFFF).w,sp
-	sub.w	$1,a2
-	sub.w	$1,a7
-	sub.w	$1,sp
+	sub.w	$FFFFFFFE,a2
+	sub.w	$FFFFFFFE,a7
+	sub.w	$FFFFFFFE,sp
+	sub.w	$FFFFFFFFFFFE,a2
+	sub.w	$FFFFFFFFFFFE,a7
+	sub.w	$FFFFFFFFFFFE,sp
+	sub.w	$2,a2
+	sub.w	$2,a7
+	sub.w	$2,sp
+	sub.w	($FFFFFFFE).w,a2
+	sub.w	($FFFFFFFE).w,a7
+	sub.w	($FFFFFFFE).w,sp
+	sub.w	$2,a2
+	sub.w	$2,a7
+	sub.w	$2,sp
 	sub.w	a2,a2
 	sub.w	a2,a7
 	sub.w	a2,sp
@@ -13489,24 +14059,27 @@ label_start:
 	sub.l	-(sp),a2
 	sub.l	-(sp),a7
 	sub.l	-(sp),sp
-	sub.l	($FFFFFFFF).l,a2
-	sub.l	($FFFFFFFF).l,a7
-	sub.l	($FFFFFFFF).l,sp
+	sub.l	($FFFFFFFE).l,a2
+	sub.l	($FFFFFFFE).l,a7
+	sub.l	($FFFFFFFE).l,sp
 	sub.l	label_start.l,a2
 	sub.l	label_start.l,a7
 	sub.l	label_start.l,sp
-	sub.l	$FFFFFFFF,a2
-	sub.l	$FFFFFFFF,a7
-	sub.l	$FFFFFFFF,sp
-	sub.l	$1,a2
-	sub.l	$1,a7
-	sub.l	$1,sp
-	sub.l	($FFFFFFFF).w,a2
-	sub.l	($FFFFFFFF).w,a7
-	sub.l	($FFFFFFFF).w,sp
-	sub.l	$1,a2
-	sub.l	$1,a7
-	sub.l	$1,sp
+	sub.l	$FFFFFFFE,a2
+	sub.l	$FFFFFFFE,a7
+	sub.l	$FFFFFFFE,sp
+	sub.l	$FFFFFFFFFFFE,a2
+	sub.l	$FFFFFFFFFFFE,a7
+	sub.l	$FFFFFFFFFFFE,sp
+	sub.l	$2,a2
+	sub.l	$2,a7
+	sub.l	$2,sp
+	sub.l	($FFFFFFFE).w,a2
+	sub.l	($FFFFFFFE).w,a7
+	sub.l	($FFFFFFFE).w,sp
+	sub.l	$2,a2
+	sub.l	$2,a7
+	sub.l	$2,sp
 	sub.l	a2,a2
 	sub.l	a2,a7
 	sub.l	a2,sp
@@ -13617,18 +14190,20 @@ label_start:
 	sub.b	d5,-(a2)
 	sub.b	d5,-(a5)
 	sub.b	d5,-(sp)
-	sub.b	d2,($FFFFFFFF).l
+	sub.b	d2,($FFFFFFFE).l
 	sub.b	d2,label_start.l
-	sub.b	d2,$FFFFFFFF
-	sub.b	d2,$1
-	sub.b	d5,($FFFFFFFF).l
+	sub.b	d2,$FFFFFFFE
+	sub.b	d2,$FFFFFFFFFFFE
+	sub.b	d2,$2
+	sub.b	d5,($FFFFFFFE).l
 	sub.b	d5,label_start.l
-	sub.b	d5,$FFFFFFFF
-	sub.b	d5,$1
-	sub.b	d2,($FFFFFFFF).w
-	sub.b	d2,$1
-	sub.b	d5,($FFFFFFFF).w
-	sub.b	d5,$1
+	sub.b	d5,$FFFFFFFE
+	sub.b	d5,$FFFFFFFFFFFE
+	sub.b	d5,$2
+	sub.b	d2,($FFFFFFFE).w
+	sub.b	d2,$2
+	sub.b	d5,($FFFFFFFE).w
+	sub.b	d5,$2
 	sub.b	d2,$7FFF(a2)
 	sub.b	d2,$7FFF(a5)
 	sub.b	d2,-2(sp)
@@ -13663,18 +14238,20 @@ label_start:
 	sub.w	d5,-(a2)
 	sub.w	d5,-(a5)
 	sub.w	d5,-(sp)
-	sub.w	d2,($FFFFFFFF).l
+	sub.w	d2,($FFFFFFFE).l
 	sub.w	d2,label_start.l
-	sub.w	d2,$FFFFFFFF
-	sub.w	d2,$1
-	sub.w	d5,($FFFFFFFF).l
+	sub.w	d2,$FFFFFFFE
+	sub.w	d2,$FFFFFFFFFFFE
+	sub.w	d2,$2
+	sub.w	d5,($FFFFFFFE).l
 	sub.w	d5,label_start.l
-	sub.w	d5,$FFFFFFFF
-	sub.w	d5,$1
-	sub.w	d2,($FFFFFFFF).w
-	sub.w	d2,$1
-	sub.w	d5,($FFFFFFFF).w
-	sub.w	d5,$1
+	sub.w	d5,$FFFFFFFE
+	sub.w	d5,$FFFFFFFFFFFE
+	sub.w	d5,$2
+	sub.w	d2,($FFFFFFFE).w
+	sub.w	d2,$2
+	sub.w	d5,($FFFFFFFE).w
+	sub.w	d5,$2
 	sub.w	d2,$7FFF(a2)
 	sub.w	d2,$7FFF(a5)
 	sub.w	d2,-2(sp)
@@ -13709,18 +14286,20 @@ label_start:
 	sub.l	d5,-(a2)
 	sub.l	d5,-(a5)
 	sub.l	d5,-(sp)
-	sub.l	d2,($FFFFFFFF).l
+	sub.l	d2,($FFFFFFFE).l
 	sub.l	d2,label_start.l
-	sub.l	d2,$FFFFFFFF
-	sub.l	d2,$1
-	sub.l	d5,($FFFFFFFF).l
+	sub.l	d2,$FFFFFFFE
+	sub.l	d2,$FFFFFFFFFFFE
+	sub.l	d2,$2
+	sub.l	d5,($FFFFFFFE).l
 	sub.l	d5,label_start.l
-	sub.l	d5,$FFFFFFFF
-	sub.l	d5,$1
-	sub.l	d2,($FFFFFFFF).w
-	sub.l	d2,$1
-	sub.l	d5,($FFFFFFFF).w
-	sub.l	d5,$1
+	sub.l	d5,$FFFFFFFE
+	sub.l	d5,$FFFFFFFFFFFE
+	sub.l	d5,$2
+	sub.l	d2,($FFFFFFFE).w
+	sub.l	d2,$2
+	sub.l	d5,($FFFFFFFE).w
+	sub.l	d5,$2
 	sub.l	d2,$7FFF(a2)
 	sub.l	d2,$7FFF(a5)
 	sub.l	d2,-2(sp)
@@ -13762,24 +14341,27 @@ label_start:
 	sub.b	#"X",-(a2)
 	sub.b	#"X",-(a5)
 	sub.b	#"X",-(sp)
-	sub.b	#0,($FFFFFFFF).l
+	sub.b	#0,($FFFFFFFE).l
 	sub.b	#0,label_start.l
-	sub.b	#0,$FFFFFFFF
-	sub.b	#0,$1
-	sub.b	#$FF,($FFFFFFFF).l
+	sub.b	#0,$FFFFFFFE
+	sub.b	#0,$FFFFFFFFFFFE
+	sub.b	#0,$2
+	sub.b	#$FF,($FFFFFFFE).l
 	sub.b	#$FF,label_start.l
-	sub.b	#$FF,$FFFFFFFF
-	sub.b	#$FF,$1
-	sub.b	#"X",($FFFFFFFF).l
+	sub.b	#$FF,$FFFFFFFE
+	sub.b	#$FF,$FFFFFFFFFFFE
+	sub.b	#$FF,$2
+	sub.b	#"X",($FFFFFFFE).l
 	sub.b	#"X",label_start.l
-	sub.b	#"X",$FFFFFFFF
-	sub.b	#"X",$1
-	sub.b	#0,($FFFFFFFF).w
-	sub.b	#0,$1
-	sub.b	#$FF,($FFFFFFFF).w
-	sub.b	#$FF,$1
-	sub.b	#"X",($FFFFFFFF).w
-	sub.b	#"X",$1
+	sub.b	#"X",$FFFFFFFE
+	sub.b	#"X",$FFFFFFFFFFFE
+	sub.b	#"X",$2
+	sub.b	#0,($FFFFFFFE).w
+	sub.b	#0,$2
+	sub.b	#$FF,($FFFFFFFE).w
+	sub.b	#$FF,$2
+	sub.b	#"X",($FFFFFFFE).w
+	sub.b	#"X",$2
 	sub.b	#0,$7FFF(a2)
 	sub.b	#0,$7FFF(a5)
 	sub.b	#0,-2(sp)
@@ -13865,48 +14447,55 @@ label_start:
 	sub.w	#$FFFF,-(a2)
 	sub.w	#$FFFF,-(a5)
 	sub.w	#$FFFF,-(sp)
-	sub.w	#0,($FFFFFFFF).l
+	sub.w	#0,($FFFFFFFE).l
 	sub.w	#0,label_start.l
-	sub.w	#0,$FFFFFFFF
-	sub.w	#0,$1
-	sub.w	#4,($FFFFFFFF).l
+	sub.w	#0,$FFFFFFFE
+	sub.w	#0,$FFFFFFFFFFFE
+	sub.w	#0,$2
+	sub.w	#4,($FFFFFFFE).l
 	sub.w	#4,label_start.l
-	sub.w	#4,$FFFFFFFF
-	sub.w	#4,$1
-	sub.w	#$FF,($FFFFFFFF).l
+	sub.w	#4,$FFFFFFFE
+	sub.w	#4,$FFFFFFFFFFFE
+	sub.w	#4,$2
+	sub.w	#$FF,($FFFFFFFE).l
 	sub.w	#$FF,label_start.l
-	sub.w	#$FF,$FFFFFFFF
-	sub.w	#$FF,$1
-	sub.w	#"XY",($FFFFFFFF).l
+	sub.w	#$FF,$FFFFFFFE
+	sub.w	#$FF,$FFFFFFFFFFFE
+	sub.w	#$FF,$2
+	sub.w	#"XY",($FFFFFFFE).l
 	sub.w	#"XY",label_start.l
-	sub.w	#"XY",$FFFFFFFF
-	sub.w	#"XY",$1
-	sub.w	#$2700,($FFFFFFFF).l
+	sub.w	#"XY",$FFFFFFFE
+	sub.w	#"XY",$FFFFFFFFFFFE
+	sub.w	#"XY",$2
+	sub.w	#$2700,($FFFFFFFE).l
 	sub.w	#$2700,label_start.l
-	sub.w	#$2700,$FFFFFFFF
-	sub.w	#$2700,$1
-	sub.w	#$7FFF,($FFFFFFFF).l
+	sub.w	#$2700,$FFFFFFFE
+	sub.w	#$2700,$FFFFFFFFFFFE
+	sub.w	#$2700,$2
+	sub.w	#$7FFF,($FFFFFFFE).l
 	sub.w	#$7FFF,label_start.l
-	sub.w	#$7FFF,$FFFFFFFF
-	sub.w	#$7FFF,$1
-	sub.w	#$FFFF,($FFFFFFFF).l
+	sub.w	#$7FFF,$FFFFFFFE
+	sub.w	#$7FFF,$FFFFFFFFFFFE
+	sub.w	#$7FFF,$2
+	sub.w	#$FFFF,($FFFFFFFE).l
 	sub.w	#$FFFF,label_start.l
-	sub.w	#$FFFF,$FFFFFFFF
-	sub.w	#$FFFF,$1
-	sub.w	#0,($FFFFFFFF).w
-	sub.w	#0,$1
-	sub.w	#4,($FFFFFFFF).w
-	sub.w	#4,$1
-	sub.w	#$FF,($FFFFFFFF).w
-	sub.w	#$FF,$1
-	sub.w	#"XY",($FFFFFFFF).w
-	sub.w	#"XY",$1
-	sub.w	#$2700,($FFFFFFFF).w
-	sub.w	#$2700,$1
-	sub.w	#$7FFF,($FFFFFFFF).w
-	sub.w	#$7FFF,$1
-	sub.w	#$FFFF,($FFFFFFFF).w
-	sub.w	#$FFFF,$1
+	sub.w	#$FFFF,$FFFFFFFE
+	sub.w	#$FFFF,$FFFFFFFFFFFE
+	sub.w	#$FFFF,$2
+	sub.w	#0,($FFFFFFFE).w
+	sub.w	#0,$2
+	sub.w	#4,($FFFFFFFE).w
+	sub.w	#4,$2
+	sub.w	#$FF,($FFFFFFFE).w
+	sub.w	#$FF,$2
+	sub.w	#"XY",($FFFFFFFE).w
+	sub.w	#"XY",$2
+	sub.w	#$2700,($FFFFFFFE).w
+	sub.w	#$2700,$2
+	sub.w	#$7FFF,($FFFFFFFE).w
+	sub.w	#$7FFF,$2
+	sub.w	#$FFFF,($FFFFFFFE).w
+	sub.w	#$FFFF,$2
 	sub.w	#0,$7FFF(a2)
 	sub.w	#0,$7FFF(a5)
 	sub.w	#0,-2(sp)
@@ -14075,78 +14664,90 @@ label_start:
 	sub.l	#(3+4),-(a2)
 	sub.l	#(3+4),-(a5)
 	sub.l	#(3+4),-(sp)
-	sub.l	#equ_1,($FFFFFFFF).l
+	sub.l	#equ_1,($FFFFFFFE).l
 	sub.l	#equ_1,label_start.l
-	sub.l	#equ_1,$FFFFFFFF
-	sub.l	#equ_1,$1
-	sub.l	#equ_equ_1,($FFFFFFFF).l
+	sub.l	#equ_1,$FFFFFFFE
+	sub.l	#equ_1,$FFFFFFFFFFFE
+	sub.l	#equ_1,$2
+	sub.l	#equ_equ_1,($FFFFFFFE).l
 	sub.l	#equ_equ_1,label_start.l
-	sub.l	#equ_equ_1,$FFFFFFFF
-	sub.l	#equ_equ_1,$1
-	sub.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	sub.l	#equ_equ_1,$FFFFFFFE
+	sub.l	#equ_equ_1,$FFFFFFFFFFFE
+	sub.l	#equ_equ_1,$2
+	sub.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	sub.l	#equ_1_plus_equ_1,label_start.l
-	sub.l	#equ_1_plus_equ_1,$FFFFFFFF
-	sub.l	#equ_1_plus_equ_1,$1
-	sub.l	#0,($FFFFFFFF).l
+	sub.l	#equ_1_plus_equ_1,$FFFFFFFE
+	sub.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	sub.l	#equ_1_plus_equ_1,$2
+	sub.l	#0,($FFFFFFFE).l
 	sub.l	#0,label_start.l
-	sub.l	#0,$FFFFFFFF
-	sub.l	#0,$1
-	sub.l	#4,($FFFFFFFF).l
+	sub.l	#0,$FFFFFFFE
+	sub.l	#0,$FFFFFFFFFFFE
+	sub.l	#0,$2
+	sub.l	#4,($FFFFFFFE).l
 	sub.l	#4,label_start.l
-	sub.l	#4,$FFFFFFFF
-	sub.l	#4,$1
-	sub.l	#$FF,($FFFFFFFF).l
+	sub.l	#4,$FFFFFFFE
+	sub.l	#4,$FFFFFFFFFFFE
+	sub.l	#4,$2
+	sub.l	#$FF,($FFFFFFFE).l
 	sub.l	#$FF,label_start.l
-	sub.l	#$FF,$FFFFFFFF
-	sub.l	#$FF,$1
-	sub.l	#$7FFF,($FFFFFFFF).l
+	sub.l	#$FF,$FFFFFFFE
+	sub.l	#$FF,$FFFFFFFFFFFE
+	sub.l	#$FF,$2
+	sub.l	#$7FFF,($FFFFFFFE).l
 	sub.l	#$7FFF,label_start.l
-	sub.l	#$7FFF,$FFFFFFFF
-	sub.l	#$7FFF,$1
-	sub.l	#$FFFF,($FFFFFFFF).l
+	sub.l	#$7FFF,$FFFFFFFE
+	sub.l	#$7FFF,$FFFFFFFFFFFE
+	sub.l	#$7FFF,$2
+	sub.l	#$FFFF,($FFFFFFFE).l
 	sub.l	#$FFFF,label_start.l
-	sub.l	#$FFFF,$FFFFFFFF
-	sub.l	#$FFFF,$1
-	sub.l	#$FFFFFFFF,($FFFFFFFF).l
+	sub.l	#$FFFF,$FFFFFFFE
+	sub.l	#$FFFF,$FFFFFFFFFFFE
+	sub.l	#$FFFF,$2
+	sub.l	#$FFFFFFFF,($FFFFFFFE).l
 	sub.l	#$FFFFFFFF,label_start.l
-	sub.l	#$FFFFFFFF,$FFFFFFFF
-	sub.l	#$FFFFFFFF,$1
-	sub.l	#"WXYZ",($FFFFFFFF).l
+	sub.l	#$FFFFFFFF,$FFFFFFFE
+	sub.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	sub.l	#$FFFFFFFF,$2
+	sub.l	#"WXYZ",($FFFFFFFE).l
 	sub.l	#"WXYZ",label_start.l
-	sub.l	#"WXYZ",$FFFFFFFF
-	sub.l	#"WXYZ",$1
-	sub.l	#1+1,($FFFFFFFF).l
+	sub.l	#"WXYZ",$FFFFFFFE
+	sub.l	#"WXYZ",$FFFFFFFFFFFE
+	sub.l	#"WXYZ",$2
+	sub.l	#1+1,($FFFFFFFE).l
 	sub.l	#1+1,label_start.l
-	sub.l	#1+1,$FFFFFFFF
-	sub.l	#1+1,$1
-	sub.l	#(3+4),($FFFFFFFF).l
+	sub.l	#1+1,$FFFFFFFE
+	sub.l	#1+1,$FFFFFFFFFFFE
+	sub.l	#1+1,$2
+	sub.l	#(3+4),($FFFFFFFE).l
 	sub.l	#(3+4),label_start.l
-	sub.l	#(3+4),$FFFFFFFF
-	sub.l	#(3+4),$1
-	sub.l	#equ_1,($FFFFFFFF).w
-	sub.l	#equ_1,$1
-	sub.l	#equ_equ_1,($FFFFFFFF).w
-	sub.l	#equ_equ_1,$1
-	sub.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	sub.l	#equ_1_plus_equ_1,$1
-	sub.l	#0,($FFFFFFFF).w
-	sub.l	#0,$1
-	sub.l	#4,($FFFFFFFF).w
-	sub.l	#4,$1
-	sub.l	#$FF,($FFFFFFFF).w
-	sub.l	#$FF,$1
-	sub.l	#$7FFF,($FFFFFFFF).w
-	sub.l	#$7FFF,$1
-	sub.l	#$FFFF,($FFFFFFFF).w
-	sub.l	#$FFFF,$1
-	sub.l	#$FFFFFFFF,($FFFFFFFF).w
-	sub.l	#$FFFFFFFF,$1
-	sub.l	#"WXYZ",($FFFFFFFF).w
-	sub.l	#"WXYZ",$1
-	sub.l	#1+1,($FFFFFFFF).w
-	sub.l	#1+1,$1
-	sub.l	#(3+4),($FFFFFFFF).w
-	sub.l	#(3+4),$1
+	sub.l	#(3+4),$FFFFFFFE
+	sub.l	#(3+4),$FFFFFFFFFFFE
+	sub.l	#(3+4),$2
+	sub.l	#equ_1,($FFFFFFFE).w
+	sub.l	#equ_1,$2
+	sub.l	#equ_equ_1,($FFFFFFFE).w
+	sub.l	#equ_equ_1,$2
+	sub.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	sub.l	#equ_1_plus_equ_1,$2
+	sub.l	#0,($FFFFFFFE).w
+	sub.l	#0,$2
+	sub.l	#4,($FFFFFFFE).w
+	sub.l	#4,$2
+	sub.l	#$FF,($FFFFFFFE).w
+	sub.l	#$FF,$2
+	sub.l	#$7FFF,($FFFFFFFE).w
+	sub.l	#$7FFF,$2
+	sub.l	#$FFFF,($FFFFFFFE).w
+	sub.l	#$FFFF,$2
+	sub.l	#$FFFFFFFF,($FFFFFFFE).w
+	sub.l	#$FFFFFFFF,$2
+	sub.l	#"WXYZ",($FFFFFFFE).w
+	sub.l	#"WXYZ",$2
+	sub.l	#1+1,($FFFFFFFE).w
+	sub.l	#1+1,$2
+	sub.l	#(3+4),($FFFFFFFE).w
+	sub.l	#(3+4),$2
 	sub.l	#equ_1,$7FFF(a2)
 	sub.l	#equ_1,$7FFF(a5)
 	sub.l	#equ_1,-2(sp)
@@ -14306,18 +14907,20 @@ label_start:
 	add.b	-(a5),d5
 	add.b	-(sp),d2
 	add.b	-(sp),d5
-	add.b	($FFFFFFFF).l,d2
-	add.b	($FFFFFFFF).l,d5
+	add.b	($FFFFFFFE).l,d2
+	add.b	($FFFFFFFE).l,d5
 	add.b	label_start.l,d2
 	add.b	label_start.l,d5
-	add.b	$FFFFFFFF,d2
-	add.b	$FFFFFFFF,d5
-	add.b	$1,d2
-	add.b	$1,d5
-	add.b	($FFFFFFFF).w,d2
-	add.b	($FFFFFFFF).w,d5
-	add.b	$1,d2
-	add.b	$1,d5
+	add.b	$FFFFFFFE,d2
+	add.b	$FFFFFFFE,d5
+	add.b	$FFFFFFFFFFFE,d2
+	add.b	$FFFFFFFFFFFE,d5
+	add.b	$2,d2
+	add.b	$2,d5
+	add.b	($FFFFFFFE).w,d2
+	add.b	($FFFFFFFE).w,d5
+	add.b	$2,d2
+	add.b	$2,d5
 	add.b	$7FFF(a2),d2
 	add.b	$7FFF(a2),d5
 	add.b	$7FFF(a5),d2
@@ -14366,18 +14969,20 @@ label_start:
 	add.w	-(a5),d5
 	add.w	-(sp),d2
 	add.w	-(sp),d5
-	add.w	($FFFFFFFF).l,d2
-	add.w	($FFFFFFFF).l,d5
+	add.w	($FFFFFFFE).l,d2
+	add.w	($FFFFFFFE).l,d5
 	add.w	label_start.l,d2
 	add.w	label_start.l,d5
-	add.w	$FFFFFFFF,d2
-	add.w	$FFFFFFFF,d5
-	add.w	$1,d2
-	add.w	$1,d5
-	add.w	($FFFFFFFF).w,d2
-	add.w	($FFFFFFFF).w,d5
-	add.w	$1,d2
-	add.w	$1,d5
+	add.w	$FFFFFFFE,d2
+	add.w	$FFFFFFFE,d5
+	add.w	$FFFFFFFFFFFE,d2
+	add.w	$FFFFFFFFFFFE,d5
+	add.w	$2,d2
+	add.w	$2,d5
+	add.w	($FFFFFFFE).w,d2
+	add.w	($FFFFFFFE).w,d5
+	add.w	$2,d2
+	add.w	$2,d5
 	add.w	$7FFF(a2),d2
 	add.w	$7FFF(a2),d5
 	add.w	$7FFF(a5),d2
@@ -14426,18 +15031,20 @@ label_start:
 	add.l	-(a5),d5
 	add.l	-(sp),d2
 	add.l	-(sp),d5
-	add.l	($FFFFFFFF).l,d2
-	add.l	($FFFFFFFF).l,d5
+	add.l	($FFFFFFFE).l,d2
+	add.l	($FFFFFFFE).l,d5
 	add.l	label_start.l,d2
 	add.l	label_start.l,d5
-	add.l	$FFFFFFFF,d2
-	add.l	$FFFFFFFF,d5
-	add.l	$1,d2
-	add.l	$1,d5
-	add.l	($FFFFFFFF).w,d2
-	add.l	($FFFFFFFF).w,d5
-	add.l	$1,d2
-	add.l	$1,d5
+	add.l	$FFFFFFFE,d2
+	add.l	$FFFFFFFE,d5
+	add.l	$FFFFFFFFFFFE,d2
+	add.l	$FFFFFFFFFFFE,d5
+	add.l	$2,d2
+	add.l	$2,d5
+	add.l	($FFFFFFFE).w,d2
+	add.l	($FFFFFFFE).w,d5
+	add.l	$2,d2
+	add.l	$2,d5
 	add.l	$7FFF(a2),d2
 	add.l	$7FFF(a2),d5
 	add.l	$7FFF(a5),d2
@@ -14505,24 +15112,27 @@ label_start:
 	add.w	-(sp),a2
 	add.w	-(sp),a7
 	add.w	-(sp),sp
-	add.w	($FFFFFFFF).l,a2
-	add.w	($FFFFFFFF).l,a7
-	add.w	($FFFFFFFF).l,sp
+	add.w	($FFFFFFFE).l,a2
+	add.w	($FFFFFFFE).l,a7
+	add.w	($FFFFFFFE).l,sp
 	add.w	label_start.l,a2
 	add.w	label_start.l,a7
 	add.w	label_start.l,sp
-	add.w	$FFFFFFFF,a2
-	add.w	$FFFFFFFF,a7
-	add.w	$FFFFFFFF,sp
-	add.w	$1,a2
-	add.w	$1,a7
-	add.w	$1,sp
-	add.w	($FFFFFFFF).w,a2
-	add.w	($FFFFFFFF).w,a7
-	add.w	($FFFFFFFF).w,sp
-	add.w	$1,a2
-	add.w	$1,a7
-	add.w	$1,sp
+	add.w	$FFFFFFFE,a2
+	add.w	$FFFFFFFE,a7
+	add.w	$FFFFFFFE,sp
+	add.w	$FFFFFFFFFFFE,a2
+	add.w	$FFFFFFFFFFFE,a7
+	add.w	$FFFFFFFFFFFE,sp
+	add.w	$2,a2
+	add.w	$2,a7
+	add.w	$2,sp
+	add.w	($FFFFFFFE).w,a2
+	add.w	($FFFFFFFE).w,a7
+	add.w	($FFFFFFFE).w,sp
+	add.w	$2,a2
+	add.w	$2,a7
+	add.w	$2,sp
 	add.w	a2,a2
 	add.w	a2,a7
 	add.w	a2,sp
@@ -14625,24 +15235,27 @@ label_start:
 	add.l	-(sp),a2
 	add.l	-(sp),a7
 	add.l	-(sp),sp
-	add.l	($FFFFFFFF).l,a2
-	add.l	($FFFFFFFF).l,a7
-	add.l	($FFFFFFFF).l,sp
+	add.l	($FFFFFFFE).l,a2
+	add.l	($FFFFFFFE).l,a7
+	add.l	($FFFFFFFE).l,sp
 	add.l	label_start.l,a2
 	add.l	label_start.l,a7
 	add.l	label_start.l,sp
-	add.l	$FFFFFFFF,a2
-	add.l	$FFFFFFFF,a7
-	add.l	$FFFFFFFF,sp
-	add.l	$1,a2
-	add.l	$1,a7
-	add.l	$1,sp
-	add.l	($FFFFFFFF).w,a2
-	add.l	($FFFFFFFF).w,a7
-	add.l	($FFFFFFFF).w,sp
-	add.l	$1,a2
-	add.l	$1,a7
-	add.l	$1,sp
+	add.l	$FFFFFFFE,a2
+	add.l	$FFFFFFFE,a7
+	add.l	$FFFFFFFE,sp
+	add.l	$FFFFFFFFFFFE,a2
+	add.l	$FFFFFFFFFFFE,a7
+	add.l	$FFFFFFFFFFFE,sp
+	add.l	$2,a2
+	add.l	$2,a7
+	add.l	$2,sp
+	add.l	($FFFFFFFE).w,a2
+	add.l	($FFFFFFFE).w,a7
+	add.l	($FFFFFFFE).w,sp
+	add.l	$2,a2
+	add.l	$2,a7
+	add.l	$2,sp
 	add.l	a2,a2
 	add.l	a2,a7
 	add.l	a2,sp
@@ -14753,18 +15366,20 @@ label_start:
 	add.b	d5,-(a2)
 	add.b	d5,-(a5)
 	add.b	d5,-(sp)
-	add.b	d2,($FFFFFFFF).l
+	add.b	d2,($FFFFFFFE).l
 	add.b	d2,label_start.l
-	add.b	d2,$FFFFFFFF
-	add.b	d2,$1
-	add.b	d5,($FFFFFFFF).l
+	add.b	d2,$FFFFFFFE
+	add.b	d2,$FFFFFFFFFFFE
+	add.b	d2,$2
+	add.b	d5,($FFFFFFFE).l
 	add.b	d5,label_start.l
-	add.b	d5,$FFFFFFFF
-	add.b	d5,$1
-	add.b	d2,($FFFFFFFF).w
-	add.b	d2,$1
-	add.b	d5,($FFFFFFFF).w
-	add.b	d5,$1
+	add.b	d5,$FFFFFFFE
+	add.b	d5,$FFFFFFFFFFFE
+	add.b	d5,$2
+	add.b	d2,($FFFFFFFE).w
+	add.b	d2,$2
+	add.b	d5,($FFFFFFFE).w
+	add.b	d5,$2
 	add.b	d2,$7FFF(a2)
 	add.b	d2,$7FFF(a5)
 	add.b	d2,-2(sp)
@@ -14799,18 +15414,20 @@ label_start:
 	add.w	d5,-(a2)
 	add.w	d5,-(a5)
 	add.w	d5,-(sp)
-	add.w	d2,($FFFFFFFF).l
+	add.w	d2,($FFFFFFFE).l
 	add.w	d2,label_start.l
-	add.w	d2,$FFFFFFFF
-	add.w	d2,$1
-	add.w	d5,($FFFFFFFF).l
+	add.w	d2,$FFFFFFFE
+	add.w	d2,$FFFFFFFFFFFE
+	add.w	d2,$2
+	add.w	d5,($FFFFFFFE).l
 	add.w	d5,label_start.l
-	add.w	d5,$FFFFFFFF
-	add.w	d5,$1
-	add.w	d2,($FFFFFFFF).w
-	add.w	d2,$1
-	add.w	d5,($FFFFFFFF).w
-	add.w	d5,$1
+	add.w	d5,$FFFFFFFE
+	add.w	d5,$FFFFFFFFFFFE
+	add.w	d5,$2
+	add.w	d2,($FFFFFFFE).w
+	add.w	d2,$2
+	add.w	d5,($FFFFFFFE).w
+	add.w	d5,$2
 	add.w	d2,$7FFF(a2)
 	add.w	d2,$7FFF(a5)
 	add.w	d2,-2(sp)
@@ -14845,18 +15462,20 @@ label_start:
 	add.l	d5,-(a2)
 	add.l	d5,-(a5)
 	add.l	d5,-(sp)
-	add.l	d2,($FFFFFFFF).l
+	add.l	d2,($FFFFFFFE).l
 	add.l	d2,label_start.l
-	add.l	d2,$FFFFFFFF
-	add.l	d2,$1
-	add.l	d5,($FFFFFFFF).l
+	add.l	d2,$FFFFFFFE
+	add.l	d2,$FFFFFFFFFFFE
+	add.l	d2,$2
+	add.l	d5,($FFFFFFFE).l
 	add.l	d5,label_start.l
-	add.l	d5,$FFFFFFFF
-	add.l	d5,$1
-	add.l	d2,($FFFFFFFF).w
-	add.l	d2,$1
-	add.l	d5,($FFFFFFFF).w
-	add.l	d5,$1
+	add.l	d5,$FFFFFFFE
+	add.l	d5,$FFFFFFFFFFFE
+	add.l	d5,$2
+	add.l	d2,($FFFFFFFE).w
+	add.l	d2,$2
+	add.l	d5,($FFFFFFFE).w
+	add.l	d5,$2
 	add.l	d2,$7FFF(a2)
 	add.l	d2,$7FFF(a5)
 	add.l	d2,-2(sp)
@@ -14898,24 +15517,27 @@ label_start:
 	add.b	#"X",-(a2)
 	add.b	#"X",-(a5)
 	add.b	#"X",-(sp)
-	add.b	#0,($FFFFFFFF).l
+	add.b	#0,($FFFFFFFE).l
 	add.b	#0,label_start.l
-	add.b	#0,$FFFFFFFF
-	add.b	#0,$1
-	add.b	#$FF,($FFFFFFFF).l
+	add.b	#0,$FFFFFFFE
+	add.b	#0,$FFFFFFFFFFFE
+	add.b	#0,$2
+	add.b	#$FF,($FFFFFFFE).l
 	add.b	#$FF,label_start.l
-	add.b	#$FF,$FFFFFFFF
-	add.b	#$FF,$1
-	add.b	#"X",($FFFFFFFF).l
+	add.b	#$FF,$FFFFFFFE
+	add.b	#$FF,$FFFFFFFFFFFE
+	add.b	#$FF,$2
+	add.b	#"X",($FFFFFFFE).l
 	add.b	#"X",label_start.l
-	add.b	#"X",$FFFFFFFF
-	add.b	#"X",$1
-	add.b	#0,($FFFFFFFF).w
-	add.b	#0,$1
-	add.b	#$FF,($FFFFFFFF).w
-	add.b	#$FF,$1
-	add.b	#"X",($FFFFFFFF).w
-	add.b	#"X",$1
+	add.b	#"X",$FFFFFFFE
+	add.b	#"X",$FFFFFFFFFFFE
+	add.b	#"X",$2
+	add.b	#0,($FFFFFFFE).w
+	add.b	#0,$2
+	add.b	#$FF,($FFFFFFFE).w
+	add.b	#$FF,$2
+	add.b	#"X",($FFFFFFFE).w
+	add.b	#"X",$2
 	add.b	#0,$7FFF(a2)
 	add.b	#0,$7FFF(a5)
 	add.b	#0,-2(sp)
@@ -15001,48 +15623,55 @@ label_start:
 	add.w	#$FFFF,-(a2)
 	add.w	#$FFFF,-(a5)
 	add.w	#$FFFF,-(sp)
-	add.w	#0,($FFFFFFFF).l
+	add.w	#0,($FFFFFFFE).l
 	add.w	#0,label_start.l
-	add.w	#0,$FFFFFFFF
-	add.w	#0,$1
-	add.w	#4,($FFFFFFFF).l
+	add.w	#0,$FFFFFFFE
+	add.w	#0,$FFFFFFFFFFFE
+	add.w	#0,$2
+	add.w	#4,($FFFFFFFE).l
 	add.w	#4,label_start.l
-	add.w	#4,$FFFFFFFF
-	add.w	#4,$1
-	add.w	#$FF,($FFFFFFFF).l
+	add.w	#4,$FFFFFFFE
+	add.w	#4,$FFFFFFFFFFFE
+	add.w	#4,$2
+	add.w	#$FF,($FFFFFFFE).l
 	add.w	#$FF,label_start.l
-	add.w	#$FF,$FFFFFFFF
-	add.w	#$FF,$1
-	add.w	#"XY",($FFFFFFFF).l
+	add.w	#$FF,$FFFFFFFE
+	add.w	#$FF,$FFFFFFFFFFFE
+	add.w	#$FF,$2
+	add.w	#"XY",($FFFFFFFE).l
 	add.w	#"XY",label_start.l
-	add.w	#"XY",$FFFFFFFF
-	add.w	#"XY",$1
-	add.w	#$2700,($FFFFFFFF).l
+	add.w	#"XY",$FFFFFFFE
+	add.w	#"XY",$FFFFFFFFFFFE
+	add.w	#"XY",$2
+	add.w	#$2700,($FFFFFFFE).l
 	add.w	#$2700,label_start.l
-	add.w	#$2700,$FFFFFFFF
-	add.w	#$2700,$1
-	add.w	#$7FFF,($FFFFFFFF).l
+	add.w	#$2700,$FFFFFFFE
+	add.w	#$2700,$FFFFFFFFFFFE
+	add.w	#$2700,$2
+	add.w	#$7FFF,($FFFFFFFE).l
 	add.w	#$7FFF,label_start.l
-	add.w	#$7FFF,$FFFFFFFF
-	add.w	#$7FFF,$1
-	add.w	#$FFFF,($FFFFFFFF).l
+	add.w	#$7FFF,$FFFFFFFE
+	add.w	#$7FFF,$FFFFFFFFFFFE
+	add.w	#$7FFF,$2
+	add.w	#$FFFF,($FFFFFFFE).l
 	add.w	#$FFFF,label_start.l
-	add.w	#$FFFF,$FFFFFFFF
-	add.w	#$FFFF,$1
-	add.w	#0,($FFFFFFFF).w
-	add.w	#0,$1
-	add.w	#4,($FFFFFFFF).w
-	add.w	#4,$1
-	add.w	#$FF,($FFFFFFFF).w
-	add.w	#$FF,$1
-	add.w	#"XY",($FFFFFFFF).w
-	add.w	#"XY",$1
-	add.w	#$2700,($FFFFFFFF).w
-	add.w	#$2700,$1
-	add.w	#$7FFF,($FFFFFFFF).w
-	add.w	#$7FFF,$1
-	add.w	#$FFFF,($FFFFFFFF).w
-	add.w	#$FFFF,$1
+	add.w	#$FFFF,$FFFFFFFE
+	add.w	#$FFFF,$FFFFFFFFFFFE
+	add.w	#$FFFF,$2
+	add.w	#0,($FFFFFFFE).w
+	add.w	#0,$2
+	add.w	#4,($FFFFFFFE).w
+	add.w	#4,$2
+	add.w	#$FF,($FFFFFFFE).w
+	add.w	#$FF,$2
+	add.w	#"XY",($FFFFFFFE).w
+	add.w	#"XY",$2
+	add.w	#$2700,($FFFFFFFE).w
+	add.w	#$2700,$2
+	add.w	#$7FFF,($FFFFFFFE).w
+	add.w	#$7FFF,$2
+	add.w	#$FFFF,($FFFFFFFE).w
+	add.w	#$FFFF,$2
 	add.w	#0,$7FFF(a2)
 	add.w	#0,$7FFF(a5)
 	add.w	#0,-2(sp)
@@ -15211,78 +15840,90 @@ label_start:
 	add.l	#(3+4),-(a2)
 	add.l	#(3+4),-(a5)
 	add.l	#(3+4),-(sp)
-	add.l	#equ_1,($FFFFFFFF).l
+	add.l	#equ_1,($FFFFFFFE).l
 	add.l	#equ_1,label_start.l
-	add.l	#equ_1,$FFFFFFFF
-	add.l	#equ_1,$1
-	add.l	#equ_equ_1,($FFFFFFFF).l
+	add.l	#equ_1,$FFFFFFFE
+	add.l	#equ_1,$FFFFFFFFFFFE
+	add.l	#equ_1,$2
+	add.l	#equ_equ_1,($FFFFFFFE).l
 	add.l	#equ_equ_1,label_start.l
-	add.l	#equ_equ_1,$FFFFFFFF
-	add.l	#equ_equ_1,$1
-	add.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	add.l	#equ_equ_1,$FFFFFFFE
+	add.l	#equ_equ_1,$FFFFFFFFFFFE
+	add.l	#equ_equ_1,$2
+	add.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	add.l	#equ_1_plus_equ_1,label_start.l
-	add.l	#equ_1_plus_equ_1,$FFFFFFFF
-	add.l	#equ_1_plus_equ_1,$1
-	add.l	#0,($FFFFFFFF).l
+	add.l	#equ_1_plus_equ_1,$FFFFFFFE
+	add.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	add.l	#equ_1_plus_equ_1,$2
+	add.l	#0,($FFFFFFFE).l
 	add.l	#0,label_start.l
-	add.l	#0,$FFFFFFFF
-	add.l	#0,$1
-	add.l	#4,($FFFFFFFF).l
+	add.l	#0,$FFFFFFFE
+	add.l	#0,$FFFFFFFFFFFE
+	add.l	#0,$2
+	add.l	#4,($FFFFFFFE).l
 	add.l	#4,label_start.l
-	add.l	#4,$FFFFFFFF
-	add.l	#4,$1
-	add.l	#$FF,($FFFFFFFF).l
+	add.l	#4,$FFFFFFFE
+	add.l	#4,$FFFFFFFFFFFE
+	add.l	#4,$2
+	add.l	#$FF,($FFFFFFFE).l
 	add.l	#$FF,label_start.l
-	add.l	#$FF,$FFFFFFFF
-	add.l	#$FF,$1
-	add.l	#$7FFF,($FFFFFFFF).l
+	add.l	#$FF,$FFFFFFFE
+	add.l	#$FF,$FFFFFFFFFFFE
+	add.l	#$FF,$2
+	add.l	#$7FFF,($FFFFFFFE).l
 	add.l	#$7FFF,label_start.l
-	add.l	#$7FFF,$FFFFFFFF
-	add.l	#$7FFF,$1
-	add.l	#$FFFF,($FFFFFFFF).l
+	add.l	#$7FFF,$FFFFFFFE
+	add.l	#$7FFF,$FFFFFFFFFFFE
+	add.l	#$7FFF,$2
+	add.l	#$FFFF,($FFFFFFFE).l
 	add.l	#$FFFF,label_start.l
-	add.l	#$FFFF,$FFFFFFFF
-	add.l	#$FFFF,$1
-	add.l	#$FFFFFFFF,($FFFFFFFF).l
+	add.l	#$FFFF,$FFFFFFFE
+	add.l	#$FFFF,$FFFFFFFFFFFE
+	add.l	#$FFFF,$2
+	add.l	#$FFFFFFFF,($FFFFFFFE).l
 	add.l	#$FFFFFFFF,label_start.l
-	add.l	#$FFFFFFFF,$FFFFFFFF
-	add.l	#$FFFFFFFF,$1
-	add.l	#"WXYZ",($FFFFFFFF).l
+	add.l	#$FFFFFFFF,$FFFFFFFE
+	add.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	add.l	#$FFFFFFFF,$2
+	add.l	#"WXYZ",($FFFFFFFE).l
 	add.l	#"WXYZ",label_start.l
-	add.l	#"WXYZ",$FFFFFFFF
-	add.l	#"WXYZ",$1
-	add.l	#1+1,($FFFFFFFF).l
+	add.l	#"WXYZ",$FFFFFFFE
+	add.l	#"WXYZ",$FFFFFFFFFFFE
+	add.l	#"WXYZ",$2
+	add.l	#1+1,($FFFFFFFE).l
 	add.l	#1+1,label_start.l
-	add.l	#1+1,$FFFFFFFF
-	add.l	#1+1,$1
-	add.l	#(3+4),($FFFFFFFF).l
+	add.l	#1+1,$FFFFFFFE
+	add.l	#1+1,$FFFFFFFFFFFE
+	add.l	#1+1,$2
+	add.l	#(3+4),($FFFFFFFE).l
 	add.l	#(3+4),label_start.l
-	add.l	#(3+4),$FFFFFFFF
-	add.l	#(3+4),$1
-	add.l	#equ_1,($FFFFFFFF).w
-	add.l	#equ_1,$1
-	add.l	#equ_equ_1,($FFFFFFFF).w
-	add.l	#equ_equ_1,$1
-	add.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	add.l	#equ_1_plus_equ_1,$1
-	add.l	#0,($FFFFFFFF).w
-	add.l	#0,$1
-	add.l	#4,($FFFFFFFF).w
-	add.l	#4,$1
-	add.l	#$FF,($FFFFFFFF).w
-	add.l	#$FF,$1
-	add.l	#$7FFF,($FFFFFFFF).w
-	add.l	#$7FFF,$1
-	add.l	#$FFFF,($FFFFFFFF).w
-	add.l	#$FFFF,$1
-	add.l	#$FFFFFFFF,($FFFFFFFF).w
-	add.l	#$FFFFFFFF,$1
-	add.l	#"WXYZ",($FFFFFFFF).w
-	add.l	#"WXYZ",$1
-	add.l	#1+1,($FFFFFFFF).w
-	add.l	#1+1,$1
-	add.l	#(3+4),($FFFFFFFF).w
-	add.l	#(3+4),$1
+	add.l	#(3+4),$FFFFFFFE
+	add.l	#(3+4),$FFFFFFFFFFFE
+	add.l	#(3+4),$2
+	add.l	#equ_1,($FFFFFFFE).w
+	add.l	#equ_1,$2
+	add.l	#equ_equ_1,($FFFFFFFE).w
+	add.l	#equ_equ_1,$2
+	add.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	add.l	#equ_1_plus_equ_1,$2
+	add.l	#0,($FFFFFFFE).w
+	add.l	#0,$2
+	add.l	#4,($FFFFFFFE).w
+	add.l	#4,$2
+	add.l	#$FF,($FFFFFFFE).w
+	add.l	#$FF,$2
+	add.l	#$7FFF,($FFFFFFFE).w
+	add.l	#$7FFF,$2
+	add.l	#$FFFF,($FFFFFFFE).w
+	add.l	#$FFFF,$2
+	add.l	#$FFFFFFFF,($FFFFFFFE).w
+	add.l	#$FFFFFFFF,$2
+	add.l	#"WXYZ",($FFFFFFFE).w
+	add.l	#"WXYZ",$2
+	add.l	#1+1,($FFFFFFFE).w
+	add.l	#1+1,$2
+	add.l	#(3+4),($FFFFFFFE).w
+	add.l	#(3+4),$2
 	add.l	#equ_1,$7FFF(a2)
 	add.l	#equ_1,$7FFF(a5)
 	add.l	#equ_1,-2(sp)
@@ -15529,24 +16170,27 @@ label_start:
 	suba.w	-(sp),a2
 	suba.w	-(sp),a7
 	suba.w	-(sp),sp
-	suba.w	($FFFFFFFF).l,a2
-	suba.w	($FFFFFFFF).l,a7
-	suba.w	($FFFFFFFF).l,sp
+	suba.w	($FFFFFFFE).l,a2
+	suba.w	($FFFFFFFE).l,a7
+	suba.w	($FFFFFFFE).l,sp
 	suba.w	label_start.l,a2
 	suba.w	label_start.l,a7
 	suba.w	label_start.l,sp
-	suba.w	$FFFFFFFF,a2
-	suba.w	$FFFFFFFF,a7
-	suba.w	$FFFFFFFF,sp
-	suba.w	$1,a2
-	suba.w	$1,a7
-	suba.w	$1,sp
-	suba.w	($FFFFFFFF).w,a2
-	suba.w	($FFFFFFFF).w,a7
-	suba.w	($FFFFFFFF).w,sp
-	suba.w	$1,a2
-	suba.w	$1,a7
-	suba.w	$1,sp
+	suba.w	$FFFFFFFE,a2
+	suba.w	$FFFFFFFE,a7
+	suba.w	$FFFFFFFE,sp
+	suba.w	$FFFFFFFFFFFE,a2
+	suba.w	$FFFFFFFFFFFE,a7
+	suba.w	$FFFFFFFFFFFE,sp
+	suba.w	$2,a2
+	suba.w	$2,a7
+	suba.w	$2,sp
+	suba.w	($FFFFFFFE).w,a2
+	suba.w	($FFFFFFFE).w,a7
+	suba.w	($FFFFFFFE).w,sp
+	suba.w	$2,a2
+	suba.w	$2,a7
+	suba.w	$2,sp
 	suba.w	a2,a2
 	suba.w	a2,a7
 	suba.w	a2,sp
@@ -15649,24 +16293,27 @@ label_start:
 	suba.l	-(sp),a2
 	suba.l	-(sp),a7
 	suba.l	-(sp),sp
-	suba.l	($FFFFFFFF).l,a2
-	suba.l	($FFFFFFFF).l,a7
-	suba.l	($FFFFFFFF).l,sp
+	suba.l	($FFFFFFFE).l,a2
+	suba.l	($FFFFFFFE).l,a7
+	suba.l	($FFFFFFFE).l,sp
 	suba.l	label_start.l,a2
 	suba.l	label_start.l,a7
 	suba.l	label_start.l,sp
-	suba.l	$FFFFFFFF,a2
-	suba.l	$FFFFFFFF,a7
-	suba.l	$FFFFFFFF,sp
-	suba.l	$1,a2
-	suba.l	$1,a7
-	suba.l	$1,sp
-	suba.l	($FFFFFFFF).w,a2
-	suba.l	($FFFFFFFF).w,a7
-	suba.l	($FFFFFFFF).w,sp
-	suba.l	$1,a2
-	suba.l	$1,a7
-	suba.l	$1,sp
+	suba.l	$FFFFFFFE,a2
+	suba.l	$FFFFFFFE,a7
+	suba.l	$FFFFFFFE,sp
+	suba.l	$FFFFFFFFFFFE,a2
+	suba.l	$FFFFFFFFFFFE,a7
+	suba.l	$FFFFFFFFFFFE,sp
+	suba.l	$2,a2
+	suba.l	$2,a7
+	suba.l	$2,sp
+	suba.l	($FFFFFFFE).w,a2
+	suba.l	($FFFFFFFE).w,a7
+	suba.l	($FFFFFFFE).w,sp
+	suba.l	$2,a2
+	suba.l	$2,a7
+	suba.l	$2,sp
 	suba.l	a2,a2
 	suba.l	a2,a7
 	suba.l	a2,sp
@@ -15778,18 +16425,20 @@ label_start:
 	eor.b	d5,-(a2)
 	eor.b	d5,-(a5)
 	eor.b	d5,-(sp)
-	eor.b	d2,($FFFFFFFF).l
+	eor.b	d2,($FFFFFFFE).l
 	eor.b	d2,label_start.l
-	eor.b	d2,$FFFFFFFF
-	eor.b	d2,$1
-	eor.b	d5,($FFFFFFFF).l
+	eor.b	d2,$FFFFFFFE
+	eor.b	d2,$FFFFFFFFFFFE
+	eor.b	d2,$2
+	eor.b	d5,($FFFFFFFE).l
 	eor.b	d5,label_start.l
-	eor.b	d5,$FFFFFFFF
-	eor.b	d5,$1
-	eor.b	d2,($FFFFFFFF).w
-	eor.b	d2,$1
-	eor.b	d5,($FFFFFFFF).w
-	eor.b	d5,$1
+	eor.b	d5,$FFFFFFFE
+	eor.b	d5,$FFFFFFFFFFFE
+	eor.b	d5,$2
+	eor.b	d2,($FFFFFFFE).w
+	eor.b	d2,$2
+	eor.b	d5,($FFFFFFFE).w
+	eor.b	d5,$2
 	eor.b	d2,$7FFF(a2)
 	eor.b	d2,$7FFF(a5)
 	eor.b	d2,-2(sp)
@@ -15835,24 +16484,27 @@ label_start:
 	eor.b	#"X",-(a2)
 	eor.b	#"X",-(a5)
 	eor.b	#"X",-(sp)
-	eor.b	#0,($FFFFFFFF).l
+	eor.b	#0,($FFFFFFFE).l
 	eor.b	#0,label_start.l
-	eor.b	#0,$FFFFFFFF
-	eor.b	#0,$1
-	eor.b	#$FF,($FFFFFFFF).l
+	eor.b	#0,$FFFFFFFE
+	eor.b	#0,$FFFFFFFFFFFE
+	eor.b	#0,$2
+	eor.b	#$FF,($FFFFFFFE).l
 	eor.b	#$FF,label_start.l
-	eor.b	#$FF,$FFFFFFFF
-	eor.b	#$FF,$1
-	eor.b	#"X",($FFFFFFFF).l
+	eor.b	#$FF,$FFFFFFFE
+	eor.b	#$FF,$FFFFFFFFFFFE
+	eor.b	#$FF,$2
+	eor.b	#"X",($FFFFFFFE).l
 	eor.b	#"X",label_start.l
-	eor.b	#"X",$FFFFFFFF
-	eor.b	#"X",$1
-	eor.b	#0,($FFFFFFFF).w
-	eor.b	#0,$1
-	eor.b	#$FF,($FFFFFFFF).w
-	eor.b	#$FF,$1
-	eor.b	#"X",($FFFFFFFF).w
-	eor.b	#"X",$1
+	eor.b	#"X",$FFFFFFFE
+	eor.b	#"X",$FFFFFFFFFFFE
+	eor.b	#"X",$2
+	eor.b	#0,($FFFFFFFE).w
+	eor.b	#0,$2
+	eor.b	#$FF,($FFFFFFFE).w
+	eor.b	#$FF,$2
+	eor.b	#"X",($FFFFFFFE).w
+	eor.b	#"X",$2
 	eor.b	#0,$7FFF(a2)
 	eor.b	#0,$7FFF(a5)
 	eor.b	#0,-2(sp)
@@ -15903,18 +16555,20 @@ label_start:
 	eor.w	d5,-(a2)
 	eor.w	d5,-(a5)
 	eor.w	d5,-(sp)
-	eor.w	d2,($FFFFFFFF).l
+	eor.w	d2,($FFFFFFFE).l
 	eor.w	d2,label_start.l
-	eor.w	d2,$FFFFFFFF
-	eor.w	d2,$1
-	eor.w	d5,($FFFFFFFF).l
+	eor.w	d2,$FFFFFFFE
+	eor.w	d2,$FFFFFFFFFFFE
+	eor.w	d2,$2
+	eor.w	d5,($FFFFFFFE).l
 	eor.w	d5,label_start.l
-	eor.w	d5,$FFFFFFFF
-	eor.w	d5,$1
-	eor.w	d2,($FFFFFFFF).w
-	eor.w	d2,$1
-	eor.w	d5,($FFFFFFFF).w
-	eor.w	d5,$1
+	eor.w	d5,$FFFFFFFE
+	eor.w	d5,$FFFFFFFFFFFE
+	eor.w	d5,$2
+	eor.w	d2,($FFFFFFFE).w
+	eor.w	d2,$2
+	eor.w	d5,($FFFFFFFE).w
+	eor.w	d5,$2
 	eor.w	d2,$7FFF(a2)
 	eor.w	d2,$7FFF(a5)
 	eor.w	d2,-2(sp)
@@ -15988,48 +16642,55 @@ label_start:
 	eor.w	#$FFFF,-(a2)
 	eor.w	#$FFFF,-(a5)
 	eor.w	#$FFFF,-(sp)
-	eor.w	#0,($FFFFFFFF).l
+	eor.w	#0,($FFFFFFFE).l
 	eor.w	#0,label_start.l
-	eor.w	#0,$FFFFFFFF
-	eor.w	#0,$1
-	eor.w	#4,($FFFFFFFF).l
+	eor.w	#0,$FFFFFFFE
+	eor.w	#0,$FFFFFFFFFFFE
+	eor.w	#0,$2
+	eor.w	#4,($FFFFFFFE).l
 	eor.w	#4,label_start.l
-	eor.w	#4,$FFFFFFFF
-	eor.w	#4,$1
-	eor.w	#$FF,($FFFFFFFF).l
+	eor.w	#4,$FFFFFFFE
+	eor.w	#4,$FFFFFFFFFFFE
+	eor.w	#4,$2
+	eor.w	#$FF,($FFFFFFFE).l
 	eor.w	#$FF,label_start.l
-	eor.w	#$FF,$FFFFFFFF
-	eor.w	#$FF,$1
-	eor.w	#"XY",($FFFFFFFF).l
+	eor.w	#$FF,$FFFFFFFE
+	eor.w	#$FF,$FFFFFFFFFFFE
+	eor.w	#$FF,$2
+	eor.w	#"XY",($FFFFFFFE).l
 	eor.w	#"XY",label_start.l
-	eor.w	#"XY",$FFFFFFFF
-	eor.w	#"XY",$1
-	eor.w	#$2700,($FFFFFFFF).l
+	eor.w	#"XY",$FFFFFFFE
+	eor.w	#"XY",$FFFFFFFFFFFE
+	eor.w	#"XY",$2
+	eor.w	#$2700,($FFFFFFFE).l
 	eor.w	#$2700,label_start.l
-	eor.w	#$2700,$FFFFFFFF
-	eor.w	#$2700,$1
-	eor.w	#$7FFF,($FFFFFFFF).l
+	eor.w	#$2700,$FFFFFFFE
+	eor.w	#$2700,$FFFFFFFFFFFE
+	eor.w	#$2700,$2
+	eor.w	#$7FFF,($FFFFFFFE).l
 	eor.w	#$7FFF,label_start.l
-	eor.w	#$7FFF,$FFFFFFFF
-	eor.w	#$7FFF,$1
-	eor.w	#$FFFF,($FFFFFFFF).l
+	eor.w	#$7FFF,$FFFFFFFE
+	eor.w	#$7FFF,$FFFFFFFFFFFE
+	eor.w	#$7FFF,$2
+	eor.w	#$FFFF,($FFFFFFFE).l
 	eor.w	#$FFFF,label_start.l
-	eor.w	#$FFFF,$FFFFFFFF
-	eor.w	#$FFFF,$1
-	eor.w	#0,($FFFFFFFF).w
-	eor.w	#0,$1
-	eor.w	#4,($FFFFFFFF).w
-	eor.w	#4,$1
-	eor.w	#$FF,($FFFFFFFF).w
-	eor.w	#$FF,$1
-	eor.w	#"XY",($FFFFFFFF).w
-	eor.w	#"XY",$1
-	eor.w	#$2700,($FFFFFFFF).w
-	eor.w	#$2700,$1
-	eor.w	#$7FFF,($FFFFFFFF).w
-	eor.w	#$7FFF,$1
-	eor.w	#$FFFF,($FFFFFFFF).w
-	eor.w	#$FFFF,$1
+	eor.w	#$FFFF,$FFFFFFFE
+	eor.w	#$FFFF,$FFFFFFFFFFFE
+	eor.w	#$FFFF,$2
+	eor.w	#0,($FFFFFFFE).w
+	eor.w	#0,$2
+	eor.w	#4,($FFFFFFFE).w
+	eor.w	#4,$2
+	eor.w	#$FF,($FFFFFFFE).w
+	eor.w	#$FF,$2
+	eor.w	#"XY",($FFFFFFFE).w
+	eor.w	#"XY",$2
+	eor.w	#$2700,($FFFFFFFE).w
+	eor.w	#$2700,$2
+	eor.w	#$7FFF,($FFFFFFFE).w
+	eor.w	#$7FFF,$2
+	eor.w	#$FFFF,($FFFFFFFE).w
+	eor.w	#$FFFF,$2
 	eor.w	#0,$7FFF(a2)
 	eor.w	#0,$7FFF(a5)
 	eor.w	#0,-2(sp)
@@ -16128,18 +16789,20 @@ label_start:
 	eor.l	d5,-(a2)
 	eor.l	d5,-(a5)
 	eor.l	d5,-(sp)
-	eor.l	d2,($FFFFFFFF).l
+	eor.l	d2,($FFFFFFFE).l
 	eor.l	d2,label_start.l
-	eor.l	d2,$FFFFFFFF
-	eor.l	d2,$1
-	eor.l	d5,($FFFFFFFF).l
+	eor.l	d2,$FFFFFFFE
+	eor.l	d2,$FFFFFFFFFFFE
+	eor.l	d2,$2
+	eor.l	d5,($FFFFFFFE).l
 	eor.l	d5,label_start.l
-	eor.l	d5,$FFFFFFFF
-	eor.l	d5,$1
-	eor.l	d2,($FFFFFFFF).w
-	eor.l	d2,$1
-	eor.l	d5,($FFFFFFFF).w
-	eor.l	d5,$1
+	eor.l	d5,$FFFFFFFE
+	eor.l	d5,$FFFFFFFFFFFE
+	eor.l	d5,$2
+	eor.l	d2,($FFFFFFFE).w
+	eor.l	d2,$2
+	eor.l	d5,($FFFFFFFE).w
+	eor.l	d5,$2
 	eor.l	d2,$7FFF(a2)
 	eor.l	d2,$7FFF(a5)
 	eor.l	d2,-2(sp)
@@ -16248,78 +16911,90 @@ label_start:
 	eor.l	#(3+4),-(a2)
 	eor.l	#(3+4),-(a5)
 	eor.l	#(3+4),-(sp)
-	eor.l	#equ_1,($FFFFFFFF).l
+	eor.l	#equ_1,($FFFFFFFE).l
 	eor.l	#equ_1,label_start.l
-	eor.l	#equ_1,$FFFFFFFF
-	eor.l	#equ_1,$1
-	eor.l	#equ_equ_1,($FFFFFFFF).l
+	eor.l	#equ_1,$FFFFFFFE
+	eor.l	#equ_1,$FFFFFFFFFFFE
+	eor.l	#equ_1,$2
+	eor.l	#equ_equ_1,($FFFFFFFE).l
 	eor.l	#equ_equ_1,label_start.l
-	eor.l	#equ_equ_1,$FFFFFFFF
-	eor.l	#equ_equ_1,$1
-	eor.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	eor.l	#equ_equ_1,$FFFFFFFE
+	eor.l	#equ_equ_1,$FFFFFFFFFFFE
+	eor.l	#equ_equ_1,$2
+	eor.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	eor.l	#equ_1_plus_equ_1,label_start.l
-	eor.l	#equ_1_plus_equ_1,$FFFFFFFF
-	eor.l	#equ_1_plus_equ_1,$1
-	eor.l	#0,($FFFFFFFF).l
+	eor.l	#equ_1_plus_equ_1,$FFFFFFFE
+	eor.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	eor.l	#equ_1_plus_equ_1,$2
+	eor.l	#0,($FFFFFFFE).l
 	eor.l	#0,label_start.l
-	eor.l	#0,$FFFFFFFF
-	eor.l	#0,$1
-	eor.l	#4,($FFFFFFFF).l
+	eor.l	#0,$FFFFFFFE
+	eor.l	#0,$FFFFFFFFFFFE
+	eor.l	#0,$2
+	eor.l	#4,($FFFFFFFE).l
 	eor.l	#4,label_start.l
-	eor.l	#4,$FFFFFFFF
-	eor.l	#4,$1
-	eor.l	#$FF,($FFFFFFFF).l
+	eor.l	#4,$FFFFFFFE
+	eor.l	#4,$FFFFFFFFFFFE
+	eor.l	#4,$2
+	eor.l	#$FF,($FFFFFFFE).l
 	eor.l	#$FF,label_start.l
-	eor.l	#$FF,$FFFFFFFF
-	eor.l	#$FF,$1
-	eor.l	#$7FFF,($FFFFFFFF).l
+	eor.l	#$FF,$FFFFFFFE
+	eor.l	#$FF,$FFFFFFFFFFFE
+	eor.l	#$FF,$2
+	eor.l	#$7FFF,($FFFFFFFE).l
 	eor.l	#$7FFF,label_start.l
-	eor.l	#$7FFF,$FFFFFFFF
-	eor.l	#$7FFF,$1
-	eor.l	#$FFFF,($FFFFFFFF).l
+	eor.l	#$7FFF,$FFFFFFFE
+	eor.l	#$7FFF,$FFFFFFFFFFFE
+	eor.l	#$7FFF,$2
+	eor.l	#$FFFF,($FFFFFFFE).l
 	eor.l	#$FFFF,label_start.l
-	eor.l	#$FFFF,$FFFFFFFF
-	eor.l	#$FFFF,$1
-	eor.l	#$FFFFFFFF,($FFFFFFFF).l
+	eor.l	#$FFFF,$FFFFFFFE
+	eor.l	#$FFFF,$FFFFFFFFFFFE
+	eor.l	#$FFFF,$2
+	eor.l	#$FFFFFFFF,($FFFFFFFE).l
 	eor.l	#$FFFFFFFF,label_start.l
-	eor.l	#$FFFFFFFF,$FFFFFFFF
-	eor.l	#$FFFFFFFF,$1
-	eor.l	#"WXYZ",($FFFFFFFF).l
+	eor.l	#$FFFFFFFF,$FFFFFFFE
+	eor.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	eor.l	#$FFFFFFFF,$2
+	eor.l	#"WXYZ",($FFFFFFFE).l
 	eor.l	#"WXYZ",label_start.l
-	eor.l	#"WXYZ",$FFFFFFFF
-	eor.l	#"WXYZ",$1
-	eor.l	#1+1,($FFFFFFFF).l
+	eor.l	#"WXYZ",$FFFFFFFE
+	eor.l	#"WXYZ",$FFFFFFFFFFFE
+	eor.l	#"WXYZ",$2
+	eor.l	#1+1,($FFFFFFFE).l
 	eor.l	#1+1,label_start.l
-	eor.l	#1+1,$FFFFFFFF
-	eor.l	#1+1,$1
-	eor.l	#(3+4),($FFFFFFFF).l
+	eor.l	#1+1,$FFFFFFFE
+	eor.l	#1+1,$FFFFFFFFFFFE
+	eor.l	#1+1,$2
+	eor.l	#(3+4),($FFFFFFFE).l
 	eor.l	#(3+4),label_start.l
-	eor.l	#(3+4),$FFFFFFFF
-	eor.l	#(3+4),$1
-	eor.l	#equ_1,($FFFFFFFF).w
-	eor.l	#equ_1,$1
-	eor.l	#equ_equ_1,($FFFFFFFF).w
-	eor.l	#equ_equ_1,$1
-	eor.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	eor.l	#equ_1_plus_equ_1,$1
-	eor.l	#0,($FFFFFFFF).w
-	eor.l	#0,$1
-	eor.l	#4,($FFFFFFFF).w
-	eor.l	#4,$1
-	eor.l	#$FF,($FFFFFFFF).w
-	eor.l	#$FF,$1
-	eor.l	#$7FFF,($FFFFFFFF).w
-	eor.l	#$7FFF,$1
-	eor.l	#$FFFF,($FFFFFFFF).w
-	eor.l	#$FFFF,$1
-	eor.l	#$FFFFFFFF,($FFFFFFFF).w
-	eor.l	#$FFFFFFFF,$1
-	eor.l	#"WXYZ",($FFFFFFFF).w
-	eor.l	#"WXYZ",$1
-	eor.l	#1+1,($FFFFFFFF).w
-	eor.l	#1+1,$1
-	eor.l	#(3+4),($FFFFFFFF).w
-	eor.l	#(3+4),$1
+	eor.l	#(3+4),$FFFFFFFE
+	eor.l	#(3+4),$FFFFFFFFFFFE
+	eor.l	#(3+4),$2
+	eor.l	#equ_1,($FFFFFFFE).w
+	eor.l	#equ_1,$2
+	eor.l	#equ_equ_1,($FFFFFFFE).w
+	eor.l	#equ_equ_1,$2
+	eor.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	eor.l	#equ_1_plus_equ_1,$2
+	eor.l	#0,($FFFFFFFE).w
+	eor.l	#0,$2
+	eor.l	#4,($FFFFFFFE).w
+	eor.l	#4,$2
+	eor.l	#$FF,($FFFFFFFE).w
+	eor.l	#$FF,$2
+	eor.l	#$7FFF,($FFFFFFFE).w
+	eor.l	#$7FFF,$2
+	eor.l	#$FFFF,($FFFFFFFE).w
+	eor.l	#$FFFF,$2
+	eor.l	#$FFFFFFFF,($FFFFFFFE).w
+	eor.l	#$FFFFFFFF,$2
+	eor.l	#"WXYZ",($FFFFFFFE).w
+	eor.l	#"WXYZ",$2
+	eor.l	#1+1,($FFFFFFFE).w
+	eor.l	#1+1,$2
+	eor.l	#(3+4),($FFFFFFFE).w
+	eor.l	#(3+4),$2
 	eor.l	#equ_1,$7FFF(a2)
 	eor.l	#equ_1,$7FFF(a5)
 	eor.l	#equ_1,-2(sp)
@@ -16492,18 +17167,20 @@ label_start:
 	cmp.b	-(a5),d5
 	cmp.b	-(sp),d2
 	cmp.b	-(sp),d5
-	cmp.b	($FFFFFFFF).l,d2
-	cmp.b	($FFFFFFFF).l,d5
+	cmp.b	($FFFFFFFE).l,d2
+	cmp.b	($FFFFFFFE).l,d5
 	cmp.b	label_start.l,d2
 	cmp.b	label_start.l,d5
-	cmp.b	$FFFFFFFF,d2
-	cmp.b	$FFFFFFFF,d5
-	cmp.b	$1,d2
-	cmp.b	$1,d5
-	cmp.b	($FFFFFFFF).w,d2
-	cmp.b	($FFFFFFFF).w,d5
-	cmp.b	$1,d2
-	cmp.b	$1,d5
+	cmp.b	$FFFFFFFE,d2
+	cmp.b	$FFFFFFFE,d5
+	cmp.b	$FFFFFFFFFFFE,d2
+	cmp.b	$FFFFFFFFFFFE,d5
+	cmp.b	$2,d2
+	cmp.b	$2,d5
+	cmp.b	($FFFFFFFE).w,d2
+	cmp.b	($FFFFFFFE).w,d5
+	cmp.b	$2,d2
+	cmp.b	$2,d5
 	cmp.b	$7FFF(a2),d2
 	cmp.b	$7FFF(a2),d5
 	cmp.b	$7FFF(a5),d2
@@ -16552,18 +17229,20 @@ label_start:
 	cmp.w	-(a5),d5
 	cmp.w	-(sp),d2
 	cmp.w	-(sp),d5
-	cmp.w	($FFFFFFFF).l,d2
-	cmp.w	($FFFFFFFF).l,d5
+	cmp.w	($FFFFFFFE).l,d2
+	cmp.w	($FFFFFFFE).l,d5
 	cmp.w	label_start.l,d2
 	cmp.w	label_start.l,d5
-	cmp.w	$FFFFFFFF,d2
-	cmp.w	$FFFFFFFF,d5
-	cmp.w	$1,d2
-	cmp.w	$1,d5
-	cmp.w	($FFFFFFFF).w,d2
-	cmp.w	($FFFFFFFF).w,d5
-	cmp.w	$1,d2
-	cmp.w	$1,d5
+	cmp.w	$FFFFFFFE,d2
+	cmp.w	$FFFFFFFE,d5
+	cmp.w	$FFFFFFFFFFFE,d2
+	cmp.w	$FFFFFFFFFFFE,d5
+	cmp.w	$2,d2
+	cmp.w	$2,d5
+	cmp.w	($FFFFFFFE).w,d2
+	cmp.w	($FFFFFFFE).w,d5
+	cmp.w	$2,d2
+	cmp.w	$2,d5
 	cmp.w	$7FFF(a2),d2
 	cmp.w	$7FFF(a2),d5
 	cmp.w	$7FFF(a5),d2
@@ -16612,18 +17291,20 @@ label_start:
 	cmp.l	-(a5),d5
 	cmp.l	-(sp),d2
 	cmp.l	-(sp),d5
-	cmp.l	($FFFFFFFF).l,d2
-	cmp.l	($FFFFFFFF).l,d5
+	cmp.l	($FFFFFFFE).l,d2
+	cmp.l	($FFFFFFFE).l,d5
 	cmp.l	label_start.l,d2
 	cmp.l	label_start.l,d5
-	cmp.l	$FFFFFFFF,d2
-	cmp.l	$FFFFFFFF,d5
-	cmp.l	$1,d2
-	cmp.l	$1,d5
-	cmp.l	($FFFFFFFF).w,d2
-	cmp.l	($FFFFFFFF).w,d5
-	cmp.l	$1,d2
-	cmp.l	$1,d5
+	cmp.l	$FFFFFFFE,d2
+	cmp.l	$FFFFFFFE,d5
+	cmp.l	$FFFFFFFFFFFE,d2
+	cmp.l	$FFFFFFFFFFFE,d5
+	cmp.l	$2,d2
+	cmp.l	$2,d5
+	cmp.l	($FFFFFFFE).w,d2
+	cmp.l	($FFFFFFFE).w,d5
+	cmp.l	$2,d2
+	cmp.l	$2,d5
 	cmp.l	$7FFF(a2),d2
 	cmp.l	$7FFF(a2),d5
 	cmp.l	$7FFF(a5),d2
@@ -16691,24 +17372,27 @@ label_start:
 	cmp.w	-(sp),a2
 	cmp.w	-(sp),a7
 	cmp.w	-(sp),sp
-	cmp.w	($FFFFFFFF).l,a2
-	cmp.w	($FFFFFFFF).l,a7
-	cmp.w	($FFFFFFFF).l,sp
+	cmp.w	($FFFFFFFE).l,a2
+	cmp.w	($FFFFFFFE).l,a7
+	cmp.w	($FFFFFFFE).l,sp
 	cmp.w	label_start.l,a2
 	cmp.w	label_start.l,a7
 	cmp.w	label_start.l,sp
-	cmp.w	$FFFFFFFF,a2
-	cmp.w	$FFFFFFFF,a7
-	cmp.w	$FFFFFFFF,sp
-	cmp.w	$1,a2
-	cmp.w	$1,a7
-	cmp.w	$1,sp
-	cmp.w	($FFFFFFFF).w,a2
-	cmp.w	($FFFFFFFF).w,a7
-	cmp.w	($FFFFFFFF).w,sp
-	cmp.w	$1,a2
-	cmp.w	$1,a7
-	cmp.w	$1,sp
+	cmp.w	$FFFFFFFE,a2
+	cmp.w	$FFFFFFFE,a7
+	cmp.w	$FFFFFFFE,sp
+	cmp.w	$FFFFFFFFFFFE,a2
+	cmp.w	$FFFFFFFFFFFE,a7
+	cmp.w	$FFFFFFFFFFFE,sp
+	cmp.w	$2,a2
+	cmp.w	$2,a7
+	cmp.w	$2,sp
+	cmp.w	($FFFFFFFE).w,a2
+	cmp.w	($FFFFFFFE).w,a7
+	cmp.w	($FFFFFFFE).w,sp
+	cmp.w	$2,a2
+	cmp.w	$2,a7
+	cmp.w	$2,sp
 	cmp.w	a2,a2
 	cmp.w	a2,a7
 	cmp.w	a2,sp
@@ -16811,24 +17495,27 @@ label_start:
 	cmp.l	-(sp),a2
 	cmp.l	-(sp),a7
 	cmp.l	-(sp),sp
-	cmp.l	($FFFFFFFF).l,a2
-	cmp.l	($FFFFFFFF).l,a7
-	cmp.l	($FFFFFFFF).l,sp
+	cmp.l	($FFFFFFFE).l,a2
+	cmp.l	($FFFFFFFE).l,a7
+	cmp.l	($FFFFFFFE).l,sp
 	cmp.l	label_start.l,a2
 	cmp.l	label_start.l,a7
 	cmp.l	label_start.l,sp
-	cmp.l	$FFFFFFFF,a2
-	cmp.l	$FFFFFFFF,a7
-	cmp.l	$FFFFFFFF,sp
-	cmp.l	$1,a2
-	cmp.l	$1,a7
-	cmp.l	$1,sp
-	cmp.l	($FFFFFFFF).w,a2
-	cmp.l	($FFFFFFFF).w,a7
-	cmp.l	($FFFFFFFF).w,sp
-	cmp.l	$1,a2
-	cmp.l	$1,a7
-	cmp.l	$1,sp
+	cmp.l	$FFFFFFFE,a2
+	cmp.l	$FFFFFFFE,a7
+	cmp.l	$FFFFFFFE,sp
+	cmp.l	$FFFFFFFFFFFE,a2
+	cmp.l	$FFFFFFFFFFFE,a7
+	cmp.l	$FFFFFFFFFFFE,sp
+	cmp.l	$2,a2
+	cmp.l	$2,a7
+	cmp.l	$2,sp
+	cmp.l	($FFFFFFFE).w,a2
+	cmp.l	($FFFFFFFE).w,a7
+	cmp.l	($FFFFFFFE).w,sp
+	cmp.l	$2,a2
+	cmp.l	$2,a7
+	cmp.l	$2,sp
 	cmp.l	a2,a2
 	cmp.l	a2,a7
 	cmp.l	a2,sp
@@ -16946,24 +17633,27 @@ label_start:
 	cmp.b	#"X",-(a2)
 	cmp.b	#"X",-(a5)
 	cmp.b	#"X",-(sp)
-	cmp.b	#0,($FFFFFFFF).l
+	cmp.b	#0,($FFFFFFFE).l
 	cmp.b	#0,label_start.l
-	cmp.b	#0,$FFFFFFFF
-	cmp.b	#0,$1
-	cmp.b	#$FF,($FFFFFFFF).l
+	cmp.b	#0,$FFFFFFFE
+	cmp.b	#0,$FFFFFFFFFFFE
+	cmp.b	#0,$2
+	cmp.b	#$FF,($FFFFFFFE).l
 	cmp.b	#$FF,label_start.l
-	cmp.b	#$FF,$FFFFFFFF
-	cmp.b	#$FF,$1
-	cmp.b	#"X",($FFFFFFFF).l
+	cmp.b	#$FF,$FFFFFFFE
+	cmp.b	#$FF,$FFFFFFFFFFFE
+	cmp.b	#$FF,$2
+	cmp.b	#"X",($FFFFFFFE).l
 	cmp.b	#"X",label_start.l
-	cmp.b	#"X",$FFFFFFFF
-	cmp.b	#"X",$1
-	cmp.b	#0,($FFFFFFFF).w
-	cmp.b	#0,$1
-	cmp.b	#$FF,($FFFFFFFF).w
-	cmp.b	#$FF,$1
-	cmp.b	#"X",($FFFFFFFF).w
-	cmp.b	#"X",$1
+	cmp.b	#"X",$FFFFFFFE
+	cmp.b	#"X",$FFFFFFFFFFFE
+	cmp.b	#"X",$2
+	cmp.b	#0,($FFFFFFFE).w
+	cmp.b	#0,$2
+	cmp.b	#$FF,($FFFFFFFE).w
+	cmp.b	#$FF,$2
+	cmp.b	#"X",($FFFFFFFE).w
+	cmp.b	#"X",$2
 	cmp.b	#0,$7FFF(a2)
 	cmp.b	#0,$7FFF(a5)
 	cmp.b	#0,-2(sp)
@@ -17049,48 +17739,55 @@ label_start:
 	cmp.w	#$FFFF,-(a2)
 	cmp.w	#$FFFF,-(a5)
 	cmp.w	#$FFFF,-(sp)
-	cmp.w	#0,($FFFFFFFF).l
+	cmp.w	#0,($FFFFFFFE).l
 	cmp.w	#0,label_start.l
-	cmp.w	#0,$FFFFFFFF
-	cmp.w	#0,$1
-	cmp.w	#4,($FFFFFFFF).l
+	cmp.w	#0,$FFFFFFFE
+	cmp.w	#0,$FFFFFFFFFFFE
+	cmp.w	#0,$2
+	cmp.w	#4,($FFFFFFFE).l
 	cmp.w	#4,label_start.l
-	cmp.w	#4,$FFFFFFFF
-	cmp.w	#4,$1
-	cmp.w	#$FF,($FFFFFFFF).l
+	cmp.w	#4,$FFFFFFFE
+	cmp.w	#4,$FFFFFFFFFFFE
+	cmp.w	#4,$2
+	cmp.w	#$FF,($FFFFFFFE).l
 	cmp.w	#$FF,label_start.l
-	cmp.w	#$FF,$FFFFFFFF
-	cmp.w	#$FF,$1
-	cmp.w	#"XY",($FFFFFFFF).l
+	cmp.w	#$FF,$FFFFFFFE
+	cmp.w	#$FF,$FFFFFFFFFFFE
+	cmp.w	#$FF,$2
+	cmp.w	#"XY",($FFFFFFFE).l
 	cmp.w	#"XY",label_start.l
-	cmp.w	#"XY",$FFFFFFFF
-	cmp.w	#"XY",$1
-	cmp.w	#$2700,($FFFFFFFF).l
+	cmp.w	#"XY",$FFFFFFFE
+	cmp.w	#"XY",$FFFFFFFFFFFE
+	cmp.w	#"XY",$2
+	cmp.w	#$2700,($FFFFFFFE).l
 	cmp.w	#$2700,label_start.l
-	cmp.w	#$2700,$FFFFFFFF
-	cmp.w	#$2700,$1
-	cmp.w	#$7FFF,($FFFFFFFF).l
+	cmp.w	#$2700,$FFFFFFFE
+	cmp.w	#$2700,$FFFFFFFFFFFE
+	cmp.w	#$2700,$2
+	cmp.w	#$7FFF,($FFFFFFFE).l
 	cmp.w	#$7FFF,label_start.l
-	cmp.w	#$7FFF,$FFFFFFFF
-	cmp.w	#$7FFF,$1
-	cmp.w	#$FFFF,($FFFFFFFF).l
+	cmp.w	#$7FFF,$FFFFFFFE
+	cmp.w	#$7FFF,$FFFFFFFFFFFE
+	cmp.w	#$7FFF,$2
+	cmp.w	#$FFFF,($FFFFFFFE).l
 	cmp.w	#$FFFF,label_start.l
-	cmp.w	#$FFFF,$FFFFFFFF
-	cmp.w	#$FFFF,$1
-	cmp.w	#0,($FFFFFFFF).w
-	cmp.w	#0,$1
-	cmp.w	#4,($FFFFFFFF).w
-	cmp.w	#4,$1
-	cmp.w	#$FF,($FFFFFFFF).w
-	cmp.w	#$FF,$1
-	cmp.w	#"XY",($FFFFFFFF).w
-	cmp.w	#"XY",$1
-	cmp.w	#$2700,($FFFFFFFF).w
-	cmp.w	#$2700,$1
-	cmp.w	#$7FFF,($FFFFFFFF).w
-	cmp.w	#$7FFF,$1
-	cmp.w	#$FFFF,($FFFFFFFF).w
-	cmp.w	#$FFFF,$1
+	cmp.w	#$FFFF,$FFFFFFFE
+	cmp.w	#$FFFF,$FFFFFFFFFFFE
+	cmp.w	#$FFFF,$2
+	cmp.w	#0,($FFFFFFFE).w
+	cmp.w	#0,$2
+	cmp.w	#4,($FFFFFFFE).w
+	cmp.w	#4,$2
+	cmp.w	#$FF,($FFFFFFFE).w
+	cmp.w	#$FF,$2
+	cmp.w	#"XY",($FFFFFFFE).w
+	cmp.w	#"XY",$2
+	cmp.w	#$2700,($FFFFFFFE).w
+	cmp.w	#$2700,$2
+	cmp.w	#$7FFF,($FFFFFFFE).w
+	cmp.w	#$7FFF,$2
+	cmp.w	#$FFFF,($FFFFFFFE).w
+	cmp.w	#$FFFF,$2
 	cmp.w	#0,$7FFF(a2)
 	cmp.w	#0,$7FFF(a5)
 	cmp.w	#0,-2(sp)
@@ -17259,78 +17956,90 @@ label_start:
 	cmp.l	#(3+4),-(a2)
 	cmp.l	#(3+4),-(a5)
 	cmp.l	#(3+4),-(sp)
-	cmp.l	#equ_1,($FFFFFFFF).l
+	cmp.l	#equ_1,($FFFFFFFE).l
 	cmp.l	#equ_1,label_start.l
-	cmp.l	#equ_1,$FFFFFFFF
-	cmp.l	#equ_1,$1
-	cmp.l	#equ_equ_1,($FFFFFFFF).l
+	cmp.l	#equ_1,$FFFFFFFE
+	cmp.l	#equ_1,$FFFFFFFFFFFE
+	cmp.l	#equ_1,$2
+	cmp.l	#equ_equ_1,($FFFFFFFE).l
 	cmp.l	#equ_equ_1,label_start.l
-	cmp.l	#equ_equ_1,$FFFFFFFF
-	cmp.l	#equ_equ_1,$1
-	cmp.l	#equ_1_plus_equ_1,($FFFFFFFF).l
+	cmp.l	#equ_equ_1,$FFFFFFFE
+	cmp.l	#equ_equ_1,$FFFFFFFFFFFE
+	cmp.l	#equ_equ_1,$2
+	cmp.l	#equ_1_plus_equ_1,($FFFFFFFE).l
 	cmp.l	#equ_1_plus_equ_1,label_start.l
-	cmp.l	#equ_1_plus_equ_1,$FFFFFFFF
-	cmp.l	#equ_1_plus_equ_1,$1
-	cmp.l	#0,($FFFFFFFF).l
+	cmp.l	#equ_1_plus_equ_1,$FFFFFFFE
+	cmp.l	#equ_1_plus_equ_1,$FFFFFFFFFFFE
+	cmp.l	#equ_1_plus_equ_1,$2
+	cmp.l	#0,($FFFFFFFE).l
 	cmp.l	#0,label_start.l
-	cmp.l	#0,$FFFFFFFF
-	cmp.l	#0,$1
-	cmp.l	#4,($FFFFFFFF).l
+	cmp.l	#0,$FFFFFFFE
+	cmp.l	#0,$FFFFFFFFFFFE
+	cmp.l	#0,$2
+	cmp.l	#4,($FFFFFFFE).l
 	cmp.l	#4,label_start.l
-	cmp.l	#4,$FFFFFFFF
-	cmp.l	#4,$1
-	cmp.l	#$FF,($FFFFFFFF).l
+	cmp.l	#4,$FFFFFFFE
+	cmp.l	#4,$FFFFFFFFFFFE
+	cmp.l	#4,$2
+	cmp.l	#$FF,($FFFFFFFE).l
 	cmp.l	#$FF,label_start.l
-	cmp.l	#$FF,$FFFFFFFF
-	cmp.l	#$FF,$1
-	cmp.l	#$7FFF,($FFFFFFFF).l
+	cmp.l	#$FF,$FFFFFFFE
+	cmp.l	#$FF,$FFFFFFFFFFFE
+	cmp.l	#$FF,$2
+	cmp.l	#$7FFF,($FFFFFFFE).l
 	cmp.l	#$7FFF,label_start.l
-	cmp.l	#$7FFF,$FFFFFFFF
-	cmp.l	#$7FFF,$1
-	cmp.l	#$FFFF,($FFFFFFFF).l
+	cmp.l	#$7FFF,$FFFFFFFE
+	cmp.l	#$7FFF,$FFFFFFFFFFFE
+	cmp.l	#$7FFF,$2
+	cmp.l	#$FFFF,($FFFFFFFE).l
 	cmp.l	#$FFFF,label_start.l
-	cmp.l	#$FFFF,$FFFFFFFF
-	cmp.l	#$FFFF,$1
-	cmp.l	#$FFFFFFFF,($FFFFFFFF).l
+	cmp.l	#$FFFF,$FFFFFFFE
+	cmp.l	#$FFFF,$FFFFFFFFFFFE
+	cmp.l	#$FFFF,$2
+	cmp.l	#$FFFFFFFF,($FFFFFFFE).l
 	cmp.l	#$FFFFFFFF,label_start.l
-	cmp.l	#$FFFFFFFF,$FFFFFFFF
-	cmp.l	#$FFFFFFFF,$1
-	cmp.l	#"WXYZ",($FFFFFFFF).l
+	cmp.l	#$FFFFFFFF,$FFFFFFFE
+	cmp.l	#$FFFFFFFF,$FFFFFFFFFFFE
+	cmp.l	#$FFFFFFFF,$2
+	cmp.l	#"WXYZ",($FFFFFFFE).l
 	cmp.l	#"WXYZ",label_start.l
-	cmp.l	#"WXYZ",$FFFFFFFF
-	cmp.l	#"WXYZ",$1
-	cmp.l	#1+1,($FFFFFFFF).l
+	cmp.l	#"WXYZ",$FFFFFFFE
+	cmp.l	#"WXYZ",$FFFFFFFFFFFE
+	cmp.l	#"WXYZ",$2
+	cmp.l	#1+1,($FFFFFFFE).l
 	cmp.l	#1+1,label_start.l
-	cmp.l	#1+1,$FFFFFFFF
-	cmp.l	#1+1,$1
-	cmp.l	#(3+4),($FFFFFFFF).l
+	cmp.l	#1+1,$FFFFFFFE
+	cmp.l	#1+1,$FFFFFFFFFFFE
+	cmp.l	#1+1,$2
+	cmp.l	#(3+4),($FFFFFFFE).l
 	cmp.l	#(3+4),label_start.l
-	cmp.l	#(3+4),$FFFFFFFF
-	cmp.l	#(3+4),$1
-	cmp.l	#equ_1,($FFFFFFFF).w
-	cmp.l	#equ_1,$1
-	cmp.l	#equ_equ_1,($FFFFFFFF).w
-	cmp.l	#equ_equ_1,$1
-	cmp.l	#equ_1_plus_equ_1,($FFFFFFFF).w
-	cmp.l	#equ_1_plus_equ_1,$1
-	cmp.l	#0,($FFFFFFFF).w
-	cmp.l	#0,$1
-	cmp.l	#4,($FFFFFFFF).w
-	cmp.l	#4,$1
-	cmp.l	#$FF,($FFFFFFFF).w
-	cmp.l	#$FF,$1
-	cmp.l	#$7FFF,($FFFFFFFF).w
-	cmp.l	#$7FFF,$1
-	cmp.l	#$FFFF,($FFFFFFFF).w
-	cmp.l	#$FFFF,$1
-	cmp.l	#$FFFFFFFF,($FFFFFFFF).w
-	cmp.l	#$FFFFFFFF,$1
-	cmp.l	#"WXYZ",($FFFFFFFF).w
-	cmp.l	#"WXYZ",$1
-	cmp.l	#1+1,($FFFFFFFF).w
-	cmp.l	#1+1,$1
-	cmp.l	#(3+4),($FFFFFFFF).w
-	cmp.l	#(3+4),$1
+	cmp.l	#(3+4),$FFFFFFFE
+	cmp.l	#(3+4),$FFFFFFFFFFFE
+	cmp.l	#(3+4),$2
+	cmp.l	#equ_1,($FFFFFFFE).w
+	cmp.l	#equ_1,$2
+	cmp.l	#equ_equ_1,($FFFFFFFE).w
+	cmp.l	#equ_equ_1,$2
+	cmp.l	#equ_1_plus_equ_1,($FFFFFFFE).w
+	cmp.l	#equ_1_plus_equ_1,$2
+	cmp.l	#0,($FFFFFFFE).w
+	cmp.l	#0,$2
+	cmp.l	#4,($FFFFFFFE).w
+	cmp.l	#4,$2
+	cmp.l	#$FF,($FFFFFFFE).w
+	cmp.l	#$FF,$2
+	cmp.l	#$7FFF,($FFFFFFFE).w
+	cmp.l	#$7FFF,$2
+	cmp.l	#$FFFF,($FFFFFFFE).w
+	cmp.l	#$FFFF,$2
+	cmp.l	#$FFFFFFFF,($FFFFFFFE).w
+	cmp.l	#$FFFFFFFF,$2
+	cmp.l	#"WXYZ",($FFFFFFFE).w
+	cmp.l	#"WXYZ",$2
+	cmp.l	#1+1,($FFFFFFFE).w
+	cmp.l	#1+1,$2
+	cmp.l	#(3+4),($FFFFFFFE).w
+	cmp.l	#(3+4),$2
 	cmp.l	#equ_1,$7FFF(a2)
 	cmp.l	#equ_1,$7FFF(a5)
 	cmp.l	#equ_1,-2(sp)
@@ -17497,24 +18206,27 @@ label_start:
 	cmpa.w	-(sp),a2
 	cmpa.w	-(sp),a7
 	cmpa.w	-(sp),sp
-	cmpa.w	($FFFFFFFF).l,a2
-	cmpa.w	($FFFFFFFF).l,a7
-	cmpa.w	($FFFFFFFF).l,sp
+	cmpa.w	($FFFFFFFE).l,a2
+	cmpa.w	($FFFFFFFE).l,a7
+	cmpa.w	($FFFFFFFE).l,sp
 	cmpa.w	label_start.l,a2
 	cmpa.w	label_start.l,a7
 	cmpa.w	label_start.l,sp
-	cmpa.w	$FFFFFFFF,a2
-	cmpa.w	$FFFFFFFF,a7
-	cmpa.w	$FFFFFFFF,sp
-	cmpa.w	$1,a2
-	cmpa.w	$1,a7
-	cmpa.w	$1,sp
-	cmpa.w	($FFFFFFFF).w,a2
-	cmpa.w	($FFFFFFFF).w,a7
-	cmpa.w	($FFFFFFFF).w,sp
-	cmpa.w	$1,a2
-	cmpa.w	$1,a7
-	cmpa.w	$1,sp
+	cmpa.w	$FFFFFFFE,a2
+	cmpa.w	$FFFFFFFE,a7
+	cmpa.w	$FFFFFFFE,sp
+	cmpa.w	$FFFFFFFFFFFE,a2
+	cmpa.w	$FFFFFFFFFFFE,a7
+	cmpa.w	$FFFFFFFFFFFE,sp
+	cmpa.w	$2,a2
+	cmpa.w	$2,a7
+	cmpa.w	$2,sp
+	cmpa.w	($FFFFFFFE).w,a2
+	cmpa.w	($FFFFFFFE).w,a7
+	cmpa.w	($FFFFFFFE).w,sp
+	cmpa.w	$2,a2
+	cmpa.w	$2,a7
+	cmpa.w	$2,sp
 	cmpa.w	a2,a2
 	cmpa.w	a2,a7
 	cmpa.w	a2,sp
@@ -17617,24 +18329,27 @@ label_start:
 	cmpa.l	-(sp),a2
 	cmpa.l	-(sp),a7
 	cmpa.l	-(sp),sp
-	cmpa.l	($FFFFFFFF).l,a2
-	cmpa.l	($FFFFFFFF).l,a7
-	cmpa.l	($FFFFFFFF).l,sp
+	cmpa.l	($FFFFFFFE).l,a2
+	cmpa.l	($FFFFFFFE).l,a7
+	cmpa.l	($FFFFFFFE).l,sp
 	cmpa.l	label_start.l,a2
 	cmpa.l	label_start.l,a7
 	cmpa.l	label_start.l,sp
-	cmpa.l	$FFFFFFFF,a2
-	cmpa.l	$FFFFFFFF,a7
-	cmpa.l	$FFFFFFFF,sp
-	cmpa.l	$1,a2
-	cmpa.l	$1,a7
-	cmpa.l	$1,sp
-	cmpa.l	($FFFFFFFF).w,a2
-	cmpa.l	($FFFFFFFF).w,a7
-	cmpa.l	($FFFFFFFF).w,sp
-	cmpa.l	$1,a2
-	cmpa.l	$1,a7
-	cmpa.l	$1,sp
+	cmpa.l	$FFFFFFFE,a2
+	cmpa.l	$FFFFFFFE,a7
+	cmpa.l	$FFFFFFFE,sp
+	cmpa.l	$FFFFFFFFFFFE,a2
+	cmpa.l	$FFFFFFFFFFFE,a7
+	cmpa.l	$FFFFFFFFFFFE,sp
+	cmpa.l	$2,a2
+	cmpa.l	$2,a7
+	cmpa.l	$2,sp
+	cmpa.l	($FFFFFFFE).w,a2
+	cmpa.l	($FFFFFFFE).w,a7
+	cmpa.l	($FFFFFFFE).w,sp
+	cmpa.l	$2,a2
+	cmpa.l	$2,a7
+	cmpa.l	$2,sp
 	cmpa.l	a2,a2
 	cmpa.l	a2,a7
 	cmpa.l	a2,sp
@@ -17746,18 +18461,20 @@ label_start:
 	mulu.w	-(a5),d5
 	mulu.w	-(sp),d2
 	mulu.w	-(sp),d5
-	mulu.w	($FFFFFFFF).l,d2
-	mulu.w	($FFFFFFFF).l,d5
+	mulu.w	($FFFFFFFE).l,d2
+	mulu.w	($FFFFFFFE).l,d5
 	mulu.w	label_start.l,d2
 	mulu.w	label_start.l,d5
-	mulu.w	$FFFFFFFF,d2
-	mulu.w	$FFFFFFFF,d5
-	mulu.w	$1,d2
-	mulu.w	$1,d5
-	mulu.w	($FFFFFFFF).w,d2
-	mulu.w	($FFFFFFFF).w,d5
-	mulu.w	$1,d2
-	mulu.w	$1,d5
+	mulu.w	$FFFFFFFE,d2
+	mulu.w	$FFFFFFFE,d5
+	mulu.w	$FFFFFFFFFFFE,d2
+	mulu.w	$FFFFFFFFFFFE,d5
+	mulu.w	$2,d2
+	mulu.w	$2,d5
+	mulu.w	($FFFFFFFE).w,d2
+	mulu.w	($FFFFFFFE).w,d5
+	mulu.w	$2,d2
+	mulu.w	$2,d5
 	mulu.w	$7FFF(a2),d2
 	mulu.w	$7FFF(a2),d5
 	mulu.w	$7FFF(a5),d2
@@ -17820,18 +18537,20 @@ label_start:
 	mulu	-(a5),d5
 	mulu	-(sp),d2
 	mulu	-(sp),d5
-	mulu	($FFFFFFFF).l,d2
-	mulu	($FFFFFFFF).l,d5
+	mulu	($FFFFFFFE).l,d2
+	mulu	($FFFFFFFE).l,d5
 	mulu	label_start.l,d2
 	mulu	label_start.l,d5
-	mulu	$FFFFFFFF,d2
-	mulu	$FFFFFFFF,d5
-	mulu	$1,d2
-	mulu	$1,d5
-	mulu	($FFFFFFFF).w,d2
-	mulu	($FFFFFFFF).w,d5
-	mulu	$1,d2
-	mulu	$1,d5
+	mulu	$FFFFFFFE,d2
+	mulu	$FFFFFFFE,d5
+	mulu	$FFFFFFFFFFFE,d2
+	mulu	$FFFFFFFFFFFE,d5
+	mulu	$2,d2
+	mulu	$2,d5
+	mulu	($FFFFFFFE).w,d2
+	mulu	($FFFFFFFE).w,d5
+	mulu	$2,d2
+	mulu	$2,d5
 	mulu	$7FFF(a2),d2
 	mulu	$7FFF(a2),d5
 	mulu	$7FFF(a5),d2
@@ -17895,18 +18614,20 @@ label_start:
 	muls.w	-(a5),d5
 	muls.w	-(sp),d2
 	muls.w	-(sp),d5
-	muls.w	($FFFFFFFF).l,d2
-	muls.w	($FFFFFFFF).l,d5
+	muls.w	($FFFFFFFE).l,d2
+	muls.w	($FFFFFFFE).l,d5
 	muls.w	label_start.l,d2
 	muls.w	label_start.l,d5
-	muls.w	$FFFFFFFF,d2
-	muls.w	$FFFFFFFF,d5
-	muls.w	$1,d2
-	muls.w	$1,d5
-	muls.w	($FFFFFFFF).w,d2
-	muls.w	($FFFFFFFF).w,d5
-	muls.w	$1,d2
-	muls.w	$1,d5
+	muls.w	$FFFFFFFE,d2
+	muls.w	$FFFFFFFE,d5
+	muls.w	$FFFFFFFFFFFE,d2
+	muls.w	$FFFFFFFFFFFE,d5
+	muls.w	$2,d2
+	muls.w	$2,d5
+	muls.w	($FFFFFFFE).w,d2
+	muls.w	($FFFFFFFE).w,d5
+	muls.w	$2,d2
+	muls.w	$2,d5
 	muls.w	$7FFF(a2),d2
 	muls.w	$7FFF(a2),d5
 	muls.w	$7FFF(a5),d2
@@ -17969,18 +18690,20 @@ label_start:
 	muls	-(a5),d5
 	muls	-(sp),d2
 	muls	-(sp),d5
-	muls	($FFFFFFFF).l,d2
-	muls	($FFFFFFFF).l,d5
+	muls	($FFFFFFFE).l,d2
+	muls	($FFFFFFFE).l,d5
 	muls	label_start.l,d2
 	muls	label_start.l,d5
-	muls	$FFFFFFFF,d2
-	muls	$FFFFFFFF,d5
-	muls	$1,d2
-	muls	$1,d5
-	muls	($FFFFFFFF).w,d2
-	muls	($FFFFFFFF).w,d5
-	muls	$1,d2
-	muls	$1,d5
+	muls	$FFFFFFFE,d2
+	muls	$FFFFFFFE,d5
+	muls	$FFFFFFFFFFFE,d2
+	muls	$FFFFFFFFFFFE,d5
+	muls	$2,d2
+	muls	$2,d5
+	muls	($FFFFFFFE).w,d2
+	muls	($FFFFFFFE).w,d5
+	muls	$2,d2
+	muls	$2,d5
 	muls	$7FFF(a2),d2
 	muls	$7FFF(a2),d5
 	muls	$7FFF(a5),d2
@@ -18102,24 +18825,27 @@ label_start:
 	adda.w	-(sp),a2
 	adda.w	-(sp),a7
 	adda.w	-(sp),sp
-	adda.w	($FFFFFFFF).l,a2
-	adda.w	($FFFFFFFF).l,a7
-	adda.w	($FFFFFFFF).l,sp
+	adda.w	($FFFFFFFE).l,a2
+	adda.w	($FFFFFFFE).l,a7
+	adda.w	($FFFFFFFE).l,sp
 	adda.w	label_start.l,a2
 	adda.w	label_start.l,a7
 	adda.w	label_start.l,sp
-	adda.w	$FFFFFFFF,a2
-	adda.w	$FFFFFFFF,a7
-	adda.w	$FFFFFFFF,sp
-	adda.w	$1,a2
-	adda.w	$1,a7
-	adda.w	$1,sp
-	adda.w	($FFFFFFFF).w,a2
-	adda.w	($FFFFFFFF).w,a7
-	adda.w	($FFFFFFFF).w,sp
-	adda.w	$1,a2
-	adda.w	$1,a7
-	adda.w	$1,sp
+	adda.w	$FFFFFFFE,a2
+	adda.w	$FFFFFFFE,a7
+	adda.w	$FFFFFFFE,sp
+	adda.w	$FFFFFFFFFFFE,a2
+	adda.w	$FFFFFFFFFFFE,a7
+	adda.w	$FFFFFFFFFFFE,sp
+	adda.w	$2,a2
+	adda.w	$2,a7
+	adda.w	$2,sp
+	adda.w	($FFFFFFFE).w,a2
+	adda.w	($FFFFFFFE).w,a7
+	adda.w	($FFFFFFFE).w,sp
+	adda.w	$2,a2
+	adda.w	$2,a7
+	adda.w	$2,sp
 	adda.w	a2,a2
 	adda.w	a2,a7
 	adda.w	a2,sp
@@ -18222,24 +18948,27 @@ label_start:
 	adda.l	-(sp),a2
 	adda.l	-(sp),a7
 	adda.l	-(sp),sp
-	adda.l	($FFFFFFFF).l,a2
-	adda.l	($FFFFFFFF).l,a7
-	adda.l	($FFFFFFFF).l,sp
+	adda.l	($FFFFFFFE).l,a2
+	adda.l	($FFFFFFFE).l,a7
+	adda.l	($FFFFFFFE).l,sp
 	adda.l	label_start.l,a2
 	adda.l	label_start.l,a7
 	adda.l	label_start.l,sp
-	adda.l	$FFFFFFFF,a2
-	adda.l	$FFFFFFFF,a7
-	adda.l	$FFFFFFFF,sp
-	adda.l	$1,a2
-	adda.l	$1,a7
-	adda.l	$1,sp
-	adda.l	($FFFFFFFF).w,a2
-	adda.l	($FFFFFFFF).w,a7
-	adda.l	($FFFFFFFF).w,sp
-	adda.l	$1,a2
-	adda.l	$1,a7
-	adda.l	$1,sp
+	adda.l	$FFFFFFFE,a2
+	adda.l	$FFFFFFFE,a7
+	adda.l	$FFFFFFFE,sp
+	adda.l	$FFFFFFFFFFFE,a2
+	adda.l	$FFFFFFFFFFFE,a7
+	adda.l	$FFFFFFFFFFFE,sp
+	adda.l	$2,a2
+	adda.l	$2,a7
+	adda.l	$2,sp
+	adda.l	($FFFFFFFE).w,a2
+	adda.l	($FFFFFFFE).w,a7
+	adda.l	($FFFFFFFE).w,sp
+	adda.l	$2,a2
+	adda.l	$2,a7
+	adda.l	$2,sp
 	adda.l	a2,a2
 	adda.l	a2,a7
 	adda.l	a2,sp
@@ -18368,12 +19097,13 @@ label_start:
 	asl.w	-(a2)
 	asl.w	-(a5)
 	asl.w	-(sp)
-	asl.w	($FFFFFFFF).l
+	asl.w	($FFFFFFFE).l
 	asl.w	label_start.l
-	asl.w	$FFFFFFFF
-	asl.w	$1
-	asl.w	($FFFFFFFF).w
-	asl.w	$1
+	asl.w	$FFFFFFFE
+	asl.w	$FFFFFFFFFFFE
+	asl.w	$2
+	asl.w	($FFFFFFFE).w
+	asl.w	$2
 	asl.w	$7FFF(a2)
 	asl.w	$7FFF(a5)
 	asl.w	-2(sp)
@@ -18391,12 +19121,13 @@ label_start:
 	asl	-(a2)
 	asl	-(a5)
 	asl	-(sp)
-	asl	($FFFFFFFF).l
+	asl	($FFFFFFFE).l
 	asl	label_start.l
-	asl	$FFFFFFFF
-	asl	$1
-	asl	($FFFFFFFF).w
-	asl	$1
+	asl	$FFFFFFFE
+	asl	$FFFFFFFFFFFE
+	asl	$2
+	asl	($FFFFFFFE).w
+	asl	$2
 	asl	$7FFF(a2)
 	asl	$7FFF(a5)
 	asl	-2(sp)
@@ -18439,12 +19170,13 @@ label_start:
 	asr.w	-(a2)
 	asr.w	-(a5)
 	asr.w	-(sp)
-	asr.w	($FFFFFFFF).l
+	asr.w	($FFFFFFFE).l
 	asr.w	label_start.l
-	asr.w	$FFFFFFFF
-	asr.w	$1
-	asr.w	($FFFFFFFF).w
-	asr.w	$1
+	asr.w	$FFFFFFFE
+	asr.w	$FFFFFFFFFFFE
+	asr.w	$2
+	asr.w	($FFFFFFFE).w
+	asr.w	$2
 	asr.w	$7FFF(a2)
 	asr.w	$7FFF(a5)
 	asr.w	-2(sp)
@@ -18462,12 +19194,13 @@ label_start:
 	asr	-(a2)
 	asr	-(a5)
 	asr	-(sp)
-	asr	($FFFFFFFF).l
+	asr	($FFFFFFFE).l
 	asr	label_start.l
-	asr	$FFFFFFFF
-	asr	$1
-	asr	($FFFFFFFF).w
-	asr	$1
+	asr	$FFFFFFFE
+	asr	$FFFFFFFFFFFE
+	asr	$2
+	asr	($FFFFFFFE).w
+	asr	$2
 	asr	$7FFF(a2)
 	asr	$7FFF(a5)
 	asr	-2(sp)
@@ -18510,12 +19243,13 @@ label_start:
 	lsl.w	-(a2)
 	lsl.w	-(a5)
 	lsl.w	-(sp)
-	lsl.w	($FFFFFFFF).l
+	lsl.w	($FFFFFFFE).l
 	lsl.w	label_start.l
-	lsl.w	$FFFFFFFF
-	lsl.w	$1
-	lsl.w	($FFFFFFFF).w
-	lsl.w	$1
+	lsl.w	$FFFFFFFE
+	lsl.w	$FFFFFFFFFFFE
+	lsl.w	$2
+	lsl.w	($FFFFFFFE).w
+	lsl.w	$2
 	lsl.w	$7FFF(a2)
 	lsl.w	$7FFF(a5)
 	lsl.w	-2(sp)
@@ -18533,12 +19267,13 @@ label_start:
 	lsl	-(a2)
 	lsl	-(a5)
 	lsl	-(sp)
-	lsl	($FFFFFFFF).l
+	lsl	($FFFFFFFE).l
 	lsl	label_start.l
-	lsl	$FFFFFFFF
-	lsl	$1
-	lsl	($FFFFFFFF).w
-	lsl	$1
+	lsl	$FFFFFFFE
+	lsl	$FFFFFFFFFFFE
+	lsl	$2
+	lsl	($FFFFFFFE).w
+	lsl	$2
 	lsl	$7FFF(a2)
 	lsl	$7FFF(a5)
 	lsl	-2(sp)
@@ -18581,12 +19316,13 @@ label_start:
 	lsr.w	-(a2)
 	lsr.w	-(a5)
 	lsr.w	-(sp)
-	lsr.w	($FFFFFFFF).l
+	lsr.w	($FFFFFFFE).l
 	lsr.w	label_start.l
-	lsr.w	$FFFFFFFF
-	lsr.w	$1
-	lsr.w	($FFFFFFFF).w
-	lsr.w	$1
+	lsr.w	$FFFFFFFE
+	lsr.w	$FFFFFFFFFFFE
+	lsr.w	$2
+	lsr.w	($FFFFFFFE).w
+	lsr.w	$2
 	lsr.w	$7FFF(a2)
 	lsr.w	$7FFF(a5)
 	lsr.w	-2(sp)
@@ -18604,12 +19340,13 @@ label_start:
 	lsr	-(a2)
 	lsr	-(a5)
 	lsr	-(sp)
-	lsr	($FFFFFFFF).l
+	lsr	($FFFFFFFE).l
 	lsr	label_start.l
-	lsr	$FFFFFFFF
-	lsr	$1
-	lsr	($FFFFFFFF).w
-	lsr	$1
+	lsr	$FFFFFFFE
+	lsr	$FFFFFFFFFFFE
+	lsr	$2
+	lsr	($FFFFFFFE).w
+	lsr	$2
 	lsr	$7FFF(a2)
 	lsr	$7FFF(a5)
 	lsr	-2(sp)
@@ -18652,12 +19389,13 @@ label_start:
 	roxl.w	-(a2)
 	roxl.w	-(a5)
 	roxl.w	-(sp)
-	roxl.w	($FFFFFFFF).l
+	roxl.w	($FFFFFFFE).l
 	roxl.w	label_start.l
-	roxl.w	$FFFFFFFF
-	roxl.w	$1
-	roxl.w	($FFFFFFFF).w
-	roxl.w	$1
+	roxl.w	$FFFFFFFE
+	roxl.w	$FFFFFFFFFFFE
+	roxl.w	$2
+	roxl.w	($FFFFFFFE).w
+	roxl.w	$2
 	roxl.w	$7FFF(a2)
 	roxl.w	$7FFF(a5)
 	roxl.w	-2(sp)
@@ -18675,12 +19413,13 @@ label_start:
 	roxl	-(a2)
 	roxl	-(a5)
 	roxl	-(sp)
-	roxl	($FFFFFFFF).l
+	roxl	($FFFFFFFE).l
 	roxl	label_start.l
-	roxl	$FFFFFFFF
-	roxl	$1
-	roxl	($FFFFFFFF).w
-	roxl	$1
+	roxl	$FFFFFFFE
+	roxl	$FFFFFFFFFFFE
+	roxl	$2
+	roxl	($FFFFFFFE).w
+	roxl	$2
 	roxl	$7FFF(a2)
 	roxl	$7FFF(a5)
 	roxl	-2(sp)
@@ -18723,12 +19462,13 @@ label_start:
 	roxr.w	-(a2)
 	roxr.w	-(a5)
 	roxr.w	-(sp)
-	roxr.w	($FFFFFFFF).l
+	roxr.w	($FFFFFFFE).l
 	roxr.w	label_start.l
-	roxr.w	$FFFFFFFF
-	roxr.w	$1
-	roxr.w	($FFFFFFFF).w
-	roxr.w	$1
+	roxr.w	$FFFFFFFE
+	roxr.w	$FFFFFFFFFFFE
+	roxr.w	$2
+	roxr.w	($FFFFFFFE).w
+	roxr.w	$2
 	roxr.w	$7FFF(a2)
 	roxr.w	$7FFF(a5)
 	roxr.w	-2(sp)
@@ -18746,12 +19486,13 @@ label_start:
 	roxr	-(a2)
 	roxr	-(a5)
 	roxr	-(sp)
-	roxr	($FFFFFFFF).l
+	roxr	($FFFFFFFE).l
 	roxr	label_start.l
-	roxr	$FFFFFFFF
-	roxr	$1
-	roxr	($FFFFFFFF).w
-	roxr	$1
+	roxr	$FFFFFFFE
+	roxr	$FFFFFFFFFFFE
+	roxr	$2
+	roxr	($FFFFFFFE).w
+	roxr	$2
 	roxr	$7FFF(a2)
 	roxr	$7FFF(a5)
 	roxr	-2(sp)
@@ -18794,12 +19535,13 @@ label_start:
 	rol.w	-(a2)
 	rol.w	-(a5)
 	rol.w	-(sp)
-	rol.w	($FFFFFFFF).l
+	rol.w	($FFFFFFFE).l
 	rol.w	label_start.l
-	rol.w	$FFFFFFFF
-	rol.w	$1
-	rol.w	($FFFFFFFF).w
-	rol.w	$1
+	rol.w	$FFFFFFFE
+	rol.w	$FFFFFFFFFFFE
+	rol.w	$2
+	rol.w	($FFFFFFFE).w
+	rol.w	$2
 	rol.w	$7FFF(a2)
 	rol.w	$7FFF(a5)
 	rol.w	-2(sp)
@@ -18817,12 +19559,13 @@ label_start:
 	rol	-(a2)
 	rol	-(a5)
 	rol	-(sp)
-	rol	($FFFFFFFF).l
+	rol	($FFFFFFFE).l
 	rol	label_start.l
-	rol	$FFFFFFFF
-	rol	$1
-	rol	($FFFFFFFF).w
-	rol	$1
+	rol	$FFFFFFFE
+	rol	$FFFFFFFFFFFE
+	rol	$2
+	rol	($FFFFFFFE).w
+	rol	$2
 	rol	$7FFF(a2)
 	rol	$7FFF(a5)
 	rol	-2(sp)
@@ -18865,12 +19608,13 @@ label_start:
 	ror.w	-(a2)
 	ror.w	-(a5)
 	ror.w	-(sp)
-	ror.w	($FFFFFFFF).l
+	ror.w	($FFFFFFFE).l
 	ror.w	label_start.l
-	ror.w	$FFFFFFFF
-	ror.w	$1
-	ror.w	($FFFFFFFF).w
-	ror.w	$1
+	ror.w	$FFFFFFFE
+	ror.w	$FFFFFFFFFFFE
+	ror.w	$2
+	ror.w	($FFFFFFFE).w
+	ror.w	$2
 	ror.w	$7FFF(a2)
 	ror.w	$7FFF(a5)
 	ror.w	-2(sp)
@@ -18888,12 +19632,13 @@ label_start:
 	ror	-(a2)
 	ror	-(a5)
 	ror	-(sp)
-	ror	($FFFFFFFF).l
+	ror	($FFFFFFFE).l
 	ror	label_start.l
-	ror	$FFFFFFFF
-	ror	$1
-	ror	($FFFFFFFF).w
-	ror	$1
+	ror	$FFFFFFFE
+	ror	$FFFFFFFFFFFE
+	ror	$2
+	ror	($FFFFFFFE).w
+	ror	$2
 	ror	$7FFF(a2)
 	ror	$7FFF(a5)
 	ror	-2(sp)

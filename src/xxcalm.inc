@@ -122,6 +122,17 @@ macro calminstruction?.tokenize? val*
     asm val tokenize val
 end macro
 
+macro calminstruction?.warn? line&
+    local line_str
+    compute line_str, __line__
+    arrange line_str, line_str
+    stringify line_str
+    display __file__ bappend ' [' bappend line_str bappend ']:'
+    display 13 bappend 10 bappend 9
+    display 'Warning: ' bappend line
+    display 13 bappend 10
+end macro
+
 macro calminstruction?.nice_err? line&
     err 13 bappend 10 bappend 9 bappend line
     exit ; also auto-exit since I think that's what one usually wants.

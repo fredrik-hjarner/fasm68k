@@ -289,9 +289,8 @@ iterate <size,  size_bits>, \
             ; Show error message if imm
                 match =imm, @op1.type_token
                 jno skip_error
-                display '`eor` does not allow the first operand to' \
-                    bappend ' be an immediate. Will use `eori` instead.' \
-                    bappend 13 bappend 10
+                warn '`eor` does not allow the first operand to' \
+                    bappend ' be an immediate. Will use `eori` instead.'
                 
                 ; local cmd
                 ; arrange cmd, =eor=i.=size operands
@@ -318,9 +317,8 @@ iterate <size,  size_bits>, \
             ; Show error message if imm ; TODO: Move comment. better comments.
                 match =an, @op2.type_token
                 jno skip_an
-                display '`cmp` does not allow the second operand to be' \
-                    bappend ' an address register. Will use `cmpa` instead.' \
-                    bappend 13 bappend 10
+                warn '`cmp` does not allow the second operand to be' \
+                    bappend ' an address register. Will use `cmpa` instead.'
                 ; local cmd
                 ; arrange cmd, =cmp=a.=size operands
                 ; stringify cmd
@@ -338,9 +336,8 @@ iterate <size,  size_bits>, \
                     ~is_compat_vasm_cmp_bug1
 
                 jno skip_imm
-                display '`cmp` does not allow the first operand to' \
-                    bappend ' be an immediate. Will use `cmpi` instead.' \
-                    bappend 13 bappend 10
+                warn '`cmp` does not allow the first operand to' \
+                    bappend ' be an immediate. Will use `cmpi` instead.'
                 
                 ; local cmd
                 ; arrange cmd, =cmp=i.=size operands
@@ -645,11 +642,11 @@ iterate <instr,  first_byte>, \
                     local wrong, correct
                     arr_str wrong, `=instr`
                     arr_str correct, `=instr=i`
-                    display wrong \
+                    warn wrong \
                         bappend ' does not allow the first operand to' \
                         bappend ' be an immediate. Will use ' \
                         bappend correct \
-                        bappend ' instead.' bappend 13 bappend 10
+                        bappend ' instead.'
 
                     ; local cmd
                     ; arrange cmd, =instr=i.=size operands

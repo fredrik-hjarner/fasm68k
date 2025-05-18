@@ -45,7 +45,7 @@ end macro
 macro calminstruction.assert_word_aligned? err_msg:"Instruction placed on an odd address! Instructions are required to be word-aligned."
         check ($ mod 2) = 0
         jyes done
-        display err_msg bappend 13 bappend 10
+        warn err_msg
     done:
 end macro
 

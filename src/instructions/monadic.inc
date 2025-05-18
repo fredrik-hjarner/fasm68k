@@ -326,15 +326,6 @@ end iterate ; <size, dot_size>
 calminstruction trap? operands&
         xcall m68k.parse_and_validate_instruction, <trap>, operands, <_>
 
-        match =imm, @op1.type_token
-        jyes skip_error
-        ; TODO: I should prolly have a better way to display error messages
-        ; Some more general error handling stuff.
-        display @op1.type bappend 13 bappend 10
-        display @op1.type
-        err 'trap only accepts immediate values'
-    skip_error:
-
         assert_min @op1.imm, 0
         assert_max @op1.imm, 15
 

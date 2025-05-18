@@ -1,9 +1,7 @@
-* Implement `assert_word_aligned` and use it in every instruction.
 * Make macro that "marks" all labels (label stuff interceptor thingie).
   I also need to mark labels create with the `label` instruction.
 * I've seen d0.b/d0.w/d0.l used in some code but how does that work?
   I probaly should add support for that if it makes sense.
-* Make sure all instructions are case-insensitive.
 * Hm, could I do wrappers for all instructions that log the name and the
   parameters, then executes the instruction, then logs @op1/@op2 values??
   because that's be neat so I can easily disable/enable logging.
@@ -83,6 +81,7 @@
       BUTTON_UP=%00000001
       ESF_FM1 equ %00
             should be quite simple to implement really.
+            No can't do that for the `equ` case.
 * Does my code handle immediate values correctly I mean with the # prefix?
       Just double-check this.
 * Find out exactly which instructions can have the .s size suffix!!
