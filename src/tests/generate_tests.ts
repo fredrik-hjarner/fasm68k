@@ -200,9 +200,24 @@ const examples: Record<OperandType, string[]> = {
     "#$7F",
     '#-1',
   ],
-  "imm16": ["#0", "#4", "#$FF", '#"XY"', "#$2700", "#$7FFF",  "#$FFFF"],
+  "imm16": [
+    "#0",
+    "#4",
+    "#$FF",
+    '#"XY"',
+    "#$2700",
+    "#$FFFF",
+    "#-1",
+  ],
   // TODO: singed numbers
-  "imm16s": ["#0", "#4", "#$FF", "#$2700", "#$7FFF",  "#$FFFF"],
+  "imm16s": [
+    "#0",
+    "#4",
+    "#$FF",
+    "#$2700",
+    "#$FFFF",
+    "#-1"
+  ],
   "label": [
     "@",
     "@-2",
@@ -215,13 +230,13 @@ const examples: Record<OperandType, string[]> = {
   "sr": ["sr"],
   "usp": ["usp"],
   "dc.b": [
-    "0, 5",
+    "0, 5, -1",
     "$0A, $FF",
     "'string'",
     "1,1,10,12"
   ],
-  "dc.w": ["0", "$FFFF", "1,1,1"],
-  "dc.l": ["0", "$FFFFFFFF", "1,1,1"]
+  "dc.w": ["0", "$FFFF", "1,1,1,-1"],
+  "dc.l": ["0", "$FFFFFFFF", "1,1,1,-1"]
 };
 
 // Helper function to get example values
