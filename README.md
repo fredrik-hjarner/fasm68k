@@ -64,6 +64,15 @@ TODO
 </blockquote>
 </details>
 
+<details>
+<summary>Mac</summary>
+<blockquote>
+Unfortunately you're out of luck. fasmg only runs on x86 processors (since
+it is written in assembly), so you would need to run a virtual machine with
+either Windows or Linux then follow the Linux or Windows inbstructions.
+</blockquote>
+</details>
+
 ## Directives and keywords
 
 Beyond the standard fasmg directives and keywords, fasm68k adds the following
