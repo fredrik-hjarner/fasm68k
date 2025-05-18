@@ -230,13 +230,13 @@ const examples: Record<OperandType, string[]> = {
   "sr": ["sr"],
   "usp": ["usp"],
   "dc.b": [
-    "0, 5, -1",
+    "0, 5, -1, 1",
     "$0A, $FF",
     "'string'",
     "1,1,10,12"
   ],
-  "dc.w": ["0", "$FFFF", "1,1,1,-1"],
-  "dc.l": ["0", "$FFFFFFFF", "1,1,1,-1"]
+  "dc.w": ["0", "$FFFF", "1,1,-1"],
+  "dc.l": ["0", "$FFFFFFFF", "1,1,-1"]
 };
 
 // Helper function to get example values

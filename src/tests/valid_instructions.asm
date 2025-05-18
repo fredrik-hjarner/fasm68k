@@ -9,16 +9,16 @@ equ_1_plus_equ_1 equ equ_1+equ_1
 
 label_start:
 
-	dc.b	0, 5, -1
+	dc.b	0, 5, -1, 1
 	dc.b	$0A, $FF
 	dc.b	'string'
 	dc.b	1,1,10,12
 	dc.w	0
 	dc.w	$FFFF
-	dc.w	1,1,1,-1
+	dc.w	1,1,-1
 	dc.l	0
 	dc.l	$FFFFFFFF
-	dc.l	1,1,1,-1
+	dc.l	1,1,-1
 
 	ori.b	#0,ccr
 	ori.b	#$FF,ccr

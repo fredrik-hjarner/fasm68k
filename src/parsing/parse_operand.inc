@@ -187,7 +187,6 @@ iterate op, @op1,@op2
                     jyes skip_invalid_size_err
                     err 'Invalid size'
                 skip_invalid_size_err:
-                    compute tmp, tmp
                     ; So yea, how ext_bytes is set for immediate values is a bit
                     ; complicated...
                     compute ext_bytes, tmp
