@@ -72,7 +72,7 @@ ones:
 | Directive/<br>keyword  | Description                                   | Also present in<br>these assemblers |
 |------------------------|-----------------------------------------------|----------------------|
 | `__rs`                 | Current value of RS counter                   | asm68k               |
-| `rsset`                | Word-align `__rs` address.                    | asm68k               |
+| `rsset`                | Set `__rs` address.                           | asm68k               |
 | `even`                 | Word-align the current address.               | asm68k, vasm         |
 | `rseven`               | Word-align the `__rs` address.                |                      |
 | `rs.b`                 | Reserve a byte of space.                      | asm68k               |
