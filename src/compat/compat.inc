@@ -46,54 +46,64 @@ end macro
 ;     output: (((l1) and $3FFF) shl 16) + (((l1) and $C000) shr 14)
 ; TODO: Is it too slow when it's a `macro calminstruction?.` construction?
 macro calminstruction?.massage_expression? expr*
+    ; TODO: All these `new` does not look too great...
+    ;       Try to get rid of them.
+    new @next_shl
+    new @done_shl
+    new @next_shr
+    new @done_shr
+    new @next_and
+    new @done_and
+    new @next_or
+    new @done_or
+    new @skip_binary_percent_prefix
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Transform operators                                                    ;;
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
         check m68k.settings.compat_operators = 1
-        jno skip_operators
+        @ jno @done_or ; done_or is the last
 
     ;; Replace << with shl ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    next_shl:
+    @ @next_shl:
         match a? =<=< b?, expr
-        jno done_shl
+        @ jno @done_shl
         arrange expr, a =shl b
-        jump next_shl
-    done_shl:
+        @ jump @next_shl
+    @ @done_shl:
 
     ;; Replace >> with shr ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    next_shr:
+    @ @next_shr:
         match a? =>=> b?, expr
-        jno done_shr
+        @ jno @done_shr
         arrange expr, a =shr b
-        jump next_shr
-    done_shr:
+        @ jump @next_shr
+    @ @done_shr:
 
     ;; Replace & with and ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    next_and:
+    @ @next_and:
         match a? =& b?, expr
-        jno done_and
+        @ jno @done_and
         arrange expr, a =and b
-        jump next_and
-    done_and:
+        @ jump @next_and
+    @ @done_and:
 
     ;; Replace | with or ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    next_or:
+    @ @next_or:
         match a? =| b?, expr
-        jno done_or
+        @ jno @done_or
         arrange expr, a =or b
-        jump next_or
-    done_or:
-    skip_operators:
+        @ jump @next_or
+    @ @done_or:
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Replace %0 with 0b                                                    ;;
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
         check m68k.settings.compat_binary_percent_prefix = 1
-        jno skip_binary_percent_prefix
+        @ jno @skip_binary_percent_prefix
         binary_percent_prefix expr
-    skip_binary_percent_prefix:
+    @ @skip_binary_percent_prefix:
 end macro
 
 ; TODO: Comment/explain.
@@ -104,6 +114,12 @@ virtual at 0
 end virtual
 ; TODO: Comment/explain.
 macro calminstruction?.binary_percent_prefix? __expr*
+        ; TODO: All these `new` does not look too great...
+        ;       Try to get rid of them.
+        new @next_character
+        new @no
+        new @done_bin
+
         local __tmp
         local __expr_str
         local res
@@ -122,23 +138,23 @@ macro calminstruction?.binary_percent_prefix? __expr*
         compute length, lengthof __expr_str
         check length < 2
     ; length_at_least_two_characters:
-        jyes no
+        @ jyes @no
         store test_area:0, length, __expr_str
         load __tmp, test_area:0, 1
         check __tmp = '%'
-        jno no
+        @ jno @no
     ; has_percent_prefix:
         ; display "has_percent_prefix" bappend 10
         compute i, 1
-    next_character:
+    @ @next_character:
         load __tmp, test_area:i, 1
         check __tmp = '0' | __tmp = '1'
         ; display 'dawdadawd' bappend 10
-        jno no
+        @ jno @no
         compute bin_num, bin_num + (((+__tmp) - (+'0')) shl (length - i-1))
         compute i, i+1
         check i >= length
-        jno next_character
+        @ jno @next_character
     ; yes:
         ; display 'yes start' bappend 10
         ; load __tmp, test_area:1, length-1
@@ -168,10 +184,10 @@ macro calminstruction?.binary_percent_prefix? __expr*
         ; stringify log
         ; display 'yes' bappend 10
         ; display '__tmp: ' bappend log bappend 10
-        jump done_bin
-    no:
+        @ jump @done_bin
+    @ @no:
         ; display "no" bappend 10
-    done_bin:
+    @ @done_bin:
 end macro
 
 ; Replace @ with $ since fasmg uses $ for location counter and some m68k
@@ -203,6 +219,7 @@ if m68k.settings.compat_colonless_labels = 1
     ;       btw labeled macroinstructions can't catch `equ`s
     struc (name) ? tail&
             match , tail 
+                    ;  display 'label:', `name, ' ', `tail, 10
                     .:
             else 
                     . tail

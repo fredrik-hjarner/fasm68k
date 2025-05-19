@@ -202,6 +202,7 @@ iterate op, @op1,@op2
                     match maybe_abs.=W, operand
                     jno check_if_abs_l
                 has_w_suffix:
+                    massage_expression maybe_abs
                     check maybe_abs relativeto 0
                     jno check_if_abs_l
                     ; TODO:  also assert that the address is word-aligned
@@ -228,6 +229,7 @@ iterate op, @op1,@op2
                     match maybe_abs.=L, operand
                     jno check_if_dn
                 has_l_suffix:
+                    massage_expression maybe_abs
                     check maybe_abs relativeto 0
                     jno check_if_dn
                     ; TODO: also assert that the address is word-aligned
@@ -421,6 +423,7 @@ iterate op, @op1,@op2
             ; I think this case will cover labels because I don't think labels
             ;     usually have a size suffix... might need to double check this.
             check_abs_without_size_suffix:
+                    massage_expression operand
                     ; TODO: Possibly refactor this. Reason I check for absolute
                     ;       addressing at two places is because the 1st place
                     ;       checks for `($1).w `($1).l` while and here I check
