@@ -44,3 +44,14 @@ yep that's all of them.
 - seems that sometimes nested namespaces can make code slower.
 - 3rd argument to match makes the code slower
     `match x, x, ()`
+
+## Some helpful regular expressions for converting
+
+### For macros
+
+`([a-zA-z0-9_]+):([\t ]*)(macro)`
+
+->
+
+`$3$2$1`
+

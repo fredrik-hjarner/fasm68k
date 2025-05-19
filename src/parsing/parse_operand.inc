@@ -10,6 +10,7 @@ namespace m68k.instr_size_to_imm_size
     define b? 2
     define w? 2
     define l? 4
+    define _? 2 ; TODO: This is not well-thought out. Rethink size related stuff
 end namespace
 
 ; Define variable/namespace where parse_operand will store its results,

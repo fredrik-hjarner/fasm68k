@@ -11193,6 +11193,46 @@ label_start:
 	move.w	#$2700,ccr
 	move.w	#$FFFF,ccr
 	move.w	#-1,ccr
+	move	(a2),sr
+	move	(a5),sr
+	move	(a1)+,sr
+	move	(a5)+,sr
+	move	-(a2),sr
+	move	-(a5),sr
+	move	-(sp),sr
+	move	($FFFFFFFE).l,sr
+	move	label_start.l,sr
+	move	$FFFFFFFE,sr
+	move	$FFFFFFFFFFFE,sr
+	move	$2,sr
+	move	-2,sr
+	move	($FFFFFFFE).w,sr
+	move	$2,sr
+	move	-2,sr
+	move	$7FFF(a2),sr
+	move	$7FFF(a5),sr
+	move	-2(sp),sr
+	move	$7F(a2,d5.w),sr
+	move	$7F(a5,d2.w),sr
+	move	$0F(a5,d2.l),sr
+	move	$1+1(a5,d2.l),sr
+	move	-2(a5,d2.l),sr
+	move	(a0,d1.w),sr
+	move	(a1,d6),sr
+	move	@(pc),sr
+	move	@-2(pc),sr
+	move	@(pc,d5.w),sr
+	move	@-2(pc,d5.w),sr
+	move	@-2(pc,d1.l),sr
+	move	d2,sr
+	move	d5,sr
+	move	#0,sr
+	move	#4,sr
+	move	#$FF,sr
+	move	#"XY",sr
+	move	#$2700,sr
+	move	#$FFFF,sr
+	move	#-1,sr
 	move.w	(a2),sr
 	move.w	(a5),sr
 	move.w	(a1)+,sr

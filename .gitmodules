@@ -14,3 +14,7 @@
 	path = examples/speedrun-tower_fasm68k
 	url = git@github.com:fredrik-hjarner/speedrun-tower_fasm68k.git
 	branch = main
+[submodule "examples/s1disasm_fasm68k"]
+	path = examples/s1disasm_fasm68k
+	url = git@github.com:fredrik-hjarner/s1disasm_fasm68k.git
+	branch = asm68k
