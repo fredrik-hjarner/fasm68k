@@ -39,7 +39,9 @@ calminstruction dc.b? line&
     at_least_two_arguments:
         check head eqtype ''
         jyes string
-        emit 1, head
+        ; TODO: Warn if does not fit in byte
+        ; TODO: Add test cases with too large numbers
+        emit 1, head and $FF
         jump maybe_next
     string:
         compute length, lengthof head
@@ -68,7 +70,9 @@ calminstruction dc.w? line&
         match head, tail
         compute last_argument, 1
     at_least_two_arguments:
-        emit_be 2, head
+        ; TODO: Warn if does not fit in word
+        ; TODO: Add test cases with too large numbers
+        emit_be 2, head and $FFFF
     maybe_next:
         check last_argument = 0
         jyes next
@@ -93,7 +97,9 @@ calminstruction dc.l? line&
         match head, tail
         compute last_argument, 1
     at_least_two_arguments:
-        emit_be 4, head
+        ; TODO: Warn if does not fit in longword
+        ; TODO: Add test cases with too large numbers
+        emit_be 4, head and $FFFFFFFF
     maybe_next:
         check last_argument = 0
         jyes next
