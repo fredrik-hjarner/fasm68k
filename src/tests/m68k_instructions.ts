@@ -373,8 +373,8 @@ export const data: InstructionSet = [
         op2: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l"]
       },
       {
-        sizes: ["w"],
-        op1: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm"],
+        sizes: ["", "w"],
+        op1: ["dn", "(an)", "(an)+", "-(an)", "d(an)", "d(an,ix)", "abs.w", "abs.l", "d(pc)", "d(pc,ix)", "imm16"],
         op2: ["ccr"]
       },
       {

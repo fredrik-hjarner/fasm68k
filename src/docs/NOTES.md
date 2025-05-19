@@ -55,3 +55,51 @@ yep that's all of them.
 
 `$3$2$1`
 
+### "Local" labels
+
+`@([a-zA-Z0-9_]+):`
+
+->
+
+`.$1:`
+
+---
+
+`([\t ,]+)@([a-zA-Z0-9_]+)$`
+
+->
+
+`$1.$2`
+
+### Binary numbers
+
+`%([10]+)`
+
+->
+
+`$1b`
+
+## This does not work in fasmg:
+
+```
+ErrorText:	dc.w .exception-ErrorText, .bus-ErrorText
+		dc.w .address-ErrorText, .illinstruct-ErrorText
+		dc.w .zerodivide-ErrorText, .chkinstruct-ErrorText
+		dc.w .trapv-ErrorText, .privilege-ErrorText
+		dc.w .trace-ErrorText, .line1010-ErrorText
+		dc.w .line1111-ErrorText
+.exception:	dc.b "ERROR EXCEPTION    "
+```
+
+This works though:
+
+```
+ErrorText:
+        dc.w .exception-ErrorText, .bus-ErrorText
+		dc.w .address-ErrorText, .illinstruct-ErrorText
+		dc.w .zerodivide-ErrorText, .chkinstruct-ErrorText
+		dc.w .trapv-ErrorText, .privilege-ErrorText
+		dc.w .trace-ErrorText, .line1010-ErrorText
+		dc.w .line1111-ErrorText
+.exception:	dc.b "ERROR EXCEPTION    "
+```

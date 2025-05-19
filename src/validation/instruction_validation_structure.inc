@@ -1948,6 +1948,29 @@ namespace m68k.valid_instructions
 	define move.w.sr.an_idx
 	define move.w.sr.abs_w
 	define move.w.sr.abs_l
+	define move._
+	define move._.dn
+	define move._.dn.ccr
+	define move._.indir_an
+	define move._.indir_an.ccr
+	define move._.an_post_incr
+	define move._.an_post_incr.ccr
+	define move._.an_pre_decr
+	define move._.an_pre_decr.ccr
+	define move._.an_displace
+	define move._.an_displace.ccr
+	define move._.an_idx
+	define move._.an_idx.ccr
+	define move._.abs_w
+	define move._.abs_w.ccr
+	define move._.abs_l
+	define move._.abs_l.ccr
+	define move._.pc_displace
+	define move._.pc_displace.ccr
+	define move._.pc_idx
+	define move._.pc_idx.ccr
+	define move._.imm
+	define move._.imm.ccr
 	define move.w
 	define move.w.dn
 	define move.w.dn.ccr

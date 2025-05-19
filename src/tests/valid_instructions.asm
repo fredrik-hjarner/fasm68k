@@ -11153,6 +11153,46 @@ label_start:
 	move.w	sr,(a1,d6)
 	move.w	sr,d2
 	move.w	sr,d5
+	move	(a2),ccr
+	move	(a5),ccr
+	move	(a1)+,ccr
+	move	(a5)+,ccr
+	move	-(a2),ccr
+	move	-(a5),ccr
+	move	-(sp),ccr
+	move	($FFFFFFFE).l,ccr
+	move	label_start.l,ccr
+	move	$FFFFFFFE,ccr
+	move	$FFFFFFFFFFFE,ccr
+	move	$2,ccr
+	move	-2,ccr
+	move	($FFFFFFFE).w,ccr
+	move	$2,ccr
+	move	-2,ccr
+	move	$7FFF(a2),ccr
+	move	$7FFF(a5),ccr
+	move	-2(sp),ccr
+	move	$7F(a2,d5.w),ccr
+	move	$7F(a5,d2.w),ccr
+	move	$0F(a5,d2.l),ccr
+	move	$1+1(a5,d2.l),ccr
+	move	-2(a5,d2.l),ccr
+	move	(a0,d1.w),ccr
+	move	(a1,d6),ccr
+	move	@(pc),ccr
+	move	@-2(pc),ccr
+	move	@(pc,d5.w),ccr
+	move	@-2(pc,d5.w),ccr
+	move	@-2(pc,d1.l),ccr
+	move	d2,ccr
+	move	d5,ccr
+	move	#0,ccr
+	move	#4,ccr
+	move	#$FF,ccr
+	move	#"XY",ccr
+	move	#$2700,ccr
+	move	#$FFFF,ccr
+	move	#-1,ccr
 	move.w	(a2),ccr
 	move.w	(a5),ccr
 	move.w	(a1)+,ccr
