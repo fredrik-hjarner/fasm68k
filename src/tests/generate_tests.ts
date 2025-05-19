@@ -345,6 +345,8 @@ label_start:
 ; edge cases and so on
     add.l #$00060000, d6 ; compat_vasm_add_bug1
     ; cmpi.w #$2000,(($1&$FFFFFF)+$400+$3C).l ; only works with compat_operators
+    ; move.w #(5<<8)+5,(0).w
+    ; move.w #(5 shl 8)+5,(0).w
 
 ; labels
 label_end:

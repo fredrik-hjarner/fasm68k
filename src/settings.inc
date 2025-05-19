@@ -21,6 +21,12 @@ namespace m68k.settings?
         \ ; TODO: Comment.
         compat_colonless_labels, 0, "", \
         \ ; TODO: Comment.
+        \ ; `lbl1: something`
+        \ ; will be replace with
+        \ ; `lbl1:` 
+        \ ; `something`
+        \ ; compat_labels_on_separate_line, 0, "", \
+        \ ; TODO: Comment.
         \ ; Replace %01010101 with 01010101b in "some" situations.
         \ ; Only use this when you need to (for example when it's to tedious to
         \ ; replace all % with b in an old codebase you convert from another

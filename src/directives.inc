@@ -128,6 +128,7 @@ calminstruction dc.q? tail&
         jyes next
 end calminstruction
 
+define dcb?
 iterate <size, size_str,   bytes>, \
         b,     'byte',     1, \
         w,     'word',     2, \
@@ -139,6 +140,7 @@ iterate <size, size_str,   bytes>, \
         ; TODO: Test this.
         calminstruction dcb.size? count*, fill:0
             local i
+            ; TODO: Use `massage_expression` here
             compute i, count
             emit_next:
                 check i > 0

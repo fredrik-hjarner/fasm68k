@@ -17,7 +17,6 @@ include "xcalm.inc"
 include "settings.inc"
 include "endianness.inc"
 include "xxcalm.inc"
-include "compat/compat.inc"
 include "validation/validate_instruction.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -86,3 +85,9 @@ include "instructions/move.inc"
 include "instructions/ori_andi_subi_addi_eori_cmpi.inc"
 
 include "instructions/aliases.inc"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Compatibility                                                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+include "compat/compat.inc"

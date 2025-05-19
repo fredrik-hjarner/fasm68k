@@ -25,8 +25,12 @@ macro endr
     end rept
 end macro
 
-macro incbin line&
-    file line
+macro incbin path*, line&
+    match ,line
+        file path
+    else
+        file path:line
+    end match
 end macro
 
 ; Insert as many zero bytes as required to reach an address which can be divided
@@ -57,6 +61,16 @@ macro calminstruction?.massage_expression? expr*
     new @next_or
     new @done_or
     new @skip_binary_percent_prefix
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; Replace %0 with 0b                                                    ;;
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+        check m68k.settings.compat_binary_percent_prefix = 1
+        @ jno @skip_binary_percent_prefix
+        binary_percent_prefix expr
+    @ @skip_binary_percent_prefix:
+
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Transform operators                                                    ;;
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -95,15 +109,6 @@ macro calminstruction?.massage_expression? expr*
         arrange expr, a =or b
         @ jump @next_or
     @ @done_or:
-
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; Replace %0 with 0b                                                    ;;
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-        check m68k.settings.compat_binary_percent_prefix = 1
-        @ jno @skip_binary_percent_prefix
-        binary_percent_prefix expr
-    @ @skip_binary_percent_prefix:
 end macro
 
 ; TODO: Comment/explain.
@@ -197,6 +202,11 @@ end macro
 ; TODO: Place this behind a setting.
 define @ $
 
+; TODO: Thins is there seems to be a problem with `struc ?` in that it
+;       catches more than I want to. Seems that every instruction that
+;       is defined after it is iterpreted as being a label??
+;       I am not exacrly sure how it works but when I had this file
+;       includes before `directives.inc` then it caught my `dcb` macro.
 if m68k.settings.compat_colonless_labels = 1
     ; Adds support for colonless labels.
     ; TODO: I want to be able to via a setting to enable/disable this.
@@ -232,5 +242,28 @@ if m68k.settings.compat_colonless_labels = 1
             end match 
     end struc
 end if ; m68k.settings.compat_colonless_labels = 1
+
+; TODO: Why does this not work?
+; if m68k.settings.compat_labels_on_separate_line = 1
+;     ; TODO: Comment
+;     struc (name) ? tail&
+;             local tmp
+;             match =:= tmp, tail
+;                     display 'label: ', `name, 10
+;                     display 'tail: ', `tail, 10
+;                     display 'tmp: ', `tmp, 10, 10
+;                     .:
+;                     tmp
+;             else 
+;                     . tail
+;                     ; TODO: remove. just some logging what this would catch.
+;                     ;       it catches both `equ`s and `=` I think.
+;                     ; match :, tail
+;                     ; else
+;                     ;     display 'label:', `name, ' ', `tail, 10
+;                     ; end match
+;             end match 
+;     end struc
+; end if ; m68k.settings.compat_labels_on_separate_line = 1
 
 include "compat_vasm.inc"
