@@ -5,11 +5,6 @@
 ;     addi.[bwl] #<data>,<ea>
 ;     eori.[bwl] #<data>,<ea>
 ;     cmpi.[bwl] #<data>,<ea>
-; Addressing modes:
-;     Dn  An  (An)  (An)+  ‑(An)  (d,An)  (d,An,Xi) 
-;      ✓       ✓     ✓       ✓      ✓         ✓ 
-;     ABS.W  ABS.L  (d,PC)  (d,PC,Xn)  imm
-;       ✓     ✓           
 ; Syntax (some of them have crr/sr variants):
 ;     ori.b  #<data>,ccr
 ;     ori.w  #<data>,sr
@@ -17,7 +12,6 @@
 ;     andi.w #<data>,sr
 ;     eori.b #<data>,ccr
 ;     eori.w #<data>,sr
-; TODO: Double check addressing modes for each instruction.
 ; TODO: Should validate that imm.l, imm.w and imm.b are within bounds.
 ; TODO: Explain ccr_variant and sr_variant and that 0 mean instr has no such.
 iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
@@ -34,36 +28,27 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
     ; parse_operand instread?
     iterate <size,  dot_size,  size_str, size_bits,  imm_bytes, max_1_byte>, \
             _,      ,          '',       0,          0,         , \
-            b,      .b,        'b',      00b,        2,         and $FF, \
-            w,      .w,        'w',      01b,        2,         , \
-            l,      .l,        'l',      10b,        4,         
+            b,      .b,        'b',      00000000b,  2,         and $FF, \
+            w,      .w,        'w',      01000000b,  2,         , \
+            l,      .l,        'l',      10000000b,  4,         
 
             calminstruction instr#dot_size? operands&
                         xcall m68k.parse_and_validate_instruction, <instr>, \
                                                                    operands, \
                                                                    <size>
                 ;; CHECK CCR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                        ; TODO: Add .type_token for convenience? Prolly not...
-                        ; check ccr_variant <> 0 & @op2.type = 'ccr' & \
-                        ;       (size_str = 'b' | size_str = '')
                         match =ccr, @op2.type_token
                         jno check_sr
                     ; ccr:
                         emit_be 2, ccr_variant
-
-                        ; imm
                         emit_be 2, @op1.imm max_1_byte
                         exit
                 ;; CKECK SR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                 check_sr:
-                        ; check sr_variant <> 0 & @op2.type = 'sr' & \
-                        ;       (size_str = 'w' | size_str = '')
                         match =sr, @op2.type_token
                         jno normal_case
                     ; sr:
                         emit_be 2, sr_variant
-
-                        ; imm
                         emit_be 2, @op1.imm
                         exit
                 normal_case:
@@ -71,7 +56,7 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                         ; assert_min imm, 1
                         ; assert_max imm, 8
 
-                        emit_be 2, instr_word or size_bits shl 6 or \
+                        emit_be 2, instr_word or size_bits or \
                                 @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
                         
                         ; immediate bytes

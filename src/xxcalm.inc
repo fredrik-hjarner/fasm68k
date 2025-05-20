@@ -138,12 +138,20 @@ macro calminstruction?.nice_err? line&
     exit ; also auto-exit since I think that's what one usually wants.
 end macro
 
-;; SOME UTILS TO MAKE CALM CODE SHORTER ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; SOME UTILS TO MAKE CALM CODE SHORTER                                       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; ARRange -> ASSemble
 macro calminstruction?.arr_ass? var*, val*
     arrange var, val
     assemble var
+end macro
+
+; ARRange -> COMpute
+macro calminstruction?.arr_com? var*, val*
+    arrange var, val
+    compute var, var
 end macro
 
 ; ARRange -> STRingify

@@ -19,7 +19,7 @@ end calminstruction
 ;     stop #<data>
 ; Sample syntax:
 ;     stop #$2700
-;     stop #setup ; TODO: Observe this example. I must make that work!!!
+;     stop #setup
 ; Attributes:
 ;     Unsized
 calminstruction stop? operands&
@@ -108,14 +108,6 @@ end iterate ; <cc, cc_bits>
 ;     neg  <ea>
 ;     not  <ea>
 ;     tst  <ea>
-; Addressing modes:
-;     Dn  An  (An)  (An)+  ‑(An)  (d,An)  (d,An,Xi) 
-;      ✓       ✓     ✓       ✓      ✓         ✓ 
-;     ABS.W  ABS.L  (d,PC)  (d,PC,Xn)  imm
-;       ✓     ✓                 
-; TODO: Double-check addressing modes for all instructions.
-;     tst also supports (d,PC)  (d,PC,Xn) modes
-; TODO: Restrict to valid addressing modes for the instructions.
 iterate <instr,  first_byte>, \
         negx,    01000000b, \
         clr,     01000010b, \
@@ -126,15 +118,15 @@ iterate <instr,  first_byte>, \
     define instr?
 
     iterate <size,  size_bits>, \
-            b,      00b, \
-            w,      01b, \
-            l,      10b
+            b,      0, \
+            w,      01000000b, \
+            l,      10000000b
     
         calminstruction instr.size? operands&
             xcall m68k.parse_and_validate_instruction, <instr>, operands, <size>
 
             emit 1, first_byte
-            emit 1, size_bits shl 6 or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
+            emit 1, size_bits or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
             ; <ea> extension words
             emit_be @op1.ext_bytes, @op1.ext_bytes_bits
@@ -146,11 +138,6 @@ end iterate ; <instr, first_byte>
 ; Syntax:
 ;   bcc.b <label>
 ;   bcc.w <label>
-;
-; TODO: What exactly does label and literal mean in this context?
-; Aliases:
-;     hs = cc
-;     lo = cs
 iterate <cc,  cc_bits>, \
         hi,     0010b, \
         ls,     0011b, \
@@ -176,7 +163,6 @@ iterate <cc,  cc_bits>, \
         ; TODO: Check if fits in a byte. Maybe do that in parse_operand?
         ; Also, check if displacement is a valid displacement.
         ; 0 is not allowed for .b I think.
-        ; TODO: How will this be able to work with both label and literals???
         calminstruction? b#cc.b? operands&
             xcall m68k.parse_and_validate_instruction, <b#cc>, operands, <b>
 
@@ -192,7 +178,6 @@ iterate <cc,  cc_bits>, \
 
         ; TODO: Check if fits in a word. Maybe do that in parse_operand?
         ;' Warn if fits in a byte.
-        ; TODO: How will this be able to work with both label and literals???
         calminstruction? b#cc.w? operands&
             xcall m68k.parse_and_validate_instruction, <b#cc>, operands, <w>
 
@@ -217,8 +202,6 @@ end iterate ; <cc, cc_bits>
 ;   bra.b <label> | <literal>
 ;   bsr.w <label> | <literal>
 ;   bsr.b <label> | <literal>
-;
-; TODO: What exactly does label and literal mean in this context?
 iterate <instr,  first_byte>, \
         bra,     01100000b, \
         bsr,     01100001b
@@ -228,7 +211,6 @@ iterate <instr,  first_byte>, \
         ; TODO: Check if fits in a byte. Maybe do that in parse_operand?
         ; Also, check if displacement is a valid displacement.
         ; 0 is not allowed for .b I think.
-        ; TODO: How will this be able to work with both label and literals???
         calminstruction? instr.b? operands&
                 xcall m68k.parse_and_validate_instruction, <instr>, operands, <b>
 
@@ -241,7 +223,6 @@ iterate <instr,  first_byte>, \
 
         ; TODO: Check if fits in a word. Maybe do that in parse_operand?
         ;' Warn if fits in a byte.
-        ; TODO: How will this be able to work with both label and literals???
         calminstruction? instr.w? operands&
             xcall m68k.parse_and_validate_instruction, <instr>, operands, <b>
 
@@ -252,35 +233,29 @@ iterate <instr,  first_byte>, \
 
 end iterate ; <instr, first_byte>
 
-;; EXL ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; EXT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 define ext?
 
 ; Syntax:
 ;     ext.[wl] dn
-iterate <size,  size_bit>, \
+iterate <size,  size_bits>, \
         w,      0, \
-        l,      1
+        l,      1000000b
 
         calminstruction ext.size? operands&
             xcall m68k.parse_and_validate_instruction, <ext>, operands, <size>
 
-            emit_be 2, 0100_1000___1000_0000_b or size_bit shl 6 or @op1.ea_reg_bits
+            emit_be 2, 0100_1000___1000_0000_b or size_bits or @op1.ea_reg_bits
         end calminstruction
             
-end iterate ; <size, size_bit>
+end iterate ; <size, size_bits>
 
 ;; JMP, JSR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Syntax:
 ;     jmp <ea>
 ;     jsr <ea>
-; Addressing modes:
-;     Dn  An  (An)  (An)+  ‑(An)  (d,An)  (d,An,Xi) 
-;              ✓                    ✓         ✓ 
-;     ABS.W  ABS.L  (d,PC)  (d,PC,Xn)  imm
-;       ✓     ✓       ✓        ✓
-; TODO: Restrict to valid addressing modes for jmp/jsr.
 iterate <instr,  second_byte>, \
         jmp,     11000000b, \
         jsr,     10000000b

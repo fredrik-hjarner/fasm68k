@@ -20,19 +20,12 @@
       `pc_displacement`.
 * I could probably have a `iterate <size, size_bytes>` and have bcc, bra and bsr
       in it to save a bit of space/code duplication.
-* Maybe I should have branching instruction have .s as default and .b as the
-      alias instead, dunno.
-* How should too large numbers behave? asl.w	($FFFFFFFF).w
-      should it just be assigned max or should it wrap around??
-      I currently have some code in parse_operand that sets too big numbers to
-      the max allowed value.
 * Make sure to test very very large and very very negative number for immediate
       values, and other relevant types, to see if bahaviour is good.
 * Find out all the cases for when CALMINSTRUCTIONS can explode in an
       unrecoverable error, then make "safe" wrapper or overrides which
       error in a controlled fashion which you then can follow by `jok`/`jerr`
       checks.
-* Make a count_tokens util.
 * I now support `$7FFF(a2)` but I should also support `($7FFF,a2)` and add a lot
       of test cases to test that.
 * vasm m68k manual has info about some of it's optimizations.
@@ -40,19 +33,6 @@
   etc. as any permutation (example `(d8,PC,Xn)`).
   I need to implement that if other assemblers
   support that...
-* What is this about:
-  btst.b	d5,#$55 ; TODO: destination can never be an immediate?! ; See clownassembler tests it's mentioned in two files there.
-* ori.b	#$FF,ccr ; TODO: Have ccr test for ori.w ori.l which should fail.
-  ori.w	#$FFFF,sr ; TODO: Have sr test for ori.b ori.l which should fail
-  andi.b	#$FF,ccr ; TODO: Have ccr test for .w .l which should fail.
-  eori.b	#$FF,ccr ; TODO: Have ccr test for .w .l which should fail.
-  btst.l	#0,d5 ; TODO: Need to try to shift with more values than #0.
-  move.w	@(pc,d5.w),sr ; TODO: Add move tests without size suffix!
-  chk.w	@(pc),d5; TODO: I need to test other values than @ since @ is
-      one token which makes my current tests succeed, but for several tokens it will fail. A `parse_immediate` util would help.
-  chk.w	@(pc,d5.w),d5 ; must test this with an too: @(pc,a5.w)
-  cmpm.b	(a2)+,(a1)+ ; TODO: More test of cmpm
-  ror.w	(a2) ; TODO: What happens if you do ror.b (a2) or ror.l (a2) ?
 * It is extra important to validate all the instructions that have "i variants"
       such as cmp -> cmpi et cetera. Currently cmp is allowed to take "imm"
       which will be very confusing for the user, so I need to stop that
@@ -82,8 +62,6 @@
       ESF_FM1 equ %00
             should be quite simple to implement really.
             No can't do that for the `equ` case.
-* Does my code handle immediate values correctly I mean with the # prefix?
-      Just double-check this.
 * Find out exactly which instructions can have the .s size suffix!!
       I need to know that and it it to m68k_instructions.ts file!!
 * I want to remove the aliases in the aliases.inc file. They hinder the
