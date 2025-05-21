@@ -52,7 +52,7 @@ iterate <instr, size, dot_size, instr_word>, \
             emit_be 2, instr_word or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
             ; <ea> extension words
-            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
         end calminstruction
 
 end iterate ; <instr, instr_word>
@@ -267,7 +267,7 @@ iterate <instr,  second_byte>, \
             emit 1, second_byte or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
             
             ; <ea> extension words
-            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
         end calminstruction
 
 end iterate ; <instr, second_byte>

@@ -138,6 +138,14 @@ macro calminstruction?.nice_err? line&
     exit ; also auto-exit since I think that's what one usually wants.
 end macro
 
+; full_transform transforms until there is nothing left to transform.
+macro calminstruction?.full_transform? var*
+        new @next
+    @ @next:
+        transform var
+        @ jyes @next
+end macro
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SOME UTILS TO MAKE CALM CODE SHORTER                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -24,9 +24,9 @@ iterate op, @op1,@op2
     namespace op
         ;; Define values in the @op1 and @op2 namespaces. ;;;;;;;;;;;;;;;;;;;;;;
 
-        ; TODO: I really ought to make it is a bit nicer for the user get info
-        ;       about the operands, so go through this code again and see if
-        ;       variables needs to be added or change names.
+        ; TODO: I really ought to make it is a bit nicer for the user get to
+        ;       info about the operands, so go through this code again and see
+        ;       if variables needs to be added or change names.
 
         ; TODO: use these instead:
         ;     Dn  An  (An)  (An)+  ‑(An)  (d,An)  (d,An,Xi)  ABS.W  ABS.L  (d,PC)  (d,PC,Xn)  imm
@@ -90,16 +90,6 @@ iterate op, @op1,@op2
         ; The value of the immediate operand.
         define imm ; TODO: Think about this.
 
-        ; abs_size:
-        ;     'unknown'         (default. may indicate error)
-        ;     'w'               (absolute word addressing)
-        ;     'l'               (absolute long addressing)
-        ; define abs_size ; TODO I propbably don't need this?
-
-        ; TODO: Probably change name to `parse_effective_address`,
-        ; but I am not sure that's a good idea or not because maybe this
-        ; could be used for dn, an etc too.
-        ;
         ; The `instr_size` argument is needed to set `ext_bytes` to the correct
         ;     value for immediate values (when the official syntax specifies
         ;     <ea>).
@@ -108,6 +98,7 @@ iterate op, @op1,@op2
         ;       adddressing`.
         calminstruction m68k.parse_operand#op operand*, instr_size
                     local tmp
+                    local tmp2
                     local opstr
                     local maybe_number
                     local maybe_abs
@@ -132,69 +123,19 @@ iterate op, @op1,@op2
                     ; instructions only have one operand.
                     match ,operand
                     jyes done
+            ;; imm ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                    ; parse_immediate need the operand to be "untransformed"
+                    ; so that the `#` is not transformed away.
+                    parse_immediate operand
+                    ; This is needed for example if the user has made
+                    ; an alias for `sr` with `define status_register sr`
+                    full_transform operand
             ;; (an) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                     parse_indirect_an operand
             ; -(an) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                     parse_indirect_pre_decr operand
             ; (an)+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                     parse_indirect_post_incr operand
-            ;; imm ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-            ; TODO: Immediate can have either 1 or 2 extension words!
-            check_if_immediate:
-                    match =# maybe_number, operand
-                    jno check_if_abs_w
-                ; hash_prefix:
-                    ; fasmg uses shl instead of <<
-                    ; TODO: There may be more of these cases that can be fixed!
-                    massage_expression maybe_number
-
-                    check maybe_number eqtype 0
-                    jyes skip_immediate_addressing_error
-                    ; test as string instead as fallback
-                    check maybe_number eqtype ''
-                    jno is_not_string
-                ; is_string:
-                    local str_len
-                    ; reverse the string otherwise it will be emitted in
-                    ; reverse order.
-                    compute str_len, lengthof maybe_number
-                    compute maybe_number, maybe_number bswap str_len
-                    ; compute maybe_number, +maybe_number
-                    jump skip_immediate_addressing_error
-                is_not_string:
-                    err 'immediate_addressing_error' ; TODO: better err message.
-                skip_immediate_addressing_error:
-                    compute type, 'imm'
-                    arrange type_token, =imm
-                    compute ea_mode_bits, 111b
-                    compute ea_reg_bits, 100b
-                    compute imm, maybe_number
-                    compute ext_bytes, 2 ; TODO: Assumes 2 but could also be 4!!
-                    compute ext_bytes_bits, imm
-
-                    ; If instr_size is empty (optional argument) then ext_bytes
-                    ; will have it's default value 0 (or 2 when imm), which is
-                    ; think might be good. The way fasmg works is  that
-                    ; `emit_be 0, n` throws an error when n is not 0, so in order
-                    ; words trying to output "immediate extension words" will
-                    ; only succeed if instr_size is not empty, I think that will
-                    ; work with how 68000 instructions tend to work...
-                    match , instr_size
-                    jyes empty_instr_size
-                    arrange tmp, instr_size
-                    transform tmp, m68k.instr_size_to_imm_size
-                    ; stringify tmp
-                    ; display tmp bappend 10 bappend 10 bappend 10
-                    jyes skip_invalid_size_err
-                    err 'Invalid size'
-                skip_invalid_size_err:
-                    ; So yea, how ext_bytes is set for immediate values is a bit
-                    ; complicated...
-                    compute ext_bytes, tmp
-
-                empty_instr_size:
-
-                    jump done
             ;; abs.w ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             check_if_abs_w:
                     match maybe_abs.=w, operand
@@ -227,11 +168,11 @@ iterate op, @op1,@op2
                     match maybe_abs.=l, operand
                     jyes has_l_suffix
                     match maybe_abs.=L, operand
-                    jno check_if_dn
+                    jno check_one_token_operands
                 has_l_suffix:
                     massage_expression maybe_abs
                     check maybe_abs relativeto 0
-                    jno check_if_dn
+                    jno check_one_token_operands
                     ; TODO: also assert that the address is word-aligned
                     ; call m68k.warn_if_abs_address_is_odd, maybe_abs, instr_size
                     compute type, 'abs.l'
@@ -249,32 +190,45 @@ iterate op, @op1,@op2
                 skip_constrain_abs_l:
                     compute ext_bytes_bits, maybe_abs
                     jump done
-            ;; Check if `dn` (direct data register addressing) ;;;;;;;;;;;;;;;;;
-            check_if_dn:
-                    call m68k.is_one_token, operand
-                    jnope check_indirect_displacement
+            check_one_token_operands:
+                    local tmp1, tmp2
+                    match tmp1 tmp2, operand
+                    jyes check_indirect_displacement
+            ; is_one_token:
+            ; dn:
                     check operand relativeto m68k.data_reg
-                    jno check_if_an
+                    jno an
                     compute type, 'dn'
                     arrange type_token, =dn
                     compute ea_mode_bits, 000b
-                    compute ea_reg_bits, operand - m68k.data_reg
-                    ; compute ext_bytes, 0
-                    ; compute ext_bytes_bits, 0
-                    jump done
-            ;; Check if `an` (direct address register addressing) ;;;;;;;;;;;;;;
-            check_if_an:
-                    ; call m68k.is_one_token, operand
-                    ; jnope sr
+                    compute ea_reg_bits, 0 scaleof operand
+                    exit
+            an:
                     check operand relativeto m68k.address_reg
                     jno sr
                     compute type, 'an'
                     arrange type_token, =an
                     compute ea_mode_bits, 001b
-                    compute ea_reg_bits, operand - m68k.address_reg
-                    ; compute ext_bytes, 0
-                    ; compute ext_bytes_bits, 0
-                    jump done
+                    compute ea_reg_bits, 0 scaleof operand
+                    exit
+            sr:
+                    check operand relativeto sr
+                    jno ccr
+                    compute type, 'sr'
+                    arrange type_token, =sr
+                    exit
+            ccr:
+                    check operand relativeto ccr
+                    jno usp
+                    compute type, 'ccr'
+                    arrange type_token, =ccr
+                    exit
+            usp:
+                    check operand relativeto usp
+                    jno check_indirect_displacement
+                    compute type, 'usp'
+                    arrange type_token, =usp
+                    exit
             ;; label ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             ; TODO: Can labels be both .w and and .l?
             ; TODO: Do I need this or is abs.w and abs.l enough??
@@ -287,39 +241,6 @@ iterate op, @op1,@op2
             ;         jno done
             ;         compute type, 'label'
             ;         jump done
-            ;; sr ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-            sr:
-                    call m68k.is_one_token, operand
-                    jnope check_indirect_displacement
-                    ; TODO: Is it dumb to use relativeto here? equal better?
-                    check operand relativeto sr
-                    ; match =sr, operand
-                    jno ccr
-                    compute type, 'sr'
-                    arrange type_token, =sr
-                    jump done
-            ;; ccr ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-            ccr:
-                    ; call m68k.is_one_token, operand
-                    ; jnope usp
-                    ; TODO: Is it dumb to use relativeto here? equal better?
-                    check operand relativeto ccr
-                    ; match =ccr, operand
-                    jno usp
-                    compute type, 'ccr'
-                    arrange type_token, =ccr
-                    jump done
-            ;; usp ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-            usp:
-                    ; call m68k.is_one_token, operand
-                    ; jnope check_indirect_displacement
-                    ; TODO: Is it dumb to use relativeto here? equal better?
-                    ; match =usp, operand
-                    check operand relativeto usp
-                    jno check_indirect_displacement
-                    compute type, 'usp'
-                    arrange type_token, =usp
-                    jump done
             ;; (d,an) a.k.a. d(an) - indirect address with displacement ;;;;;;;;
             check_indirect_displacement:
                     call m68k.parse_indirect_displacement, operand
@@ -346,21 +267,18 @@ iterate op, @op1,@op2
                     ; be subtracted.
                     ; some instructions swap the order of the
                     ; arguments so it's complicated.
-                    ; I add the element `pc` to it so that it's value can be
-                    ; "evaluated/computed" later (in emit_ext_words). Since
-                    ; emit_ext_words will probabaly be executed when the code
-                    ; "knows" how many extension words into the instruction we
-                    ; are this will work.
-                    ; TODO: I could prolly do this in a better/nice way
-                    ; such as store old $ in a variable somewhere maybe.
-                    ; compute ext_bytes_bits, $*pc + m68k.ret_imm
+                    ; I add the element `basis_for_pc_displacementc` to it so
+                    ; that it's value can be "evaluated/computed" later (in
+                    ; `emit_ext_words`). Since emit_ext_words will probabaly be
+                    ; executed when the code "knows" how many extension words
+                    ; into the instruction we are this will work.
                     ; TODO: There's a bug lurking here where imm/displacement
                     ;       is to big, but if it's too big or not can not be
                     ;       known here in the code, there has to be a check
                     ;       later when the extension words are emitted.
                     ; TODO: I should remove  m68k.ret_imm and return data
                     ;       in the same way `parse_pc_index` does.
-                    compute ext_bytes_bits, pc_displacement * m68k.ret_imm
+                    compute ext_bytes_bits, basis_for_pc_displacement * m68k.ret_imm
                     jump done
             ;; (d,pc,xn.[wl]) a.k.a. d(pc,xn.[wl]) - program conter with index ;
             check_pc_index:
@@ -372,31 +290,14 @@ iterate op, @op1,@op2
                     compute ea_mode_bits, 111b
                     compute ea_reg_bits, 011b
                     compute ext_bytes, 2
-                    ; This stuff is because the d(pc) is relative to the
-                    ; operands own extension words is, and the previous operand
-                    ; could have added extension words so that why that has to
-                    ; be subtracted.
-                    ; some instructions swap the order of the
-                    ; arguments so it's complicated.
-                    ; How I solved it is by storing both the current $
-                    ; and also add a `pc` element to `ext_bytes_bits`.
-                    ; `$*pc` is a "decoration" that is evaulated later
-                    ; see `emit_ext_words` function.
-                    ; TODO: I could prolly do this in a better/nice way
-                    ; such as store old $ in a variable somewhere maybe.
-                    ; TODO: m68k.ret_imm? that might be a bad name...
-                    ; TODO: There's a bug lurking here where imm/displacement
-                    ;       is to big, but if it's too big or not can not be
-                    ;       known here in the code, there has to be a check
-                    ;       later when the extension words are emitted.
-                    ; TODO: Maybe I could do this computation in
-                    ;       `parse_pc_index` and so on with the rest of the
-                    ;       functions.
+                    ; See comment in `check_pc_displacement` above.
+                    ; Here `basis_for_pc_displacement` is added for the same
+                    ; reason since this also deals with pc relative addressing.
                     compute ext_bytes_bits, \
                         m68k.parse_pc_index_result.m shl 15 + \
                         m68k.parse_pc_index_result.xn shl 12 + \
                         m68k.parse_pc_index_result.s shl 11 + \
-                        m68k.parse_pc_index_result.d * pc_index
+                        m68k.parse_pc_index_result.d * basis_for_pc_displacement
                     jump done
             ;; (d,an,xn.[wl]) a.k.a. d(an,xn.[wl]) - Address Register Indirect with Index ;
             check_memory_index:
@@ -417,6 +318,7 @@ iterate op, @op1,@op2
                         \ ; bswap 1 makes sure negative numbers are contrained
                         \ ; to 1 byte. (-1 theoretically is has $FFFF...
                         \ ; stretching to infinity)
+                        \ ; TODO: Err if `d` does not fit a byte.
                         m68k.parse_mem_index_result.d bswap 1
                     jump done
             ;; Check for "abs" again
@@ -523,8 +425,76 @@ iterate op, @op1,@op2
     end namespace
 end iterate
 
+;; IMMEDIATE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; TODO: Immediate can have either 1 or 2 extension words!
+macro calminstruction?.parse_immediate? operand*
+        new @is_not_string
+        new @skip_immediate_addressing_error
+        new @skip_invalid_size_err
+        new @empty_instr_size
+        new @next
+
+        ; Note: `transform` would remove the leading `#` so operand must be
+        ;       "untransformed".
+        match =# maybe_number, operand
+        @ jno @next
+    ; hash_prefix:
+        ; fasmg uses shl instead of <<
+        ; TODO: There may be more of these cases that can be fixed!
+        massage_expression maybe_number
+
+        check maybe_number eqtype 0
+        @ jyes @skip_immediate_addressing_error
+        ; test as string instead as fallback
+        check maybe_number eqtype ''
+        @ jno @is_not_string
+    ; is_string:
+        local str_len
+        ; reverse the string otherwise it will be emitted in
+        ; reverse order.
+        compute str_len, lengthof maybe_number
+        compute maybe_number, maybe_number bswap str_len
+        ; compute maybe_number, +maybe_number
+        @ jump @skip_immediate_addressing_error
+    @ @is_not_string:
+        err 'immediate_addressing_error' ; TODO: better err message.
+    @ @skip_immediate_addressing_error:
+        compute type, 'imm'
+        arrange type_token, =imm
+        compute ea_mode_bits, 111b
+        compute ea_reg_bits, 100b
+        compute imm, maybe_number
+        compute ext_bytes, 2 ; TODO: Assumes 2 but could also be 4!!
+        compute ext_bytes_bits, imm
+
+        ; If instr_size is empty (optional argument) then ext_bytes
+        ; will have it's default value 0 (or 2 when imm), which is
+        ; think might be good. The way fasmg works is  that
+        ; `emit_be 0, n` throws an error when n is not 0, so in order
+        ; words trying to output "immediate extension words" will
+        ; only succeed if instr_size is not empty, I think that will
+        ; work with how 68000 instructions tend to work...
+        match , instr_size
+        @ jyes @empty_instr_size
+        arrange tmp, instr_size
+        transform tmp, m68k.instr_size_to_imm_size
+        ; stringify tmp
+        ; display tmp bappend 10 bappend 10 bappend 10
+        @ jyes @skip_invalid_size_err
+        err 'Invalid size'
+    @ @skip_invalid_size_err:
+        ; So yea, how ext_bytes is set for immediate values is a bit
+        ; complicated...
+        compute ext_bytes, tmp
+    @ @empty_instr_size:
+        exit
+    @ @next:
+end macro
+
 ;; INDIRECT ADDRESSING ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; TODO: Try to make this into a "callable" insteadm maybe...
 macro calminstruction?.parse_indirect_an? operand*
         new @next
         match (an), operand
@@ -553,7 +523,7 @@ macro calminstruction?.parse_indirect_pre_decr? operand*
         arrange type_token, =an_pre_decr
         compute ea_mode_bits, 100b
         ; compute ea_reg_bits, 0 scaleof an
-        compute ea_reg_bits, an - m68k.address_reg
+        compute ea_reg_bits, 0 scaleof an
         exit
     @ @next:
 end macro
@@ -570,7 +540,7 @@ macro calminstruction?.parse_indirect_post_incr? operand*
         arrange type_token, =an_post_incr
         compute ea_mode_bits, 011b
         ; compute ea_reg_bits, 0 scaleof an
-        compute ea_reg_bits, an - m68k.address_reg
+        compute ea_reg_bits, 0 scaleof an
         exit
     @ @next:
 end macro
@@ -583,7 +553,6 @@ end macro
 ;       to make use of the parsing stuff so they can use it in their own code.
 define m68k.split_operands_result
 namespace m68k.split_operands_result
-    define num_operands
     define op1
     define op2
 end namespace
@@ -599,12 +568,10 @@ calminstruction m68k.split_operands? line&
         match op1 =, op2, line, ()
         jyes two_operands
     ; one_operand:
-        compute m68k.split_operands_result.num_operands, 1
         arrange m68k.split_operands_result.op1, line
         arrange m68k.split_operands_result.op2,
         exit
     two_operands:
-        compute m68k.split_operands_result.num_operands, 2
         arrange m68k.split_operands_result.op1, op1
         arrange m68k.split_operands_result.op2, op2
 end calminstruction
@@ -622,14 +589,10 @@ calminstruction m68k.parse_and_validate_instruction? instr*, \
         match op1 =, op2, operands, ()
         jyes two_operands
     ; one_operand:
-        ; TODO: Remove num_operands. Can just check if type is _ instead.
-        compute m68k.split_operands_result.num_operands, 1
         call m68k.parse_operand@op1, operands, imm_size
         arrange @op2.type_token, =_
         jump validate
     two_operands:
-        ; TODO: Remove num_operands. Can just check if type is _ instead.
-        compute m68k.split_operands_result.num_operands, 2
         call m68k.parse_operand@op1, op1, imm_size
         call m68k.parse_operand@op2, op2, imm_size
     validate:

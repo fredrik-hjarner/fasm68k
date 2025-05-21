@@ -10,8 +10,8 @@ equ_1_plus_equ_1 equ equ_1+equ_1
 label_start:
 
 ; edge cases etc:
-;  btst.b	d2,0(pc) ; TODO: Encodes incorrectly.
-;  btst.b	d2,0(pc,d5.w) ; TODO: Encodes incorrectly.
+  btst.b	d2,0(pc)
+  btst.b	d2,0(pc,d5.w)
 
 	dc.b	0, 5, -1, 1
 	dc.b	$0A, $FF

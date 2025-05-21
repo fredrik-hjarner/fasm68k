@@ -31,10 +31,9 @@ element ccr?
 ; TODO: Comment
 element usp?
 
-; TODO: pc_displacement and pc_index are not really registers, so maybe move
-;       them?
-; The `pc_displacement` is added to values when the d(pc) addressing mode is
-; used.
-element pc_displacement
-; The `pc_index` is added to values when the d(pc,xn) addressing mode is used.
-element pc_index
+; In `parse_operand` I multiply the `d` in ` d(pc,xn)` or `d(pc)` with this
+; element `basis_for_pc_displacement`.
+; The reason is that I can't calculate the actual pc relative displacement there
+; but have to wait until the extension word is emitted (see `emit_ext_words`
+; function).
+element basis_for_pc_displacement

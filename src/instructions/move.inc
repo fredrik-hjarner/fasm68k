@@ -46,13 +46,13 @@ iterate <size, dot_size>, \
             emit 1, 0100_0100_b
             emit 1, 1100_0000_b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits 
             ; op1 extension words
-            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
             exit
         ea_to_sr:
             emit 1, 01000110b
             emit 1, 11000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits 
             ; op1 extension words
-            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
             exit
         usp_to_an:
             emit_be 2, 0100_1110__0110_1000_b or @op2.ea_reg_bits
@@ -88,7 +88,7 @@ iterate <size,  size_bits>, \
         skip_imm_b_fix:
 
             ; op1 extension words
-            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
 
             ; op2 extension words
             emit_be @op2.ext_bytes, @op2.ext_bytes_bits

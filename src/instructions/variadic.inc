@@ -41,7 +41,7 @@ iterate <instr,  instr_bits>, \
                                                                   <size>, \
                                                                   <size>
 
-                        check m68k.split_operands_result.num_operands = 1
+                        match =_, @op2.type_token
                         jyes one_operand
                 ; two_operands:
                         match =dn, @op1.type_token

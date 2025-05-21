@@ -2,6 +2,9 @@
 ;; Need to include some fasm files first.                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+calminstruction calminstruction?.display? line& ; TODO: remove
+end calminstruction
+
 ; I put align into a namespace because I will need the align keyword myself.
 define fasm2?
 namespace fasm2
@@ -75,7 +78,7 @@ include "directives.inc"
 ;; 68000 instruction set                                                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-include "instructions/utils.inc"
+include "instructions/emit_ext_words.inc"
 
 include "instructions/niladic.inc"
 include "instructions/monadic.inc"

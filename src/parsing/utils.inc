@@ -45,12 +45,6 @@ calminstruction m68k.parse_indirect_displacement operand*
         match (tmp1=,tmp2), operand
         jyes next2
         jump nope
-    ; next:
-        ; display 'matched tmp1(tmp2)' bappend 10
-    ;     call m68k.is_one_token, tmp1
-    ;     jyup next2
-    ;     ; display 'tmp1 is one token' bappend 10
-    ;     jump nope
     next2:
         call m68k.is_one_token, tmp2
         jyup next3
@@ -176,11 +170,6 @@ calminstruction m68k.parse_pc_index operand*
         ; That's computable anyway i.e. d should be computable into a number.
     ; validate_d_is_one_token:
         compute d, d
-        ; match tmp1 tmp2, d
-        ; jyes nope
-        ; arrange tmp, d
-        ; stringify tmp
-        ; display 'd `' bappend tmp bappend '` is one token' bappend 10
 
     ; validate_pc_is_one_token:
     ; TODO: I could probably remove this check
@@ -212,10 +201,7 @@ calminstruction m68k.parse_pc_index operand*
         check xn relativeto m68k.address_reg
         jno skip ; TODO: better label name
         compute m68k.parse_pc_index_result.m, 1
-        jump skip2 ; TODO: better label name
     skip:
-        compute m, 0
-    skip2:
 
     ; set_size_bit
         check s = 'l' | s = 'L'
@@ -315,11 +301,6 @@ calminstruction m68k.parse_mem_index operand*
     no_d:
         compute d, 0
     proceed:
-        ; match tmp1 tmp2, d
-        ; jyes nope
-        ; arrange tmp, d
-        ; stringify tmp
-        ; display 'd `' bappend tmp bappend '` is one token' bappend 10
 
     ; validate_pc_is_one_token:
     ; TODO: I could probably remove this check
@@ -353,10 +334,7 @@ calminstruction m68k.parse_mem_index operand*
         check xn relativeto m68k.address_reg
         jno skip ; TODO: better label name
         compute m68k.parse_mem_index_result.m, 1
-        jump skip2 ; TODO: better label name
     skip:
-        compute m, 0
-    skip2:
 
     ; set_size_bit
         check s = 'l' | s = 'L'

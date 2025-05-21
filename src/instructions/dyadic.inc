@@ -134,7 +134,7 @@ calminstruction chk.w? operands&
     emit 1, 10000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
     ; <ea> extension words
-    call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+    call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
 end calminstruction
 
 ;; LINK ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -251,7 +251,7 @@ iterate <instr,  first_byte>, \
                 emit 1, 11000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
                 ; <ea> extension words
-                call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+                call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
             end calminstruction
 
     end iterate ; <size,size_bit>
@@ -322,7 +322,7 @@ iterate <size,  size_bits>, \
                 emit 1, size_bits or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
                 ; <ea> extension words
-                call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+                call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
         end calminstruction
 
 end iterate ; <size, size_bits>
@@ -350,7 +350,7 @@ iterate <instr,  first_byte>, \
             emit 1, 11000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
             ; <ea> extension words
-            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
         end calminstruction
 
 end iterate ; <instr, first_byte>
@@ -402,7 +402,7 @@ iterate <instr,  instr_bits>, \
                 emit 1, instr_bits or @op2.ea_mode_bits shl 3 or  @op2.ea_reg_bits
 
                 ; <ea> extension words
-                call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+                call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits, @op2.type_token
                 exit
             op1_is_imm:
                 emit 1, 1000b
@@ -412,7 +412,7 @@ iterate <instr,  instr_bits>, \
                 emit_be size_in_bytes, @op1.imm
 
                 ; <ea> extension words
-                call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+                call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits, @op2.type_token
                 exit
         end calminstruction
 
@@ -458,7 +458,7 @@ iterate <size,  size_bits>, \
                     emit_be 2, bit_mask
 
                     ; <ea> extension words
-                    call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+                    call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
                     exit
             reglist_to_ea:
                     call m68k.parse_operand@op2, m68k.split_operands_result.op2
@@ -476,7 +476,7 @@ iterate <size,  size_bits>, \
                     emit_be 2, bit_mask
 
                     ; <ea> extension words
-                    call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits
+                    call emit_ext_words, @op2.ext_bytes, @op2.ext_bytes_bits, @op2.type_token
         end calminstruction
 
 end iterate ; <size, size_bits>
@@ -597,7 +597,7 @@ iterate <instr,  first_byte>, \
                     emit 1, size_bits or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
                     ; extension words
-                    call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+                    call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
 
                     exit
                 dn_to_ea:
@@ -688,7 +688,7 @@ iterate <size,  size_bits>, \
             ; TODO: So, seems the number of extension words depend upon .w,.l
             ;       IN THE SPECIFIC CASE OF IMMEDITE OPERANDS this complicated
             ;       the implementation of parse_operands a bit.
-            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+            call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
         end calminstruction
 
 end iterate ; <size, size_bits>
@@ -705,7 +705,7 @@ calminstruction lea.l? operands&
     emit 1, 11000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
                 
     ; extension words
-    call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits
+    call emit_ext_words, @op1.ext_bytes, @op1.ext_bytes_bits, @op1.type_token
 end calminstruction
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

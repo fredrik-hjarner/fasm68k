@@ -41,7 +41,7 @@ build:
 
 # build2 is just for me to have a separate test file to play around with.
 build2:
-	../fasm68k tests/test2.asm tests/test2.bin -e20
+	../fasm68k tests/test2.asm tests/test2.bin -e20 -v0
 .PHONY: build2
 
 hexdump:

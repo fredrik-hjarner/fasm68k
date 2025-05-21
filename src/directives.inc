@@ -57,26 +57,34 @@ end calminstruction
 ;     dc.b line
 ; end macro
 
-calminstruction dc.w? line&
-        assert_word_aligned "Attempting to place a word on an odd address!"
-        local head, tail, last_argument
-        compute last_argument, 0
-        arrange tail, line
-        massage_expression tail
-    next:
-        match head=,tail, tail
-        jyes at_least_two_arguments
-    ; last argument:
-        match head, tail
-        compute last_argument, 1
-    at_least_two_arguments:
-        ; TODO: Warn if does not fit in word
-        ; TODO: Add test cases with too large numbers
-        emit_be 2, head and $FFFF
-    maybe_next:
-        check last_argument = 0
-        jyes next
-end calminstruction
+iterate <size,  size_str,    bytes,  max_size>, \
+        w,      'word',      2,      $FFFF, \
+        l,      'longword',  4,      $FFFFFFFF, \
+        q,      'quadword',  8,      $FFFFFFFFFFFFFFFF
+
+    calminstruction dc.size? line&
+            assert_word_aligned "Attempting to place a " bappend size_str \
+                                bappend " on an odd address!"
+            local head, tail, last_argument
+            compute last_argument, 0
+            arrange tail, line
+            massage_expression tail
+        next:
+            match head=,tail, tail
+            jyes at_least_two_arguments
+        ; last argument:
+            match head, tail
+            compute last_argument, 1
+        at_least_two_arguments:
+            ; TODO: Warn if does not fit in word
+            ; TODO: Add test cases with too large numbers
+            emit_be bytes, head and max_size
+        maybe_next:
+            check last_argument = 0
+            jyes next
+    end calminstruction
+
+end iterate ; <size, size_str, max_size>
 
 ; TODO: This alias is mentioned in the vasm manual.
 ;       Does it exist in other assemblers?
@@ -84,49 +92,11 @@ end calminstruction
 ;     dc.w line
 ; end macro
 
-calminstruction dc.l? line&
-        assert_word_aligned "Attempting to place a longword on an odd address!"
-        local head, tail, last_argument
-        compute last_argument, 0
-        arrange tail, line
-        massage_expression tail
-    next:
-        match head=,tail, tail
-        jyes at_least_two_arguments
-    ; last argument:
-        match head, tail
-        compute last_argument, 1
-    at_least_two_arguments:
-        ; TODO: Warn if does not fit in longword
-        ; TODO: Add test cases with too large numbers
-        emit_be 4, head and $FFFFFFFF
-    maybe_next:
-        check last_argument = 0
-        jyes next
-end calminstruction
-
 ; TODO: This alias is mentioned in the vasm manual.
 ;       Does it exist in other assemblers?
 ; macro dl? line&
 ;     dc.l line
 ; end macro
-
-;; 32-bit quad-word
-calminstruction dc.q? tail&
-        local head, tail, last_argument
-        compute last_argument, 0
-    next:
-        match head=,tail, tail
-        jyes at_least_two_arguments
-    ; last argument:
-        match head, tail
-        compute last_argument, 1
-    at_least_two_arguments:
-        emit_be 8, head
-    maybe_next:
-        check last_argument = 0
-        jyes next
-end calminstruction
 
 define dcb?
 iterate <size, size_str,   bytes>, \
@@ -160,7 +130,7 @@ iterate <size, size_str,   bytes>, \
                 local err_msg
                 err_msg = "Attempting to place a " bappend \
                           size_str bappend " on an odd address"
-                err err_msg
+                warn err_msg
             end if
             ; Switch from `org` address space to `rs` address space
             m68k.old_org = $
