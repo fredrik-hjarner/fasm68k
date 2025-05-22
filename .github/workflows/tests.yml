@@ -1,0 +1,34 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 'latest'
+
+      - name: Generate and assemble valid_instructions.asm
+        run: |
+          cd src
+          make
+
+      # - name: Run tests and capture output
+      #   run: |
+      #     make test-command > test-output.log
+
+      # - name: Compare output with expected file
+      #   run: |
+      #     diff --unified --color tests/expected-output.log test-output.log
