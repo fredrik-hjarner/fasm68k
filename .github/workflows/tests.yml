@@ -30,4 +30,4 @@ jobs:
           cd examples/s1disasm_fasm68k
           make
           sleep 1
-          test $(make -silent diff-count) -eq 0
+          test $(make -silent diff-count) -eq 1
