@@ -25,20 +25,24 @@ namespace m68k.settings?
         \ ; will be replace with
         \ ; `lbl1:` 
         \ ; `something`
-        \ ; compat_labels_on_separate_line, 0, "", \
+        \ ; TODO: Implement compat_labels_on_separate_line
+        compat_labels_on_separate_line, 0, "", \
         \ ; TODO: Comment.
         \ ; Replace %01010101 with 01010101b in "some" situations.
         \ ; Only use this when you need to (for example when it's to tedious to
         \ ; replace all % with b in an old codebase you convert from another
         \ ; assembler to fasm68k).
         compat_binary_percent_prefix, 0, "", \
+        \ ; TODO: Comment.
+        \ ; Adds support for this syntax `v_levseldelay: equ $FFFFFF80`
+        \ ; TODO: Implement compat_equs_with_colon
+        compat_equs_with_colon, 0, "", \
         \
         \ ;; VASM SPECIFIC ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         \
         \ ; TODO: Explain.
-        \ ; vasm encodes add etc with immediates incorrectly.
-        \ ; should be addi etc but vasm does it wrong.
-        \ ; If you want fasm68k to behave like vasm you need to enable this...
+        \ ; vasm does not do auto-fix of add -> addi when no-opts
+        \ ; If you want fasm68k to behave like that you need to enable this.
         compat_vasm_add_bug1, 0, "", \
         compat_vasm_add_bug2, 0, "", \
         compat_vasm_add_bug3, 0, "", \
