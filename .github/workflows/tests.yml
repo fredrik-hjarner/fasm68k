@@ -31,7 +31,7 @@ jobs:
           make
           sleep 1
           DIFF_COUNT=$(make -silent diff-count)
-          if [ "$DIFF_COUNT" -ne 1 ]; then
+          if [ "$DIFF_COUNT" -ne 0 ]; then
               echo "❌ Found $DIFF_COUNT differing bytes!"
               exit 1
           fi
