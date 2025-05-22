@@ -25,10 +25,9 @@ jobs:
           cd src
           make
 
-      # - name: Run tests and capture output
-      #   run: |
-      #     make test-command > test-output.log
-
-      # - name: Compare output with expected file
-      #   run: |
-      #     diff --unified --color tests/expected-output.log test-output.log
+      - name: Assemble Sonic 1 and confirm 0 diffing bytes
+        run: |
+          cd examples/s1disasm_fasm68k
+          make
+          sleep 1
+          test $(make -silent diff-count) -eq 0
