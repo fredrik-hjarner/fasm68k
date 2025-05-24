@@ -1,5 +1,3 @@
-define m68k m68k
-
 element m68k.data_reg
 d0? := m68k.data_reg + 000b
 d1? := m68k.data_reg + 001b

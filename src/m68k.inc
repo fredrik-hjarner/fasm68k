@@ -2,8 +2,8 @@
 ;; Need to include some fasm files first.                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-calminstruction calminstruction?.display? line& ; TODO: remove
-end calminstruction
+; calminstruction calminstruction?.display? line& ; TODO: remove
+; end calminstruction
 
 ; I put align into a namespace because I will need the align keyword myself.
 define fasm2?
@@ -17,9 +17,12 @@ include "xcalm.inc"
 ;;                                                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+define m68k m68k
+
 include "settings.inc"
-include "endianness.inc"
 include "xxcalm.inc"
+include "debug/debug.inc"
+include "endianness.inc"
 include "validation/validate_instruction.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
