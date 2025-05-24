@@ -33,9 +33,9 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
             l,      .l,        'l',      10000000b,  4,         $FFFFFFFF
 
             calminstruction instr#dot_size? operands&
-                xcall ori_and_etc_impl, operands, <instr>, <instr_word>, \
-                                        <ccr_variant>, <sr_variant>, <size>, \
-                                        <size_bits>, <imm_bytes>, <max_imm_size>
+                xcall m68k.ori_etc_impl, operands, <instr>, <instr_word>, \
+                                         <ccr_variant>, <sr_variant>, <size>, \
+                                         <size_bits>, <imm_bytes>,<max_imm_size>
             end calminstruction
 
     end iterate ; <size, dot_size, size_str, size_bits, imm_bytes>
@@ -43,9 +43,9 @@ end iterate ; <instr, instr_word>
 
 ; Splitting up instructions like this with macros (above) and one implementation
 ; body seems to yield better performance.
-calminstruction ori_and_etc_impl? operands*, instr*, instr_word*, \
-                                  ccr_variant*, sr_variant*, size*, \
-                                  size_bits*, imm_bytes*, max_imm_size*
+calminstruction m68k.ori_etc_impl? operands*, instr*, instr_word*, \
+                                   ccr_variant*, sr_variant*, size*, \
+                                   size_bits*, imm_bytes*, max_imm_size*
 
             call m68k.parse_and_validate_instruction, instr, operands, size
     ;; CHECK CCR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
