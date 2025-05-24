@@ -71,16 +71,6 @@ iterate reg_list, @reg_list1,@reg_list2
                     ; display 10
                     ; display opstr bappend ":" bappend 10
 
-                ; Check if operator is a single register token
-                    call m68k.parse_single_register#reg_list, operand
-                    check single_reg_found = 1
-                    jno register_range
-                ; is_single_register_token:
-                    compute is_reg_list, 1
-                    ; we should also compute the mask here
-                    compute mask_word, single_reg_mask_word
-                    compute mask_word_reverse, single_reg_mask_word_reverse
-                    jump done
                 ; Check if operator is a `register range`
                 register_range:
                     call m68k.parse_register_range#reg_list, operand
@@ -172,6 +162,7 @@ iterate reg_list, @reg_list1,@reg_list2
                 ; display '---- not_reg_range' bappend 10
                 exit
             dup_error:
+                ; TODO: Should not be error, should be warning.
                 err "duplicated registers in register list"
         end calminstruction
 
@@ -186,9 +177,9 @@ iterate reg_list, @reg_list1,@reg_list2
         define single_reg_mask_words
         define single_reg_mask_words_reverse
 
-        iterate reg, d0,d1,d2,d3,d4,d5,d6,d7,a0,a1,a2,a3,a4,a5,a6,a7
-            define single_reg_mask_words.reg?         1 shl (%-1)
-            define single_reg_mask_words_reverse.reg? 1 shl (%%-%)
+        iterate reg,  d0,d1,d2,d3,d4,d5,d6,d7,a0,a1,a2,a3,a4,a5,a6,a7
+            single_reg_mask_words.reg?         := 1 shl (%-1)
+            single_reg_mask_words_reverse.reg? := 1 shl (%%-%)
         end iterate
 
 ;; parse_single_register ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -234,15 +225,11 @@ iterate reg_list, @reg_list1,@reg_list2
                 ; display '== was a single register ==' bappend 10
 
                 ; mask
-                arrange single_reg_mask_word, operand
-                transform single_reg_mask_word, single_reg_mask_words
-                ; TODO: Is compute needed here?
+                arrange single_reg_mask_word, reg_list.=single_reg_mask_words.operand
                 compute single_reg_mask_word, single_reg_mask_word
 
                 ; mask reverse
-                arrange single_reg_mask_word_reverse, operand
-                transform single_reg_mask_word_reverse, single_reg_mask_words_reverse
-                ; TODO: Is compute needed here?
+                arrange single_reg_mask_word_reverse, reg_list.=single_reg_mask_words_reverse.operand
                 compute single_reg_mask_word_reverse, single_reg_mask_word_reverse
 
                 ; "return true" so to speak
@@ -331,19 +318,19 @@ iterate reg_list, @reg_list1,@reg_list2
                 compute reg_range_found, 1
 
                 ; Compute mask
-                arrange tmp1, reg1
-                transform tmp1, single_reg_mask_words
-                arrange tmp2, reg2
-                transform tmp2, single_reg_mask_words
+                arrange tmp1, reg_list.=single_reg_mask_words.reg1
+                compute tmp1, tmp1
+                arrange tmp2, reg_list.=single_reg_mask_words.reg2
+                compute tmp2, tmp2
                 ; This formula might seem like voodoo but it works.
                 ; TODO: Explain why it works maybe.
                 compute reg_range_mask_word, ((tmp2 shl 1)-1) xor (tmp1 - 1)
 
                 ; Compute reverse mask
-                arrange tmp1, reg1
-                transform tmp1, single_reg_mask_words_reverse
-                arrange tmp2, reg2
-                transform tmp2, single_reg_mask_words_reverse
+                arrange tmp1, reg_list.=single_reg_mask_words_reverse.reg1
+                compute tmp1, tmp1
+                arrange tmp2, reg_list.=single_reg_mask_words_reverse.reg2
+                compute tmp2, tmp2
                 compute reg_range_mask_word_reverse, ((tmp1 shl 1)-1) xor (tmp2 - 1)
             done:
                 ; ;; Display log ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

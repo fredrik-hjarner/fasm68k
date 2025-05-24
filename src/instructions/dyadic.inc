@@ -76,49 +76,36 @@ define exg?
 ; Note that the encoding of the 3 M bits are not explained in:
 ;     http://goldencrystal.free.fr/M68kOpcodes-v2.3.pdf
 calminstruction exg.l? operands&
-            xcall m68k.parse_and_validate_instruction, <exg>, operands, <l>, <l>
-
-            local type_bits1
-            local type_bits2
-            local reg1_bits
-            local reg2_bits
-
-            ; Init default values
-            compute type_bits1, 01000000b ; default to dn,dn
-            compute type_bits2, 0  ; default to dn,dn
-            compute reg1_bits,  @op1.ea_reg_bits ; default to dn,dn
-            compute reg2_bits,  @op2.ea_reg_bits ; default to dn,dn
+        xcall m68k.parse_and_validate_instruction, <exg>, operands, <l>, <l>
 
     ; check_dn_an:
-            match =dn, @op1.type_token
-            jno check_an_an
-            match =an, @op2.type_token
-            jno check_an_an
-            compute type_bits1, 10000000b
-            compute type_bits2, 1000b
-            jump emit_bytes
+        match =dn, @op1.type_token
+        jno check_an_an
+        match =an, @op2.type_token
+        jno check_an_an
+        emit 1, 11000001b or @op1.ea_reg_bits shl 1
+        emit 1, 10001000b or @op2.ea_reg_bits
+        exit
     check_an_an:
-            match =an, @op1.type_token
-            jno check_an_dn
-            match =an, @op2.type_token
-            jno check_an_dn
-            ; compute type_bits1, 01000000b
-            compute type_bits2, 1000b
-            jump emit_bytes
+        match =an, @op1.type_token
+        jno check_an_dn
+        match =an, @op2.type_token
+        jno check_an_dn
+        emit 1, 11000001b or @op1.ea_reg_bits shl 1
+        emit 1, 01001000b or @op2.ea_reg_bits
+        exit
     check_an_dn:
-            ; seems `exg.l a7,d5` is encoded as `exg.l d5,a7`
-            match =an, @op1.type_token
-            jno emit_bytes
-            match =dn, @op2.type_token
-            jno emit_bytes
-            compute type_bits1, 10000000b
-            compute type_bits2, 1000b
-        ; exchange reg1 and reg2
-            compute reg1_bits,  @op2.ea_reg_bits
-            compute reg2_bits,  @op1.ea_reg_bits
-    emit_bytes:
-            emit 1, 11000001b or reg1_bits shl 1
-            emit 1, type_bits1 or type_bits2 or reg2_bits
+        ; seems `exg.l a7,d5` is encoded as `exg.l d5,a7`
+        match =an, @op1.type_token
+        jno dn_to_dn
+        match =dn, @op2.type_token
+        jno dn_to_dn
+        emit 1, 11000001b or @op2.ea_reg_bits shl 1
+        emit 1, 10001000b or @op1.ea_reg_bits
+        exit
+    dn_to_dn:
+        emit 1, 11000001b or @op1.ea_reg_bits shl 1
+        emit 1, 01000000b or @op2.ea_reg_bits
 end calminstruction
 
 ;; CHK ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -674,14 +661,14 @@ define movea?
 ; Syntax:
 ;     movea.[wl] <ea>,an
 iterate <size,  size_bits>, \
-        w,      11b, \
-        l,      10b
+        w,      110000b, \
+        l,      100000b
 
         calminstruction movea.size? operands&
             xcall m68k.parse_and_validate_instruction, \
                 <movea>, operands, <size>, <size>
 
-            emit 1, size_bits shl 4 or @op2.ea_reg_bits shl 1
+            emit 1, size_bits or @op2.ea_reg_bits shl 1
             emit 1, 01000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
                         
             ; extension words

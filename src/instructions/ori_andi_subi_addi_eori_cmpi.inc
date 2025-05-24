@@ -56,7 +56,10 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
                         ; assert_min imm, 1
                         ; assert_max imm, 8
 
-                        emit_be 2, instr_word or size_bits or \
+                        local instr_word_or_size_bits
+                        init instr_word_or_size_bits, instr_word or size_bits
+
+                        emit_be 2, instr_word_or_size_bits or \
                                 @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
                         
                         ; immediate bytes

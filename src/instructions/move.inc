@@ -63,6 +63,7 @@ iterate <size, dot_size>, \
 
 end iterate ; <size, dot_size>
 
+; Moving this into the main body above seems to make the code slightly slower.
 iterate <size,  size_bits>, \
         _,      11000000000000b, \
         b,      01000000000000b, \

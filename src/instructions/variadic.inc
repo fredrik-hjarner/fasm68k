@@ -9,20 +9,20 @@
 ; Seems all of these only allow the immediate operande to be 1-8
 ; though it seems that 8 will be encoded as zero.
 iterate <instr,  instr_bits>, \
-        as,             00b, \
-        ls,             01b, \
-        rox,            10b, \
-        ro,             11b
+        as,               0, \
+        ls,              10b, \
+        rox,            100b, \
+        ro,             110b
     iterate <dir,  dir_bit>, \
-            r,            0b, \
-            l,            1b
+            r,     0b, \
+            l,     1b
 
         define instr#dir?
 
         iterate <size,  size_bits>, \
-                b,             00b, \
-                w,             01b, \
-                l,             10b
+                b,      0, \
+                w,      01000000b, \
+                l,      10000000b
 
             ; Description:
             ;     Arithmetic Shift Left.
@@ -54,20 +54,20 @@ iterate <instr,  instr_bits>, \
                         ; 8 is encoded as 0, I think mod with 8 takes care of that.
                         compute tmp, @op1.imm mod 8
                         emit 1, 11100000b or (tmp shl 1) or dir_bit
-                        emit 1, size_bits shl 6 or instr_bits shl 3 or \
+                        emit 1, size_bits or instr_bits shl 2 or \
                                 @op2.ea_reg_bits
                         exit
                     data_reg:
                         emit 1, 11100000b or @op1.ea_reg_bits shl 1 or dir_bit
-                        emit 1, size_bits shl 6 or 1 shl 5 or instr_bits \
-                                shl 3 + @op2.ea_reg_bits
+                        emit 1, size_bits or 100000b or instr_bits \
+                                shl 2 + @op2.ea_reg_bits
                         exit
                 one_operand:
                         ; TODO: I think this one can only be .w
                         ; Seems manual says if monadic then it shift a word.
                         ; Double-check this. As it is I generate instructions
                         ; for all sizes right now.
-                        emit 1, 11100000b or instr_bits shl 1 or dir_bit
+                        emit 1, 11100000b or instr_bits or dir_bit
                         emit 1, 11000000b or @op1.ea_mode_bits shl 3 or \
                                 @op1.ea_reg_bits
 

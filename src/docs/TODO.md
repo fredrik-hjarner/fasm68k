@@ -53,10 +53,9 @@
       message output format sort of).
 * Make a `stringify_number` util takes handles negative values.
 * Make util that contrain a number to be within a range, maybe.
-* vasm actually excodes this incorrectly (I tried with no-opts, not sure if that
+* vasm actually excodes this differently (I tried with no-opts, not sure if that
       makes a difference though):
       `add.l #$00060000, d6`
-      I should file a bug report.
 * make my compat_binary_percent_prefix support these cases:
       BUTTON_UP=%00000001
       ESF_FM1 equ %00
