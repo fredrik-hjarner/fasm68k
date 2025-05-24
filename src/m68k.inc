@@ -24,6 +24,7 @@ include "xxcalm.inc"
 include "debug/debug.inc"
 include "endianness.inc"
 include "validation/validate_instruction.inc"
+include "reverse_bits.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ASSERTS                                                                    ;;

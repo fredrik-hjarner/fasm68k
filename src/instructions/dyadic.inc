@@ -436,7 +436,7 @@ iterate <size,  size_bits>, \
                     match =an_pre_decr, @op1.type_token
                     jno skip_reverse1
                 ; reverse:
-                    compute bit_mask, @reg_list2.mask_word_reverse
+                    reverse_bit_in_word  bit_mask
                 skip_reverse1:
                     emit 1, 01001100b
                     emit 1, size_bits or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
@@ -454,7 +454,7 @@ iterate <size,  size_bits>, \
                     match =an_pre_decr, @op2.type_token
                     jno skip_reverse2
                 ; reverse:
-                    compute bit_mask, @reg_list1.mask_word_reverse
+                    reverse_bit_in_word  bit_mask
                 skip_reverse2:
                     emit 1, 01001000b
                     emit 1, size_bits or @op2.ea_mode_bits shl 3 or @op2.ea_reg_bits

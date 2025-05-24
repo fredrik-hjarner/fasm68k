@@ -19,25 +19,21 @@ iterate reg_list, @reg_list1,@reg_list2
     namespace reg_list
         ;; Define values in the @reg_list1 and @reg_list2 namespaces. ;;;;;;;;;;;;;;;;;;;;;;
 
-        ; populated by parse_single_register
-        define single_reg_found ; TODO: Comment
-        define single_reg_mask_word ; TODO: Comment
-        define single_reg_mask_word_reverse ; TODO: Comment
-
         ; populated by parse_reg_list
         define is_reg_list ; TODO: Comment
         define mask_word ; TODO: Comment
-        define mask_word_reverse ; TODO: Comment
+
+        ; populated by parse_single_register
+        define single_reg_found ; TODO: Comment
+        define single_reg_mask_word ; TODO: Comment
 
         ; populated by parse_register_range
         define reg_range_found ; TODO: Comment
         define reg_range_mask_word ; TODO: Comment
-        define reg_range_mask_word_reverse ; TODO: Comment
 
         ; populated by parse_reg_groups
         define reg_groups_found ; TODO: Comment
         define reg_groups_mask_word ; TODO: Comment
-        define reg_groups_mask_word_reverse ; TODO: Comment
 
         ; Supposed to be call:ed.
         ;
@@ -51,8 +47,6 @@ iterate reg_list, @reg_list1,@reg_list2
         ;           a7 would be:
         ;               1000 0000 0000 0000b or
         ;               1 shl 15
-        ;     mask_word_reverse
-        ;         single_reg_mask_word but reversed
         calminstruction m68k.parse_reg_list#reg_list operand*
                     local tmp1
                     local tmp2
@@ -62,8 +56,7 @@ iterate reg_list, @reg_list1,@reg_list2
 
                 ; Init default values
                     compute is_reg_list, 0
-                    compute mask_word, 0
-                    compute mask_word_reverse, 0
+                    ; compute mask_word, 0
 
                 ; Display operand
                     ; arrange opstr, operand
@@ -78,15 +71,13 @@ iterate reg_list, @reg_list1,@reg_list2
                     jno reg_groups
                     compute is_reg_list, 1
                     compute mask_word, reg_range_mask_word
-                    compute mask_word_reverse, reg_range_mask_word_reverse
-                    jump done ; temporary. TODO: DO checks for other stuff
+                    jump done
                 reg_groups:
                     call m68k.parse_reg_groups#reg_list, operand
                     check reg_groups_found = 1
                     jno done
                     compute is_reg_list, 1
                     compute mask_word, reg_groups_mask_word
-                    compute mask_word_reverse, reg_groups_mask_word_reverse
                     jump done
                 done:
                     ; ;; Log stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -100,11 +91,6 @@ iterate reg_list, @reg_list1,@reg_list2
                     ; arrange tmp1, mask_word
                     ; stringify tmp1
                     ; display 'mask_word:                    ' bappend tmp1 bappend 10
-
-                    ; ; mask_word_reverse
-                    ; arrange tmp1, mask_word_reverse
-                    ; stringify tmp1
-                    ; display 'mask_word_reverse:            ' bappend tmp1 bappend 10
         end calminstruction
 
 ;; parse_reg_groups ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -120,7 +106,6 @@ iterate reg_list, @reg_list1,@reg_list2
                 ; Init default values
                 compute reg_groups_found, 0
                 compute reg_groups_mask_word, 0
-                compute reg_groups_mask_word_reverse, 0
 
                 arrange tail, operand
     
@@ -139,7 +124,6 @@ iterate reg_list, @reg_list1,@reg_list2
                 check dups <> 0
                 jyes dup_error
                 compute reg_groups_mask_word, reg_groups_mask_word or reg_range_mask_word
-                compute reg_groups_mask_word_reverse, reg_groups_mask_word_reverse or reg_range_mask_word_reverse
                 jump next_group
             last_group:
                 ; display '---- last_group' bappend 10
@@ -153,7 +137,6 @@ iterate reg_list, @reg_list1,@reg_list2
                 check dups <> 0
                 jyes dup_error
                 compute reg_groups_mask_word, reg_groups_mask_word or reg_range_mask_word
-                compute reg_groups_mask_word_reverse, reg_groups_mask_word_reverse or reg_range_mask_word_reverse
                 
                 compute reg_groups_found, 1
 
@@ -171,15 +154,10 @@ iterate reg_list, @reg_list1,@reg_list2
         ; represents a register.
         ; The `single_reg_mask_words` namespace contains the mask bit for each
         ; register.
-        ; For some odd reason for the specific case of `-(an)` addressing mode
-        ; the register mask must be encoded in reverse, so that's why I have
-        ; two set of masks here.
         define single_reg_mask_words
-        define single_reg_mask_words_reverse
 
         iterate reg,  d0,d1,d2,d3,d4,d5,d6,d7,a0,a1,a2,a3,a4,a5,a6,a7
             single_reg_mask_words.reg?         := 1 shl (%-1)
-            single_reg_mask_words_reverse.reg? := 1 shl (%%-%)
         end iterate
 
 ;; parse_single_register ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -197,18 +175,13 @@ iterate reg_list, @reg_list1,@reg_list2
         ;           a7 would be:
         ;               1000 0000 0000 0000b or
         ;               1 shl 15
-        ;
-        ;     @reg_list1.single_reg_mask_word_reverse
-        ;         single_reg_mask_word but reversed
-        ;
         calminstruction m68k.parse_single_register#reg_list operand*
                 local tmp1
                 local tmp2
 
             ; Init default values
                 compute single_reg_found, 0
-                compute single_reg_mask_word, 0
-                compute single_reg_mask_word_reverse, 0
+                ; compute single_reg_mask_word, 0
 
             ; Validate is not empty
                 match , operand
@@ -228,10 +201,6 @@ iterate reg_list, @reg_list1,@reg_list2
                 arrange single_reg_mask_word, reg_list.=single_reg_mask_words.operand
                 compute single_reg_mask_word, single_reg_mask_word
 
-                ; mask reverse
-                arrange single_reg_mask_word_reverse, reg_list.=single_reg_mask_words_reverse.operand
-                compute single_reg_mask_word_reverse, single_reg_mask_word_reverse
-
                 ; "return true" so to speak
                 compute single_reg_found, 1
             done:
@@ -247,11 +216,6 @@ iterate reg_list, @reg_list1,@reg_list2
                 ; stringify tmp1
                 ; display 'single_reg_mask_word:         ' bappend tmp1 bappend 10
 
-                ; ; single_reg_mask_word_reverse
-                ; arrange tmp1, single_reg_mask_word_reverse
-                ; stringify tmp1
-                ; display 'single_reg_mask_word_reverse: ' bappend tmp1 bappend 10
-
         end calminstruction
 
 ;; parse_register_range ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -261,8 +225,6 @@ iterate reg_list, @reg_list1,@reg_list2
         ;     reg_range_found
         ;         TODO: comment
         ;     reg_range_mask_word
-        ;         TODO: comment
-        ;     reg_range_mask_word_reverse
         ;         TODO: comment
         ;
         ; Examples of register ranges:
@@ -277,7 +239,6 @@ iterate reg_list, @reg_list1,@reg_list2
             ; Init default values
                 compute reg_range_found, 0
                 compute reg_range_mask_word, 0
-                compute reg_range_mask_word_reverse, 0
 
             ; Validate is not empty
             ; TODO: I could use my util function instead here.
@@ -297,7 +258,6 @@ iterate reg_list, @reg_list1,@reg_list2
                 jno check_reg_range
                 compute reg_range_found, 1
                 compute reg_range_mask_word, single_reg_mask_word
-                compute reg_range_mask_word_reverse, single_reg_mask_word_reverse
                 jump done
             check_reg_range:
                 match reg1 =- reg2, operand
@@ -326,12 +286,6 @@ iterate reg_list, @reg_list1,@reg_list2
                 ; TODO: Explain why it works maybe.
                 compute reg_range_mask_word, ((tmp2 shl 1)-1) xor (tmp1 - 1)
 
-                ; Compute reverse mask
-                arrange tmp1, reg_list.=single_reg_mask_words_reverse.reg1
-                compute tmp1, tmp1
-                arrange tmp2, reg_list.=single_reg_mask_words_reverse.reg2
-                compute tmp2, tmp2
-                compute reg_range_mask_word_reverse, ((tmp1 shl 1)-1) xor (tmp2 - 1)
             done:
                 ; ;; Display log ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -344,12 +298,6 @@ iterate reg_list, @reg_list1,@reg_list2
                 ; arrange tmp1, reg_range_mask_word
                 ; stringify tmp1
                 ; display 'reg_range_mask_word:          ' bappend tmp1 bappend 10
-
-                ;  ; reg_range_mask_word_reverse
-                ; arrange tmp1, reg_range_mask_word_reverse
-                ; stringify tmp1
-                ; display 'reg_range_mask_word_reverse:  ' bappend tmp1 bappend 10
-
         end calminstruction
 
     end namespace
