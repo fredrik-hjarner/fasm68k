@@ -26,48 +26,54 @@ iterate <instr,  instr_word,         ccr_variant,        sr_variant>, \
 
     ; TODO: Can I remove the imm_bytes now and use the stuff from
     ; parse_operand instread?
-    iterate <size,  dot_size,  size_str, size_bits,  imm_bytes, max_1_byte>, \
-            _,      ,          '',       0,          0,         , \
-            b,      .b,        'b',      00000000b,  2,         and $FF, \
-            w,      .w,        'w',      01000000b,  2,         , \
-            l,      .l,        'l',      10000000b,  4,         
+    iterate <size,  dot_size,  size_str, size_bits,  imm_bytes, max_imm_size>, \
+            _,      ,          '',       0,          0,         $FFFF, \
+            b,      .b,        'b',      00000000b,  2,         $FF, \
+            w,      .w,        'w',      01000000b,  2,         $FFFF, \
+            l,      .l,        'l',      10000000b,  4,         $FFFFFFFF
 
             calminstruction instr#dot_size? operands&
-                        xcall m68k.parse_and_validate_instruction, <instr>, \
-                                                                   operands, \
-                                                                   <size>
-                ;; CHECK CCR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                        match =ccr, @op2.type_token
-                        jno check_sr
-                    ; ccr:
-                        emit_be 2, ccr_variant
-                        emit_be 2, @op1.imm max_1_byte
-                        exit
-                ;; CKECK SR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                check_sr:
-                        match =sr, @op2.type_token
-                        jno normal_case
-                    ; sr:
-                        emit_be 2, sr_variant
-                        emit_be 2, @op1.imm
-                        exit
-                normal_case:
-                        ; TODO: Assert that imm is within bounds.
-                        ; assert_min imm, 1
-                        ; assert_max imm, 8
-
-                        local instr_word_or_size_bits
-                        init instr_word_or_size_bits, instr_word or size_bits
-
-                        emit_be 2, instr_word_or_size_bits or \
-                                @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
-                        
-                        ; immediate bytes
-                        emit_be imm_bytes, @op1.imm max_1_byte
-
-                        ; extension words
-                        emit_be @op2.ext_bytes, @op2.ext_bytes_bits
+                xcall ori_and_etc_impl, operands, <instr>, <instr_word>, \
+                                        <ccr_variant>, <sr_variant>, <size>, \
+                                        <size_bits>, <imm_bytes>, <max_imm_size>
             end calminstruction
 
     end iterate ; <size, dot_size, size_str, size_bits, imm_bytes>
 end iterate ; <instr, instr_word>
+
+; Splitting up instructions like this with macros (above) and one implementation
+; body seems to yield better performance.
+calminstruction ori_and_etc_impl? operands*, instr*, instr_word*, \
+                                  ccr_variant*, sr_variant*, size*, \
+                                  size_bits*, imm_bytes*, max_imm_size*
+
+            call m68k.parse_and_validate_instruction, instr, operands, size
+    ;; CHECK CCR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+            match =ccr, @op2.type_token
+            jno check_sr
+        ; ccr:
+            emit_be 2, ccr_variant
+            emit_be 2, @op1.imm and max_imm_size
+            exit
+    ;; CKECK SR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    check_sr:
+            match =sr, @op2.type_token
+            jno normal_case
+        ; sr:
+            emit_be 2, sr_variant
+            emit_be 2, @op1.imm
+            exit
+    normal_case:
+            ; TODO: Assert that imm is within bounds.
+            ; assert_min imm, 1
+            ; assert_max imm, 8
+
+            emit_be 2, instr_word or size_bits or \
+                    @op2.ea_mode_bits shl 3 + @op2.ea_reg_bits
+            
+            ; immediate bytes
+            emit_be imm_bytes, @op1.imm and max_imm_size
+
+            ; extension words
+            emit_be @op2.ext_bytes, @op2.ext_bytes_bits
+end calminstruction
