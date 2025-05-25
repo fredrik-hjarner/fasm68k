@@ -20,6 +20,8 @@ jobs:
         with:
           bun-version: 'latest'
 
+      # TODO: Currently I only check if no errors, but I also ough to check
+      # if the generated binary is correct.
       - name: Generate and assemble valid_instructions.asm
         run: |
           cd src
@@ -28,6 +30,18 @@ jobs:
       - name: Assemble Sonic 1 and confirm 0 diffing bytes
         run: |
           cd examples/s1disasm_fasm68k
+          make
+          sleep 1
+          DIFF_COUNT=$(make -silent diff-count)
+          if [ "$DIFF_COUNT" -ne 0 ]; then
+              echo "❌ Found $DIFF_COUNT differing bytes!"
+              exit 1
+          fi
+          echo "✅ All bytes match perfectly!"
+
+      - name: Assemble Retail Clerk 89 and confirm 0 diffing bytes
+        run: |
+          cd examples/RetailClerk89_fasm68k
           make
           sleep 1
           DIFF_COUNT=$(make -silent diff-count)

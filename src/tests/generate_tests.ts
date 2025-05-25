@@ -24,7 +24,7 @@ Array.prototype.repeat = function<T>(this: T[], count: number): T[] {
 };
 
 // Allows to run the tests `times` times.
-// 6 takes ~~11.0~~ ~~10.8~~ ~~10.2~~ 10.1 seconds with display disabled.
+// 6 takes ~~11.0~~ ~~10.8~~ ~~10.2~~ ~~10.1~~ 8.8 seconds with display disabled
 const times = 1;
 
 // Example values for each addressing mode
@@ -58,6 +58,7 @@ const examples: Record<OperandType, string[]> = {
     // "($7FFF,a5)", // TODO: Switch this test on!
     "-2(sp)",
     // "(-2)(sp)", // TODO: This causes errors.
+    // "(2,a4)", // clownassembler dont support but vasm does.
   ].repeat(times),
   // indirect addressing with displacement and index
   "d(an,ix)": [
@@ -69,6 +70,7 @@ const examples: Record<OperandType, string[]> = {
     // "($1+1)(a5,d2.l)", // TODO: This causes errors.
     '(a0,d1.w)',
     '(a1,d6)',
+    // '(5,a5,a7)', Error on clownassembler
   ].repeat(times),
   "abs.w": [
     "($FFFFFFFE).w",
@@ -94,6 +96,7 @@ const examples: Record<OperandType, string[]> = {
     "@(pc,d5.w)",
     "@-2(pc,d5.w)",
     "@-2(pc,d1.l)",
+    "@-2(pc,d1)",
   ].repeat(times),
   // TODO: Rename to imm32?
   "imm": [

@@ -83,6 +83,8 @@
             ;     compute __rs, __rs + (__rs mod 2)
             ; end calminstruction
       ```
+* remove `op.type` and only use `op.type_token` and make a string if needed
+      on the fly instead with stringify.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; things that cause unrecoverable errors in fasmg                            ;;

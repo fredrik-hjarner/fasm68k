@@ -36,7 +36,7 @@ build_vasm:
 
 # TODO: what's best -v1 or -v2? option
 build:
-	../fasm68k tests/valid_instructions.asm tests/test.bin -e20 -v2
+	../fasm68k tests/valid_instructions.asm tests/test.bin -e20 -v1
 .PHONY: build
 
 # build2 is just for me to have a separate test file to play around with.

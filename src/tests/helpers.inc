@@ -15,3 +15,7 @@ end calminstruction
 calminstruction parse_pc_index? op
     call m68k.parse_pc_index, op
 end calminstruction
+
+calminstruction parse_complex_operand? op
+    call m68k.parse_complex_operand@op1, op
+end calminstruction

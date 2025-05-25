@@ -30,8 +30,8 @@ element ccr?
 element usp?
 
 ; In `parse_operand` I multiply the `d` in ` d(pc,xn)` or `d(pc)` with this
-; element `basis_for_pc_displacement`.
+; element `pc_relative_decorator`.
 ; The reason is that I can't calculate the actual pc relative displacement there
 ; but have to wait until the extension word is emitted (see `emit_ext_words`
 ; function).
-element basis_for_pc_displacement
+element pc_relative_decorator

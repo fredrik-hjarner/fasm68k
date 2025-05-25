@@ -90,6 +90,9 @@ iterate op, @op1,@op2
         ; The value of the immediate operand.
         define imm ; TODO: Think about this.
 
+        ;
+        include "parsing/parse_complex_operand.inc"
+
         ; The `instr_size` argument is needed to set `ext_bytes` to the correct
         ;     value for immediate values (when the official syntax specifies
         ;     <ea>).
@@ -193,7 +196,7 @@ iterate op, @op1,@op2
             check_one_token_operands:
                     local tmp1, tmp2
                     match tmp1 tmp2, operand
-                    jyes check_indirect_displacement
+                    jyes check_complex_operand
             ; is_one_token:
             ; dn:
                     check operand relativeto m68k.data_reg
@@ -225,7 +228,7 @@ iterate op, @op1,@op2
                     exit
             usp:
                     check operand relativeto usp
-                    jno check_indirect_displacement
+                    jno check_complex_operand
                     compute type, 'usp'
                     arrange type_token, =usp
                     exit
@@ -241,86 +244,10 @@ iterate op, @op1,@op2
             ;         jno done
             ;         compute type, 'label'
             ;         jump done
-            ;; (d,an) a.k.a. d(an) - indirect address with displacement ;;;;;;;;
-            check_indirect_displacement:
-                    call m68k.parse_indirect_displacement, operand
-                    jnope check_pc_displacement
-                    compute type, '(d,an)'
-                    arrange type_token, =an_displace
-                    compute ea_mode_bits, 101b
-                    compute ea_reg_bits, 0 scaleof m68k.ret_reg
-                    compute ext_bytes, 2
-                    compute ext_bytes_bits, m68k.ret_imm
-                    jump done
-            ;; (d,pc) a.k.a. d(pc) - program counter with displacement ;;;;;;;;;
-            check_pc_displacement:
-                    call m68k.parse_pc_displacement, operand
-                    jnope check_pc_index
-                    compute type, '(d,pc)'
-                    arrange type_token, =pc_displace
-                    compute ea_mode_bits, 111b
-                    compute ea_reg_bits, 010b
-                    compute ext_bytes, 2
-                    ; This stuff is because the d(pc) is relative to the
-                    ; operands own extension words is, and the previous operand
-                    ; could have added extension words so that why that has to
-                    ; be subtracted.
-                    ; some instructions swap the order of the
-                    ; arguments so it's complicated.
-                    ; I add the element `basis_for_pc_displacementc` to it so
-                    ; that it's value can be "evaluated/computed" later (in
-                    ; `emit_ext_words`). Since emit_ext_words will probabaly be
-                    ; executed when the code "knows" how many extension words
-                    ; into the instruction we are this will work.
-                    ; TODO: There's a bug lurking here where imm/displacement
-                    ;       is to big, but if it's too big or not can not be
-                    ;       known here in the code, there has to be a check
-                    ;       later when the extension words are emitted.
-                    ; TODO: I should remove  m68k.ret_imm and return data
-                    ;       in the same way `parse_pc_index` does.
-                    compute ext_bytes_bits, basis_for_pc_displacement * m68k.ret_imm
-                    jump done
-            ;; (d,pc,xn.[wl]) a.k.a. d(pc,xn.[wl]) - program conter with index ;
-            check_pc_index:
-                    call m68k.parse_pc_index, operand
-                    check m68k.parse_pc_index_result.is_pc_index = 1
-                    jno check_memory_index
-                    compute type, '(d,pc,xn)'
-                    arrange type_token, =pc_idx
-                    compute ea_mode_bits, 111b
-                    compute ea_reg_bits, 011b
-                    compute ext_bytes, 2
-                    ; See comment in `check_pc_displacement` above.
-                    ; Here `basis_for_pc_displacement` is added for the same
-                    ; reason since this also deals with pc relative addressing.
-                    compute ext_bytes_bits, \
-                        m68k.parse_pc_index_result.m shl 15 + \
-                        m68k.parse_pc_index_result.xn shl 12 + \
-                        m68k.parse_pc_index_result.s shl 11 + \
-                        m68k.parse_pc_index_result.d * basis_for_pc_displacement
-                    jump done
-            ;; (d,an,xn.[wl]) a.k.a. d(an,xn.[wl]) - Address Register Indirect with Index ;
-            check_memory_index:
-                    call m68k.parse_mem_index, operand
-                    check m68k.parse_mem_index_result.is_mem_index = 1
-                    jno check_abs_without_size_suffix
-                    compute type, '(d,an,xn)'
-                    arrange type_token, =an_idx
-                    compute ea_mode_bits, 110b
-                    compute ea_reg_bits, m68k.parse_mem_index_result.an
-                    compute ext_bytes, 2
-                    ; TODO: The displacement could only be max one byte
-                    ;       and I should validate that.
-                    compute ext_bytes_bits, \
-                        m68k.parse_mem_index_result.m shl 15 or \
-                        m68k.parse_mem_index_result.xn shl 12 or \
-                        m68k.parse_mem_index_result.s shl 11 or \
-                        \ ; bswap 1 makes sure negative numbers are contrained
-                        \ ; to 1 byte. (-1 theoretically is has $FFFF...
-                        \ ; stretching to infinity)
-                        \ ; TODO: Err if `d` does not fit a byte.
-                        m68k.parse_mem_index_result.d bswap 1
-                    jump done
+            check_complex_operand:
+                    call m68k.parse_complex_operand#op, operand
+                    check parse_complex_operand_ret = 1
+                    jyes done
             ;; Check for "abs" again
             ; I think this case will cover labels because I don't think labels
             ;     usually have a size suffix... might need to double check this.
@@ -420,6 +347,7 @@ iterate op, @op1,@op2
 
                     exit
             done:
+                ; display 'type: ' bappend type bappend 10
         end calminstruction
 
     end namespace

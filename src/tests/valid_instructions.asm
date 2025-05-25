@@ -4211,9 +4211,11 @@ label_start:
 	btst.b	d2,@(pc,d5.w)
 	btst.b	d2,@-2(pc,d5.w)
 	btst.b	d2,@-2(pc,d1.l)
+	btst.b	d2,@-2(pc,d1)
 	btst.b	d5,@(pc,d5.w)
 	btst.b	d5,@-2(pc,d5.w)
 	btst.b	d5,@-2(pc,d1.l)
+	btst.b	d5,@-2(pc,d1)
 	btst.b	d2,#0
 	btst.b	d2,#$FF
 	btst.b	d2,#"X"
@@ -4281,9 +4283,11 @@ label_start:
 	btst	d2,@(pc,d5.w)
 	btst	d2,@-2(pc,d5.w)
 	btst	d2,@-2(pc,d1.l)
+	btst	d2,@-2(pc,d1)
 	btst	d5,@(pc,d5.w)
 	btst	d5,@-2(pc,d5.w)
 	btst	d5,@-2(pc,d1.l)
+	btst	d5,@-2(pc,d1)
 	btst	d2,#0
 	btst	d2,#$FF
 	btst	d2,#"X"
@@ -4407,15 +4411,19 @@ label_start:
 	btst.b	#0,@(pc,d5.w)
 	btst.b	#0,@-2(pc,d5.w)
 	btst.b	#0,@-2(pc,d1.l)
+	btst.b	#0,@-2(pc,d1)
 	btst.b	#$FF,@(pc,d5.w)
 	btst.b	#$FF,@-2(pc,d5.w)
 	btst.b	#$FF,@-2(pc,d1.l)
+	btst.b	#$FF,@-2(pc,d1)
 	btst.b	#"X",@(pc,d5.w)
 	btst.b	#"X",@-2(pc,d5.w)
 	btst.b	#"X",@-2(pc,d1.l)
+	btst.b	#"X",@-2(pc,d1)
 	btst.b	#-1,@(pc,d5.w)
 	btst.b	#-1,@-2(pc,d5.w)
 	btst.b	#-1,@-2(pc,d1.l)
+	btst.b	#-1,@-2(pc,d1)
 	btst	#0,(a2)
 	btst	#0,(a5)
 	btst	#$FF,(a2)
@@ -4531,15 +4539,19 @@ label_start:
 	btst	#0,@(pc,d5.w)
 	btst	#0,@-2(pc,d5.w)
 	btst	#0,@-2(pc,d1.l)
+	btst	#0,@-2(pc,d1)
 	btst	#$FF,@(pc,d5.w)
 	btst	#$FF,@-2(pc,d5.w)
 	btst	#$FF,@-2(pc,d1.l)
+	btst	#$FF,@-2(pc,d1)
 	btst	#"X",@(pc,d5.w)
 	btst	#"X",@-2(pc,d5.w)
 	btst	#"X",@-2(pc,d1.l)
+	btst	#"X",@-2(pc,d1)
 	btst	#-1,@(pc,d5.w)
 	btst	#-1,@-2(pc,d5.w)
 	btst	#-1,@-2(pc,d1.l)
+	btst	#-1,@-2(pc,d1)
 
 	bchg.l	d2,d2
 	bchg.l	d2,d5
@@ -7038,6 +7050,9 @@ label_start:
 	movea.w	@-2(pc,d1.l),a2
 	movea.w	@-2(pc,d1.l),a7
 	movea.w	@-2(pc,d1.l),sp
+	movea.w	@-2(pc,d1),a2
+	movea.w	@-2(pc,d1),a7
+	movea.w	@-2(pc,d1),sp
 	movea.w	d2,a2
 	movea.w	d2,a7
 	movea.w	d2,sp
@@ -7167,6 +7182,9 @@ label_start:
 	movea.l	@-2(pc,d1.l),a2
 	movea.l	@-2(pc,d1.l),a7
 	movea.l	@-2(pc,d1.l),sp
+	movea.l	@-2(pc,d1),a2
+	movea.l	@-2(pc,d1),a7
+	movea.l	@-2(pc,d1),sp
 	movea.l	d2,a2
 	movea.l	d2,a7
 	movea.l	d2,sp
@@ -8003,12 +8021,16 @@ label_start:
 	move.b	@-2(pc,d5.w),(a5)
 	move.b	@-2(pc,d1.l),(a2)
 	move.b	@-2(pc,d1.l),(a5)
+	move.b	@-2(pc,d1),(a2)
+	move.b	@-2(pc,d1),(a5)
 	move.b	@(pc,d5.w),(a1)+
 	move.b	@(pc,d5.w),(a5)+
 	move.b	@-2(pc,d5.w),(a1)+
 	move.b	@-2(pc,d5.w),(a5)+
 	move.b	@-2(pc,d1.l),(a1)+
 	move.b	@-2(pc,d1.l),(a5)+
+	move.b	@-2(pc,d1),(a1)+
+	move.b	@-2(pc,d1),(a5)+
 	move.b	@(pc,d5.w),-(a2)
 	move.b	@(pc,d5.w),-(a5)
 	move.b	@(pc,d5.w),-(sp)
@@ -8018,6 +8040,9 @@ label_start:
 	move.b	@-2(pc,d1.l),-(a2)
 	move.b	@-2(pc,d1.l),-(a5)
 	move.b	@-2(pc,d1.l),-(sp)
+	move.b	@-2(pc,d1),-(a2)
+	move.b	@-2(pc,d1),-(a5)
+	move.b	@-2(pc,d1),-(sp)
 	move.b	@(pc,d5.w),($FFFFFFFE).l
 	move.b	@(pc,d5.w),label_start.l
 	move.b	@(pc,d5.w),$FFFFFFFE
@@ -8036,6 +8061,12 @@ label_start:
 	move.b	@-2(pc,d1.l),$FFFFFFFFFFFE
 	move.b	@-2(pc,d1.l),$2
 	move.b	@-2(pc,d1.l),-2
+	move.b	@-2(pc,d1),($FFFFFFFE).l
+	move.b	@-2(pc,d1),label_start.l
+	move.b	@-2(pc,d1),$FFFFFFFE
+	move.b	@-2(pc,d1),$FFFFFFFFFFFE
+	move.b	@-2(pc,d1),$2
+	move.b	@-2(pc,d1),-2
 	move.b	@(pc,d5.w),($FFFFFFFE).w
 	move.b	@(pc,d5.w),$2
 	move.b	@(pc,d5.w),-2
@@ -8045,6 +8076,9 @@ label_start:
 	move.b	@-2(pc,d1.l),($FFFFFFFE).w
 	move.b	@-2(pc,d1.l),$2
 	move.b	@-2(pc,d1.l),-2
+	move.b	@-2(pc,d1),($FFFFFFFE).w
+	move.b	@-2(pc,d1),$2
+	move.b	@-2(pc,d1),-2
 	move.b	@(pc,d5.w),$7FFF(a2)
 	move.b	@(pc,d5.w),$7FFF(a5)
 	move.b	@(pc,d5.w),-2(sp)
@@ -8054,6 +8088,9 @@ label_start:
 	move.b	@-2(pc,d1.l),$7FFF(a2)
 	move.b	@-2(pc,d1.l),$7FFF(a5)
 	move.b	@-2(pc,d1.l),-2(sp)
+	move.b	@-2(pc,d1),$7FFF(a2)
+	move.b	@-2(pc,d1),$7FFF(a5)
+	move.b	@-2(pc,d1),-2(sp)
 	move.b	@(pc,d5.w),$7F(a2,d5.w)
 	move.b	@(pc,d5.w),$7F(a5,d2.w)
 	move.b	@(pc,d5.w),$0F(a5,d2.l)
@@ -8075,12 +8112,21 @@ label_start:
 	move.b	@-2(pc,d1.l),-2(a5,d2.l)
 	move.b	@-2(pc,d1.l),(a0,d1.w)
 	move.b	@-2(pc,d1.l),(a1,d6)
+	move.b	@-2(pc,d1),$7F(a2,d5.w)
+	move.b	@-2(pc,d1),$7F(a5,d2.w)
+	move.b	@-2(pc,d1),$0F(a5,d2.l)
+	move.b	@-2(pc,d1),$1+1(a5,d2.l)
+	move.b	@-2(pc,d1),-2(a5,d2.l)
+	move.b	@-2(pc,d1),(a0,d1.w)
+	move.b	@-2(pc,d1),(a1,d6)
 	move.b	@(pc,d5.w),d2
 	move.b	@(pc,d5.w),d5
 	move.b	@-2(pc,d5.w),d2
 	move.b	@-2(pc,d5.w),d5
 	move.b	@-2(pc,d1.l),d2
 	move.b	@-2(pc,d1.l),d5
+	move.b	@-2(pc,d1),d2
+	move.b	@-2(pc,d1),d5
 	move.b	d2,(a2)
 	move.b	d2,(a5)
 	move.b	d5,(a2)
@@ -9039,12 +9085,16 @@ label_start:
 	move.w	@-2(pc,d5.w),(a5)
 	move.w	@-2(pc,d1.l),(a2)
 	move.w	@-2(pc,d1.l),(a5)
+	move.w	@-2(pc,d1),(a2)
+	move.w	@-2(pc,d1),(a5)
 	move.w	@(pc,d5.w),(a1)+
 	move.w	@(pc,d5.w),(a5)+
 	move.w	@-2(pc,d5.w),(a1)+
 	move.w	@-2(pc,d5.w),(a5)+
 	move.w	@-2(pc,d1.l),(a1)+
 	move.w	@-2(pc,d1.l),(a5)+
+	move.w	@-2(pc,d1),(a1)+
+	move.w	@-2(pc,d1),(a5)+
 	move.w	@(pc,d5.w),-(a2)
 	move.w	@(pc,d5.w),-(a5)
 	move.w	@(pc,d5.w),-(sp)
@@ -9054,6 +9104,9 @@ label_start:
 	move.w	@-2(pc,d1.l),-(a2)
 	move.w	@-2(pc,d1.l),-(a5)
 	move.w	@-2(pc,d1.l),-(sp)
+	move.w	@-2(pc,d1),-(a2)
+	move.w	@-2(pc,d1),-(a5)
+	move.w	@-2(pc,d1),-(sp)
 	move.w	@(pc,d5.w),($FFFFFFFE).l
 	move.w	@(pc,d5.w),label_start.l
 	move.w	@(pc,d5.w),$FFFFFFFE
@@ -9072,6 +9125,12 @@ label_start:
 	move.w	@-2(pc,d1.l),$FFFFFFFFFFFE
 	move.w	@-2(pc,d1.l),$2
 	move.w	@-2(pc,d1.l),-2
+	move.w	@-2(pc,d1),($FFFFFFFE).l
+	move.w	@-2(pc,d1),label_start.l
+	move.w	@-2(pc,d1),$FFFFFFFE
+	move.w	@-2(pc,d1),$FFFFFFFFFFFE
+	move.w	@-2(pc,d1),$2
+	move.w	@-2(pc,d1),-2
 	move.w	@(pc,d5.w),($FFFFFFFE).w
 	move.w	@(pc,d5.w),$2
 	move.w	@(pc,d5.w),-2
@@ -9081,6 +9140,9 @@ label_start:
 	move.w	@-2(pc,d1.l),($FFFFFFFE).w
 	move.w	@-2(pc,d1.l),$2
 	move.w	@-2(pc,d1.l),-2
+	move.w	@-2(pc,d1),($FFFFFFFE).w
+	move.w	@-2(pc,d1),$2
+	move.w	@-2(pc,d1),-2
 	move.w	@(pc,d5.w),$7FFF(a2)
 	move.w	@(pc,d5.w),$7FFF(a5)
 	move.w	@(pc,d5.w),-2(sp)
@@ -9090,6 +9152,9 @@ label_start:
 	move.w	@-2(pc,d1.l),$7FFF(a2)
 	move.w	@-2(pc,d1.l),$7FFF(a5)
 	move.w	@-2(pc,d1.l),-2(sp)
+	move.w	@-2(pc,d1),$7FFF(a2)
+	move.w	@-2(pc,d1),$7FFF(a5)
+	move.w	@-2(pc,d1),-2(sp)
 	move.w	@(pc,d5.w),$7F(a2,d5.w)
 	move.w	@(pc,d5.w),$7F(a5,d2.w)
 	move.w	@(pc,d5.w),$0F(a5,d2.l)
@@ -9111,12 +9176,21 @@ label_start:
 	move.w	@-2(pc,d1.l),-2(a5,d2.l)
 	move.w	@-2(pc,d1.l),(a0,d1.w)
 	move.w	@-2(pc,d1.l),(a1,d6)
+	move.w	@-2(pc,d1),$7F(a2,d5.w)
+	move.w	@-2(pc,d1),$7F(a5,d2.w)
+	move.w	@-2(pc,d1),$0F(a5,d2.l)
+	move.w	@-2(pc,d1),$1+1(a5,d2.l)
+	move.w	@-2(pc,d1),-2(a5,d2.l)
+	move.w	@-2(pc,d1),(a0,d1.w)
+	move.w	@-2(pc,d1),(a1,d6)
 	move.w	@(pc,d5.w),d2
 	move.w	@(pc,d5.w),d5
 	move.w	@-2(pc,d5.w),d2
 	move.w	@-2(pc,d5.w),d5
 	move.w	@-2(pc,d1.l),d2
 	move.w	@-2(pc,d1.l),d5
+	move.w	@-2(pc,d1),d2
+	move.w	@-2(pc,d1),d5
 	move.w	d2,(a2)
 	move.w	d2,(a5)
 	move.w	d5,(a2)
@@ -10159,12 +10233,16 @@ label_start:
 	move.l	@-2(pc,d5.w),(a5)
 	move.l	@-2(pc,d1.l),(a2)
 	move.l	@-2(pc,d1.l),(a5)
+	move.l	@-2(pc,d1),(a2)
+	move.l	@-2(pc,d1),(a5)
 	move.l	@(pc,d5.w),(a1)+
 	move.l	@(pc,d5.w),(a5)+
 	move.l	@-2(pc,d5.w),(a1)+
 	move.l	@-2(pc,d5.w),(a5)+
 	move.l	@-2(pc,d1.l),(a1)+
 	move.l	@-2(pc,d1.l),(a5)+
+	move.l	@-2(pc,d1),(a1)+
+	move.l	@-2(pc,d1),(a5)+
 	move.l	@(pc,d5.w),-(a2)
 	move.l	@(pc,d5.w),-(a5)
 	move.l	@(pc,d5.w),-(sp)
@@ -10174,6 +10252,9 @@ label_start:
 	move.l	@-2(pc,d1.l),-(a2)
 	move.l	@-2(pc,d1.l),-(a5)
 	move.l	@-2(pc,d1.l),-(sp)
+	move.l	@-2(pc,d1),-(a2)
+	move.l	@-2(pc,d1),-(a5)
+	move.l	@-2(pc,d1),-(sp)
 	move.l	@(pc,d5.w),($FFFFFFFE).l
 	move.l	@(pc,d5.w),label_start.l
 	move.l	@(pc,d5.w),$FFFFFFFE
@@ -10192,6 +10273,12 @@ label_start:
 	move.l	@-2(pc,d1.l),$FFFFFFFFFFFE
 	move.l	@-2(pc,d1.l),$2
 	move.l	@-2(pc,d1.l),-2
+	move.l	@-2(pc,d1),($FFFFFFFE).l
+	move.l	@-2(pc,d1),label_start.l
+	move.l	@-2(pc,d1),$FFFFFFFE
+	move.l	@-2(pc,d1),$FFFFFFFFFFFE
+	move.l	@-2(pc,d1),$2
+	move.l	@-2(pc,d1),-2
 	move.l	@(pc,d5.w),($FFFFFFFE).w
 	move.l	@(pc,d5.w),$2
 	move.l	@(pc,d5.w),-2
@@ -10201,6 +10288,9 @@ label_start:
 	move.l	@-2(pc,d1.l),($FFFFFFFE).w
 	move.l	@-2(pc,d1.l),$2
 	move.l	@-2(pc,d1.l),-2
+	move.l	@-2(pc,d1),($FFFFFFFE).w
+	move.l	@-2(pc,d1),$2
+	move.l	@-2(pc,d1),-2
 	move.l	@(pc,d5.w),$7FFF(a2)
 	move.l	@(pc,d5.w),$7FFF(a5)
 	move.l	@(pc,d5.w),-2(sp)
@@ -10210,6 +10300,9 @@ label_start:
 	move.l	@-2(pc,d1.l),$7FFF(a2)
 	move.l	@-2(pc,d1.l),$7FFF(a5)
 	move.l	@-2(pc,d1.l),-2(sp)
+	move.l	@-2(pc,d1),$7FFF(a2)
+	move.l	@-2(pc,d1),$7FFF(a5)
+	move.l	@-2(pc,d1),-2(sp)
 	move.l	@(pc,d5.w),$7F(a2,d5.w)
 	move.l	@(pc,d5.w),$7F(a5,d2.w)
 	move.l	@(pc,d5.w),$0F(a5,d2.l)
@@ -10231,12 +10324,21 @@ label_start:
 	move.l	@-2(pc,d1.l),-2(a5,d2.l)
 	move.l	@-2(pc,d1.l),(a0,d1.w)
 	move.l	@-2(pc,d1.l),(a1,d6)
+	move.l	@-2(pc,d1),$7F(a2,d5.w)
+	move.l	@-2(pc,d1),$7F(a5,d2.w)
+	move.l	@-2(pc,d1),$0F(a5,d2.l)
+	move.l	@-2(pc,d1),$1+1(a5,d2.l)
+	move.l	@-2(pc,d1),-2(a5,d2.l)
+	move.l	@-2(pc,d1),(a0,d1.w)
+	move.l	@-2(pc,d1),(a1,d6)
 	move.l	@(pc,d5.w),d2
 	move.l	@(pc,d5.w),d5
 	move.l	@-2(pc,d5.w),d2
 	move.l	@-2(pc,d5.w),d5
 	move.l	@-2(pc,d1.l),d2
 	move.l	@-2(pc,d1.l),d5
+	move.l	@-2(pc,d1),d2
+	move.l	@-2(pc,d1),d5
 	move.l	d2,(a2)
 	move.l	d2,(a5)
 	move.l	d5,(a2)
@@ -10759,6 +10861,9 @@ label_start:
 	move.w	@-2(pc,d1.l),a2
 	move.w	@-2(pc,d1.l),a7
 	move.w	@-2(pc,d1.l),sp
+	move.w	@-2(pc,d1),a2
+	move.w	@-2(pc,d1),a7
+	move.w	@-2(pc,d1),sp
 	move.w	d2,a2
 	move.w	d2,a7
 	move.w	d2,sp
@@ -10888,6 +10993,9 @@ label_start:
 	move.l	@-2(pc,d1.l),a2
 	move.l	@-2(pc,d1.l),a7
 	move.l	@-2(pc,d1.l),sp
+	move.l	@-2(pc,d1),a2
+	move.l	@-2(pc,d1),a7
+	move.l	@-2(pc,d1),sp
 	move.l	d2,a2
 	move.l	d2,a7
 	move.l	d2,sp
@@ -11188,6 +11296,7 @@ label_start:
 	move	@(pc,d5.w),ccr
 	move	@-2(pc,d5.w),ccr
 	move	@-2(pc,d1.l),ccr
+	move	@-2(pc,d1),ccr
 	move	d2,ccr
 	move	d5,ccr
 	move	#0,ccr
@@ -11228,6 +11337,7 @@ label_start:
 	move.w	@(pc,d5.w),ccr
 	move.w	@-2(pc,d5.w),ccr
 	move.w	@-2(pc,d1.l),ccr
+	move.w	@-2(pc,d1),ccr
 	move.w	d2,ccr
 	move.w	d5,ccr
 	move.w	#0,ccr
@@ -11268,6 +11378,7 @@ label_start:
 	move	@(pc,d5.w),sr
 	move	@-2(pc,d5.w),sr
 	move	@-2(pc,d1.l),sr
+	move	@-2(pc,d1),sr
 	move	d2,sr
 	move	d5,sr
 	move	#0,sr
@@ -11308,6 +11419,7 @@ label_start:
 	move.w	@(pc,d5.w),sr
 	move.w	@-2(pc,d5.w),sr
 	move.w	@-2(pc,d1.l),sr
+	move.w	@-2(pc,d1),sr
 	move.w	d2,sr
 	move.w	d5,sr
 	move.w	#0,sr
@@ -11820,6 +11932,7 @@ label_start:
 	pea.l	@(pc,d5.w)
 	pea.l	@-2(pc,d5.w)
 	pea.l	@-2(pc,d1.l)
+	pea.l	@-2(pc,d1)
 	pea	(a2)
 	pea	(a5)
 	pea	($FFFFFFFE).l
@@ -11846,6 +11959,7 @@ label_start:
 	pea	@(pc,d5.w)
 	pea	@-2(pc,d5.w)
 	pea	@-2(pc,d1.l)
+	pea	@-2(pc,d1)
 
 	illegal
 
@@ -12023,6 +12137,7 @@ label_start:
 	jsr	@(pc,d5.w)
 	jsr	@-2(pc,d5.w)
 	jsr	@-2(pc,d1.l)
+	jsr	@-2(pc,d1)
 
 	jmp	(a2)
 	jmp	(a5)
@@ -12050,6 +12165,7 @@ label_start:
 	jmp	@(pc,d5.w)
 	jmp	@-2(pc,d5.w)
 	jmp	@-2(pc,d1.l)
+	jmp	@-2(pc,d1)
 
 	movem.w	d2,(a2)
 	movem.w	d2,(a5)
@@ -12431,6 +12547,11 @@ label_start:
 	movem.w	@-2(pc,d1.l),d0-d7/a0-a7
 	movem.w	@-2(pc,d1.l),d0-d1/a0-a1
 	movem.w	@-2(pc,d1.l),d0/d1/d2/d3-d4
+	movem.w	@-2(pc,d1),d2
+	movem.w	@-2(pc,d1),d5-a7
+	movem.w	@-2(pc,d1),d0-d7/a0-a7
+	movem.w	@-2(pc,d1),d0-d1/a0-a1
+	movem.w	@-2(pc,d1),d0/d1/d2/d3-d4
 	movem.l	(a2),d2
 	movem.l	(a2),d5-a7
 	movem.l	(a2),d0-d7/a0-a7
@@ -12571,6 +12692,11 @@ label_start:
 	movem.l	@-2(pc,d1.l),d0-d7/a0-a7
 	movem.l	@-2(pc,d1.l),d0-d1/a0-a1
 	movem.l	@-2(pc,d1.l),d0/d1/d2/d3-d4
+	movem.l	@-2(pc,d1),d2
+	movem.l	@-2(pc,d1),d5-a7
+	movem.l	@-2(pc,d1),d0-d7/a0-a7
+	movem.l	@-2(pc,d1),d0-d1/a0-a1
+	movem.l	@-2(pc,d1),d0/d1/d2/d3-d4
 
 	lea.l	(a2),a2
 	lea.l	(a2),a7
@@ -12650,6 +12776,9 @@ label_start:
 	lea.l	@-2(pc,d1.l),a2
 	lea.l	@-2(pc,d1.l),a7
 	lea.l	@-2(pc,d1.l),sp
+	lea.l	@-2(pc,d1),a2
+	lea.l	@-2(pc,d1),a7
+	lea.l	@-2(pc,d1),sp
 	lea	(a2),a2
 	lea	(a2),a7
 	lea	(a2),sp
@@ -12728,6 +12857,9 @@ label_start:
 	lea	@-2(pc,d1.l),a2
 	lea	@-2(pc,d1.l),a7
 	lea	@-2(pc,d1.l),sp
+	lea	@-2(pc,d1),a2
+	lea	@-2(pc,d1),a7
+	lea	@-2(pc,d1),sp
 
 	chk.w	(a2),d2
 	chk.w	(a2),d5
@@ -12791,6 +12923,8 @@ label_start:
 	chk.w	@-2(pc,d5.w),d5
 	chk.w	@-2(pc,d1.l),d2
 	chk.w	@-2(pc,d1.l),d5
+	chk.w	@-2(pc,d1),d2
+	chk.w	@-2(pc,d1),d5
 	chk.w	d2,d2
 	chk.w	d2,d5
 	chk.w	d5,d2
@@ -12871,6 +13005,8 @@ label_start:
 	chk	@-2(pc,d5.w),d5
 	chk	@-2(pc,d1.l),d2
 	chk	@-2(pc,d1.l),d5
+	chk	@-2(pc,d1),d2
+	chk	@-2(pc,d1),d5
 	chk	d2,d2
 	chk	d2,d5
 	chk	d5,d2
@@ -13327,6 +13463,8 @@ label_start:
 	divu.w	@-2(pc,d5.w),d5
 	divu.w	@-2(pc,d1.l),d2
 	divu.w	@-2(pc,d1.l),d5
+	divu.w	@-2(pc,d1),d2
+	divu.w	@-2(pc,d1),d5
 	divu.w	d2,d2
 	divu.w	d2,d5
 	divu.w	d5,d2
@@ -13407,6 +13545,8 @@ label_start:
 	divu	@-2(pc,d5.w),d5
 	divu	@-2(pc,d1.l),d2
 	divu	@-2(pc,d1.l),d5
+	divu	@-2(pc,d1),d2
+	divu	@-2(pc,d1),d5
 	divu	d2,d2
 	divu	d2,d5
 	divu	d5,d2
@@ -13488,6 +13628,8 @@ label_start:
 	divs.w	@-2(pc,d5.w),d5
 	divs.w	@-2(pc,d1.l),d2
 	divs.w	@-2(pc,d1.l),d5
+	divs.w	@-2(pc,d1),d2
+	divs.w	@-2(pc,d1),d5
 	divs.w	d2,d2
 	divs.w	d2,d5
 	divs.w	d5,d2
@@ -13568,6 +13710,8 @@ label_start:
 	divs	@-2(pc,d5.w),d5
 	divs	@-2(pc,d1.l),d2
 	divs	@-2(pc,d1.l),d5
+	divs	@-2(pc,d1),d2
+	divs	@-2(pc,d1),d5
 	divs	d2,d2
 	divs	d2,d5
 	divs	d5,d2
@@ -13703,6 +13847,8 @@ label_start:
 	or.b	@-2(pc,d5.w),d5
 	or.b	@-2(pc,d1.l),d2
 	or.b	@-2(pc,d1.l),d5
+	or.b	@-2(pc,d1),d2
+	or.b	@-2(pc,d1),d5
 	or.b	d2,d2
 	or.b	d2,d5
 	or.b	d5,d2
@@ -13769,6 +13915,8 @@ label_start:
 	or.w	@-2(pc,d5.w),d5
 	or.w	@-2(pc,d1.l),d2
 	or.w	@-2(pc,d1.l),d5
+	or.w	@-2(pc,d1),d2
+	or.w	@-2(pc,d1),d5
 	or.w	d2,d2
 	or.w	d2,d5
 	or.w	d5,d2
@@ -13835,6 +13983,8 @@ label_start:
 	or.l	@-2(pc,d5.w),d5
 	or.l	@-2(pc,d1.l),d2
 	or.l	@-2(pc,d1.l),d5
+	or.l	@-2(pc,d1),d2
+	or.l	@-2(pc,d1),d5
 	or.l	d2,d2
 	or.l	d2,d5
 	or.l	d5,d2
@@ -14730,6 +14880,8 @@ label_start:
 	and.b	@-2(pc,d5.w),d5
 	and.b	@-2(pc,d1.l),d2
 	and.b	@-2(pc,d1.l),d5
+	and.b	@-2(pc,d1),d2
+	and.b	@-2(pc,d1),d5
 	and.b	d2,d2
 	and.b	d2,d5
 	and.b	d5,d2
@@ -14796,6 +14948,8 @@ label_start:
 	and.w	@-2(pc,d5.w),d5
 	and.w	@-2(pc,d1.l),d2
 	and.w	@-2(pc,d1.l),d5
+	and.w	@-2(pc,d1),d2
+	and.w	@-2(pc,d1),d5
 	and.w	d2,d2
 	and.w	d2,d5
 	and.w	d5,d2
@@ -14862,6 +15016,8 @@ label_start:
 	and.l	@-2(pc,d5.w),d5
 	and.l	@-2(pc,d1.l),d2
 	and.l	@-2(pc,d1.l),d5
+	and.l	@-2(pc,d1),d2
+	and.l	@-2(pc,d1),d5
 	and.l	d2,d2
 	and.l	d2,d5
 	and.l	d5,d2
@@ -15757,6 +15913,8 @@ label_start:
 	sub.b	@-2(pc,d5.w),d5
 	sub.b	@-2(pc,d1.l),d2
 	sub.b	@-2(pc,d1.l),d5
+	sub.b	@-2(pc,d1),d2
+	sub.b	@-2(pc,d1),d5
 	sub.b	d2,d2
 	sub.b	d2,d5
 	sub.b	d5,d2
@@ -15823,6 +15981,8 @@ label_start:
 	sub.w	@-2(pc,d5.w),d5
 	sub.w	@-2(pc,d1.l),d2
 	sub.w	@-2(pc,d1.l),d5
+	sub.w	@-2(pc,d1),d2
+	sub.w	@-2(pc,d1),d5
 	sub.w	d2,d2
 	sub.w	d2,d5
 	sub.w	d5,d2
@@ -15889,6 +16049,8 @@ label_start:
 	sub.l	@-2(pc,d5.w),d5
 	sub.l	@-2(pc,d1.l),d2
 	sub.l	@-2(pc,d1.l),d5
+	sub.l	@-2(pc,d1),d2
+	sub.l	@-2(pc,d1),d5
 	sub.l	d2,d2
 	sub.l	d2,d5
 	sub.l	d5,d2
@@ -16007,6 +16169,9 @@ label_start:
 	sub.w	@-2(pc,d1.l),a2
 	sub.w	@-2(pc,d1.l),a7
 	sub.w	@-2(pc,d1.l),sp
+	sub.w	@-2(pc,d1),a2
+	sub.w	@-2(pc,d1),a7
+	sub.w	@-2(pc,d1),sp
 	sub.w	d2,a2
 	sub.w	d2,a7
 	sub.w	d2,sp
@@ -16136,6 +16301,9 @@ label_start:
 	sub.l	@-2(pc,d1.l),a2
 	sub.l	@-2(pc,d1.l),a7
 	sub.l	@-2(pc,d1.l),sp
+	sub.l	@-2(pc,d1),a2
+	sub.l	@-2(pc,d1),a7
+	sub.l	@-2(pc,d1),sp
 	sub.l	d2,a2
 	sub.l	d2,a7
 	sub.l	d2,sp
@@ -17072,6 +17240,8 @@ label_start:
 	add.b	@-2(pc,d5.w),d5
 	add.b	@-2(pc,d1.l),d2
 	add.b	@-2(pc,d1.l),d5
+	add.b	@-2(pc,d1),d2
+	add.b	@-2(pc,d1),d5
 	add.b	d2,d2
 	add.b	d2,d5
 	add.b	d5,d2
@@ -17138,6 +17308,8 @@ label_start:
 	add.w	@-2(pc,d5.w),d5
 	add.w	@-2(pc,d1.l),d2
 	add.w	@-2(pc,d1.l),d5
+	add.w	@-2(pc,d1),d2
+	add.w	@-2(pc,d1),d5
 	add.w	d2,d2
 	add.w	d2,d5
 	add.w	d5,d2
@@ -17204,6 +17376,8 @@ label_start:
 	add.l	@-2(pc,d5.w),d5
 	add.l	@-2(pc,d1.l),d2
 	add.l	@-2(pc,d1.l),d5
+	add.l	@-2(pc,d1),d2
+	add.l	@-2(pc,d1),d5
 	add.l	d2,d2
 	add.l	d2,d5
 	add.l	d5,d2
@@ -17322,6 +17496,9 @@ label_start:
 	add.w	@-2(pc,d1.l),a2
 	add.w	@-2(pc,d1.l),a7
 	add.w	@-2(pc,d1.l),sp
+	add.w	@-2(pc,d1),a2
+	add.w	@-2(pc,d1),a7
+	add.w	@-2(pc,d1),sp
 	add.w	d2,a2
 	add.w	d2,a7
 	add.w	d2,sp
@@ -17451,6 +17628,9 @@ label_start:
 	add.l	@-2(pc,d1.l),a2
 	add.l	@-2(pc,d1.l),a7
 	add.l	@-2(pc,d1.l),sp
+	add.l	@-2(pc,d1),a2
+	add.l	@-2(pc,d1),a7
+	add.l	@-2(pc,d1),sp
 	add.l	d2,a2
 	add.l	d2,a7
 	add.l	d2,sp
@@ -18507,6 +18687,9 @@ label_start:
 	suba.w	@-2(pc,d1.l),a2
 	suba.w	@-2(pc,d1.l),a7
 	suba.w	@-2(pc,d1.l),sp
+	suba.w	@-2(pc,d1),a2
+	suba.w	@-2(pc,d1),a7
+	suba.w	@-2(pc,d1),sp
 	suba.w	d2,a2
 	suba.w	d2,a7
 	suba.w	d2,sp
@@ -18636,6 +18819,9 @@ label_start:
 	suba.l	@-2(pc,d1.l),a2
 	suba.l	@-2(pc,d1.l),a7
 	suba.l	@-2(pc,d1.l),sp
+	suba.l	@-2(pc,d1),a2
+	suba.l	@-2(pc,d1),a7
+	suba.l	@-2(pc,d1),sp
 	suba.l	d2,a2
 	suba.l	d2,a7
 	suba.l	d2,sp
@@ -19598,6 +19784,8 @@ label_start:
 	cmp.b	@-2(pc,d5.w),d5
 	cmp.b	@-2(pc,d1.l),d2
 	cmp.b	@-2(pc,d1.l),d5
+	cmp.b	@-2(pc,d1),d2
+	cmp.b	@-2(pc,d1),d5
 	cmp.b	d2,d2
 	cmp.b	d2,d5
 	cmp.b	d5,d2
@@ -19664,6 +19852,8 @@ label_start:
 	cmp.w	@-2(pc,d5.w),d5
 	cmp.w	@-2(pc,d1.l),d2
 	cmp.w	@-2(pc,d1.l),d5
+	cmp.w	@-2(pc,d1),d2
+	cmp.w	@-2(pc,d1),d5
 	cmp.w	d2,d2
 	cmp.w	d2,d5
 	cmp.w	d5,d2
@@ -19730,6 +19920,8 @@ label_start:
 	cmp.l	@-2(pc,d5.w),d5
 	cmp.l	@-2(pc,d1.l),d2
 	cmp.l	@-2(pc,d1.l),d5
+	cmp.l	@-2(pc,d1),d2
+	cmp.l	@-2(pc,d1),d5
 	cmp.l	d2,d2
 	cmp.l	d2,d5
 	cmp.l	d5,d2
@@ -19848,6 +20040,9 @@ label_start:
 	cmp.w	@-2(pc,d1.l),a2
 	cmp.w	@-2(pc,d1.l),a7
 	cmp.w	@-2(pc,d1.l),sp
+	cmp.w	@-2(pc,d1),a2
+	cmp.w	@-2(pc,d1),a7
+	cmp.w	@-2(pc,d1),sp
 	cmp.w	d2,a2
 	cmp.w	d2,a7
 	cmp.w	d2,sp
@@ -19977,6 +20172,9 @@ label_start:
 	cmp.l	@-2(pc,d1.l),a2
 	cmp.l	@-2(pc,d1.l),a7
 	cmp.l	@-2(pc,d1.l),sp
+	cmp.l	@-2(pc,d1),a2
+	cmp.l	@-2(pc,d1),a7
+	cmp.l	@-2(pc,d1),sp
 	cmp.l	d2,a2
 	cmp.l	d2,a7
 	cmp.l	d2,sp
@@ -20797,6 +20995,9 @@ label_start:
 	cmpa.w	@-2(pc,d1.l),a2
 	cmpa.w	@-2(pc,d1.l),a7
 	cmpa.w	@-2(pc,d1.l),sp
+	cmpa.w	@-2(pc,d1),a2
+	cmpa.w	@-2(pc,d1),a7
+	cmpa.w	@-2(pc,d1),sp
 	cmpa.w	d2,a2
 	cmpa.w	d2,a7
 	cmpa.w	d2,sp
@@ -20926,6 +21127,9 @@ label_start:
 	cmpa.l	@-2(pc,d1.l),a2
 	cmpa.l	@-2(pc,d1.l),a7
 	cmpa.l	@-2(pc,d1.l),sp
+	cmpa.l	@-2(pc,d1),a2
+	cmpa.l	@-2(pc,d1),a7
+	cmpa.l	@-2(pc,d1),sp
 	cmpa.l	d2,a2
 	cmpa.l	d2,a7
 	cmpa.l	d2,sp
@@ -21034,6 +21238,8 @@ label_start:
 	mulu.w	@-2(pc,d5.w),d5
 	mulu.w	@-2(pc,d1.l),d2
 	mulu.w	@-2(pc,d1.l),d5
+	mulu.w	@-2(pc,d1),d2
+	mulu.w	@-2(pc,d1),d5
 	mulu.w	d2,d2
 	mulu.w	d2,d5
 	mulu.w	d5,d2
@@ -21114,6 +21320,8 @@ label_start:
 	mulu	@-2(pc,d5.w),d5
 	mulu	@-2(pc,d1.l),d2
 	mulu	@-2(pc,d1.l),d5
+	mulu	@-2(pc,d1),d2
+	mulu	@-2(pc,d1),d5
 	mulu	d2,d2
 	mulu	d2,d5
 	mulu	d5,d2
@@ -21195,6 +21403,8 @@ label_start:
 	muls.w	@-2(pc,d5.w),d5
 	muls.w	@-2(pc,d1.l),d2
 	muls.w	@-2(pc,d1.l),d5
+	muls.w	@-2(pc,d1),d2
+	muls.w	@-2(pc,d1),d5
 	muls.w	d2,d2
 	muls.w	d2,d5
 	muls.w	d5,d2
@@ -21275,6 +21485,8 @@ label_start:
 	muls	@-2(pc,d5.w),d5
 	muls	@-2(pc,d1.l),d2
 	muls	@-2(pc,d1.l),d5
+	muls	@-2(pc,d1),d2
+	muls	@-2(pc,d1),d5
 	muls	d2,d2
 	muls	d2,d5
 	muls	d5,d2
@@ -21447,6 +21659,9 @@ label_start:
 	adda.w	@-2(pc,d1.l),a2
 	adda.w	@-2(pc,d1.l),a7
 	adda.w	@-2(pc,d1.l),sp
+	adda.w	@-2(pc,d1),a2
+	adda.w	@-2(pc,d1),a7
+	adda.w	@-2(pc,d1),sp
 	adda.w	d2,a2
 	adda.w	d2,a7
 	adda.w	d2,sp
@@ -21576,6 +21791,9 @@ label_start:
 	adda.l	@-2(pc,d1.l),a2
 	adda.l	@-2(pc,d1.l),a7
 	adda.l	@-2(pc,d1.l),sp
+	adda.l	@-2(pc,d1),a2
+	adda.l	@-2(pc,d1),a7
+	adda.l	@-2(pc,d1),sp
 	adda.l	d2,a2
 	adda.l	d2,a7
 	adda.l	d2,sp
