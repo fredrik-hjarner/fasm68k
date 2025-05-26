@@ -24,7 +24,7 @@ so here it is.
 If you have no idea what `fasmg` is then
 I'll quote from it's _Introduction and Overview_:
 
-> This is a bare engine that by itself has no ability to recognize and encode instructions of any processor, however it has the ability to become an assembler for any CPU architecture.
+> This [fasmg] is a bare engine that by itself has no ability to recognize and encode instructions of any processor, however it has the ability to become an assembler for any CPU architecture. It has a macroinstruction language that is substantially improved compared to the one provided by flat assembler 1 and it allows to easily implement instruction encoders in form of customizable macroinstructions. 
 
 And that's what fasm68k is, it's a set of fasmg macros to allow fasmg to
 assemble 68k assembly code.
