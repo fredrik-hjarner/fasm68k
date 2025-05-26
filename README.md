@@ -1,19 +1,51 @@
 # fasm68k - Motorola 68000 instruction set for fasmg (flat assembler g)
 
-> [!WARNING]
-> Consider this to be in alpha stage. Currently supports all 68k
-instructions that are validated with about [22,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
-but the code might still contain bugs. If you find bugs then don't hesitate reporting them, since the
-hardest part is to find the bugs while it might be way easier to fix them.
+> [!NOTE]
+> Consider this to be in beta stage. It's perfectly usable with all 68k
+instructions are validated with about [22,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
+and Sonic 1 and Retail Clerk '89 are assembled after every push, but I don't
+feel ready to call this version 1.0.0 yet.
 
-## Description
+## What is fasm68k?
 
-The fasm68k instruction set adds support to assemble assembly code for the
-Motorola 68000 cpu with Tomasz Grysztar's fasmg.
+fasm68k is a set of fasmg macros that adds the Motorola 68000 instruction set to
+[fasmg](https://flatassembler.net/docs.php?article=fasmg) to allow it
+to assemble 68k assembly code. fasm68k also has it's own set of directives and
+adds settings to allow for _some_ compatability (such as alias or support for
+colonless labels), with other m68k assembler in order to make it easier to
+convert a codebase to fasm68k.
 
-[Here](https://github.com/BigEvilCorporation/megadrive_samples/compare/master...fredrik-hjarner:megadrive_samples_fasm68k:master)
-you can see what was needed to adapt BigEvilCorporation's megadrive_samples for
-fasm68k.
+### Why?
+
+Well, fasmg's macro language is cool, other macro languages feel a bit pale in
+comparison, but there was no one who had made a 68000 instruction set for it yet
+so here it is.
+
+If you have no idea what `fasmg` is then
+I'll quite from it's _Introduction and Overview_:
+
+> This is a bare engine that by itself has no ability to recognize and encode instructions of any processor, however it has the ability to become an assembler for any CPU architecture.
+
+And that's what fasm68k is, it's a set of fasmg macros to allow fasmg to
+assemble 68k assembly code.
+
+## Scope
+
+- The instruction set for the original 68000 _not_ including any later models such as the 68020 etc. though if demand exists I might consider adding such instructions.
+- Compatibility with other assemblers to aid in reproducing exactly the same binaries as other assemblers.
+
+Performance and optimization of the produced binary is not prioritized
+at this point.
+
+## Example
+
+fasm68k aims to have _some_ compatability with other 68k assemblers, but will
+probably never become 100% compatible.
+[Here](https://github.com/BigEvilCorporation/megadrive_samples/compare/master...fredrik-hjarner:megadrive_samples_fasm68k:master) is one example of what was
+needed to to adapt code originally for the asm68k assembler to fasm68k.
+
+The compatability aspect of fasm68k is still under development. I hope that it
+will be even easier to adapt projects to fasm68k in the future.
 
 ## Installation
 
