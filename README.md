@@ -11,7 +11,7 @@ feel ready to call this version 1.0.0 yet.
 fasm68k is a set of fasmg macros that adds the Motorola 68000 instruction set to
 [fasmg](https://flatassembler.net/docs.php?article=fasmg) to allow it
 to assemble 68k assembly code. fasm68k also has it's own set of directives and
-adds settings to allow for _some_ compatability (such as alias or support for
+adds settings to allow for _some_ compatability (such as aliases or support for
 colonless labels), with other m68k assembler in order to make it easier to
 convert a codebase to fasm68k.
 
