@@ -26,6 +26,7 @@ jobs:
         run: |
           cd src
           make
+          make test_parse_operand
 
       - name: Assemble Sonic 1 and confirm 0 diffing bytes
         run: |

@@ -1,4 +1,5 @@
 src/tests/test2.bin
+src/tests/test_parse_operand.bin
 examples/megadrive_simple_demo/main
 src/valid_instructions.lst
 perf.txt

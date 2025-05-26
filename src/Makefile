@@ -44,6 +44,10 @@ build2:
 	../fasm68k tests/test2.asm tests/test2.bin -e20 -v0
 .PHONY: build2
 
+test_parse_operand:
+	../fasm68k tests/test_parse_operand.asm tests/test_parse_operand.bin -e20 -v0
+.PHONY: test_parse_operand
+
 hexdump:
 	xxd -b -c1 tests/test.bin | cut -d' ' -f2,4 > tests/test.hex
 #  hexdump -v -e '/1 "%02x\n"' tests/test.bin > tests/test.hex

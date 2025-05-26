@@ -54,4 +54,6 @@ include 'helpers.inc'
 ; btst.l d1, #1
 ; Custom error: 
 ;     `btst.l` does not support a 2nd operand with type `#<data>`. Try .b, ._ instead.
-btst.l an, #1
+; btst.l a1, #1
+; Custom error: 
+;     `btst.l` does not support a 1st operand with type `An`.
