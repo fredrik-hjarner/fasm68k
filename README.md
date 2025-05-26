@@ -138,6 +138,8 @@ command actually adds empty bytes up to the specified address.
   - fasm68k can correctly assemble Hugues Johnson's RetailClerk89. It took about 30-40 hours to get it to produce identical binary.
 - 2025-05-13:
   - fasm68k can correctly assemble Hugues Johnson's Speedrun Tower. It took 45 minutes to get it to run in an emulator and about 1 hour to produce identical binary.
+- 2025-05-20:
+  - fasm68k can correctly assemble Sonic Retro's Sonic 1 dissasembly producing identical binary, though it required many changes to the code to make itcompatible.
 
 ## Acknowledgments and attributions
 
