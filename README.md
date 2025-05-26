@@ -22,7 +22,7 @@ comparison, but there was no one who had made a 68000 instruction set for it yet
 so here it is.
 
 If you have no idea what `fasmg` is then
-I'll quite from it's _Introduction and Overview_:
+I'll quote from it's _Introduction and Overview_:
 
 > This is a bare engine that by itself has no ability to recognize and encode instructions of any processor, however it has the ability to become an assembler for any CPU architecture.
 
