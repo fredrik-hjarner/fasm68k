@@ -2,7 +2,7 @@
 
 > [!NOTE]
 > Consider this to be in beta stage. It's perfectly usable with all 68k
-instructions are validated with about [22,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
+instructions validated with about [22,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
 and Sonic 1 and Retail Clerk '89 are assembled after every push, but I don't
 feel ready to call this version 1.0.0 yet.
 
