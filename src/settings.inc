@@ -15,6 +15,10 @@ namespace m68k.settings?
         \ ; TODO: Better comment.
         \ ; Transforms << to shl and >> to shr etc.
         compat_operators, 0, "", \
+        \ ; TODO: Better comment.
+        \ ; Supports syntax like this: v_levseldelay: equ $FFFFFF80
+        \ ; Observe the colon between the label and the equ.
+        compat_colon_equs, 0, "", \
         \ ; TODO: Comment.
         \ ; TODO: Actually use this setting in code.
         compat_word_align_instructions, 0, "", \

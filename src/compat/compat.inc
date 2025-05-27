@@ -202,6 +202,20 @@ end macro
 ; TODO: Place this behind a setting.
 define @ $
 
+if m68k.settings.compat_colon_equs = 1
+    calminstruction (label) ? tail&
+            local cmd
+            match := =equ tail, tail
+            jno default_case
+            arrange cmd, label =equ tail
+            assemble cmd
+            exit
+        default_case:
+            arrange cmd, label tail
+            assemble cmd
+    end calminstruction
+end if ; m68k.settings.compat_colonless_labels = 1
+
 ; TODO: Thins is there seems to be a problem with `struc ?` in that it
 ;       catches more than I want to. Seems that every instruction that
 ;       is defined after it is iterpreted as being a label??
