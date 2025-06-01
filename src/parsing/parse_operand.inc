@@ -161,7 +161,7 @@ iterate op, @op1,@op2
                     check maybe_abs > (1 shl 16 - 1)
                     jno skip_constrain_abs_w
                 ; too_large:
-                    warn 'abs.w too large to fit in word.'
+                    diag_absolute_too_big 'abs.w too large to fit in word.'
                     compute maybe_abs, maybe_abs and $FFFF
                 skip_constrain_abs_w:
                     compute ext_bytes_bits, maybe_abs
@@ -188,7 +188,7 @@ iterate op, @op1,@op2
                     check maybe_abs > (1 shl 32 - 1)
                     jno skip_constrain_abs_l
                 ; too_large:
-                    warn 'abs.l too large to fit in longword.'
+                    diag_absolute_too_big 'abs.l too large to fit in longword.'
                     compute maybe_abs, maybe_abs and $FFFFFFFF
                 skip_constrain_abs_l:
                     compute ext_bytes_bits, maybe_abs
@@ -264,7 +264,7 @@ iterate op, @op1,@op2
                     check operand > (1 shl 32 - 1)
                     jno skip_constrain_abs
                 ; too_large:
-                    warn 'abs.l too large to fit in longword.'
+                    diag_absolute_too_big 'abs.l too large to fit in longword.'
                     compute operand, operand and $FFFFFFFF
                 skip_constrain_abs:
                     ; TODO: also assert that the address is word-aligned

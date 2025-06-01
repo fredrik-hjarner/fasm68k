@@ -7,7 +7,7 @@
 ;;       the user of all the available settings.                              ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-define m68k.settings?
+redefine m68k.settings?
 namespace m68k.settings?
     iterate <setting, default_value, description>, \
         \ ;; GENERAL SETTINGS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
