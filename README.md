@@ -99,9 +99,7 @@ TODO
 <details>
 <summary>Mac</summary>
 <blockquote>
-Unfortunately you're out of luck. fasmg only runs on x86 processors (since
-it is written in assembly), so you would need to run a virtual machine with
-either Windows or Linux then follow the Linux or Windows instructions.
+TODO
 </blockquote>
 </details>
 
