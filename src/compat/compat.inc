@@ -37,9 +37,13 @@ end macro
 ; by `alignment`. Then add `offset` zero bytes. May fill the padding-bytes with
 ; no-operation instructions for certain cpus.
 ; TODO: Maybe what it fills with should be configurable.
-macro cnop offset,alignment
-    fasm2.align alignment | offset
-end macro
+; TODO: Does not work as intended.
+calminstruction cnop offset, alignment
+    local tmp
+    compute tmp, $ mod alignment
+    emit tmp, 0
+    emit offset, 0
+end calminstruction
 
 ; TODO: Better comment.
 ; Massages expression in weird and wonderful ways.
