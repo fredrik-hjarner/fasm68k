@@ -262,8 +262,7 @@ iterate <size,  size_bits>, \
             ; Auto-fix if op1 is imm
                 match =imm, @op1.type_token
                 jno skip_error
-                warn '`eor` does not allow the first operand to' \
-                    bappend ' be an immediate. Will use `eori` instead.'
+                diag_eor_to_eori
                 call eori.size, operands
                 exit
             skip_error:
@@ -285,8 +284,7 @@ iterate <size,  size_bits>, \
             ; Auto-fix if op2 is an
                 match =an, @op2.type_token
                 jno skip_an
-                warn '`cmp` does not allow the second operand to be' \
-                    bappend ' an address register. Will use `cmpa` instead.'
+                diag_cmp_to_cmpa
                 call cmpa.size, operands
                 exit
             skip_an:
@@ -300,8 +298,7 @@ iterate <size,  size_bits>, \
                     ~is_compat_vasm_cmp_bug1
 
                 jno skip_imm
-                warn '`cmp` does not allow the first operand to' \
-                    bappend ' be an immediate. Will use `cmpi` instead.'
+                diag_cmp_to_cmpi
                 call cmpi.size, operands
                 exit
             skip_imm:

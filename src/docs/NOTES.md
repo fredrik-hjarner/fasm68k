@@ -1,3 +1,6 @@
+This file contains some notes for myself. These will probably not have too much
+value for anyone else.
+
 # Notes
 
 `parse_operand` must be run on all operands before any byte is emitted! The
@@ -103,3 +106,22 @@ ErrorText:
 		dc.w .line1111-ErrorText
 .exception:	dc.b "ERROR EXCEPTION    "
 ```
+
+## Checking the new optimization/diagnostics/autofix settings work
+
+- [x] diag_absolute_too_big
+  - [x] 0 - disabled
+  - [x] 1 - warn
+  - [x] 2 - error
+- [x] optimize_cmp_to_cmpi (only the warn/err msg since not fully implemented)
+  - [ ] 0 - no opt - cant work right now
+  - [x] 1 - opt withwarn
+  - [x] 2 - opt without warn
+- [ ] autofix_eor_to_eori (only the warn/err msg since not fully implemented)
+  - [x] 0 - error
+  - [x] 1 - autofix with warn
+  - [x] 2 - autofix without warn
+- [x] autofix_cmp_to_cmpa (only the warn/err msg since not fully implemented)
+  - [x] 0 - error
+  - [x] 1 - autofix with warn
+  - [x] 2 - autofix without warn

@@ -17,7 +17,10 @@ include "xcalm.inc"
 define m68k m68k
 
 include "settings/diagnostics.inc"
+include "settings/autofixes.inc"
+include "settings/optimization.inc"
 include "settings/settings.inc"
+
 include "xxcalm.inc"
 include "debug/debug.inc"
 include "endianness.inc"

@@ -10,7 +10,7 @@ namespace m68k.settings?
     end iterate ; <setting, default_value, description>
 end namespace
 
-; helper for the other macros
+; Not intended to be used directly. Helper for the other macros
 ; TODO: Rename warn -> _warn
 macro calminstruction?.warn? line&
     local line_str
@@ -26,6 +26,10 @@ end macro
 if m68k.settings.diag_absolute_too_big = 1
     macro calminstruction?.diag_absolute_too_big? line&
         warn line
+    end macro
+else if m68k.settings.diag_absolute_too_big = 2
+    macro calminstruction?.diag_absolute_too_big? line&
+        nice_err line
     end macro
 else
     macro calminstruction?.diag_absolute_too_big? line&

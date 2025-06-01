@@ -77,12 +77,22 @@ end namespace
 
 ; TODO: Make into a calminstruction.
 ; TODO: Should validate that the setting exists.
+; TODO: Remove m68k.enable, it won't work for anything but 0 and 1 so wont work.
 macro m68k.enable? setting
     m68k.settings.setting = 1
 end macro
 
 ; TODO: Make into a calminstruction.
 ; TODO: Should validate that the setting exists.
+; TODO: Remove m68k.disable, it won't work for anything but 0 and 1 so wont work.
 macro m68k.disable? setting
     m68k.settings.setting = 0
+end macro
+
+; TODO: Comment.
+; TODO: Use this instead of m68k.enable, m68k.disable.
+macro m68k.set? setting*, value*
+    ; Check if the setting exists.
+    ; Check if the value is an allowed value for the setting.
+    m68k.settings.setting = value
 end macro
