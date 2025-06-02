@@ -12,6 +12,8 @@ label_start:
 ; edge cases etc:
   btst.b	d2,0(pc)
   btst.b	d2,0(pc,d5.w)
+; p equ 1
+; move.l #$#p#p#p#p#p#p#p#p, 0
 
 	dc.b	0, 5, -1, 1
 	dc.b	$0A, $FF

@@ -2,6 +2,9 @@
 ;; Need to include some fasm files first.                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; calminstruction calminstruction?.display? line& ; TODO: remove
+; end calminstruction
+
 ; I put align into a namespace because I will need the align keyword myself.
 define fasm2?
 namespace fasm2
@@ -50,8 +53,8 @@ macro calminstruction?.assert_max? value*, max*
 end macro
 
 macro calminstruction.assert_word_aligned? err_msg:"Instruction placed on an odd address! Instructions are required to be word-aligned."
-        check ($ mod 2) = 0
-        jyes done
+        check $ and 1
+        jno done
         warn err_msg
     done:
 end macro

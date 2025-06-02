@@ -33,7 +33,7 @@ iterate <size,  size_bit>, \
             exit
         d_to_d_an:
             emit 1, 1b or @op1.ea_reg_bits shl 1
-            emit 1, 10000000b or size_bit or 1000b or @op2.ea_reg_bits
+            emit 1, 10001000b or size_bit or @op2.ea_reg_bits
 
             ; extension words
             emit_be @op2.ext_bytes,  @op2.ext_bytes_bits
@@ -639,7 +639,10 @@ iterate <cc,  cc_bits>, \
                 xcall m68k.parse_and_validate_instruction, \
                     <db#cc>, operands, <size>, <w>
 
-                emit 1, 01010000b or cc_bits
+                local first_byte
+                init first_byte, 01010000b or cc_bits
+
+                emit 1, first_byte
                 emit 1, 11001000b or @op1.ea_reg_bits
 
                 ; immediate word

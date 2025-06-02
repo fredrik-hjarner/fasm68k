@@ -91,7 +91,10 @@ iterate <cc,  cc_bits>, \
         calminstruction s#cc.b? operands&
                 xcall m68k.parse_and_validate_instruction, <s#cc>, operands, <b>
 
-                emit 1, 01010000b or cc_bits
+                local first_byte
+                init first_byte, 01010000b or cc_bits
+
+                emit 1, first_byte
                 emit 1, 11000000b or @op1.ea_mode_bits shl 3 or @op1.ea_reg_bits
 
                 ; <ea> extension words
@@ -169,7 +172,10 @@ iterate <cc,  cc_bits>, \
             local pc
             compute pc, $ + 2
 
-            emit 1, 01100000b or cc_bits
+            local first_byte
+            init first_byte, 01100000b or cc_bits
+
+            emit 1, first_byte
 
             ; may look strange but it works.
             ; @op1.ext_bytes_bits will contain the value the label (op1).
@@ -181,7 +187,10 @@ iterate <cc,  cc_bits>, \
         calminstruction? b#cc.w? operands&
             xcall m68k.parse_and_validate_instruction, <b#cc>, operands, <w>
 
-            emit 1, 01100000b or cc_bits
+            local first_byte
+            init first_byte, 01100000b or cc_bits
+
+            emit 1, first_byte
             emit 1, 0 ; second byte being zero
             emit_be 2, @op1.ext_bytes_bits - $
         end calminstruction

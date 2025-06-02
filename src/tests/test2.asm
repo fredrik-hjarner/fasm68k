@@ -57,3 +57,8 @@ include 'helpers.inc'
 ; btst.l a1, #1
 ; Custom error: 
 ;     `btst.l` does not support a 1st operand with type `An`.
+
+iterate p,  1
+    parse_operand #p#p#p#p#p#p#p#p#h
+    display @op1.type, 10
+end iterate

@@ -24,7 +24,8 @@ Array.prototype.repeat = function<T>(this: T[], count: number): T[] {
 };
 
 // Allows to run the tests `times` times.
-// 6 takes ~~11.0~~ ~~10.8~~ ~~10.2~~ ~~10.1~~ 8.8 seconds with display disabled
+// 6 takes ~~11.0~~ ~~10.8~~ ~~10.2~~ ~~10.1~~ ~~8.8~~ with display disabled
+// ~~9.1~~ 9.0
 const times = 1;
 
 // Example values for each addressing mode
@@ -196,6 +197,8 @@ label_start:
 ; edge cases etc:
   btst.b	d2,0(pc)
   btst.b	d2,0(pc,d5.w)
+; p equ 1
+; move.l #$#p#p#p#p#p#p#p#p, 0
 
 `;
   let previousInstrName = ""; // Track the previous instruction name
