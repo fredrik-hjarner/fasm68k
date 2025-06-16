@@ -14,6 +14,18 @@ namespace m68k.settings?
         \ ; TODO: 1 = optimize with warning
         \ ; TODO: 2 = optimize without warning
         optimize_cmp_to_cmpi, 0, "", \
+        \
+        \ ; TODO: 
+        optimize_add_to_addi, 0, "", \
+        \
+        \ ; TODO: 
+        optimize_sub_to_subi, 0, "", \
+        \
+        \ ; TODO: 
+        optimize_or_to_ori, 0, "", \
+        \
+        \ ; TODO: 
+        optimize_and_to_andi, 0, ""
             
             setting? = default_value
 

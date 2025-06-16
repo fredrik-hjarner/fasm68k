@@ -1,8 +1,11 @@
 redefine m68k.settings?
 namespace m68k.settings?
+    ; I prefix all of these diagnostic settings with `diag`.
     iterate <setting, default_value, description>, \
-        \ ; TODO: Comment.
-        \ ; TODO: 0 = disabled, 1 = warn, 2 = error
+        \ ; `diag_absolute_too_big` - warn if absolute address is too large i.e.
+        \ ; when you are using absolute addressing and you put in a number that
+        \ ; is too large to fit in a word (abs.w) or long (abs.l).
+        \ ; 0 = disabled, 1 = warn, 2 = error
         diag_absolute_too_big, 0, ""
             
             setting? = default_value

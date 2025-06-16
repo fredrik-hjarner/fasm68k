@@ -9,12 +9,20 @@
 redefine m68k.settings?
 namespace m68k.settings?
     iterate <setting, default_value, description>, \
-        \ ; TODO: Comment.
-        \ ; TODO: 0 = error/dont autofix
-        \ ; TODO: 1 = autofix with warning
-        \ ; TODO: 2 = silently autofix
-        \ ; TODO: Check if this NEEDS to be autofixed? Yes it does. Confirmed.
+        \ ; `eor` does not accept an immediate as 1st operand
+        \ ; This sets the behaviour when the 1st operand is an immediate.
+        \ ; 0 = error/dont autofix
+        \ ; 1 = autofix with warning
+        \ ; 2 = silently autofix
+        \ ; Check if this NEEDS to be autofixed? Yes it does. Confirmed.
         autofix_eor_to_eori, 2, "", \
+        \
+        \ ; `cmp` does not accept an address register as 2nd operand
+        \ ; This sets the behaviour when the 2nd operand is an address register.
+        \ ; 0 = error/dont autofix
+        \ ; 1 = autofix with warning
+        \ ; 2 = silently autofix
+        \ ; TODO: Check if this NEEDS to be autofixed?
         autofix_cmp_to_cmpa, 2, ""
             
             setting? = default_value

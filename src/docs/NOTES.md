@@ -48,7 +48,7 @@ yep that's all of them.
 - 3rd argument to match makes the code slower
     `match x, x, ()`
 
-## Some helpful regular expressions for converting
+## Some regexes for converting to fasm68k from other assemblers
 
 ### For macros
 
