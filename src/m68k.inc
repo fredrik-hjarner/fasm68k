@@ -12,6 +12,7 @@ namespace fasm2
 end namespace
 include "macro/inline.inc"
 include "xcalm.inc"
+include "macro/struct.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                            ;;
