@@ -58,7 +58,12 @@ include 'helpers.inc'
 ; Custom error: 
 ;     `btst.l` does not support a 1st operand with type `An`.
 
-iterate p,  1
-    parse_operand #p#p#p#p#p#p#p#p#h
-    display @op1.type, 10
-end iterate
+; iterate p,  1
+;     parse_operand #p#p#p#p#p#p#p#p#h
+;     display @op1.type, 10
+; end iterate
+
+m68k.settings.optimize_cmp_to_cmpi = 1
+
+cmp.w #1, ($1)
+cmp.w #1, d1

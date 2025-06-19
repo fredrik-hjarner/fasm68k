@@ -123,7 +123,14 @@ macro calminstruction?.tokenize? val*
 end macro
 
 macro calminstruction?.nice_err? line&
-    err 13 bappend 10 bappend 9 bappend line
+    local line_str
+    compute line_str, __line__
+    arrange line_str, line_str
+    stringify line_str
+    err 13 bappend 10 bappend \
+        9 bappend __file__ bappend ' [' bappend line_str bappend ']:' bappend \
+        13 bappend 10 bappend \
+        9 bappend line
     exit ; also auto-exit since I think that's what one usually wants.
 end macro
 

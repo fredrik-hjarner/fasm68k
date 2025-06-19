@@ -70,10 +70,20 @@ const examples: Record<OperandType, string[]> = {
     '#(3+4)',
     '#-1',
     '#-2',
+    // "#equ_0",
+    // "#equ_1",
+    // "#label_start",
+    // "#label_end",
   ],
   "imm3": ["#1", "#7"],
   "imm4": ["#2"],
-  "imm8": ["#0", "#$FF", '#"X"'], // TODO: add negative examples too?
+  "imm8": [
+        "#0",
+        "#$FF",
+        '#"X"',
+        // "#equ_0",
+        // "#equ_1"
+    ], // TODO: add negative examples too?
   // s suffix means signed
   "imm8s": [
     "#0",
@@ -131,117 +141,125 @@ equ_1_plus_equ_1 equ equ_1+equ_1
 label_start:
 
 `;
-  let previousInstrName = ""; // Track the previous instruction name
+//   let previousInstrName = ""; // Track the previous instruction name
   
-  // Helper function to ensure the string has even length
-  function ensureEvenLength(str: string): string {
-    // Split by first whitespace to separate instruction from arguments
-    const parts = str.split(/\s+(.+)/);
+//   // Helper function to ensure the string has even length
+//   function ensureEvenLength(str: string): string {
+//     // Split by first whitespace to separate instruction from arguments
+//     const parts = str.split(/\s+(.+)/);
     
-    if (parts.length < 2) {
-      // No arguments, just check if we need padding
-      return str.length % 2 === 0 ? str : str + ' ';
-    }
+//     if (parts.length < 2) {
+//       // No arguments, just check if we need padding
+//       return str.length % 2 === 0 ? str : str + ' ';
+//     }
     
-    const [instr, args] = parts;
-    const combined = instr + ' ' + args;
+//     const [instr, args] = parts;
+//     const combined = instr + ' ' + args;
     
-    // If combined length is odd, add an extra space between instruction and args
-    if (combined.length % 2 !== 0) {
-      return instr + '  ' + args; // Two spaces between instruction and args
-    }
+//     // If combined length is odd, add an extra space between instruction and args
+//     if (combined.length % 2 !== 0) {
+//       return instr + '  ' + args; // Two spaces between instruction and args
+//     }
     
-    return combined;
-  }
+//     return combined;
+//   }
   
-  // Process each group in the data
-  for (const group of instructionsData) {
-    // Get the variants for this group
-    const variants = group.variants;
+//   // Process each group in the data
+//   for (const group of instructionsData) {
+//     // Get the variants for this group
+//     const variants = group.variants;
     
-    // Process each instruction in this group
-    for (const instrName of group.instructions) {
-      // Add a newline between different instructions
-      if (previousInstrName && previousInstrName !== instrName) {
-        output += "\n";
-      }
+//     // Process each instruction in this group
+//     for (const instrName of group.instructions) {
+//       // Add a newline between different instructions
+//       if (previousInstrName && previousInstrName !== instrName) {
+//         output += "\n";
+//       }
       
-      // Process variants
-      for (const variant of variants) {
-        // Handle instructions with no operands
-        if (variant.sourceOperands.length === 0 && variant.destOperands.length === 0) {
-          const instruction = `\t${instrName}`;
-          // Create a clean version of the instruction text without tabs
-          const cleanText = instruction.trim();
-          const evenText = ensureEvenLength(cleanText);
-          output += `\tdc.b '${evenText}'\n${instruction}\n`;
-          continue;
-        }
+//       // Process variants
+//       for (const variant of variants) {
+//         // Handle instructions with no operands
+//         if (variant.sourceOperands.length === 0 && variant.destOperands.length === 0) {
+//           const instruction = `\t${instrName}`;
+//           // Create a clean version of the instruction text without tabs
+//           const cleanText = instruction.trim();
+//           const evenText = ensureEvenLength(cleanText);
+//           output += `\tdc.b '${evenText}'\n${instruction}\n`;
+//           continue;
+//         }
 
-        // const sizes = [...new Set([...variant.sizes, ""])] as OperandSize[];
-        const sizes = variant.sizes;
+//         // const sizes = [...new Set([...variant.sizes, ""])] as OperandSize[];
+//         const sizes = variant.sizes;
         
-        // Process sizes for this variant
-        for (const size of sizes) {
-          const sizeSuffix = size ? `.${size}` : '';
+//         // Process sizes for this variant
+//         for (const size of sizes) {
+//           const sizeSuffix = size ? `.${size}` : '';
           
-          // Single operand instructions (dest only)
-          if (variant.sourceOperands.length === 0 && variant.destOperands.length > 0) {
-            for (const destOp of variant.destOperands.slice().sort()) {
-              const destExamples = getExampleValues(destOp, instrName, size);
+//           // Single operand instructions (dest only)
+//           if (variant.sourceOperands.length === 0 && variant.destOperands.length > 0) {
+//             for (const destOp of variant.destOperands.slice().sort()) {
+//               const destExamples = getExampleValues(destOp, instrName, size);
               
-              for (const destExample of destExamples) {
-                const instruction = `\t${instrName}${sizeSuffix}\t${destExample}`;
-                const cleanText = instruction.trim();
-                const evenText = ensureEvenLength(cleanText);
-                output += `\tdc.b '${evenText}'\n${instruction}\n`;
-              }
-            }
-          }
-          // Source-only instructions (like branch)
-          else if (variant.sourceOperands.length > 0 && variant.destOperands.length === 0) {
-            for (const srcOp of variant.sourceOperands.slice().sort()) {
-              const srcExamples = getExampleValues(srcOp, instrName, size);
+//               for (const destExample of destExamples) {
+//                 const instruction = `\t${instrName}${sizeSuffix}\t${destExample}`;
+//                 const cleanText = instruction.trim();
+//                 const evenText = ensureEvenLength(cleanText);
+//                 output += `\tdc.b '${evenText}'\n${instruction}\n`;
+//               }
+//             }
+//           }
+//           // Source-only instructions (like branch)
+//           else if (variant.sourceOperands.length > 0 && variant.destOperands.length === 0) {
+//             for (const srcOp of variant.sourceOperands.slice().sort()) {
+//               const srcExamples = getExampleValues(srcOp, instrName, size);
               
-              for (const srcExample of srcExamples) {
-                const instruction = `\t${instrName}${sizeSuffix}\t${srcExample}`;
-                const cleanText = instruction.trim();
-                const evenText = ensureEvenLength(cleanText);
-                output += `\tdc.b '${evenText}'\n${instruction}\n`;
-              }
-            }
-          }
-          // Two-operand instructions - systematically generate all combinations
-          else if (variant.sourceOperands.length > 0 && variant.destOperands.length > 0) {
-            // Generate all combinations for all instructions
-            for (const srcOp of variant.sourceOperands.slice().sort()) {
-              const srcExamples = getExampleValues(srcOp, instrName, size);
+//               for (const srcExample of srcExamples) {
+//                 const instruction = `\t${instrName}${sizeSuffix}\t${srcExample}`;
+//                 const cleanText = instruction.trim();
+//                 const evenText = ensureEvenLength(cleanText);
+//                 output += `\tdc.b '${evenText}'\n${instruction}\n`;
+//               }
+//             }
+//           }
+//           // Two-operand instructions - systematically generate all combinations
+//           else if (variant.sourceOperands.length > 0 && variant.destOperands.length > 0) {
+//             // Generate all combinations for all instructions
+//             for (const srcOp of variant.sourceOperands.slice().sort()) {
+//               const srcExamples = getExampleValues(srcOp, instrName, size);
               
-              for (const destOp of variant.destOperands.slice().sort()) {
-                const destExamples = getExampleValues(destOp, instrName, size);
+//               for (const destOp of variant.destOperands.slice().sort()) {
+//                 const destExamples = getExampleValues(destOp, instrName, size);
                 
-                // Generate all combinations of source and dest examples
-                for (const srcExample of srcExamples) {
-                  for (const destExample of destExamples) {
-                    const instruction = `\t${instrName}${sizeSuffix}\t${srcExample},${destExample}`;
-                    const cleanText = instruction.trim();
-                    const evenText = ensureEvenLength(cleanText);
-                    output += `\tdc.b '${evenText}'\n${instruction}\n`;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+//                 // Generate all combinations of source and dest examples
+//                 for (const srcExample of srcExamples) {
+//                   for (const destExample of destExamples) {
+//                     const instruction = `\t${instrName}${sizeSuffix}\t${srcExample},${destExample}`;
+//                     const cleanText = instruction.trim();
+//                     const evenText = ensureEvenLength(cleanText);
+//                     output += `\tdc.b '${evenText}'\n${instruction}\n`;
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
       
-      previousInstrName = instrName;
-    }
-  }
+//       previousInstrName = instrName;
+//     }
+//   }
   
   // Add label for instructions that need it
   output += `
 ; edge cases and so on
+
+OBJ_SCENE_BASE = $1000
+
+OBJ_SCENE_PLANT_ALT = OBJ_SCENE_BASE + $38
+
+MEM_ACTION_TARGET_OBJID = $FFFF002E
+
+    cmp.w #OBJ_SCENE_PLANT_ALT, (MEM_ACTION_TARGET_OBJID)
 
 ; labels
 label_end:

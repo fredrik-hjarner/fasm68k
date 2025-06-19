@@ -58,8 +58,6 @@ namespace m68k.settings?
         \
         compat_vasm_or_bug1, 0, "", \
         \
-        compat_vasm_cmp_bug1, 0, "", \
-        \
         \ ; TODO: Explain.
         \ ; Changes the behaviour of `ORG` to behave like it does in `vasm`.
         compat_vasm_org, 0, "", \

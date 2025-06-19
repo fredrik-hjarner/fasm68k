@@ -36,7 +36,7 @@ build_vasm:
 
 # TODO: what's best -v1 or -v2? option
 build:
-	../fasm68k tests/valid_instructions.asm tests/test.bin -e20 -v1
+	../fasm68k tests/fasm68k_wrapper.asm tests/test.bin -e20 -v1
 .PHONY: build
 
 # build2 is just for me to have a separate test file to play around with.
@@ -61,6 +61,9 @@ commit_count:
 	git rev-list --count HEAD
 .PHONY: commit_count
 
+
+
+
 ################################################################################
 ## TESTING VASM BUGS                                                          ##
 ################################################################################
@@ -73,13 +76,13 @@ gen_tests_vasm_bugs:
 
 ## TOP LEVEL COMMANDS ##########################################################
 
-fasm_vasm_bugs: gen_tests_vasm_bugs build_fasm_vasm_bugs hexdump_vasm_bugs
+fasm_vasm_bugs: gen_tests_vasm_bugs gen_validation build_fasm_vasm_bugs hexdump_vasm_bugs
 .PHONY: fasm_vasm_bugs
 
-clown_vasm_bugs: gen_tests_vasm_bugs build_clown_vasm_bugs hexdump_vasm_bugs
+clown_vasm_bugs: gen_tests_vasm_bugs gen_validation build_clown_vasm_bugs hexdump_vasm_bugs
 .PHONY: clown_vasm_bugs
 
-vasm_vasm_bugs: gen_tests_vasm_bugs build_vasm_vasm_bugs hexdump_vasm_bugs
+vasm_vasm_bugs: gen_tests_vasm_bugs gen_validation build_vasm_vasm_bugs hexdump_vasm_bugs
 .PHONY: vasm_vasm_bugs
 
 ## BUILD COMMANDS ##############################################################
@@ -94,7 +97,7 @@ build_vasm_vasm_bugs:
 .PHONY: build_vasm_vasm_bugs
 
 build_fasm_vasm_bugs:
-	../fasm68k tests/vasm_bugs/valid_instructions.asm tests/vasm_bugs/test.bin -e20 -v2
+	../fasm68k tests/vasm_bugs/fam68k_wrapper.asm tests/vasm_bugs/test.bin -e20 -v2
 .PHONY: build_fasm_vasm_bugs
 
 ## HEXDUMP #####################################################################

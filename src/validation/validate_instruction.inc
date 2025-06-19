@@ -62,6 +62,13 @@ calminstruction validate inst*, size*, op1*, op2*
         ; So we first did a fast check above but now that it failed and has
         ; produced an error we can take our time to do thing more accurately.
 
+        ; Log what failed to match
+        ; local thing_to_check_str
+        ; arrange thing_to_check_str, thing_to_check
+        ; stringify thing_to_check_str
+        ; display '`' bappend thing_to_check_str bappend '`' bappend \
+        ;     ' does not match any valid instruction.' bappend 10
+
         ; Make strings available for all arguments.
         loc_arr_str  inst_str,  inst
         loc_arr_com  size_str,  =m68k.=size_to_str.size

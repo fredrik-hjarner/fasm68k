@@ -49,6 +49,8 @@ define m68k.valid_instructions
 namespace m68k.valid_instructions
 `;
 
+  const lines: string[] = [];
+
   // Process each instruction group
   for (const group of data) {
     for (const instruction of group.instructions) {
@@ -57,46 +59,45 @@ namespace m68k.valid_instructions
         continue;
       }
       
-      output += `\tdefine ${instruction}\n`;
+      lines.push(`\tdefine ${instruction}`);
       
       // Process each variant
       for (const variant of group.variants) {
         // Process each size
         for (const size of variant.sizes) {
           const sizeStr = size === "" ? "_" : size;
-          output += `\tdefine ${instruction}.${sizeStr}\n`;
+          lines.push(`\tdefine ${instruction}.${sizeStr}`);
           
           // Process operands
           if (variant.op1.length === 0) {
             // No operands
-            output += `\tdefine ${instruction}.${sizeStr}._\n`;
-            output += `\tdefine ${instruction}.${sizeStr}._._\n`;
+            lines.push(`\tdefine ${instruction}.${sizeStr}._`);
+            lines.push(`\tdefine ${instruction}.${sizeStr}._._`);
           } else {
             // Process first operand
             for (const op1 of variant.op1) {
               const op1Str = addressingModeMap[op1] || op1;
-              output += `\tdefine ${instruction}.${sizeStr}.${op1Str}\n`;
+              lines.push(`\tdefine ${instruction}.${sizeStr}.${op1Str}`);
               
               if (variant.op2.length === 0) {
                 // Only one operand
-                output += `\tdefine ${instruction}.${sizeStr}.${op1Str}._\n`;
+                lines.push(`\tdefine ${instruction}.${sizeStr}.${op1Str}._`);
               } else {
                 // Process second operand
                 for (const op2 of variant.op2) {
                   const op2Str = addressingModeMap[op2] || op2;
-                  output += `\tdefine ${instruction}.${sizeStr}.${op1Str}.${op2Str}\n`;
+                  lines.push(`\tdefine ${instruction}.${sizeStr}.${op1Str}.${op2Str}`);
                 }
               }
             }
           }
         }
       }
-      
-      output += "\n";
     }
   }
 
-  output += "end namespace\n";
+  output += [...new Set(lines)].sort().join('\n');
+  output += '\nend namespace';
   return output;
 }
 

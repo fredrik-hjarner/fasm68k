@@ -284,20 +284,21 @@ iterate <size,  size_bits>, \
             ; Auto-fix if op2 is an
                 match =an, @op2.type_token
                 jno skip_an
+            ; cmp -> cmpa
                 diag_cmp_to_cmpa
                 call cmpa.size, operands
                 exit
             skip_an:
-
-                local is_compat_vasm_cmp_bug1 ; TODO: Remove
-                bool is_compat_vasm_cmp_bug1, \
-                    m68k.settings.compat_vasm_cmp_bug1 = 1 & \
-                    (`size = 'b' | `size = 'l')
-
+                ; `cmp` only supports `dn` as 2nd operand while `cmpi` supports
+                ; a bunch more types. So when op2 is not `dn` then it's not
+                ; about optimization but rather about auto-fixing.
+                ; TODO: Actually: `diag_cmp_to_cmpi` should only be shown if
+                ;       for the optimization case and not the auto-fixing case!!
                 check @op1.type = 'imm' & \
-                    ~is_compat_vasm_cmp_bug1
+                    (m68k.settings.optimize_cmp_to_cmpi > 0 | @op2.type <> 'dn')
 
                 jno skip_imm
+            ; cmp -> cmpi
                 diag_cmp_to_cmpi
                 call cmpi.size, operands
                 exit

@@ -29,6 +29,7 @@ all add.[wl] <imm>, <an> are encoded incorrectly.
 #### eor
 
 vasm encodes `eor` 100% correctly.
+I realize the reason for it being 100 "correct" is because eor NEEDS to be eori, i.e. it's not a performance optimization but a requirement.
 
 #### cmp
 
@@ -39,3 +40,20 @@ all cmp.[wl] <imm>, <an> are encoded incorrectly.
 ## OBSERVE! There are actually more differences with these specific instructions but I have a problem pinpointing what the exact problem is and with which exact situations.
 
 ## OBSERVE! I think I misunderstood the situation. `add -> addi` seems to only be a performance optimization??
+
+
+------------------------
+
+Finally I found something interesting:
+
+OBJ_SCENE_BASE = $1000
+
+OBJ_SCENE_PLANT_ALT = OBJ_SCENE_BASE + $38
+
+MEM_ACTION_TARGET_OBJID = $FFFF002E
+
+5EE6:   cmp.w #OBJ_SCENE_PLANT_ALT, (MEM_ACTION_TARGET_OBJID)
+
+so whats happening here...
+vasm does cmp -> cmpi because 2nd operand is a
+NOT Dn (cmp only supports a Dn dest)!!!

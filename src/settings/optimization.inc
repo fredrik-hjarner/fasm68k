@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; OPTIMIZATION.INC                                                          ;;
-;; Contains settings for optimizations. I handle optimizations separately   ;;
-;; from auto-fixes. An auto-fix is when illegal instructions can be fixed    ;;
+;; OPTIMIZATION.INC                                                           ;;
+;; Contains settings for optimizations. I handle optimizations separately     ;;
+;; from auto-fixes. An auto-fix is when illegal instructions can be fixed     ;;
 ;; into legal instructions. Optimizations is when legal but suboptimal        ;;
 ;; instructions are changed to more optimal instructions.                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -10,9 +10,9 @@ redefine m68k.settings?
 namespace m68k.settings?
     iterate <setting, default_value, description>, \
         \ ; TODO: Comment.
-        \ ; TODO: 0 = don't optimize
-        \ ; TODO: 1 = optimize with warning
-        \ ; TODO: 2 = optimize without warning
+        \ ; 0 = don't optimize
+        \ ; 1 = optimize with warning
+        \ ; 2 = optimize without warning
         optimize_cmp_to_cmpi, 0, "", \
         \
         \ ; TODO: 
@@ -32,14 +32,20 @@ namespace m68k.settings?
     end iterate ; <setting, default_value, description>
 end namespace
 
-;; optimize_cmp_to_cmpi ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+iterate instr,    cmp, add, sub, or, and
 
-if m68k.settings.optimize_cmp_to_cmpi = 1
-    macro calminstruction?.diag_cmp_to_cmpi? line&
-        warn 'Using `cmp` when the first operand is an immediate is ' \
-             bappend 'less efficient than using `cmpi`. Auto-fixing to `cmpi`!'
-    end macro
-else
-    macro calminstruction?.diag_cmp_to_cmpi? line&
-    end macro
-end if
+    if m68k.settings.optimize_#instr#_to_#instr#i = 1
+        macro calminstruction?.diag_#instr#_to_#instr#i? line&
+            warn 'Using `' bappend \ 
+                 `instr bappend \
+                 '` when the first operand is an immediate is ' bappend \
+                 'less efficient than using `' bappend \
+                 `instr bappend 'i`. Optimizing to `' bappend \
+                 `instr bappend 'i`!'
+        end macro
+    else
+        macro calminstruction?.diag_#instr#_to_#instr#i? line&
+        end macro
+    end if
+
+end iterate
