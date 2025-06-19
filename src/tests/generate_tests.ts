@@ -25,7 +25,7 @@ Array.prototype.repeat = function<T>(this: T[], count: number): T[] {
 
 // Allows to run the tests `times` times.
 // 6 takes ~~11.0~~ ~~10.8~~ ~~10.2~~ ~~10.1~~ ~~8.8~~ with display disabled
-// ~~9.1~~ 9.0
+// ~~9.1~~ ~~9.0~~ 7.0
 const times = 1;
 
 // Example values for each addressing mode

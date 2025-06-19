@@ -535,7 +535,8 @@ iterate <instr,  first_byte>, \
                           or_to_ori
 
                     jno skip_imm_variant
-                ; or -> ori
+                ; imm_variant:
+                ; TODO: Use diag_ function insstead here.
                     local wrong, correct
                     arr_str wrong, `=instr`
                     arr_str correct, `=instr=i`
