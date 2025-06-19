@@ -505,63 +505,37 @@ iterate <instr,  first_byte>, \
                 skip_auto_fix_an:
 
                 ; Show error message if imm
-                    local is_compat_vasm_add_bug1
-                    bool is_compat_vasm_add_bug1, \
-                        m68k.settings.compat_vasm_add_bug1 = 1 & \
-                        `instr = 'add' & \
-                        `size = 'l' & \
-                        @op2.type = 'dn'
+                    local add_to_addi
+                    bool add_to_addi, \
+                         @op1.type = 'imm' & \
+                         `instr = 'add' & \
+                         (m68k.settings.optimize_add_to_addi > 0 | @op2.type <> 'dn')
 
-                    local is_compat_vasm_add_bug2
-                    bool is_compat_vasm_add_bug2, \
-                        m68k.settings.compat_vasm_add_bug2 = 1 & \
-                        `instr = 'add' & \
-                        `size = 'w' & \
-                        @op2.type = 'dn'
+                    local and_to_andi
+                    bool and_to_andi, \
+                         @op1.type = 'imm' & \
+                         `instr = 'and' & \
+                         (m68k.settings.optimize_and_to_andi > 0 | @op2.type <> 'dn')
 
-                    local is_compat_vasm_add_bug3
-                    bool is_compat_vasm_add_bug3, \
-                        m68k.settings.compat_vasm_add_bug3 = 1 & \
-                        `instr = 'add' & \
-                        `size = 'w' & \
-                        @op2.type = 'dn'
+                    local sub_to_subi
+                    bool sub_to_subi, \
+                         @op1.type = 'imm' & \
+                         `instr = 'sub' & \
+                         (m68k.settings.optimize_sub_to_subi > 0 | @op2.type <> 'dn')
 
-                    local is_compat_vasm_and_bug1
-                    bool is_compat_vasm_and_bug1, \
-                        m68k.settings.compat_vasm_add_bug1 = 1 & \
-                        `instr = 'and' & \
-                        @op2.type = 'dn'
+                    local or_to_ori
+                    bool or_to_ori, \
+                         @op1.type = 'imm' & \
+                         `instr = 'or' & \
+                         (m68k.settings.optimize_or_to_ori > 0 | @op2.type <> 'dn')
 
-                    local is_compat_vasm_sub_bug1
-                    bool is_compat_vasm_sub_bug1, \
-                        m68k.settings.compat_vasm_sub_bug1 = 1 & \
-                        `instr = 'sub' & \
-                        `size = 'w' & \
-                        (@op1.imm >= 10b)
+                    check add_to_addi | \
+                          and_to_andi | \
+                          sub_to_subi | \
+                          or_to_ori
 
-                    local is_compat_vasm_sub_bug2
-                    bool is_compat_vasm_sub_bug2, \
-                        m68k.settings.compat_vasm_sub_bug2 = 1 & \
-                        `instr = 'sub' & \
-                        `size = 'w' & \
-                        (@op2.ea_reg_bits = 011b | @op2.ea_reg_bits = 110b | @op2.ea_reg_bits = 111b) & \
-                        (@op1.imm = 1)
-
-                    local is_compat_vasm_or_bug1
-                    bool is_compat_vasm_or_bug1, \
-                        m68k.settings.compat_vasm_or_bug1 = 1 & \
-                        `instr = 'or'
-
-                    check @op1.type = 'imm' & \
-                        ~is_compat_vasm_add_bug1 & \
-                        ~is_compat_vasm_add_bug2 & \
-                        ~is_compat_vasm_add_bug3 & \
-                        ~is_compat_vasm_and_bug1 & \
-                        ~is_compat_vasm_sub_bug1 & \
-                        ~is_compat_vasm_sub_bug2 & \
-                        ~is_compat_vasm_or_bug1
-
-                    jno skip_error
+                    jno skip_imm_variant
+                ; or -> ori
                     local wrong, correct
                     arr_str wrong, `=instr`
                     arr_str correct, `=instr=i`
@@ -573,7 +547,7 @@ iterate <instr,  first_byte>, \
 
                     call instr#i.size, operands
                     exit
-                skip_error:
+                skip_imm_variant:
 
                     match =dn, @op2.type_token
                     jno dn_to_ea

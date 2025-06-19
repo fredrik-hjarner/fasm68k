@@ -45,20 +45,6 @@ namespace m68k.settings?
         \ ;; VASM SPECIFIC ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         \
         \ ; TODO: Explain.
-        \ ; vasm does not do auto-fix of add -> addi when no-opts
-        \ ; If you want fasm68k to behave like that you need to enable this.
-        compat_vasm_add_bug1, 0, "", \
-        compat_vasm_add_bug2, 0, "", \
-        compat_vasm_add_bug3, 0, "", \
-        \
-        compat_vasm_and_bug1, 0, "", \
-        \
-        compat_vasm_sub_bug1, 0, "", \
-        compat_vasm_sub_bug2, 0, "", \
-        \
-        compat_vasm_or_bug1, 0, "", \
-        \
-        \ ; TODO: Explain.
         \ ; Changes the behaviour of `ORG` to behave like it does in `vasm`.
         compat_vasm_org, 0, "", \
         \

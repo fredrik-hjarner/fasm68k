@@ -20,6 +20,10 @@ MEM_ACTION_TARGET_OBJID = $FFFF002E
 
     cmp.w #OBJ_SCENE_PLANT_ALT, (MEM_ACTION_TARGET_OBJID)
 
+    ; or -> ori
+    or.w #1, d1
+    or.w #1, ($1)
+
 ; labels
 label_end:
 

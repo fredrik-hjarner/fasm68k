@@ -67,3 +67,6 @@ m68k.settings.optimize_cmp_to_cmpi = 1
 
 cmp.w #1, ($1)
 cmp.w #1, d1
+
+or.w #1, d1
+or.w #1, ($1)
