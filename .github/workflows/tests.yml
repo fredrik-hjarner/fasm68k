@@ -32,7 +32,7 @@ jobs:
         run: |
           cd examples/s1disasm_fasm68k
           make
-          sleep 1
+          sleep 2
           DIFF_COUNT=$(make -silent diff-count)
           if [ "$DIFF_COUNT" -ne 0 ]; then
               echo "❌ Found $DIFF_COUNT differing bytes!"
@@ -44,7 +44,19 @@ jobs:
         run: |
           cd examples/RetailClerk89_fasm68k
           make
-          sleep 1
+          sleep 2
+          DIFF_COUNT=$(make -silent diff-count)
+          if [ "$DIFF_COUNT" -ne 0 ]; then
+              echo "❌ Found $DIFF_COUNT differing bytes!"
+              exit 1
+          fi
+          echo "✅ All bytes match perfectly!"
+
+      - name: Assemble Speedrun Tower and confirm 0 diffing bytes
+        run: |
+          cd examples/speedrun-tower_fasm68k
+          make
+          sleep 2
           DIFF_COUNT=$(make -silent diff-count)
           if [ "$DIFF_COUNT" -ne 0 ]; then
               echo "❌ Found $DIFF_COUNT differing bytes!"
