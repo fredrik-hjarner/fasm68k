@@ -35,7 +35,7 @@ end namespace
 iterate instr,    cmp, add, sub, or, and
 
     if m68k.settings.optimize_#instr#_to_#instr#i = 1
-        macro calminstruction?.diag_#instr#_to_#instr#i? line&
+        macro calminstruction?.diag_#instr#_to_#instr#i?
             warn 'Using `' bappend \ 
                  `instr bappend \
                  '` when the first operand is an immediate is ' bappend \
@@ -44,7 +44,7 @@ iterate instr,    cmp, add, sub, or, and
                  `instr bappend 'i`!'
         end macro
     else
-        macro calminstruction?.diag_#instr#_to_#instr#i? line&
+        macro calminstruction?.diag_#instr#_to_#instr#i?
         end macro
     end if
 

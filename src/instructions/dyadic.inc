@@ -536,15 +536,8 @@ iterate <instr,  first_byte>, \
 
                     jno skip_imm_variant
                 ; imm_variant:
-                ; TODO: Use diag_ function insstead here.
-                    local wrong, correct
-                    arr_str wrong, `=instr`
-                    arr_str correct, `=instr=i`
-                    warn wrong \
-                        bappend ' does not allow the first operand to' \
-                        bappend ' be an immediate. Will use ' \
-                        bappend correct \
-                        bappend ' instead.'
+                    ; output diagnostic message
+                    diag_#instr#_to_#instr#i
 
                     call instr#i.size, operands
                     exit

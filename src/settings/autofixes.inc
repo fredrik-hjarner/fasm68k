@@ -33,17 +33,17 @@ end namespace
 ;; autofix_eor_to_eori ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 if m68k.settings.autofix_eor_to_eori = 0
-    macro calminstruction?.diag_eor_to_eori? line&
+    macro calminstruction?.diag_eor_to_eori?
         nice_err '`eor` does not allow the first operand to' \
                  bappend ' be an immediate. Use `eori` instead'
     end macro
 else if m68k.settings.autofix_eor_to_eori = 1
-    macro calminstruction?.diag_eor_to_eori? line&
+    macro calminstruction?.diag_eor_to_eori?
         warn '`eor` does not allow the first operand to' \
              bappend ' be an immediate. Auto-fixing to `eori`.'
     end macro
 else
-    macro calminstruction?.diag_eor_to_eori? line&
+    macro calminstruction?.diag_eor_to_eori?
     end macro
 end if
 
