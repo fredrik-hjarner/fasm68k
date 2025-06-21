@@ -39,8 +39,8 @@ macro calminstruction?.assert_min? value*, min*
         new @done
         check value >= min
         @ jyes @done
-        ; TODO: I'd like to have a setting that warns or errors, or something.
-        err "Error: assert_min"
+        ; TODO: TODO: Better error message.
+        nice_err "Error: assert_min"
     @ @done:
 end macro
 
@@ -48,14 +48,16 @@ macro calminstruction?.assert_max? value*, max*
         new @done
         check value <= max
         @ jyes @done
-        ; TODO: I'd like to have a setting that warns or errors, or something.
-        err "Error: assert_max"
+        ; TODO: TODO: Better error message.
+        nice_err "Error: assert_max"
     @ @done:
 end macro
 
 macro calminstruction.assert_word_aligned? err_msg:"Instruction placed on an odd address! Instructions are required to be word-aligned."
         check $ and 1
         jno done
+        ; TODO: Maybe this could be toggled by a setting, yea probaly since you
+        ;       may want to control whether it's an error or a warning at least.
         warn err_msg
     done:
 end macro

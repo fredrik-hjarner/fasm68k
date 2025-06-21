@@ -127,6 +127,8 @@ iterate <size, size_str,   bytes>, \
         ; TODO: Make into a calm instruction
         struc rs.size? n:1
             if (`size <> 'b') & (__rs mod 2 <> 0)
+                 ; TODO: This could be toggled by a setting since you may want
+                 ;       to control whether it's an error or a warning at least.
                 local err_msg
                 err_msg = "Attempting to place a " bappend \
                           size_str bappend " on an odd address"

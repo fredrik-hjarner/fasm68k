@@ -146,7 +146,8 @@ iterate reg_list, @reg_list1,@reg_list2
                 exit
             dup_error:
                 ; TODO: Should not be error, should be warning.
-                err "duplicated registers in register list"
+                ;       Actually should be configurable with a setting.
+                nice_err "duplicated registers in register list"
         end calminstruction
 
 
@@ -186,7 +187,7 @@ iterate reg_list, @reg_list1,@reg_list2
             ; Validate is not empty
                 match , operand
                 jno at_least_one_token
-                err 'operand is empty'
+                nice_err 'operand is empty'
             at_least_one_token:
 
             ; Check if only one token.
@@ -245,7 +246,7 @@ iterate reg_list, @reg_list1,@reg_list2
             ;       Or actually I should have a count_tokens util function!
                 match , operand
                 jno at_least_one_token
-                err 'operand is empty'
+                nice_err 'operand is empty'
             at_least_one_token:
 
             ; Check if only one token.

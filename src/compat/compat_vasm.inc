@@ -8,7 +8,7 @@ if m68k.settings.compat_vasm_org = 1
     ;       an error in vasm but it does not).
     ; TODO: Remove logging.
     calminstruction org? addr*
-            display 10 ; TODO: Remove.
+            ; display 10 ; TODO: Remove.
 
             ; local addr_token ; TODO: remove.
 

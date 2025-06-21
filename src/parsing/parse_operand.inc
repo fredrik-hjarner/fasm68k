@@ -278,7 +278,7 @@ iterate op, @op1,@op2
                     jump done
             ;; Temporary stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             unknown:
-                    err 10 bappend 'Failed to parse operand' bappend 10
+                    nice_err 10 bappend 'Failed to parse operand' bappend 10
                     ; compute type, 'unknown'
                     ; display 'unknown' bappend 10
                     exit
@@ -386,7 +386,7 @@ macro calminstruction?.parse_immediate? operand*
         ; compute maybe_number, +maybe_number
         @ jump @skip_immediate_addressing_error
     @ @is_not_string:
-        err 'immediate_addressing_error' ; TODO: better err message.
+        nice_err 'immediate_addressing_error' ; TODO: better err message.
     @ @skip_immediate_addressing_error:
         compute type, 'imm'
         arrange type_token, =imm
@@ -410,7 +410,7 @@ macro calminstruction?.parse_immediate? operand*
         ; stringify tmp
         ; display tmp bappend 10 bappend 10 bappend 10
         @ jyes @skip_invalid_size_err
-        err 'Invalid size'
+        nice_err 'Invalid size'
     @ @skip_invalid_size_err:
         ; So yea, how ext_bytes is set for immediate values is a bit
         ; complicated...
