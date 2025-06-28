@@ -62,10 +62,6 @@ Step into the repository directory:
 
 `cd fasm68k`
 
-Script must be executable:
-
-`chmod +x fasm68k`
-
 To assemble the examples run these commands and binary files should be created
 which you can run in a Mega Drive/Genesis emulator:
 
