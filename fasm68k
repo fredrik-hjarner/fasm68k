@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 DIR="$( dirname -- "$( readlink -f -- "$0"; )"; )"
-chmod +x "$DIR/fasm2/fasmg.x64"
 INCLUDE="$DIR/fasm2/include;$DIR/src;$INCLUDE" "$DIR/fasm2/fasmg.x64" -iInclude\ \'m68k.inc\' "$@"

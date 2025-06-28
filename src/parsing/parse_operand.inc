@@ -91,7 +91,7 @@ iterate op, @op1,@op2
         define imm ; TODO: Think about this.
 
         ;
-        include "parsing/parse_complex_operand.inc"
+        include "parse_complex_operand.inc"
 
         ; The `instr_size` argument is needed to set `ext_bytes` to the correct
         ;     value for immediate values (when the official syntax specifies
