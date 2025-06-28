@@ -14,10 +14,6 @@
 ;       `rs`.
 define rs? ; define the namespace that of rs.b, rs.w and rs.l
 __rs? = 0  ; the RS counter.
-; I use this to save the org address counter when switching between address
-; spaces.
-define m68k.old_org
-m68k.old_org = 0
 
 ; rseven word-aligns the `__rs` counter.
 macro rseven?
@@ -122,7 +118,7 @@ iterate <size, size_str,   bytes>, \
         end calminstruction
 
         ; label rs.[bwlq] n
-        ;    Reserve n n times size bytes.
+        ;    Reserve n times size bytes.
         ;    The address of the reserved space
         ; TODO: Make into a calm instruction
         struc rs.size? n:1
@@ -134,14 +130,9 @@ iterate <size, size_str,   bytes>, \
                           size_str bappend " on an odd address"
                 warn err_msg
             end if
-            ; Switch from `org` address space to `rs` address space
-            m68k.old_org = $
-            org __rs
-            .:
+            . := __rs
             ; Manually increment the `rs` counter
             __rs = __rs + n * bytes
-            ; Switch back to `org address space`
-            org m68k.old_org
         end struc
 
 end iterate ; <size_suffix, size>
