@@ -92,11 +92,6 @@ jobs:
         with:
           bun-version: 'latest'
 
-      - name: Install Make and Unix tools
-        run: |
-          choco install make -y
-          choco install diffutils -y
-
       - name: Test fasm68k.bat on Windows
         shell: bash
         run: |
