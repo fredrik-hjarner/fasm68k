@@ -97,33 +97,12 @@ jobs:
           choco install make -y
           choco install diffutils -y
 
-      - name: Create wrappers for fasm68k.bat on Windows
+      - name: Test fasm68k.bat on Windows
         shell: bash
         run: |
-          echo "Creating fasm68k.cmd wrapper for Windows make (cmd.exe)..."
-          cat > fasm68k.cmd << 'EOF'
-          @echo off
-          setlocal
-          set "SCRIPT_DIR=%~dp0"
-          "%SCRIPT_DIR%fasm68k.bat" %*
-          EOF
-          
-          echo "Creating bash wrapper for Git Bash..."
-          cat > fasm68k << 'EOF'
-          #!/usr/bin/env bash
-          DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-          WIN_DIR=$(cygpath -w "$DIR" 2>/dev/null || echo "$DIR")
-          cmd.exe //c "${WIN_DIR}\\fasm68k.bat" "$@"
-          EOF
-          chmod +x fasm68k
-          
-          echo "=== Created wrappers ==="
-          ls -la fasm68k* | head -5
-          echo "=== Testing fasm68k.cmd ==="
-          cmd //c "fasm68k.cmd --help" || echo "(exit code $?, expected)"
-          echo "=== Testing bash wrapper ==="
-          ./fasm68k --help || echo "(exit code $?, expected)"
-          echo "==="
+          echo "Testing fasm68k.bat directly from bash..."
+          ./fasm68k.bat --help || echo "(exit code $?, expected - shows help)"
+          echo "✅ fasm68k.bat works from bash!"
 
       - name: Generate and assemble valid_instructions.asm
         shell: bash
@@ -131,17 +110,20 @@ jobs:
           cd src
           bun tests/generate_tests.ts
           bun tests/generate_validation.ts
-          make build
-          make test_parse_operand
+          ../fasm68k.bat tests/fasm68k_wrapper.asm tests/test.bin -e20 -v1
+          ../fasm68k.bat tests/test_parse_operand.asm tests/test_parse_operand.bin -e20 -v0
           echo "✅ Generated and assembled valid_instructions.asm"
 
       - name: Assemble Sonic 1 and confirm 0 diffing bytes
         shell: bash
         run: |
           cd examples/s1disasm_fasm68k
-          make
-          sleep 2
-          DIFF_COUNT=$(make -silent diff-count)
+          sleep 1
+          ../../fasm68k.bat sonic.asm -e200 -v2 fasm68k_artifacts/sonic.bin
+          sleep 1
+          xxd -b -c1 fasm68k_artifacts/sonic.bin | cut -d' ' -f2 > fasm68k_artifacts/sonic.hex
+          sleep 1
+          DIFF_COUNT=$(git diff --no-index clownassembler_artifacts/sonic.hex fasm68k_artifacts/sonic.hex | wc -l)
           if [ "$DIFF_COUNT" -ne 0 ]; then
               echo "❌ Found $DIFF_COUNT differing bytes!"
               exit 1
@@ -152,9 +134,12 @@ jobs:
         shell: bash
         run: |
           cd examples/RetailClerk89_fasm68k
-          make
-          sleep 2
-          DIFF_COUNT=$(make -silent diff-count)
+          sleep 1
+          ../../fasm68k.bat src/RetailClerk89.X68 -e200 -v2 fasm68k_artifacts/RetailClerk.bin
+          sleep 1
+          xxd -b -c1 fasm68k_artifacts/RetailClerk.bin | cut -d' ' -f2 > fasm68k_artifacts/RetailClerk.hex
+          sleep 1
+          DIFF_COUNT=$(git diff --no-index vasm_artifacts/RetailClerk.hex fasm68k_artifacts/RetailClerk.hex | wc -l)
           if [ "$DIFF_COUNT" -ne 0 ]; then
               echo "❌ Found $DIFF_COUNT differing bytes!"
               exit 1
@@ -165,9 +150,12 @@ jobs:
         shell: bash
         run: |
           cd examples/speedrun-tower_fasm68k
-          make
-          sleep 2
-          DIFF_COUNT=$(make -silent diff-count)
+          sleep 1
+          ../../fasm68k.bat src/SpeedrunTower.X68 -e200 -v2 fasm68k_artifacts/SpeedrunTower.bin
+          sleep 1
+          xxd -b -c1 fasm68k_artifacts/SpeedrunTower.bin | cut -d' ' -f2 > fasm68k_artifacts/SpeedrunTower.hex
+          sleep 1
+          DIFF_COUNT=$(git diff --unified=0 --no-index vasm_artifacts/SpeedrunTower.hex fasm68k_artifacts/SpeedrunTower.hex | wc -l)
           if [ "$DIFF_COUNT" -ne 0 ]; then
               echo "❌ Found $DIFF_COUNT differing bytes!"
               exit 1
@@ -188,4 +176,4 @@ jobs:
           ../../fasm68k.bat 4_gamepad/gamepad.asm -e200 -v2 4_gamepad/gamepad.bin
           echo "Assembling 6_psg_tone..."
           ../../fasm68k.bat 6_psg_tone/psg_tone.asm -e200 -v2 6_psg_tone/psg_tone.bin
-          echo "✅ All Mega Drive samples assembled successfully on Windows!"
+          echo "✅ All Mega Drive samples assembled successfully!"
