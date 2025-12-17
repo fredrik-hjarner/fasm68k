@@ -97,21 +97,34 @@ jobs:
           choco install make -y
           choco install diffutils -y
 
+      - name: Patch Makefiles to use fasm68k.bat on Windows
+        shell: bash
+        run: |
+          echo "Patching Makefiles to use fasm68k.bat instead of fasm68k..."
+          
+          # Patch src/Makefile
+          sed -i 's|../fasm68k |../fasm68k.bat |g' src/Makefile
+          echo "=== src/Makefile (patched) ==="
+          grep -n "fasm68k" src/Makefile || echo "No fasm68k references"
+          
+          # Patch example Makefiles
+          for makefile in examples/*/Makefile; do
+            if [ -f "$makefile" ]; then
+              sed -i 's|../../fasm68k |../../fasm68k.bat |g' "$makefile"
+              echo "=== $makefile (patched) ==="
+              grep -n "fasm68k" "$makefile" | head -5 || echo "No fasm68k references"
+            fi
+          done
+
       - name: Generate and assemble valid_instructions.asm
         shell: bash
         run: |
           cd src
           bun tests/generate_tests.ts
           bun tests/generate_validation.ts
-          ../fasm68k.bat tests/fasm68k_wrapper.asm tests/test.bin -e20 -v1
+          make build
+          make test_parse_operand
           echo "✅ Generated and assembled valid_instructions.asm"
-
-      - name: Test parse_operand
-        shell: bash
-        run: |
-          cd src
-          ../fasm68k.bat tests/test_parse_operand.asm tests/test_parse_operand.bin -e20 -v0
-          echo "✅ Assembled test_parse_operand.asm"
 
       - name: Assemble Sonic 1 and confirm 0 diffing bytes
         shell: bash
