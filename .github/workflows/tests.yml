@@ -97,24 +97,20 @@ jobs:
           choco install make -y
           choco install diffutils -y
 
-      - name: Patch Makefiles to use fasm68k.bat on Windows
+      - name: Create bash wrapper for fasm68k.bat on Windows
         shell: bash
         run: |
-          echo "Patching Makefiles to use fasm68k.bat instead of fasm68k..."
-          
-          # Patch src/Makefile
-          sed -i 's|../fasm68k |../fasm68k.bat |g' src/Makefile
-          echo "=== src/Makefile (patched) ==="
-          grep -n "fasm68k" src/Makefile || echo "No fasm68k references"
-          
-          # Patch example Makefiles
-          for makefile in examples/*/Makefile; do
-            if [ -f "$makefile" ]; then
-              sed -i 's|../../fasm68k |../../fasm68k.bat |g' "$makefile"
-              echo "=== $makefile (patched) ==="
-              grep -n "fasm68k" "$makefile" | head -5 || echo "No fasm68k references"
-            fi
-          done
+          echo "Creating bash wrapper 'fasm68k' that calls 'fasm68k.bat'..."
+          cat > fasm68k << 'EOF'
+          #!/usr/bin/env bash
+          DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+          cmd //c "$DIR\\fasm68k.bat" "$@"
+          EOF
+          chmod +x fasm68k
+          echo "=== fasm68k wrapper created ==="
+          cat fasm68k
+          echo "==="
+          echo "This wrapper allows Makefiles to call 'fasm68k' which delegates to 'fasm68k.bat'"
 
       - name: Generate and assemble valid_instructions.asm
         shell: bash
