@@ -88,7 +88,46 @@ folder you cloned it into:
 
 <summary>Windows</summary>
 <blockquote>
-TODO
+
+Get fasm68k and it's dependencies (i.e. fasmg and examples) by running:
+
+```
+git clone --recurse-submodules git@github.com:fredrik-hjarner/fasm68k.git
+```
+
+Step into the repository directory:
+
+```
+cd fasm68k
+```
+
+To assemble the examples, run these commands using `fasm68k.bat` and binary files should be created which you can run in a Mega Drive/Genesis emulator:
+
+```
+fasm68k.bat examples/megadrive_simple_demo/main.asm
+fasm68k.bat examples/megadrive_samples_fasm68k/1_hello_world/hello.asm
+fasm68k.bat examples/megadrive_samples_fasm68k/2_scroll_planes/scroll.asm
+fasm68k.bat examples/megadrive_samples_fasm68k/3_sprites/sprites.asm
+fasm68k.bat examples/megadrive_samples_fasm68k/4_gamepad/gamepad.asm
+fasm68k.bat examples/megadrive_samples_fasm68k/6_psg_tone/psg_tone.asm
+fasm68k.bat examples/RetailClerk89_fasm68k/src/RetailClerk89.X68
+fasm68k.bat examples/speedrun-tower_fasm68k/src/SpeedrunTower.X68
+```
+
+**Optional:** Add the fasm68k directory to your PATH so you can run `fasm68k.bat` from anywhere:
+
+1. Search for "Environment Variables" in Windows Start menu
+2. Click "Edit the system environment variables"
+3. Click "Environment Variables..." button
+4. Under "User variables", find and select "Path", then click "Edit..."
+5. Click "New" and add the full path to your fasm68k directory (e.g., `C:\Users\YourName\code\fasm68k`)
+6. Click "OK" on all dialogs
+
+After adding to PATH, open a new command prompt and you can run:
+```
+fasm68k.bat your_file.asm
+```
+
 </blockquote>
 </details>
 
