@@ -92,55 +92,78 @@ jobs:
         with:
           bun-version: 'latest'
 
+      - name: Install Make and Unix tools
+        run: |
+          choco install make -y
+          choco install diffutils -y
+
       - name: Generate and assemble valid_instructions.asm
-        shell: pwsh
+        shell: bash
         run: |
           cd src
           bun tests/generate_tests.ts
           bun tests/generate_validation.ts
-          ..\fasm68k.bat tests\fasm68k_wrapper.asm tests\test.bin -e20 -v1
-          Write-Host "✅ Generated and assembled valid_instructions.asm"
+          ../fasm68k.bat tests/fasm68k_wrapper.asm tests/test.bin -e20 -v1
+          echo "✅ Generated and assembled valid_instructions.asm"
 
       - name: Test parse_operand
-        shell: pwsh
+        shell: bash
         run: |
           cd src
-          ..\fasm68k.bat tests\test_parse_operand.asm tests\test_parse_operand.bin -e20 -v0
-          Write-Host "✅ Assembled test_parse_operand.asm"
+          ../fasm68k.bat tests/test_parse_operand.asm tests/test_parse_operand.bin -e20 -v0
+          echo "✅ Assembled test_parse_operand.asm"
 
-      - name: Assemble Sonic 1 on Windows
-        shell: pwsh
+      - name: Assemble Sonic 1 and confirm 0 diffing bytes
+        shell: bash
         run: |
-          cd examples\s1disasm_fasm68k
-          ..\..\fasm68k.bat sonic.asm -e200 -v2 fasm68k_artifacts\sonic.bin
-          Write-Host "✅ Assembled Sonic 1"
+          cd examples/s1disasm_fasm68k
+          make
+          sleep 2
+          DIFF_COUNT=$(make -silent diff-count)
+          if [ "$DIFF_COUNT" -ne 0 ]; then
+              echo "❌ Found $DIFF_COUNT differing bytes!"
+              exit 1
+          fi
+          echo "✅ All bytes match perfectly!"
 
-      - name: Assemble Retail Clerk 89 on Windows
-        shell: pwsh
+      - name: Assemble Retail Clerk 89 and confirm 0 diffing bytes
+        shell: bash
         run: |
-          cd examples\RetailClerk89_fasm68k
-          ..\..\fasm68k.bat main.asm -e200 -v2 fasm68k_artifacts\main.bin
-          Write-Host "✅ Assembled Retail Clerk 89"
+          cd examples/RetailClerk89_fasm68k
+          make
+          sleep 2
+          DIFF_COUNT=$(make -silent diff-count)
+          if [ "$DIFF_COUNT" -ne 0 ]; then
+              echo "❌ Found $DIFF_COUNT differing bytes!"
+              exit 1
+          fi
+          echo "✅ All bytes match perfectly!"
 
-      - name: Assemble Speedrun Tower on Windows
-        shell: pwsh
+      - name: Assemble Speedrun Tower and confirm 0 diffing bytes
+        shell: bash
         run: |
-          cd examples\speedrun-tower_fasm68k
-          ..\..\fasm68k.bat main.asm -e200 -v2 fasm68k_artifacts\main.bin
-          Write-Host "✅ Assembled Speedrun Tower"
+          cd examples/speedrun-tower_fasm68k
+          make
+          sleep 2
+          DIFF_COUNT=$(make -silent diff-count)
+          if [ "$DIFF_COUNT" -ne 0 ]; then
+              echo "❌ Found $DIFF_COUNT differing bytes!"
+              exit 1
+          fi
+          echo "✅ All bytes match perfectly!"
 
-      - name: Assemble Mega Drive Samples on Windows
-        shell: pwsh
+      - name: Assemble Mega Drive Samples
+        shell: bash
         run: |
-          cd examples\megadrive_samples_fasm68k
-          Write-Host "Assembling 1_hello_world..."
-          ..\..\fasm68k.bat 1_hello_world\hello.asm -e200 -v2 1_hello_world\hello.bin
-          Write-Host "Assembling 2_scroll_planes..."
-          ..\..\fasm68k.bat 2_scroll_planes\scroll.asm -e200 -v2 2_scroll_planes\scroll.bin
-          Write-Host "Assembling 3_sprites..."
-          ..\..\fasm68k.bat 3_sprites\sprites.asm -e200 -v2 3_sprites\sprites.bin
-          Write-Host "Assembling 4_gamepad..."
-          ..\..\fasm68k.bat 4_gamepad\gamepad.asm -e200 -v2 4_gamepad\gamepad.bin
-          Write-Host "Assembling 6_psg_tone..."
-          ..\..\fasm68k.bat 6_psg_tone\psg_tone.asm -e200 -v2 6_psg_tone\psg_tone.bin
-          Write-Host "✅ All Mega Drive samples assembled successfully on Windows!"
+          cd examples/megadrive_samples_fasm68k
+          echo "Assembling 1_hello_world..."
+          ../../fasm68k.bat 1_hello_world/hello.asm -e200 -v2 1_hello_world/hello.bin
+          echo "Assembling 2_scroll_planes..."
+          ../../fasm68k.bat 2_scroll_planes/scroll.asm -e200 -v2 2_scroll_planes/scroll.bin
+          echo "Assembling 3_sprites..."
+          ../../fasm68k.bat 3_sprites/sprites.asm -e200 -v2 3_sprites/sprites.bin
+          echo "Assembling 4_gamepad..."
+          ../../fasm68k.bat 4_gamepad/gamepad.asm -e200 -v2 4_gamepad/gamepad.bin
+          echo "Assembling 6_psg_tone..."
+          ../../fasm68k.bat 6_psg_tone/psg_tone.asm -e200 -v2 6_psg_tone/psg_tone.bin
+          echo "✅ All Mega Drive samples assembled successfully on Windows!"
