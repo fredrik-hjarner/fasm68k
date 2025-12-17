@@ -97,43 +97,33 @@ jobs:
           choco install make -y
           choco install diffutils -y
 
-      - name: Create bash wrapper for fasm68k.bat on Windows
+      - name: Create wrappers for fasm68k.bat on Windows
         shell: bash
         run: |
-          echo "Creating bash wrapper 'fasm68k' that calls 'fasm68k.bat'..."
+          echo "Creating fasm68k.cmd wrapper for Windows make (cmd.exe)..."
+          cat > fasm68k.cmd << 'EOF'
+          @echo off
+          setlocal
+          set "SCRIPT_DIR=%~dp0"
+          "%SCRIPT_DIR%fasm68k.bat" %*
+          EOF
+          
+          echo "Creating bash wrapper for Git Bash..."
           cat > fasm68k << 'EOF'
           #!/usr/bin/env bash
           DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-          # Convert Unix path to Windows path and call fasm68k.bat
           WIN_DIR=$(cygpath -w "$DIR" 2>/dev/null || echo "$DIR")
           cmd.exe //c "${WIN_DIR}\\fasm68k.bat" "$@"
           EOF
           chmod +x fasm68k
-          echo "=== fasm68k wrapper created ==="
-          cat fasm68k
+          
+          echo "=== Created wrappers ==="
+          ls -la fasm68k* | head -5
+          echo "=== Testing fasm68k.cmd ==="
+          cmd //c "fasm68k.cmd --help" || echo "(exit code $?, expected)"
+          echo "=== Testing bash wrapper ==="
+          ./fasm68k --help || echo "(exit code $?, expected)"
           echo "==="
-          echo "Testing wrapper..."
-          ./fasm68k --help || echo "Wrapper test failed with exit code $?"
-          echo "==="
-          
-      - name: Patch Makefiles to use bash shell on Windows
-        shell: bash
-        run: |
-          echo "Patching Makefiles to force bash as the shell..."
-          
-          # Patch src/Makefile
-          sed -i '1iSHELL := /bin/bash' src/Makefile
-          echo "=== src/Makefile (first 5 lines) ==="
-          head -5 src/Makefile
-          
-          # Patch example Makefiles
-          for makefile in examples/*/Makefile; do
-            if [ -f "$makefile" ]; then
-              sed -i '1iSHELL := /bin/bash' "$makefile"
-              echo "=== $makefile (first 3 lines) ==="
-              head -3 "$makefile"
-            fi
-          done
 
       - name: Generate and assemble valid_instructions.asm
         shell: bash
