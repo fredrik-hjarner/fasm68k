@@ -63,3 +63,18 @@ jobs:
               exit 1
           fi
           echo "✅ All bytes match perfectly!"
+
+      - name: Assemble Mega Drive Samples
+        run: |
+          cd examples/megadrive_samples_fasm68k
+          echo "Assembling 1_hello_world..."
+          ../../fasm68k 1_hello_world/hello.asm -e200 -v2 1_hello_world/hello.bin
+          echo "Assembling 2_scroll_planes..."
+          ../../fasm68k 2_scroll_planes/scroll.asm -e200 -v2 2_scroll_planes/scroll.bin
+          echo "Assembling 3_sprites..."
+          ../../fasm68k 3_sprites/sprites.asm -e200 -v2 3_sprites/sprites.bin
+          echo "Assembling 4_gamepad..."
+          ../../fasm68k 4_gamepad/gamepad.asm -e200 -v2 4_gamepad/gamepad.bin
+          echo "Assembling 6_psg_tone..."
+          ../../fasm68k 6_psg_tone/psg_tone.asm -e200 -v2 6_psg_tone/psg_tone.bin
+          echo "✅ All Mega Drive samples assembled successfully!"

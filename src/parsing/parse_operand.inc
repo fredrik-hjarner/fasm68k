@@ -235,6 +235,7 @@ iterate op, @op1,@op2
             ;; label ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             ; TODO: Can labels be both .w and and .l?
             ; TODO: Do I need this or is abs.w and abs.l enough??
+            ; See m68k.inc for the is_label struc. though that had some problem?
             ; label_w:
             ;         match (tmp).=w, operand
             ;         jno done

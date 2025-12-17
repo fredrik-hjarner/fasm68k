@@ -80,6 +80,8 @@ include "directives.inc"
 
 ; Define is_label on the label so I can identify what is and isn't a label.
 ; TODO: Can this interceptor be make with CALM?
+; This would run every time a label is defined (like mylabel:), adding a
+; .is_label property to that symbol.
 ; struc (label) ? line&
 ;     define label.is_label
 ;     . line
