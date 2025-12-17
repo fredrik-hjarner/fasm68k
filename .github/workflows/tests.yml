@@ -112,7 +112,28 @@ jobs:
           echo "=== fasm68k wrapper created ==="
           cat fasm68k
           echo "==="
-          echo "This bash wrapper allows Makefiles to call 'fasm68k' which delegates to 'fasm68k.bat'"
+          echo "Testing wrapper..."
+          ./fasm68k --help || echo "Wrapper test failed with exit code $?"
+          echo "==="
+          
+      - name: Patch Makefiles to use bash shell on Windows
+        shell: bash
+        run: |
+          echo "Patching Makefiles to force bash as the shell..."
+          
+          # Patch src/Makefile
+          sed -i '1iSHELL := /bin/bash' src/Makefile
+          echo "=== src/Makefile (first 5 lines) ==="
+          head -5 src/Makefile
+          
+          # Patch example Makefiles
+          for makefile in examples/*/Makefile; do
+            if [ -f "$makefile" ]; then
+              sed -i '1iSHELL := /bin/bash' "$makefile"
+              echo "=== $makefile (first 3 lines) ==="
+              head -3 "$makefile"
+            fi
+          done
 
       - name: Generate and assemble valid_instructions.asm
         shell: bash
