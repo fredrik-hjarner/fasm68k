@@ -53,6 +53,15 @@ hexdump:
 #  hexdump -v -e '/1 "%02x\n"' tests/test.bin > tests/test.hex
 .PHONY: hexdump
 
+# Run the structured test framework
+test-cases:
+	bun tests/test_runner.ts ./tests/cases
+.PHONY: test-cases
+
+# Run all tests (structured test cases + existing tests)
+test: test-cases build hexdump
+.PHONY: test
+
 clean:
 	rm -f tests/test.bin tests/test.hex
 .PHONY: clean
