@@ -1,22 +1,63 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; PARSE_OPERAND                                                              ;;
+;; PARSE_OPERAND - Core Operand Parser and Addressing Mode Identifier         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; This file contains the main operand parsing logic that identifies which    ;;
+;; addressing mode an operand uses and extracts all necessary information     ;;
+;; for instruction encoding.                                                  ;;
+;;                                                                            ;;
+;; The parser identifies 12 addressing modes defined by the 68000:            ;;
+;;   1. Dn              - Data register direct                                ;;
+;;   2. An              - Address register direct                             ;;
+;;   3. (An)            - Address register indirect                           ;;
+;;   4. (An)+           - Address register indirect with post-increment       ;;
+;;   5. -(An)           - Address register indirect with pre-decrement        ;;
+;;   6. d(An)           - Address register indirect with displacement         ;;
+;;   7. d(An,Xn)        - Address register indirect with index                ;;
+;;   8. xxx.W           - Absolute short (word) addressing                    ;;
+;;   9. xxx.L           - Absolute long addressing                            ;;
+;;  10. d(PC)           - Program counter with displacement                   ;;
+;;  11. d(PC,Xn)        - Program counter with index                          ;;
+;;  12. #<data>         - Immediate data                                      ;;
+;;                                                                            ;;
+;; Plus special registers: sr, ccr, usp                                       ;;
+;;                                                                            ;;
+;; Usage:                                                                     ;;
+;;   parse_operand@op1 d0           ; Parses into @op1 namespace              ;;
+;;   parse_operand@op2 #$1234       ; Parses into @op2 namespace              ;;
+;;   ; Results available in @op1.type, @op1.ea_mode_bits, @op1.ea_reg_bits    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; TODO: Comment this. It's not completely a hack but it is not obvious what this
-; is really. I was needed to set the `ext_bytes` to the correct value when the
-; operande is an immediate.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Immediate Size Lookup Table                                                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Maps instruction size suffixes (b/w/l) to the number of bytes needed for   ;;
+;; immediate operands. Immediate bytes are always even (word-aligned).        ;;
+;;                                                                             ;;
+;;   .b -> 2 bytes (byte value zero-extended to word)                         ;;
+;;   .w -> 2 bytes (word value)                                               ;;
+;;   .l -> 4 bytes (longword value)                                           ;;
+;;   _  -> 2 bytes (default/unsized immediate)                                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 define m68k.instr_size_to_imm_size
 namespace m68k.instr_size_to_imm_size
-    define b? 2
-    define w? 2
-    define l? 4
-    define _? 2 ; TODO: This is not well-thought out. Rethink size related stuff
+    define b? 2  ; Byte immediate takes 2 bytes (word-aligned)
+    define w? 2  ; Word immediate takes 2 bytes
+    define l? 4  ; Long immediate takes 4 bytes
+    define _? 2  ; TODO: This is not well-thought out. Rethink size related stuff
 end namespace
 
-; Define variable/namespace where parse_operand will store its results,
-; for example @op1.type
-; Use parse_operand by suffixing it will either @op1 or @op2 like this:
-;     parse_operand@op1 some_operand_to_parse
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Operand Result Namespaces (@op1 and @op2)                                  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Parse results are stored in these namespaces. Most 68k instructions have   ;;
+;; 1 or 2 operands, so we parse into @op1 and @op2.                           ;;
+;;                                                                            ;;
+;; Usage:                                                                     ;;
+;;   parse_operand@op1 operand_text  ; Parse first operand                    ;;
+;;   parse_operand@op2 operand_text  ; Parse second operand                   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 define @op1 @op1
 define @op2 @op2
 
