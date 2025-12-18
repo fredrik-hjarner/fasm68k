@@ -59,7 +59,7 @@ test-cases:
 .PHONY: test-cases
 
 # Run all tests (structured test cases + existing tests)
-test: test-cases build hexdump
+test: test-cases gen_tests gen_validation build hexdump
 .PHONY: test
 
 clean:
