@@ -19,7 +19,8 @@ namespace m68k.settings?
         \ ; Supports syntax like this: v_levseldelay: equ $FFFFFF80
         \ ; Observe the colon between the label and the equ.
         compat_colon_equs, 0, "", \
-        \ ; TODO: Comment.
+        \ ; Assumably `compat_word_align_instructions` is meant to automatically
+        \ ; word align instructions.
         \ ; TODO: Actually use this setting in code.
         compat_word_align_instructions, 0, "", \
         \ ; TODO: Comment.
@@ -30,6 +31,10 @@ namespace m68k.settings?
         \ ; `lbl1:` 
         \ ; `something`
         \ ; TODO: Implement compat_labels_on_separate_line
+        \ ; `compat_labels_on_separate_line` is neede to handle such things as:
+        \ ; Ani_Bas:  dc.w .still-Ani_Bas
+        \ ; where the the righ-hand side contains a local label, otherwise
+        \ ; will *not* get Ani_Bas as it's parent but instead a preceeding label
         compat_labels_on_separate_line, 0, "", \
         \ ; TODO: Comment.
         \ ; Replace %01010101 with 01010101b in "some" situations.
@@ -37,10 +42,6 @@ namespace m68k.settings?
         \ ; replace all % with b in an old codebase you convert from another
         \ ; assembler to fasm68k).
         compat_binary_percent_prefix, 0, "", \
-        \ ; TODO: Comment.
-        \ ; Adds support for this syntax `v_levseldelay: equ $FFFFFF80`
-        \ ; TODO: Implement compat_equs_with_colon
-        compat_equs_with_colon, 0, "", \
         \
         \ ;; VASM SPECIFIC ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         \

@@ -1,16 +1,15 @@
 # fasm68k - Motorola 68000 instruction set for fasmg (flat assembler g)
 
 > [!NOTE]
-> Consider this to be in beta stage. It's perfectly usable with all 68k
-instructions validated with about [22,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm)
-and Sonic 1 and Retail Clerk '89 are assembled after every push, but I don't
-feel ready to call this version 1.0.0 yet.
+> **Version 1.0.0**. All 68k instructions are validated with about
+> [22,000 tests](https://raw.githubusercontent.com/fredrik-hjarner/fasm68k/refs/heads/master/src/tests/valid_instructions.asm),
+> and Sonic 1 and Retail Clerk '89 are assembled after every push.
 
 ## What is fasm68k?
 
 fasm68k is a set of fasmg macros that adds the Motorola 68000 instruction set to
 [fasmg](https://flatassembler.net/docs.php?article=fasmg) to allow it
-to assemble 68k assembly code. fasm68k also has it's own set of directives and
+to assemble 68k assembly code. fasm68k also has its own set of directives and
 adds settings to allow for _some_ compatibility (such as aliases or support for
 colonless labels), with other m68k assemblers in order to make it easier to
 convert codebases to fasm68k.
@@ -42,7 +41,7 @@ at this point.
 fasm68k aims to have _some_ compatibility with other 68k assemblers, but will
 probably never become 100% compatible.
 [Here](https://github.com/BigEvilCorporation/megadrive_samples/compare/master...fredrik-hjarner:megadrive_samples_fasm68k:master) is one example of what was
-needed to to adapt code originally for the asm68k assembler to fasm68k.
+needed to adapt code originally for the asm68k assembler to fasm68k.
 
 The compatibility aspect of fasm68k is still under development. I hope that it
 will be even easier to adapt projects to fasm68k in the future.
@@ -54,7 +53,7 @@ will be even easier to adapt projects to fasm68k in the future.
 <summary>Linux</summary>
 <blockquote>
 
-Get fasm68k and it's dependences (i.e. fasmg and examples) by running:
+Get fasm68k and its dependencies (i.e. fasmg and examples) by running:
 
 `git clone --recurse-submodules git@github.com:fredrik-hjarner/fasm68k.git`
 
@@ -157,6 +156,63 @@ ones:
 | `dc.l`                 | Define a longword.                            | asm68k, vasm         |
 | `incbin`               | Include a binary file.                        | asm68k, vasm         |
 
+## Settings Reference
+
+This document lists the user-facing settings under `m68k.settings.*`, what they do, and which values are valid.
+
+### How to set a setting
+
+Use the helper macro:
+
+```asm
+m68k.set diag_absolute_too_big, 2     ; sets to the given value
+```
+
+### Diagnostics (severity settings)
+
+Defined in `src/settings/diagnostics.inc`.
+
+| Setting | Default | Values | Meaning |
+|---|---:|---|---|
+| `diag_absolute_too_big` | 0 | 0/1/2 | 0=off, 1=warn, 2=error when an absolute address literal is too large for the selected addressing mode and must be truncated. |
+| `diag_instruction_word_alignment` | 1 | 0/1/2 | 0=off, 1=warn, 2=error when an **instruction** is placed on an odd address (68000 requires instruction fetches to be word-aligned). |
+| `diag_data_word_alignment` | 1 | 0/1/2 | 0=off, 1=warn, 2=error when **non-byte data** is placed on an odd address (e.g. `dc.w/dc.l/dc.q`, `rs.w/rs.l/rs.q`). |
+
+### Autofixes (illegal → legal rewrites)
+
+Defined in `src/settings/autofixes.inc`.
+
+| Setting | Default | Values | Meaning |
+|---|---:|---|---|
+| `autofix_eor_to_eori` | 2 | 0/1/2 | When writing `eor #imm,<ea>` (illegal for `eor`): 0=error (don’t fix), 1=autofix + warn, 2=autofix silently. |
+| `autofix_cmp_to_cmpa` | 2 | 0/1/2 | When writing `cmp <ea>,an` (illegal for `cmp`): 0=error (don’t fix), 1=autofix + warn, 2=autofix silently. |
+
+### Optimizations (legal → “more optimal” rewrites)
+
+Defined in `src/settings/optimization.inc`.
+
+| Setting | Default | Values | Meaning |
+|---|---:|---|---|
+| `optimize_cmp_to_cmpi` | 0 | 0/1/2 | When first operand is immediate in a `cmp`-family context: 0=no optimize, 1=optimize + warn, 2=optimize silently. |
+| `optimize_add_to_addi` | 0 | 0/1/2 | When first operand is immediate: 0=no optimize, 1=optimize + warn, 2=optimize silently. |
+| `optimize_sub_to_subi` | 0 | 0/1/2 | When first operand is immediate: 0=no optimize, 1=optimize + warn, 2=optimize silently. |
+| `optimize_or_to_ori` | 0 | 0/1/2 | When first operand is immediate: 0=no optimize, 1=optimize + warn, 2=optimize silently. |
+| `optimize_and_to_andi` | 0 | 0/1/2 | When first operand is immediate: 0=no optimize, 1=optimize + warn, 2=optimize silently. |
+
+### General / compatibility settings
+
+Defined in `src/settings/settings.inc` (plus some behavior implemented in `src/compat/*.inc`).
+
+| Setting | Default | Values | Meaning / Notes |
+|---|---:|---|---|
+| `compat_operators` | 0 | 0/1 | Enables common operator syntax from other assemblers (e.g. `<<` → `shl`, `>>` → `shr`, `&` → `and`, `|` → `or`) in certain parsing paths. |
+| `compat_binary_percent_prefix` | 0 | 0/1 | Enables `%0101` style binary literals in some contexts (translated to fasmg’s `0101b`). |
+| `compat_colon_equs` | 0 | 0/1 | Compatibility for `label: equ value` syntax. |
+| `compat_colonless_labels` | 0 | 0/1 | Compatibility for labels without a trailing colon (implementation-dependent). |
+| `compat_vasm_org` | 0 | 0/1 | Changes ORG behavior to match vasm (see `src/compat/compat_vasm.inc`). |
+| `compat_vasm_align` | 0 | 0/1 | Changes ALIGN behavior to match vasm (see `src/compat/compat_vasm.inc`). |
+
+
 ## Differences from other m68k assemblers
 
 - Macros are completely different and it's the main reason for this project to
@@ -173,8 +229,7 @@ bit shifting, the preferred way is to use `shl` and `shr`. Likewise try to use
 - Binary numbers are written as `01010101b` (instead of `%01010101`).
 - You prefix labels with dot `.label1` to make them local (instead of prefixing
 with @ `@label1`).
-- Currently no optimizations and might be missing some aliases for some
-instructions.
+- Currently no optimizations.
 
 <details>
 <summary>In comparison to vasm (vasmm68k_mot)</summary>
@@ -188,23 +243,6 @@ command actually adds empty bytes up to the specified address.
 - [x] I will add a compatibility setting to support the vasm behaviour. It is recommended to have that setting disabled unless you need it.
 </blockquote>
 </details>
-
-## History
-
-- 2025-03-28:
-  - Humble beginnings: Initial implementation of `nop`, `rte` and `rts`.
-- 2025-05-05:
-  - Alpha "release".
-  - Rudimentary implementation of all 680000 instructions and all addressing modes.
-  - First commit to the `fasm68k` repository.
-- 2025-05-06:
-  - fasm68k can correctly assemble all BigEvilCorporation's `megadrive_samples`.
-- 2025-05-12:
-  - fasm68k can correctly assemble Hugues Johnson's RetailClerk89. It took about 30-40 hours to get it to produce identical binary.
-- 2025-05-13:
-  - fasm68k can correctly assemble Hugues Johnson's Speedrun Tower. It took 45 minutes to get it to run in an emulator and about 1 hour to produce identical binary.
-- 2025-05-20:
-  - fasm68k can correctly assemble Sonic Retro's Sonic 1 dissasembly producing identical binary, though it required many changes to the code to make itcompatible.
 
 ## Acknowledgments and attributions
 
