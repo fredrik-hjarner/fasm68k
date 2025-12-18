@@ -2,7 +2,7 @@
 ;; SETTINGS.INC                                                               ;;
 ;;                                                                            ;;
 ;; This file contains the settings for the fasm68k.                           ;;
-;; Use `m68k.enable` and `m68k.disable` to enable/disable a setting.          ;;
+;; Use `m68k.set` to enable/disable a setting.                                ;;
 ;; TODO: Warn or error if trying to set a non-existent setting and inform     ;;
 ;;       the user of all the available settings.                              ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -62,19 +62,15 @@ end namespace
 ; TODO: Make into a calminstruction.
 ; TODO: Should validate that the setting exists.
 ; TODO: Remove m68k.enable, it won't work for anything but 0 and 1 so wont work.
+; TODO: enable is used in some of the examples, so they need to be updated then
+;       enable can be removed.
 macro m68k.enable? setting
     m68k.settings.setting = 1
 end macro
 
-; TODO: Make into a calminstruction.
-; TODO: Should validate that the setting exists.
-; TODO: Remove m68k.disable, it won't work for anything but 0 and 1 so wont work.
-macro m68k.disable? setting
-    m68k.settings.setting = 0
-end macro
-
 ; TODO: Comment.
-; TODO: Use this instead of m68k.enable, m68k.disable.
+; TODO: Should validate that the setting exists.
+; TODO: Use this instead of m68k.enable.
 macro m68k.set? setting*, value*
     ; Check if the setting exists.
     ; Check if the value is an allowed value for the setting.

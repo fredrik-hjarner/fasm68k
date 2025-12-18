@@ -6,7 +6,7 @@
 ;; same time in a way.                                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; Seems all of these only allow the immediate operande to be 1-8
+; Seems all of these only allow the immediate operand to be 1-8
 ; though it seems that 8 will be encoded as zero.
 iterate <instr,  instr_bits>, \
         as,               0, \
