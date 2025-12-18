@@ -81,9 +81,16 @@ end macro
 macro calminstruction.assert_word_aligned? err_msg:"Instruction placed on an odd address! Instructions are required to be word-aligned."
         check $ and 1
         jno done
-        ; TODO: Maybe this could be toggled by a setting, yea probaly since you
-        ;       may want to control whether it's an error or a warning at least.
-        warn err_msg
+        diag_instruction_word_alignment err_msg
+    done:
+end macro
+
+; Assert that the current address ($) is word-aligned (even address) for
+; word/long/quad data directives (dc.w/dc.l/dc.q, etc).
+macro calminstruction.assert_data_word_aligned? err_msg:"Attempting to place non-byte data on an odd address!"
+        check $ and 1
+        jno done
+        diag_data_word_alignment err_msg
     done:
 end macro
 

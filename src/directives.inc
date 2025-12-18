@@ -108,8 +108,8 @@ iterate <size,  size_str,    bytes,  max_size>, \
 
     calminstruction dc.size? line&
             ; Ensure word-alignment (68000 hardware requirement)
-            assert_word_aligned "Attempting to place a " bappend size_str \
-                                bappend " on an odd address!"
+            assert_data_word_aligned "Attempting to place a " bappend size_str \
+                                     bappend " on an odd address!"
             local head, tail, last_argument
             compute last_argument, 0
             arrange tail, line
@@ -214,7 +214,7 @@ iterate <size, size_str,   bytes>, \
                 local err_msg
                 err_msg = "Attempting to place a " bappend \
                           size_str bappend " on an odd RS address"
-                warn err_msg
+                diag_data_word_alignment err_msg
             end if
             . := __rs                    ; Assign current RS offset to this label
             __rs = __rs + n * bytes      ; Advance RS counter
