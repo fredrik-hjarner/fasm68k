@@ -1,54 +1,74 @@
-; TODO: Move is_one_token into here because it may be a good util.
-; TODO: A match_any util would be nice.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Extended CALM Utilities (xxcalm)                                           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; This file provides utility functions and macros that extend fasmg's CALM   ;;
+;; (Custom Assembly Language Macros) system to make writing macro code easier.;;
+;;                                                                            ;;
+;; Key features:                                                              ;;
+;;   - Unique label generation (new/@ system)                                 ;;
+;;   - Multi-parameter display                                                ;;
+;;   - Tokenization and evaluation helpers                                    ;;
+;;   - Nice error formatting                                                  ;;
+;;   - Shorthand combinations (arr_ass, loc_com, etc.)                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 define xxcalm
 namespace xxcalm
-    ; Handling return values in fasmg can be a bit awkward so here I have
-    ; defined a variable that you can use to hold a BOOLEAN return value for
-    ; your custom macros.
-    ; TODO: Override `jyes` and `jno` to look at this value if it is not -1
-    ;       since -1 is the default "non-value" and what I reset it back to
-    ;       when a `jyes`/`jno` check has been performed.
-    ; TODO: I should remove this.
+    ; DEPRECATED: Legacy return value holder (not currently used).
+    ; In early development, this was used to pass boolean return values between
+    ; macros. Modern approach uses direct 'check' and 'jyes'/'jno' instead.
     ret = -1
 end namespace
 
-; TODO: Comment
-; TODO: I should remove this.
+; DEPRECATED: Jump if xxcalm.ret equals 1 (true).
+; This was part of an early return value system. No longer used in current code.
 macro calminstruction?.jyup? label*
-    ; TODO: Check for -1 here because that would indicate error.
     check xxcalm.ret = 1
     compute xxcalm.ret, -1
     jyes label
 end macro
 
-; TODO: Comment
-; TODO: I should remove this.
+; DEPRECATED: Jump if xxcalm.ret equals 0 (false).
+; This was part of an early return value system. No longer used in current code.
 macro calminstruction?.jnope? label*
-    ; TODO: Check for -1 here because that would indicate error.
     check xxcalm.ret = 0
     compute xxcalm.ret, -1
     jyes label
 end macro
 
-; Unique labels in CALM with `new` and `@`.
-; From https://board.flatassembler.net/topic.php?p=234192#234192
-; Example:
-;     macro calminstruction?.dispsymbol? sym
-;             new empty
-;             new cont
-;             match , sym
-;             @ jyes empty
-;             display '<not empty>'
-;             @ jump cont
-;         @ empty:
-;             display '<empty>'
-;         @ cont:
-;     end macro
-;     calminstruction test arg1
-;             dispsymbol arg1
-;     end calminstruction
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Unique Label Generation System (new/@)                                     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; CALM doesn't have built-in support for unique labels like fasmg's regular  ;;
+;; macros do. This system provides that functionality.                        ;;
+;;                                                                            ;;
+;; Usage:                                                                     ;;
+;;   new labelname           - Declares a unique label                        ;;
+;;   @ labelname:            - Defines the unique label                       ;;
+;;   @ jyes labelname        - Jumps to the unique label                      ;;
+;;                                                                            ;;
+;; Example:                                                                   ;;
+;;   calminstruction?.dispsymbol? sym                                         ;;
+;;       new empty                                                            ;;
+;;       new cont                                                             ;;
+;;       match , sym                                                          ;;
+;;       @ jyes empty              ; Jump to unique 'empty' label             ;;
+;;       display '<not empty>'                                                ;;
+;;       @ jump cont               ; Jump to unique 'cont' label              ;;
+;;   @ empty:                      ; Define unique 'empty' label              ;;
+;;       display '<empty>'                                                    ;;
+;;   @ cont:                       ; Define unique 'cont' label               ;;
+;;   end calminstruction                                                      ;;
+;;                                                                            ;;
+;; Implementation: Uses a counter to generate unique names (labelname1,       ;;
+;; labelname2, etc.) and transforms statements prefixed with @ to use them.   ;;
+;; Credit: https://board.flatassembler.net/topic.php?p=234192#234192          ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Marker for the unique label namespace
 define ___loc? ___loc?
+
+; Declares a unique label by generating a unique name (name1, name2, etc.)
 calminstruction calminstruction?.new? name*
         local   new, i
         init    i, 0
@@ -57,15 +77,24 @@ calminstruction calminstruction?.new? name*
         arrange name, ___loc.name
         publish name, new
 end calminstruction
+
+; Transforms statements prefixed with @ to use unique labels
+; Example: "@ jyes done" becomes "jyes done1" (if done was declared via 'new done')
 calminstruction calminstruction?.@? statement&
         transform statement, ___loc
         assemble statement
 end calminstruction
 
-; Allows calminstruction?.display? to have multiple
-; parameters just as normal display.
-; Examples:
-;   display "hello", 13, 10
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Multi-parameter Display                                                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; CALM's display normally only accepts one parameter. This version allows    ;;
+;; multiple comma-separated parameters like normal fasmg display.             ;;
+;;                                                                            ;;
+;; Example:                                                                   ;;
+;;   display "Value: ", value, 13, 10  ; Displays string, value, and newline  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 calminstruction calminstruction?.display? list&
     local item
     loop:
@@ -78,30 +107,20 @@ calminstruction calminstruction?.display? list&
         arrange item, =display list 
         assemble item
 end calminstruction
-; macro calminstruction?.display? list&
-;     local head, tail
-;     new @loop
-;     new @final
-;     arrange tail, list
-;     @ @loop:
-;         match head=,tail, tail
-;         @ jno @final
-;         arrange head, =display head
-;         assemble head
-;         @ jump @loop
-;     @ @final:
-;         arrange head, =display tail 
-;         assemble head
-; end macro
 
-; TODO: Comment/explain.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Evaluation and Boolean Utilities                                           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Execute a statement in the normal (non-CALM) assembly context.
+; Useful for evaluating expressions or executing regular macros from CALM.
 macro calminstruction?.eval? str*
     asm eval str
 end macro
 
-; TODO: Comment/explain.
+; Helper structure for the bool macro (see below).
+; Evaluates an expression and defines the result as 1 (true) or 0 (false).
 ; TODO: Make into a calminstruction?
-; Just a helper for the `calminstruction?.bool?` util.
 struc xxcalm._bool? expr*
     if expr
         eval 'define . 1'
@@ -110,17 +129,38 @@ struc xxcalm._bool? expr*
     endif
 end struc
 
+; Converts a boolean expression to 1 or 0 in CALM context.
+; Usage: bool result, (some_value = expected_value)
+; Result will be 1 if condition is true, 0 if false.
 macro calminstruction?.bool? result*, bool_expr*
     asm result xxcalm._bool? bool_expr
 end macro
 
-; Taken from https://board.flatassembler.net/topic.php?p=243916#243907
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tokenization                                                               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Converts a string into tokens that can be matched/manipulated.             ;;
+;; Credit: https://board.flatassembler.net/topic.php?p=243916#243907          ;;
+;;                                                                            ;;
+;; Example: tokenize "1 + 2" produces the tokens: 1, +, 2                     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 struc tokenize? string*
         eval 'define . ',string
 end struc
 macro calminstruction?.tokenize? val*
     asm val tokenize val
 end macro
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Formatted Error Messages                                                   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Displays errors with file name and line number for better debugging.       ;;
+;;                                                                            ;;
+;; Format:                                                                    ;;
+;;   filename.asm [123]:                                                      ;;
+;;       Error message here                                                   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 macro calminstruction?.nice_err? line&
     local line_str
@@ -131,10 +171,16 @@ macro calminstruction?.nice_err? line&
         9 bappend __file__ bappend ' [' bappend line_str bappend ']:' bappend \
         13 bappend 10 bappend \
         9 bappend line
-    exit ; also auto-exit since I think that's what one usually wants.
+    exit ; Automatically exit after error
 end macro
 
-; full_transform transforms until there is nothing left to transform.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Full Transform                                                             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Repeatedly transforms a variable until no more transformations are possible;;
+;; Useful when a variable may contain multiple levels of substitutions.       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 macro calminstruction?.full_transform? var*
         new @next
     @ @next:
@@ -143,7 +189,18 @@ macro calminstruction?.full_transform? var*
 end macro
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; SOME UTILS TO MAKE CALM CODE SHORTER                                       ;;
+;; Shorthand Utility Combinations                                             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; These combine common CALM operations into single commands to reduce        ;;
+;; boilerplate code and improve readability.                                  ;;
+;;                                                                            ;;
+;; Naming convention: operation1_operation2                                   ;;
+;;   arr = ARRange    (arrange - build code from parts)                       ;;
+;;   ass = ASSemble   (execute assembled code)                                ;;
+;;   com = COMpute    (evaluate expression)                                   ;;
+;;   str = STRingify  (convert to string)                                     ;;
+;;   tra = TRAnsform  (apply symbol substitutions)                            ;;
+;;   loc = LOCal      (declare local variable)                                ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; ARRange -> ASSemble
