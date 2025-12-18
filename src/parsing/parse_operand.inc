@@ -32,7 +32,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Maps instruction size suffixes (b/w/l) to the number of bytes needed for   ;;
 ;; immediate operands. Immediate bytes are always even (word-aligned).        ;;
-;;                                                                             ;;
+;;                                                                            ;;
 ;;   .b -> 2 bytes (byte value zero-extended to word)                         ;;
 ;;   .w -> 2 bytes (word value)                                               ;;
 ;;   .l -> 4 bytes (longword value)                                           ;;
@@ -63,7 +63,12 @@ define @op2 @op2
 
 iterate op, @op1,@op2
     namespace op
-        ;; Define values in the @op1 and @op2 namespaces. ;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;; Operand Result Variables                                           ;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;; These variables are populated by parse_operand and contain all info;;
+        ;; needed for instruction encoding.                                   ;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
         ; TODO: I really ought to make it is a bit nicer for the user get to
         ;       info about the operands, so go through this code again and see
